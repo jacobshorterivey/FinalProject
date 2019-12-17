@@ -21,7 +21,7 @@ class UserTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("FIXME");
+		emf = Persistence.createEntityManagerFactory("Furever");
 	}
 
 	@AfterAll
