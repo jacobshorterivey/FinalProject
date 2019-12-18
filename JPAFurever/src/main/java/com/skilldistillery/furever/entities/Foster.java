@@ -1,10 +1,13 @@
 package com.skilldistillery.furever.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Foster {
@@ -16,6 +19,9 @@ public class Foster {
 	
 	@Column(name = "max_foster")
 	private int maxFoster;
+	
+	@OneToMany(mappedBy = "foster")
+	private List<FosterPet> fosterPets;
 
 	
 //	private User user;
