@@ -50,7 +50,7 @@ class UserTest {
 	@DisplayName("test user entity mappings")
 	void addressId() {
 		assertNotNull(user);
-		assertEquals(1, user.getAddressId());
+		assertEquals("testUser", user.getUsername());
 	}
 
 }
