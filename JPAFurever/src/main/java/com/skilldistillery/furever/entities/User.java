@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -29,25 +30,22 @@ public class User {
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
 
-	  @ManyToMany
-	  @JoinTable(name="user_shelter",
-	    joinColumns=@JoinColumn(name="user_id"),
-	    inverseJoinColumns=@JoinColumn(name="shelter_id")
-	  )
-	  private List<Shelter> shelters;
-	
+	@ManyToMany
+	@JoinTable(name = "user_shelter", joinColumns = @JoinColumn(name = "user_id"), 
+	inverseJoinColumns = @JoinColumn(name = "shelter_id"))
+	private List<Shelter> shelters;
 
-	
+	@OneToMany(mappedBy = "user")
+	private List<PetAdoption> adoptions;
+
 	// CONSTRUCTORS
 	public User() {
 		super();
 	}
 
-
 	public User(int id, String username, String password, String fname, String lname, Integer age, String phone,
-			boolean active, Address address, List<Shelter> shelters) {
+			boolean active, Address address) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -58,12 +56,9 @@ public class User {
 		this.phone = phone;
 		this.active = active;
 		this.address = address;
-		this.shelters = shelters;
 	}
 
-
 	// GETTERS, SETTERS, TOSTRING, EQUALS
-
 
 	public int getId() {
 		return id;
@@ -129,27 +124,29 @@ public class User {
 		this.active = active;
 	}
 
-
 	public Address getAddress() {
 		return address;
 	}
-
-
 
 	public void setAddress(Address address) {
 		this.address = address;
 	}
 
-
 	public List<Shelter> getShelters() {
 		return shelters;
 	}
-
 
 	public void setShelters(List<Shelter> shelters) {
 		this.shelters = shelters;
 	}
 
+	public List<PetAdoption> getAdoptions() {
+		return adoptions;
+	}
+
+	public void setAdoptions(List<PetAdoption> adoptions) {
+		this.adoptions = adoptions;
+	}
 
 	@Override
 	public int hashCode() {
@@ -224,5 +221,4 @@ public class User {
 				+ lname + ", age=" + age + ", phone=" + phone + ", active=" + active + ", address=" + address + "]";
 	}
 
-	
 }
