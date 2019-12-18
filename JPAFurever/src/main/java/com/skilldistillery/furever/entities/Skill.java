@@ -49,6 +49,14 @@ public class Skill {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 
 	@Override
 	public int hashCode() {
