@@ -25,9 +25,9 @@ public class Breed {
 	
 	private String description;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "species_id")
-//	private Species species;
+	@ManyToOne
+	@JoinColumn(name = "species_id")
+	private Species species;
 	
 	private String size;
 
@@ -93,6 +93,14 @@ public class Breed {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	public Species getSpecies() {
+		return species;
+	}
+
+	public void setSpecies(Species species) {
+		this.species = species;
 	}
 
 	@Override

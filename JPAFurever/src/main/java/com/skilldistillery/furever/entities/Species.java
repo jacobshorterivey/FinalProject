@@ -1,9 +1,12 @@
 package com.skilldistillery.furever.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Species {
@@ -12,7 +15,12 @@ public class Species {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
+	
+//	@JsonIgnore
+	@OneToMany(mappedBy = "species")
+	private List<Breed> breeds;
 	
 	//CONSTRUCTORS
 	public Species() {
