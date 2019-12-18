@@ -19,7 +19,7 @@ public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	private String color;
 	private String name;
@@ -28,24 +28,26 @@ public class Pet {
 	private int weight;
 	private boolean adopted;
 	private boolean fixed;
-	
+
 	@Column(name = "special_conditions")
 	private String specialConditions;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "shelter_id")
 	private Shelter shelter;
 
+	@ManyToOne
+	@JoinColumn(name = "breed_id")
+	private Breed breed;
+
 	@ManyToMany
-	@JoinTable(name="pet_trait",
-    joinColumns=@JoinColumn(name="pet_id"),
-    inverseJoinColumns=@JoinColumn(name="trait_id")
-  )
+	@JoinTable(name = "pet_trait", joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name = "trait_id"))
 	private List<Trait> traits;
-	
+
 	// CONSTRUCTORS
-	public Pet() {}
-	
+	public Pet() {
+	}
+
 	public Pet(int id, String color, String name, String size, int age, int weight, boolean adopted, boolean fixed,
 			String specialConditions, Shelter shelter) {
 		super();
@@ -60,7 +62,6 @@ public class Pet {
 		this.specialConditions = specialConditions;
 		this.shelter = shelter;
 	}
-
 
 	// GETTERS, SETTERS, TOSTRING, EQUALS
 	public int getId() {
@@ -143,8 +144,6 @@ public class Pet {
 		this.shelter = shelter;
 	}
 
-	
-	
 	public List<Trait> getTraits() {
 		return traits;
 	}
@@ -153,6 +152,13 @@ public class Pet {
 		this.traits = traits;
 	}
 	
+	public Breed getBreed() {
+		return breed;
+	}
+
+	public void setBreed(Breed breed) {
+		this.breed = breed;
+	}
 
 	@Override
 	public int hashCode() {
