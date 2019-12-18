@@ -9,6 +9,18 @@
     </provider>
 
 	<!--class definitions-->
+	<class>com.skilldistillery.furever.entities.Address</class>
+	<class>com.skilldistillery.furever.entities.Breed</class>
+	<class>com.skilldistillery.furever.entities.Foster</class>
+	<class>com.skilldistillery.furever.entities.FosterPet</class>
+	<class>com.skilldistillery.furever.entities.FosterReputation</class>
+	<class>com.skilldistillery.furever.entities.Image</class>
+	<class>com.skilldistillery.furever.entities.Pet</class>
+	<class>com.skilldistillery.furever.entities.PetAdoption</class>
+	<class>com.skilldistillery.furever.entities.Shelter</class>
+	<class>com.skilldistillery.furever.entities.Skill</class>
+	<class>com.skilldistillery.furever.entities.Species</class>
+	<class>com.skilldistillery.furever.entities.Trait</class>
 	<class>com.skilldistillery.furever.entities.User</class>
 
 	
