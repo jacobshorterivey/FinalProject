@@ -23,6 +23,7 @@ public class User {
 	@Column(name="address_id")
 	private Integer addressId;
 	
+	
 	// CONSTRUCTORS
 	public User() {
 		super();
