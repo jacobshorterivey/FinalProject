@@ -41,9 +41,15 @@ class UserTest {
 
 	@Test
 	@DisplayName("test user entity mappings")
-	void test1() {
+	void username() {
 		assertNotNull(user);
-		assertEquals("testuser", user.getUsername());
+		assertEquals("testUser", user.getUsername());
+	}
+	@Test
+	@DisplayName("test user entity mappings")
+	void addressId() {
+		assertNotNull(user);
+		assertEquals(1, user.getAddressId());
 	}
 
 }
