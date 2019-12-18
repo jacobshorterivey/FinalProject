@@ -13,14 +13,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TraitTest {
-	
+
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private Trait trait;
-	
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-			emf = Persistence.createEntityManagerFactory("Furever");
+		emf = Persistence.createEntityManagerFactory("Furever");
 	}
 
 	@AfterAll
@@ -43,6 +43,12 @@ class TraitTest {
 	void skill() {
 		assertNotNull(trait);
 		assertEquals("Intellegent", trait.getDescription());
-}
+	}
+	
+	@Test
+	void trait() {
+		assertNotNull(trait);
+		assertEquals("Yuki", trait.getPets().get(0).getName());
+	}
 
 }
