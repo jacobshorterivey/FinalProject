@@ -133,7 +133,6 @@ public class Pet {
 		this.shelter = shelter;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Pet [id=" + id + ", color=" + color + ", name=" + name + ", size=" + size + ", age=" + age + ", weight="
