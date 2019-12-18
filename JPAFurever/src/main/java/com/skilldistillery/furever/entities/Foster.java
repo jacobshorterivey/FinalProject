@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Foster {
-	// FIELDS
 	
+	// FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -23,69 +25,82 @@ public class Foster {
 	@OneToMany(mappedBy = "foster")
 	private List<FosterPet> fosterPets;
 
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 	
-//	private User user;
+	@OneToMany(mappedBy = "foster")
+	private List<FosterReputation> fosterReputations;
+
 	
 	// CONSTRUCTORS
-	public Foster(int id, int maxFoster) {
+	public Foster() {}
+
+	public Foster(int id, int maxFoster, List<FosterPet> fosterPets, User user,
+			List<FosterReputation> fosterReputations) {
 		super();
 		this.id = id;
 		this.maxFoster = maxFoster;
+		this.fosterPets = fosterPets;
+		this.user = user;
+		this.fosterReputations = fosterReputations;
 	}
 
-	public Foster() {
-		super();
-	}
 
 	// GETTERS, SETTERS, TOSTRING, EQUALS
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 
 	public int getMaxFoster() {
 		return maxFoster;
 	}
 
+
 	public void setMaxFoster(int maxFoster) {
 		this.maxFoster = maxFoster;
 	}
 
+
+	public List<FosterPet> getFosterPets() {
+		return fosterPets;
+	}
+
+
+	public void setFosterPets(List<FosterPet> fosterPets) {
+		this.fosterPets = fosterPets;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public List<FosterReputation> getFosterReputations() {
+		return fosterReputations;
+	}
+
+
+	public void setFosterReputations(List<FosterReputation> fosterReputations) {
+		this.fosterReputations = fosterReputations;
+	}
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Foster [id=").append(id).append(", maxFoster=").append(maxFoster).append("]");
-		return builder.toString();
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + maxFoster;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Foster other = (Foster) obj;
-		if (id != other.id)
-			return false;
-		if (maxFoster != other.maxFoster)
-			return false;
-		return true;
-	}
-	  
-
+		return "Foster [id=" + id + ", maxFoster=" + maxFoster + ", fosterPets=" + fosterPets + ", user=" + user
+				+ ", fosterReputations=" + fosterReputations + "]";
+	} 
+	
 }
-
