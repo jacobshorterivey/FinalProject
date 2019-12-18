@@ -32,12 +32,15 @@ public class User {
 	private Address address;
 
 	@ManyToMany
-	@JoinTable(name = "user_shelter", joinColumns = @JoinColumn(name = "user_id"), 
-	inverseJoinColumns = @JoinColumn(name = "shelter_id"))
+	@JoinTable(name = "user_shelter", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "shelter_id"))
 	private List<Shelter> shelters;
 
 	@OneToMany(mappedBy = "user")
 	private List<PetAdoption> adoptions;
+
+	@ManyToMany
+	@JoinTable(name = "volunteer_skill", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
+	private List<Skill> skills;
 
 	// CONSTRUCTORS
 	public User() {
@@ -146,6 +149,14 @@ public class User {
 
 	public void setAdoptions(List<PetAdoption> adoptions) {
 		this.adoptions = adoptions;
+	}
+
+	public List<Skill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
 	}
 
 	@Override

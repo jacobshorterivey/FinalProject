@@ -65,5 +65,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals(1, user.getAdoptions().size());
 	}
+	@Test
+	@DisplayName("test user relationship mappings to skills")
+	void skills() {
+		assertNotNull(user);
+		assertEquals(2, user.getSkills().size());
+	}
 
 }
