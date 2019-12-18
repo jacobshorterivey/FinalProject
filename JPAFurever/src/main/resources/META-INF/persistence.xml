@@ -9,8 +9,6 @@
     </provider>
 
 	<!--class definitions-->
-	<class>com.skilldistillery.furever.entities.Address</class>
-	<class>com.skilldistillery.furever.entities.Shelter</class>
 	<class>com.skilldistillery.furever.entities.User</class>
 
 	

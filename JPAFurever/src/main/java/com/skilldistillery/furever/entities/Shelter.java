@@ -1,11 +1,14 @@
 package com.skilldistillery.furever.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -31,13 +34,16 @@ public class Shelter {
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-
 	
+	@OneToMany(mappedBy = "shelter")
+	private List<Pet> pets;
+
+
 	// CONSTRUCTORS
 	public Shelter() {};
-
+	
 	public Shelter(int id, String phone, String email, String username, String password, String role, String name,
-			boolean active, String websiteUrl, Address address) {
+			boolean active, String websiteUrl, Address address, List<Pet> pets) {
 		super();
 		this.id = id;
 		this.phone = phone;
@@ -49,8 +55,9 @@ public class Shelter {
 		this.active = active;
 		this.websiteUrl = websiteUrl;
 		this.address = address;
+		this.pets = pets;
 	}
-	
+
 
 	// GETTERS, SETTERS, TOSTRING, EQUALS
 	public int getId() {
@@ -132,11 +139,19 @@ public class Shelter {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
+	public List<Pet> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
+	}
 
 	@Override
 	public String toString() {
 		return "Shelter [id=" + id + ", phone=" + phone + ", email=" + email + ", username=" + username + ", password="
 				+ password + ", role=" + role + ", name=" + name + ", active=" + active + ", websiteUrl=" + websiteUrl
-				+ ", address=" + address + "]";
+				+ ", address=" + address + ", pets=" + pets + "]";
 	}	
 }
