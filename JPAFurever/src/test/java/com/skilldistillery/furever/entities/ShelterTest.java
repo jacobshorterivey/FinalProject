@@ -108,4 +108,10 @@ class ShelterTest {
 		assertNotNull(shelter);
 		assertEquals("shelter", shelter.getRole());
 	}
+	@Test
+	@DisplayName("test relationship to User")
+	void test11() {
+		assertNotNull(shelter);
+		assertEquals(1, shelter.getUsers().size());
+	}
 }

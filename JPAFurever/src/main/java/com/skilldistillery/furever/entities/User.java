@@ -1,10 +1,15 @@
 package com.skilldistillery.furever.entities;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -20,8 +25,19 @@ public class User {
 	private Integer age;
 	private String phone;
 	private boolean active;
-	@Column(name="address_id")
-	private Integer addressId;
+
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
+
+	  @ManyToMany
+	  @JoinTable(name="user_shelter",
+	    joinColumns=@JoinColumn(name="user_id"),
+	    inverseJoinColumns=@JoinColumn(name="shelter_id")
+	  )
+	  private List<Shelter> shelters;
+	
 
 	
 	// CONSTRUCTORS
@@ -29,8 +45,9 @@ public class User {
 		super();
 	}
 
+
 	public User(int id, String username, String password, String fname, String lname, Integer age, String phone,
-			boolean active, Integer addressId) {
+			boolean active, Address address, List<Shelter> shelters) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -40,7 +57,8 @@ public class User {
 		this.age = age;
 		this.phone = phone;
 		this.active = active;
-		this.addressId = addressId;
+		this.address = address;
+		this.shelters = shelters;
 	}
 
 
@@ -111,20 +129,34 @@ public class User {
 		this.active = active;
 	}
 
-	public Integer getAddressId() {
-		return addressId;
+
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddressId(Integer addressId) {
-		this.addressId = addressId;
+
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
+
+
+	public List<Shelter> getShelters() {
+		return shelters;
+	}
+
+
+	public void setShelters(List<Shelter> shelters) {
+		this.shelters = shelters;
+	}
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + ((addressId == null) ? 0 : addressId.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((fname == null) ? 0 : fname.hashCode());
 		result = prime * result + id;
@@ -146,10 +178,10 @@ public class User {
 		User other = (User) obj;
 		if (active != other.active)
 			return false;
-		if (addressId == null) {
-			if (other.addressId != null)
+		if (address == null) {
+			if (other.address != null)
 				return false;
-		} else if (!addressId.equals(other.addressId))
+		} else if (!address.equals(other.address))
 			return false;
 		if (age == null) {
 			if (other.age != null)
@@ -189,7 +221,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", fname=" + fname + ", lname="
-				+ lname + ", age=" + age + ", phone=" + phone + ", active=" + active + ", addressId=" + addressId + "]";
+				+ lname + ", age=" + age + ", phone=" + phone + ", active=" + active + ", address=" + address + "]";
 	}
 
 	

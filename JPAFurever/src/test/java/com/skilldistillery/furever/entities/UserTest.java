@@ -32,7 +32,7 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		user = em.find(User.class, 2);
 	}
 
 	@AfterEach
@@ -42,15 +42,15 @@ class UserTest {
 
 	@Test
 	@DisplayName("test user entity mappings")
-	void username() {
-		assertNotNull(user);
-		assertEquals("testUser", user.getUsername());
-	}
-	@Test
-	@DisplayName("test user entity mappings")
 	void addressId() {
 		assertNotNull(user);
-		assertEquals("testUser", user.getUsername());
+		assertEquals("secondUser", user.getUsername());
+	}
+	@Test
+	@DisplayName("test user relationship mappings to shelter")
+	void shelter() {
+		assertNotNull(user);
+		assertEquals(1, user.getShelters().size());
 	}
 
 }

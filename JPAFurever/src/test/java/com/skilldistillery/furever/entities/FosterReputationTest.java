@@ -51,7 +51,7 @@ class FosterReputationTest {
 	@DisplayName("Entity Mapping")
 	void fosterId() {
 		assertNotNull(fr);
-		assertEquals(2, fr.getFosterId());
+		assertEquals("testUser", fr.getFoster().getUser().getUsername());
 	}
 
 }
