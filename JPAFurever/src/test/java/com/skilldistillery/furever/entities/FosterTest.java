@@ -46,11 +46,39 @@ class FosterTest {
 		assertEquals(4, foster.getMaxFoster());
 	}
 
-//	@Test
-//	@DisplayName("test foster species mapping")
-//	void testSpecies() {
-//		assertNotNull(foster);
-//		assertEquals("Dog", foster.getUser().get  );
-//	}
+	@Test
+	@DisplayName("test foster getting user")
+	void testSpecies() {
+		assertNotNull(foster);
+		assertEquals("testUser", foster.getUser().getUsername());
+	}
 
+
+	@Test
+	@DisplayName("test foster getting rating")
+	void test3() {
+		assertNotNull(foster);
+		assertEquals(5, foster.getFosterReputations().get(0).getRating());
+	}
+	
+	@Test
+	@DisplayName("test if species is mapped correctly")
+	void test4() {
+		assertNotNull(foster);
+		assertEquals("Dog", foster.getSpeciesList().get(0).getName());
+	}
+	
+	@Test
+	@DisplayName("test if breed is mapped correctly")
+	void test5() {
+		assertNotNull(foster);
+		assertEquals("Shiba Inu", foster.getBreedList().get(0).getName());
+	}
+	
+	@Test
+	@DisplayName("test if trait is mapped correctly")
+	void test6() {
+		assertNotNull(foster);
+		assertEquals("Playful", foster.getTraitList().get(0).getDescription());
+	}
 }
