@@ -45,7 +45,6 @@ public class User {
 
 	// GETTERS, SETTERS, TOSTRING, EQUALS
 
-
 	public int getId() {
 		return id;
 	}

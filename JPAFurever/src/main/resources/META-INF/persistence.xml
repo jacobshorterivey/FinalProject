@@ -21,6 +21,7 @@
 	<class>com.skilldistillery.furever.entities.Skill</class>
 	<class>com.skilldistillery.furever.entities.Species</class>
 	<class>com.skilldistillery.furever.entities.Trait</class>
+	<class>com.skilldistillery.furever.entities.Shelter</class>
 	<class>com.skilldistillery.furever.entities.User</class>
 
 	

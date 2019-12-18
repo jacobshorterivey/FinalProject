@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class AddressTest {
 	
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private User user;
+	private Address address;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,25 +32,48 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		address = em.find(Address.class, 2);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+	}
+
+	@Test
+	@DisplayName("test address mapping")
+	void test1() {
+		assertNotNull(address);
+		assertEquals(2, address.getId());
+	}
 	
-	}
-
 	@Test
-	@DisplayName("test user entity mappings")
-	void username() {
-		assertNotNull(user);
-		assertEquals("testUser", user.getUsername());
+	@DisplayName("test street")
+	void test2() {
+		assertEquals("2129 W Chenango Ave", address.getStreet());
 	}
+	
 	@Test
-	@DisplayName("test user entity mappings")
-	void addressId() {
-		assertNotNull(user);
-		assertEquals(1, user.getAddressId());
+	@DisplayName("test street 2")
+	void test3() {
+		assertEquals("Unit A", address.getStreet2());
 	}
-
+	
+	@Test
+	@DisplayName("city")
+	void test4() {
+		assertEquals("Littleton", address.getCity());
+	}
+	
+	@Test
+	@DisplayName("state abbreviation")
+	void test5() {
+		assertEquals("CO", address.getStateAbbr());
+	}
+	
+	@Test
+	@DisplayName("zip code")
+	void test6() {
+		assertEquals(80120, address.getZip());
+	}
 }
+
