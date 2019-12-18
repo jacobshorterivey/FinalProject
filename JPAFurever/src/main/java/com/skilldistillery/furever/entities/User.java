@@ -5,6 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class User {
+	
 	// FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
