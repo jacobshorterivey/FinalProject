@@ -5,10 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "fost_reputation")
+=======
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "foster_reputation")
+>>>>>>> fbfff2143a2884904ef9d2818489708ab1176893
 public class FosterReputation {
 	
 	//FIELDS
