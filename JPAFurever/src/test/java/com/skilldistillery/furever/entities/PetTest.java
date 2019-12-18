@@ -94,5 +94,11 @@ class PetTest {
 	void test9() {
 		assertEquals("Littleton", pet.getShelter().getAddress().getCity());
 	}
+	
+	@Test
+	@DisplayName("test pet to trait mappings")
+	void test10() {
+		assertEquals("Playful", pet.getTraits().get(0).getDescription());
+	}
 }
 	

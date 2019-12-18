@@ -12,21 +12,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "fost_reputation")
 public class FosterReputation {
-	
-	//FIELDS
+
+	// FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
+
 	@Column
 	private int id;
 	private String content;
 	private Integer rating;
-	
+
 	@ManyToOne
-	@JoinColumn(name="foster_id")
+	@JoinColumn(name = "foster_id")
 	private Foster foster;
-	
-	//CONSTRUCTORS
+
+	// CONSTRUCTORS
 	public FosterReputation() {
 		super();
 	}
