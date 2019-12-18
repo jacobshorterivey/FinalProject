@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class BreedTest {
 	
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private User user;
+	private Breed breed;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,25 +32,23 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		breed = em.find(Breed.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-	
 	}
 
 	@Test
-	@DisplayName("test user entity mappings")
-	void username() {
-		assertNotNull(user);
-		assertEquals("testUser", user.getUsername());
+	@DisplayName("test breed entity mappings")
+	void testName() {
+		assertNotNull(breed);
+		assertEquals("Shiba Inu", breed.getName());
 	}
 	@Test
-	@DisplayName("test user entity mappings")
-	void addressId() {
-		assertNotNull(user);
-		assertEquals(1, user.getAddressId());
+	@DisplayName("test breed entity mappings")
+	void testHairType() {
+		assertNotNull(breed);
+		assertEquals("Double-coat short", breed.getHairType());
 	}
-
 }
