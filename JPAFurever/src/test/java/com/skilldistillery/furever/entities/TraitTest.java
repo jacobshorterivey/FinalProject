@@ -40,8 +40,9 @@ class TraitTest {
 	}
 
 	@Test
-	void test_Trait_mapping() {
-		fail("Not yet implemented");
-	}
+	void skill() {
+		assertNotNull(trait);
+		assertEquals("Intellegent", trait.getDescription());
+}
 
 }
