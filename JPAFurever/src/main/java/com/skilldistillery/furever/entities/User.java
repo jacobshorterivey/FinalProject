@@ -22,7 +22,7 @@ public class User {
 	private boolean active;
 	@Column(name="address_id")
 	private Integer addressId;
-	
+
 	
 	// CONSTRUCTORS
 	public User() {
@@ -45,6 +45,7 @@ public class User {
 
 
 	// GETTERS, SETTERS, TOSTRING, EQUALS
+
 
 	public int getId() {
 		return id;
