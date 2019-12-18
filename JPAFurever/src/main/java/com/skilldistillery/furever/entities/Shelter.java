@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -41,6 +42,11 @@ public class Shelter {
 
 	@ManyToMany(mappedBy = "shelters")
 	private List<User> users;
+
+	@ManyToMany
+	@JoinTable(name = "shelter_image", joinColumns = @JoinColumn(name = "shelter_id"), 
+	inverseJoinColumns = @JoinColumn(name = "image_id"))
+	private List<Image> images;
 
 	// CONSTRUCTORS
 	public Shelter() {
@@ -151,7 +157,6 @@ public class Shelter {
 	public void setPets(List<Pet> pets) {
 		this.pets = pets;
 	}
-	
 
 	public List<User> getUsers() {
 		return users;
@@ -160,8 +165,14 @@ public class Shelter {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-	
-	
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
 
 	@Override
 	public int hashCode() {
