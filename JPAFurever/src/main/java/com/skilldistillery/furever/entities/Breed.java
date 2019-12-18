@@ -1,5 +1,7 @@
 package com.skilldistillery.furever.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Breed {
@@ -28,6 +31,9 @@ public class Breed {
 	@ManyToOne
 	@JoinColumn(name = "species_id")
 	private Species species;
+	
+	@OneToMany(mappedBy="breed")
+	private List<Pet> pets;
 	
 	private String size;
 
@@ -101,6 +107,14 @@ public class Breed {
 
 	public void setSpecies(Species species) {
 		this.species = species;
+	}
+	
+	public List<Pet> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
 	}
 
 	@Override
