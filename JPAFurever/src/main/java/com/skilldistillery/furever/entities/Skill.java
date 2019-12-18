@@ -1,9 +1,12 @@
 package com.skilldistillery.furever.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Skill {
@@ -14,6 +17,9 @@ public class Skill {
 	private int id;
 	
 	private String name;
+	
+	@ManyToMany(mappedBy = "skills")
+	private List<User> users;
 	
 	// Constructors
 	
@@ -42,6 +48,14 @@ public class Skill {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	@Override
