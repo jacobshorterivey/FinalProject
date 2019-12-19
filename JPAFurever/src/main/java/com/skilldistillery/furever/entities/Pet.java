@@ -46,7 +46,8 @@ public class Pet {
 	@ManyToMany
 	@JoinTable(name = "pet_trait", joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name = "trait_id"))
 	private List<Trait> traits;
-	
+
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "pet_image", joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
 	private List<Image> images;
