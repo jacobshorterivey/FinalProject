@@ -13,20 +13,16 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column
+
 	private String street;
 	private String street2;
 	private String city;
 	private int zip;
-	
+
 	@Column(name = "state_abbr")
 	private String stateAbbr;
 
-	
 	// CONSTRUCTORS
-	public Address() {};
-	
 	public Address(int id, String street, String street2, String city, int zip, String stateAbbr) {
 		super();
 		this.id = id;
@@ -37,8 +33,11 @@ public class Address {
 		this.stateAbbr = stateAbbr;
 	}
 
-	
-	// GETTERS, SETTERS, TOSTRING, EQUALS
+	public Address() {
+		super();
+	}
+
+	// GETTERS, SETTERS
 	public int getId() {
 		return id;
 	}
@@ -87,9 +86,36 @@ public class Address {
 		this.stateAbbr = stateAbbr;
 	}
 
+	// EQUALS, TOSTRING
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Address other = (Address) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", zip=" + zip
-				+ ", stateAbbr=" + stateAbbr + "]";
-	}	
+		StringBuilder builder = new StringBuilder();
+		builder.append("Address [id=").append(id).append(", street=").append(street).append(", street2=")
+				.append(street2).append(", city=").append(city).append(", zip=").append(zip).append(", stateAbbr=")
+				.append(stateAbbr).append("]");
+		return builder.toString();
+	}
+
 }

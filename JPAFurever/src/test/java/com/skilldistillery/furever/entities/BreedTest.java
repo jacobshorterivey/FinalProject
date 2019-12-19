@@ -41,25 +41,25 @@ class BreedTest {
 
 	@Test
 	@DisplayName("test breed entity mappings")
-	void testName() {
+	void test1() {
 		assertNotNull(breed);
 		assertEquals("Shiba Inu", breed.getName());
 	}
 	@Test
 	@DisplayName("test breed entity mappings")
-	void testHairType() {
+	void test2() {
 		assertNotNull(breed);
 		assertEquals("Double-coat short", breed.getHairType());
 	}
 	@Test
 	@DisplayName("test breed species mapping")
-	void testSpecies() {
+	void test3() {
 		assertNotNull(breed);
 		assertEquals("Dog", breed.getSpecies().getName());
 	}
 	@Test
 	@DisplayName("test breed pet mapping")
-	void testPets() {
+	void test4() {
 		assertNotNull(breed);
 		assertEquals("Leeloo", breed.getPets().get(0).getName());
 	}

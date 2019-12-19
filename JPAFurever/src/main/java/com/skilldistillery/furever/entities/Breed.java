@@ -13,38 +13,41 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Breed {
-	// FIELDS
 
+	// FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private boolean hypoallergenic;
-	
+
 	@Column(name = "hair_type")
 	private String hairType;
-	
+
 	private String description;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "species_id")
 	private Species species;
-	
-	@OneToMany(mappedBy="breed")
+
+	@OneToMany(mappedBy = "breed")
 	private List<Pet> pets;
-	
+
 	private String size;
 
 	// CONSTRUCTORS
-	public Breed(int id, String name, boolean hypoallergenic, String hairType, String description, String size) {
+	public Breed(int id, String name, boolean hypoallergenic, String hairType, String description, Species species,
+			List<Pet> pets, String size) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.hypoallergenic = hypoallergenic;
 		this.hairType = hairType;
 		this.description = description;
+		this.species = species;
+		this.pets = pets;
 		this.size = size;
 	}
 
@@ -52,7 +55,7 @@ public class Breed {
 		super();
 	}
 
-	// GETTERS, SETTERS, TOSTRING, EQUALS
+	// GETTERS, SETTERS
 	public int getId() {
 		return id;
 	}
@@ -108,7 +111,7 @@ public class Breed {
 	public void setSpecies(Species species) {
 		this.species = species;
 	}
-	
+
 	public List<Pet> getPets() {
 		return pets;
 	}
@@ -117,16 +120,12 @@ public class Breed {
 		this.pets = pets;
 	}
 
+	// EQUALS, TOSTRING
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((hairType == null) ? 0 : hairType.hashCode());
-		result = prime * result + (hypoallergenic ? 1231 : 1237);
 		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((size == null) ? 0 : size.hashCode());
 		return result;
 	}
 
@@ -139,29 +138,7 @@ public class Breed {
 		if (getClass() != obj.getClass())
 			return false;
 		Breed other = (Breed) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (hairType == null) {
-			if (other.hairType != null)
-				return false;
-		} else if (!hairType.equals(other.hairType))
-			return false;
-		if (hypoallergenic != other.hypoallergenic)
-			return false;
 		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (size == null) {
-			if (other.size != null)
-				return false;
-		} else if (!size.equals(other.size))
 			return false;
 		return true;
 	}
@@ -174,7 +151,5 @@ public class Breed {
 				.append(description).append(", size=").append(size).append("]");
 		return builder.toString();
 	}
-	
-	
-	
+
 }

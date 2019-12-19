@@ -43,12 +43,8 @@ public class User {
 	private List<Skill> skills;
 
 	// CONSTRUCTORS
-	public User() {
-		super();
-	}
-
 	public User(int id, String username, String password, String fname, String lname, Integer age, String phone,
-			boolean active, Address address) {
+			boolean active, Address address, List<Shelter> shelters, List<PetAdoption> adoptions, List<Skill> skills) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -59,10 +55,16 @@ public class User {
 		this.phone = phone;
 		this.active = active;
 		this.address = address;
+		this.shelters = shelters;
+		this.adoptions = adoptions;
+		this.skills = skills;
 	}
 
-	// GETTERS, SETTERS, TOSTRING, EQUALS
-
+	public User() {
+		super();
+	}
+	
+	// GETTERS, SETTERS
 	public int getId() {
 		return id;
 	}
@@ -159,19 +161,12 @@ public class User {
 		this.skills = skills;
 	}
 
+	// EQUALS, TOSTRING
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((age == null) ? 0 : age.hashCode());
-		result = prime * result + ((fname == null) ? 0 : fname.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((lname == null) ? 0 : lname.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -184,52 +179,19 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (active != other.active)
-			return false;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (age == null) {
-			if (other.age != null)
-				return false;
-		} else if (!age.equals(other.age))
-			return false;
-		if (fname == null) {
-			if (other.fname != null)
-				return false;
-		} else if (!fname.equals(other.fname))
-			return false;
 		if (id != other.id)
-			return false;
-		if (lname == null) {
-			if (other.lname != null)
-				return false;
-		} else if (!lname.equals(other.lname))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", fname=" + fname + ", lname="
-				+ lname + ", age=" + age + ", phone=" + phone + ", active=" + active + ", address=" + address + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
+				.append(password).append(", fname=").append(fname).append(", lname=").append(lname).append(", age=")
+				.append(age).append(", phone=").append(phone).append(", active=").append(active).append(", address=")
+				.append(address).append("]");
+		return builder.toString();
 	}
 
 }

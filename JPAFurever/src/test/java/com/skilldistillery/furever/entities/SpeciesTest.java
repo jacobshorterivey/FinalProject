@@ -43,7 +43,7 @@ class SpeciesTest {
 
 	@Test
 	@DisplayName("Testing Entity mapping")
-	void name() {
+	void test1() {
 		assertNotNull(shelter);
 		assertEquals("Dog", shelter.getName());
 	}

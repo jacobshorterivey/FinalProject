@@ -42,32 +42,32 @@ class UserTest {
 
 	@Test
 	@DisplayName("test user entity mappings")
-	void username() {
+	void test1() {
 		assertNotNull(user);
 		assertEquals("secondUser", user.getUsername());
 	}
 	
 	@Test
 	@DisplayName("test user relationship mappings to address")
-	void address() {
+	void test2() {
 		assertNotNull(user);
 		assertEquals("CO", user.getAddress().getStateAbbr());
 	}
 	@Test
 	@DisplayName("test user relationship mappings to shelter")
-	void shelter() {
+	void test3() {
 		assertNotNull(user);
 		assertEquals(1, user.getShelters().size());
 	}
 	@Test
 	@DisplayName("test user relationship mappings to pet adoption")
-	void petAdoption() {
+	void test4() {
 		assertNotNull(user);
 		assertEquals(1, user.getAdoptions().size());
 	}
 	@Test
 	@DisplayName("test user relationship mappings to skills")
-	void skills() {
+	void test5() {
 		assertNotNull(user);
 		assertEquals(2, user.getSkills().size());
 	}

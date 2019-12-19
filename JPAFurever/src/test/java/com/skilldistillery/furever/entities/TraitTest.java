@@ -40,13 +40,13 @@ class TraitTest {
 	}
 
 	@Test
-	void skill() {
+	void test1() {
 		assertNotNull(trait);
 		assertEquals("Intellegent", trait.getDescription());
 	}
 	
 	@Test
-	void trait() {
+	void test2() {
 		assertNotNull(trait);
 		assertEquals("Yuki", trait.getPets().get(0).getName());
 	}

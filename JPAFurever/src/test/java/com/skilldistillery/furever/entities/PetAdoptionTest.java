@@ -2,7 +2,6 @@ package com.skilldistillery.furever.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -48,15 +47,15 @@ class PetAdoptionTest {
 	}
 
 	@Test
-	@DisplayName("test PetAdoption mapping is correct")
-	void test() {
+	@DisplayName("test pet adoption mapping is correct")
+	void test1() {
 		assertNotNull(adoption);
 		assertEquals("1", adoption.getId());
 	}
 	
 	@Test
-	@DisplayName("test PetAdoption mapping is correct")
-	void test_Pet_Adoption_Mapped_to_User() {
+	@DisplayName("test pet adoption mapping is correct")
+	void test2() {
 		assertNotNull(adoption);
 		assertEquals("2", adoption.getUser());
 	}

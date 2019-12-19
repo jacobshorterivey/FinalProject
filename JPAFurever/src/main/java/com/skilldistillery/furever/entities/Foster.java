@@ -49,9 +49,6 @@ public class Foster {
 
 	
 	// CONSTRUCTORS
-	public Foster() {}
-
-
 	public Foster(int id, int maxFoster, List<FosterPet> fosterPets, User user,
 			List<FosterReputation> fosterReputations, List<Species> speciesList, List<Breed> breedList,
 			List<Trait> traitList) {
@@ -66,7 +63,12 @@ public class Foster {
 		this.traitList = traitList;
 	}
 
+	public Foster() {
+		super();
+	}
 
+
+	// GETTERS, SETTERS
 	public int getId() {
 		return id;
 	}
@@ -146,11 +148,34 @@ public class Foster {
 		this.traitList = traitList;
 	}
 
+	// EQUALS, TOSTRING
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
 
 	@Override
-	public String toString() {
-		return "Foster [id=" + id + ", maxFoster=" + maxFoster + ", fosterPets=" + fosterPets + ", user=" + user
-				+ ", fosterReputations=" + fosterReputations + ", speciesList=" + speciesList + ", breedList="
-				+ breedList + ", traitList=" + traitList + "]";
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Foster other = (Foster) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Foster [id=").append(id).append(", maxFoster=").append(maxFoster).append(", user=").append(user)
+		.append("]");
+		return builder.toString();
+	}
+	
 }

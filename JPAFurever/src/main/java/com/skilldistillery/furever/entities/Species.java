@@ -10,31 +10,30 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Species {
-	
+
 	// FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	private String name;
-	
-//	@JsonIgnore
+
+	// @JsonIgnore
 	@OneToMany(mappedBy = "species")
 	private List<Breed> breeds;
-	
-	//CONSTRUCTORS
+
+	// CONSTRUCTORS
+	public Species(int id, String name, List<Breed> breeds) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.breeds = breeds;
+	}
+
 	public Species() {
 		super();
 	}
 
-	public Species(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-	
-	//GETTERS AND SETTERS
-
+	// GETTERS, SETTERS
 	public int getId() {
 		return id;
 	}
@@ -51,13 +50,20 @@ public class Species {
 		this.name = name;
 	}
 
-	// HASH CODE AND EQUAL
+	public List<Breed> getBreeds() {
+		return breeds;
+	}
+
+	public void setBreeds(List<Breed> breeds) {
+		this.breeds = breeds;
+	}
+
+	// EQUALS, TOSTRING
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -72,23 +78,14 @@ public class Species {
 		Species other = (Species) obj;
 		if (id != other.id)
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
 		return true;
 	}
 
-	// TO STRING
 	@Override
 	public String toString() {
-		return "Species [id=" + id + ", name=" + name + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Species [id=").append(id).append(", name=").append(name).append("]");
+		return builder.toString();
 	}
-	
-	
-	
-	
-	
-	
+
 }

@@ -42,14 +42,14 @@ class FosterReputationTest {
 	}
 
 	@Test
-	@DisplayName("Entity Mapping")
-	void content() {
+	@DisplayName("test foster reputation entity")
+	void test1() {
 		assertNotNull(fr);
 		assertEquals("SOOOOOO GOOOD!!", fr.getContent());
 	}
 	@Test
-	@DisplayName("Entity Mapping")
-	void fosterId() {
+	@DisplayName("testing foster reputation user mapping")
+	void test2() {
 		assertNotNull(fr);
 		assertEquals("testUser", fr.getFoster().getUser().getUsername());
 	}
