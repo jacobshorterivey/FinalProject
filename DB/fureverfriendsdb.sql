@@ -32,6 +32,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `account`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `account` ;
+
+CREATE TABLE IF NOT EXISTS `account` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(50) NOT NULL,
+  `role` VARCHAR(50) NOT NULL,
+  `active` TINYINT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `shelter`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `shelter` ;
@@ -42,16 +57,19 @@ CREATE TABLE IF NOT EXISTS `shelter` (
   `name` VARCHAR(100) NOT NULL,
   `website_url` TEXT NULL,
   `email` VARCHAR(100) NULL,
-  `active` TINYINT NOT NULL DEFAULT 0,
   `address_id` INT NOT NULL,
-  `username` VARCHAR(50) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
-  `role` VARCHAR(50) NOT NULL DEFAULT 'shelter',
+  `account_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_shelter_address1_idx` (`address_id` ASC),
+  INDEX `fk_shelter_account1_idx` (`account_id` ASC),
   CONSTRAINT `fk_shelter_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_shelter_account1`
+    FOREIGN KEY (`account_id`)
+    REFERENCES `account` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -65,20 +83,23 @@ DROP TABLE IF EXISTS `user` ;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(50) NOT NULL,
-  `username` VARCHAR(50) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
-  `role` VARCHAR(50) NOT NULL,
   `fname` VARCHAR(50) NOT NULL,
   `lname` VARCHAR(50) NOT NULL,
   `age` INT NULL,
   `phone` VARCHAR(25) NULL,
-  `active` TINYINT NULL,
   `address_id` INT NOT NULL,
+  `account_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_address1_idx` (`address_id` ASC),
+  INDEX `fk_user_account1_idx` (`account_id` ASC),
   CONSTRAINT `fk_user_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_account1`
+    FOREIGN KEY (`account_id`)
+    REFERENCES `account` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -526,6 +547,28 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) V
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (5, '2390 S Delaware St', NULL, 'Denver', 'CO', 80223);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (6, '3535 S Allison St', NULL, 'Lakewood', 'CO', 80235);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (7, '2540 Youngfield Street', NULL, 'Lakewood', 'CO', 80215);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (8, '20 Stewart court', NULL, 'Erie', 'CO', 80516);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (9, '9701 pearl street', 'Apartment 7208', 'Thornton', 'CO', 80229);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `account`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fureverfriendsdb`;
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (1, 'testUser', 'test', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (2, 'secondUser', 'test', 'admin', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (3, 'bakaie', 'test', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (4, 'Vint3r', 'test', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (5, 'shawn', 'test', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (6, 'u', 'u', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (7, 'testShelter', 'test', 'shelter', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (8, 'maxFund', 'test', 'shelter', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (9, 'felineRescue', 'test', 'shelter', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (10, 's', 's', 'shelter', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (11, 'angelsWithPaws', 'test', 'shelter', 1);
 
 COMMIT;
 
@@ -535,11 +578,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fureverfriendsdb`;
-INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (1, '3037032938', 'Humane Society Of The South Platte Valley', 'hsspv.org', 'info@hsspv.org', 1, 2, 'testShelter', 'test', 'shelter');
-INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (2, '3035954917', 'MaxFund Dog Shelter', 'https://maxfund.org/locationhours/', 'N/A', 1, 4, 'maxFund', 'test', 'shelter');
-INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (3, '3037446076', 'Rocky Mountain Feline Rescue', 'https://www.rmfr-colorado.org/', 'N/A', 1, 5, 'felineRescue', 'test', 'shelter');
-INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (4, '7203360770', 'Life Is Better Rescue', 'https://lifeisbetterrescue.org/', 'info@lifeisbetterrescue.org', 1, 6, 'x', 'x', 'shelter');
-INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (5, '3032742264', 'Angels With Paws', 'http://www.angelswithpaws.net/', 'angelswithpaws@yahoo.com', 1, 7, 'angelsWithPaws', 'test', 'shelter');
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (1, '3037032938', 'Humane Society Of The South Platte Valley', 'hsspv.org', 'info@hsspv.org', 2, 7);
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (2, '3035954917', 'MaxFund Dog Shelter', 'https://maxfund.org/locationhours/', 'N/A', 4, 8);
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (3, '3037446076', 'Rocky Mountain Feline Rescue', 'https://www.rmfr-colorado.org/', 'N/A', 5, 9);
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (4, '7203360770', 'Life Is Better Rescue', 'https://lifeisbetterrescue.org/', 'info@lifeisbetterrescue.org', 6, 10);
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (5, '3032742264', 'Angels With Paws', 'http://www.angelswithpaws.net/', 'angelswithpaws@yahoo.com', 7, 11);
 
 COMMIT;
 
@@ -549,8 +592,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fureverfriendsdb`;
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `fname`, `lname`, `age`, `phone`, `active`, `address_id`) VALUES (1, 'test.email@gmail.com', 'testUser', 'test', 'user', 'bob', 'boberson', 35, '3033598941', 1, 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `fname`, `lname`, `age`, `phone`, `active`, `address_id`) VALUES (2, 'test2.email@gmail.com', 'secondUser', 'test', 'Admin', 'Liam', 'Wilbur', 24, '3037562190', 1, 3);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (1, 'test.email@gmail.com', 'bob', 'boberson', 35, '3033598941', 1, 1);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (2, 'test2.email@gmail.com', 'Liam', 'Wilbur', 24, '3037562190', 3, 2);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (3, 'brian@gmail.com', 'Brian', 'Norris', 45, '3035038314', 8, 3);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (4, 'david@gmail.com', 'David', 'Norris', 25, '3033623031', 8, 4);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (5, 'shawn@gmail.com', 'Shawn', 'Benyak', 26, '3037568901', 9, 5);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (6, 'tester@gmail.com', 'User', 'McUserson', 24, '7209807543', 1, 6);
 
 COMMIT;
 
@@ -570,6 +617,7 @@ INSERT INTO `trait` (`id`, `description`) VALUES (7, 'Outgoing');
 INSERT INTO `trait` (`id`, `description`) VALUES (8, 'Aggressive');
 INSERT INTO `trait` (`id`, `description`) VALUES (9, 'Reserved');
 INSERT INTO `trait` (`id`, `description`) VALUES (10, 'Affectionate');
+INSERT INTO `trait` (`id`, `description`) VALUES (11, 'Good with kids');
 
 COMMIT;
 
@@ -761,7 +809,53 @@ INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`,
 INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (170, 'Wirehaired Pointing Griffon', 0, 'Double-coat long', 'The hardworking Wirehaired Pointing Griffon, renowned as the “supreme gundog,” is known for the harsh, low-shedding coat the breed is named for. Outgoing, eager, and quick-witted, Griffs are incomparable in the field and loving at home.', 1, 'Medium');
 INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (171, 'Xoloitzcuintli', 0, 'Short', 'The 3,000-year-old Xoloitzcuintli (pronounced \"show-low-eats-QUEENT-lee\"), the ancient Aztec dog of the gods, is today a loving companion and vigilant watchdog. The alert and loyal Xolo comes in three sizes, and in either hairless or coated varieties.', 1, 'Medium');
 INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (172, 'Afghan Hound', 1, 'Long', 'Among the most eye-catching of all dog breeds, the Afghan Hound is an aloof and dignified aristocrat of sublime beauty. Despite his regal appearance, the Afghan can exhibit an endearing streak of silliness and a profound loyalty.', 1, 'Medium');
-INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (173, 'Mixed', 0, 'Unknown', 'N/A', 1, 'Unknown');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (173, 'Mixed breed dog', 0, 'Unknown', 'N/A', 1, 'Unknown');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (174, 'Abyssinian', 0, 'Short', 'The Aby, as he’s nicknamed, is unlike any other cat. Smart, silly, and impressively athletic, he stays in constant motion—jumping, climbing, and exploring. In other words, this is no lap cat. He also has a unique ticked coat, giving him the appearance of a wildcat.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (175, 'American Bobtail', 0, 'Long', 'The American Bobtail is generally medium to large cat, with a naturally occurring bobbed tail. The American Bobtail is athletic and usually well-muscled with a sometimes powerful look. They possess a natural hunting gaze that combined with their body type, give American Bobtail a distinctive wild appearance.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (176, 'American Curl', 0, 'Long', 'The signature characteristic of the Curl is his unusual ears, which curl backward instead of standing up and coming to a point. The American Curl is a medium-size cat weighing five to 10 pounds, with an average lifespan of more than 13 years.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (177, 'American Shorthair', 0, 'Short', 'The American Shorthair is the pedigreed version of the well-known and beloved domestic shorthair. This versatile cat can be bred for any number of colors and patterns, including the popular silver tabby.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (178, 'American Wirehair', 0, 'Medium', 'The American Wirehair is a medium-size cat with regular features and a sweet expression. This cat\'s wiry coat, right down to the whiskers, is thick, hard and springy. It has been described as resembling steel wool. His unusual coat comes in almost any color or pattern.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (179, 'Balinese', 1, 'Long', 'The primary difference between the Balinese and the Siamese is coat length, with the Balinese having long, silky hair and a plumed tail. The Balinese shares the svelte but muscular body of the Siamese, as well as his wedge-shaped head, blue eyes, large triangular ears and striking color points.', 2, 'Small');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (180, 'Bengal', 1, 'Short', 'If you love a cat with an exotic look but without the size and danger of a wild cat, the Bengal was developed with you in mind. Created by crossing small Asian Leopard Cats with domestic cats, this large-boned, shorthaired cat stands out for his spotted or marbled coat of many colors.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (181, 'Birman', 0, 'Long', 'His piercing, sapphire-blue eyes stare deep into your soul, and his semi-long coat -- ideally misted with gold -- is silky to the touch. The white-gloved Birman may look elegant, but his appearance belies a powerful, muscular body and a strong love of play.', 2, 'Long');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (182, 'Bombay', 0, 'Short', 'The Bombay is calm, gentle and affectionate. This solid, medium-size cat was created in the 1950s by crossing sable Burmese with black American Shorthairs. His short, velvety coat is easy to care for.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (183, 'British Shorthair', 0, 'Short', 'The British Shorthair is solid and muscular with an easygoing personality. As befits his British heritage, he is slightly reserved, but once he gets to know someone he’s quite affectionate. His short, dense coat comes in many colors and patterns and should be brushed two or three times a week to remove dead hair.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (184, 'Burmese', 1, 'Short', 'Burmese are compact but heavy, often described as bricks wrapped in silk. That doesn’t preclude them from being active and acrobatic. Their short, fine, silky coat comes in the original dark sable brown as well as dilute colors: champagne (light brown), blue and platinum (lilac).Burmese are compact but heavy, often described as bricks wrapped in silk. That doesn’t preclude them from being active and acrobatic. Their short, fine, silky coat comes in the original dark sable brown as well as dilute colors: champagne (light brown), blue and platinum (lilac).', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (185, 'Burmilla', 0, 'Medium', 'The medium-size Burmilla has a sweet expression, a laid-back but mischievous personality and two coat types. He’s generally family friendly, with a coat that’s easy to groom, albeit somewhat prone to matting.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (186, 'Chartreux', 0, 'Double-coat medium', 'The Chartreux is a sturdy, shorthaired French breed coveted in antiquity for its hunting prowess and its dense, water repellent fur. This breed’s husky, robust type is sometimes termed primitive, neither cobby nor classic. Though amply built, Chartreux are extremely supple and agile cats; refined, never coarse nor clumsy.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (187, 'Colorpoint Shorthair', 1, 'Short', 'The Colorpoint Shorthair is a Siamese of a different color—non-traditional colors, that is.  The breed was developed using Siamese as the foundation and then crossing it with a red American Shorthair to bring in a new color. That was successful and attractive, and the cats became the basis for a new breed: the Colorpoint Shorthair.  Eventually, other non-traditional colors were created. The breed was recognized by the Cat Fanciers Association in 1964. The International Cat Association considers the Colorpoint a variety of Siamese, not a separate breed.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (188, 'Cornish Rex', 1, 'Short', 'The playful, affectionate Cornish Rex is a small to medium-size cat with an extraordinary appearance, from his egg-shaped head and curly whiskers to his short coat with bent hairs. The unusual wavy coat comes in many colors and patterns, including bicolor (one color and white) and tortoiseshell.', 2, 'Short');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (189, 'Devon Rex', 1, 'Short', 'With his high cheekbones, big eyes, long legs, slender body, and unusual hairstyle, the Devon Rex looks like the feline incarnation of waiflike model Kate Moss. Like his cousin, the Cornish Rex, the Devon has a wavy coat, but his has a looser curl than that of the Cornish.', 2, 'Small');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (190, 'Egyptian Mau', 0, 'Short', 'The gentle Egyptian Mau is a feline track star. He has been clocked at 30 miles per hour and is possessed of what seem to be springs for legs, which catapult him to high places. He is the only domesticated cat with a naturally occurring spotted coat.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (191, 'European Burmese', 0, 'Short', 'The European Burmese is a very affectionate, intelligent, and loyal cat. They thrive on companionship and will want to be with you, participating in everything you do. While they might pick a favorite family member, chances are that they will interact with everyone in the home, as well as any visitors that come to call. They are inquisitive and playful, even as adults. Expect them to be in your lap whenever you sit down and snuggle up next to you in bed. They become fast friends to other cats and even dogs, making them the perfect addition to your family.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (192, 'Exotic', 0, 'Long', 'While Persians and their relatives have a laid-back, mellow personality, Exotics are also playful and enjoy a good game of catching the catnip mouse between bouts of catching a few ZZZs. Because of the American Shorthair influence, Exotics are reported to be somewhat livelier than Persians. Undoubtedly, the Exotic personality is, if not identical, very much like the Persian’s—laidback, loyal, sweet, and affectionate. They want to be involved in their favorite humans’ lives and will quietly follow them from room to room just to see what they are doing. They also enjoy hugs and cuddles, and lavish their humans with purrs and licks of affection until the thick coat drives them away to lounge on cool kitchen linoleum or cold fireplace bricks. Because of the short coat, their guardians can spend more time playing with their Exotics than grooming them.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (193, 'Havana Brown', 0, 'Medium', 'More distinctive than the muzzle, ears, or mink-like coat is the Havana Brown’s personality. Although still quite rare, Havanas have built an enthusiastic following. Havana Browns are affectionate, gentle, highly intelligent, and, unlike their Siamese compatriots, quiet. They are remarkably adaptable and agreeable cats, and adjust to almost any situation with poise and confidence. Havanas must have human interaction if they are to live happy, healthy lives. They crave attention from their human companions and are not content unless they can be by your side, helping you with your household tasks. Havanas love to reach out and touch their favorite humans; they often nudge their human friends with an out-stretched paw as if asking for attention. Fetch is a favorite Havana game, and they can often be found carrying toys and stray objects around in their mouths. If you’ve misplaced a sock or some other small, easily carried object, check your Havana’s cat bed. You might find that it has magically found its way there.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (194, 'Japanese Bobtail', 0, 'Medium', 'This fun-loving cat brings good luck to everyone who is fortunate enough to live with him — or so it’s believed in his homeland of Japan. It must be true, because who wouldn’t enjoy spending time with a happy, playful cat who makes friends with everyone. His coat can be short or long and comes in calico as well as other colors and patterns.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (195, 'Khao Manee', 0, 'Short', 'Built for warm weather, the Khao Manee is a lithe, muscular, athletic cat of medium boning. They are devoted to their owners and are curious, intelligent cats who have an enduring sense of naughtiness. They are quite the inquisitive cat and love to play a good game of fetch before curling up with you for a warm nap. Known as the “White Gem”, the Khao Manee was rumored to be highly coveted by Thai royalty is thought to bring good luck to those forunate enough to have one.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (196, 'Korat', 0, 'Short', 'In his home country of Thailand, the Korat is a living symbol of luck and prosperity. He is quieter than the Siamese, to whom he is related, but he definitely will let you know what he’s thinking. His compact, muscular body wears a short, easy-care coat in bluish-gray tipped with silver.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (197, 'LaPerm', 0, 'Medium', 'LaPerms are gentle, people-oriented cats that are affectionate without being overly demanding or clingy. They adore human companionship and adapt well to indoor or apartment living as long as they get the requisite amount of playing and pampering. Like most cats, LaPerms develop the closest bond with their human friends when they get regular human interaction and affection. LaPerms are agile and active. Like their barn cat ancestors, they enjoy a good game of chase, and love pouncing on the catnip mouse.', 2, 'Small');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (198, 'Lykoi', 0, 'Short', 'The Lykoi cat is considered to be a partially hairless cat. There is no true undercoat, and parts of the body, such as the eyes, chin, nose, muzzle and behind the ears are commonly hairless. The exposed skin, ears and nose feel similar to leather, and although the skin is normally pink, it can darken with exposure to sun. Most cats will molt some or all of their coat, occasionally leaving them to appear even more naked than usual. This is normal for Lykoi cats, and not associated with a disease process.', 2, 'Small');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (199, 'Manx', 0, 'Double-coat short', 'The friendly, affectionate Manx, who hails from the Isle of Man, is best known for his taillessness. He has a solid body, round head, widely spaced ears, large, round eyes and a thick coat that comes in many colors and patterns, including tabby, tortoiseshell and calico. The Cymric (pronounced kim-rick) is the longhaired variety of the Manx. Other than coat length, the two breeds are identical.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (200, 'Norwegian Forest Cat', 0, 'Double-coat long', 'Despite the wild years in the forests of Norway—or perhaps because of it—they would much rather cuddle than prowl. Perhaps, because of years spent in Norway’s harsh climate, nothing fazes them much, either. They take new people and new situations in stride; as cats go, Forest Cats are the strong, silent types. They are conversely great purrers, particularly when perched beside their favorite humans. Outgoing and gregarious, they tend not to bond with one person, but rather love everyone unconditionally and enthusiastically.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (201, 'Ocicat', 1, 'Short', 'Ocicats may look like they walk on the wild side, but they are affectionate, adaptable, curious, and playful, and possess strong devotion to their human companions. Highly intelligent, active, and social, Ocicats quickly learn to respond to their names and can be taught a variety of tricks, including coming on command. Begging for food is another trick that Ocicats master with very little prompting.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (202, 'Oriental', 1, 'Medium', 'Do not get an Oriental if living with a chatty busybody would drive you insane. On the other hand, if you enjoy having someone to talk to throughout the day, an Oriental can be your best friend. Just be sure you have time to spend with this demanding and social cat. Orientals do not like being left alone for long periods, and if you work during the day it can be smart to get two of them so they can keep each other company.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (203, 'Persian', 0, 'Long', 'If you want your cats bouncing around like hyperactive popcorn, don’t adopt a Persian. Persians are perfect companions, if you like placid, sweet-tempered cats. Don’t count on using your Persian pal as a furry doorstop, however. They love to play between periods of regal lounging on your favorite davenport. Proponents say that Persians do not deserve their furniture-with-fur reputation; they are intelligent, just not as inquisitive as some breeds, and not as active.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (204, 'Ragamuffin', 0, 'Long', 'Don’t confuse the longhaired Ragamuffin with his cousin the Ragdoll. The two are separate breeds, although they are similar in temperament and appearance. Large and affectionate, this is a classic lap cat who loves being cuddled. The Ragamuffin is a big kitty who comes in more colors and patterns than the Ragdoll, although not all of them are accepted by every cat breed association.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (205, 'Ragdoll', 0, 'Long', 'The Ragdoll is a well-balanced cat with no extreme features. They are a medium to large, moderately longhaired, blue-eyed pointed cats. The point markings may be covered by a range of white overlay patterns. Ragdolls are slow maturing, reaching full coat and color at about three years of age. The Ragdoll is an affectionate and intelligent cat, giving the impression of graceful movement and subdued power, striking in appearance.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (206, 'Russian Blue', 1, 'Double-coat short', 'Russian Blues are known to be quiet, gentle, genteel cats, and are usually reserved or absent when strangers come to call. When they’re with their own beloved and trusted humans, however, they are playful and affectionate. Russian Blues are active but not overly so. They like nothing better than to spend time pouncing on a favorite toy or chasing sunbeams. They willingly entertain themselves, but prefer games in which their preferred people take an active role. When you’re home, they follow you around, unobtrusive but ever-present companions.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (207, 'Scottish Fold', 0, 'Long', 'Scottish Folds are typically intelligent, sweet-tempered, soft-spoken, and easily adaptable to new people and situations. They are loyal and tend to bond with one person in the household. While they will usually allow others to cuddle and pet them, their primary attachment becomes quickly clear as they single out their chosen human. They thrive on attention, but it must be on their own terms. Despite their devotion, they are not clingy, demanding cats and usually prefer to be near you rather than on your lap. They enjoy a good game of catch the catnip mouse now and then as well, and keep their playful side well into adulthood.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (208, 'Selkirk Rex', 0, 'Long', 'One may be at first attracted to the Selkirk’s cute and curly exterior, but these cats also make champion companions. Selkirks can be mellow cats with a generous measure of love and affection for their human companions. Very people-oriented, they stay loyal and loving all their lives. They are people-oriented cats that enjoy spending time with their preferred persons.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (209, 'Siamese', 1, 'Short', 'Siamese Cats are incredibly social, intelligent and vocal—they’ll talk to anyone who wants to listen, and even those who don’t. They also play well with other cats, dogs and children. In fact, they thrive on companionship, so it’s a good idea to get them a playmate to interact with throughout the day. Although they’re active and curious, they also love curling up on their human’s lap or snuggling up next to them in bed.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (210, 'Siberian', 1, 'Triple-coat Long', 'Siberians are affectionate cats with a good dose of personality and playfulness. They are amenable to handling, and it is noted that Siberians have a fascination with water, often dropping toys into their water dishes or investigating bathtubs before they’re dry. Siberians seem very intelligent, with the ability to problem-solve to get what they want.', 2, 'Large');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (211, 'Singapura', 0, 'Short', 'At home in any situation, Puras love to be the center of attention, and they don’t seem to know the word stranger; they’re at the door with you to welcome anyone, whether they’re friends and family, or door to door salespeople. They’re curious, people-oriented, and remain playful well into old age. Their voices are quiet and unobtrusive, and they trust their humans implicitly.', 2, 'Small');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (212, 'Somali', 0, 'Long', 'Like the Abyssinian, the Somali is vigorous and animated, has a keen sense of feline humor, and a real need for play. Everything is a game to a Somali; some will play fetch, but many prefer to chase that ball down the hall and then bat it up and down, around and around, until it rolls back to your feet for you to throw again—and again. If it rolls under something from which they can’t retrieve it, then back they’ll come and give you a wide-eyed stare or a gentle tap so you’ll get up and put the ball back in play. Wands and fishing poles with feathers are a huge hit; you’ll need a lockable cupboard for when playtime is over.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (213, 'Sphynx', 1, 'Bald', 'To say Sphynxes are lively is an understatement; they perform monkey-like aerialist feats from the top of doorways and bookshelves. Very devoted and loyal, they follow their humans around, wagging their tails doggy fashion, kneading with their padded toes, and purring with delight at the joy of being near their beloved humans. They demand your unconditional attention and are as mischievous (and lovable) as children. And despite all that and their alien appearance, they are still entirely cats, with all the mystery and charm that has fascinated humankind for thousands of years. While the Sphynx may not be for everyone, its unique appearance and charming temperament has won it an active, enthusiastic following.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (214, 'Tonkinese', 0, 'Short', 'The Tonkinese craves, and returns, affection and companionship. Unlike the rest of your busy family, this cat will always join you for dinner. Tonks have an unflagging enthusiasm for life and life’s pleasures, and love interactive toys, such as human fingers and the tails of its cat companions. It makes every close encounter a game.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (215, 'Toybob', 0, 'Short', 'Toybob are small cats, no bigger than a 3-6 month old kitten of a normally developed domestic cat, with a short strong and muscular body, short bobbed tail consisting of several kinked vertebras. Toybobs are very affectionate and obedient to their human companions with an even temperament. Despite its small size, they are also very active, playful and agile.', 2, 'Small');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (216, 'Turkish Angora', 0, 'Medium', 'Angoras seem to invoke strong responses in their humans with their symmetry, intelligence, and devotion. Angoras bond with their owners completely; an Angora is not happy unless they are right in the middle of whatever you’re doing. They enjoy a good conversation and can keep up their end of the discussion with the best of them.', 2, 'Medium');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (217, 'Turkish Van', 0, 'Medium', 'While you might be drawn to the Van for its fascination with water, you’ll fall in love with this cat for its other qualities. Vans are energetic, agile, and intelligent. They are extremely healthy and “get along with people swimmingly,” notes one Van owner. You may need a few months of working out to keep up with them, however; Vans are famous for their action-packed temperaments. They are talkative, demand attention from their humans, and show great gusto at dinnertime. Vans are known for their deep attachment to their preferred people, and sometimes that makes transferring a Van from one household to another difficult. They tend to pick out one or two people in the household, usually the ones who deal with them initially, and bond with them forever.', 2, 'Long');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (218, 'Javanese', 1, 'Medium', 'Javanese cats, like their Balinese relatives, are playful, devoted, and always eager to tell you their views on life, love, and what you’ve served them for dinner. Javanese (and their Siamese relatives) have a fascination with food, and, while some will burn off the extra calories in playful antics, care must be taken that the less active don’t turn into butterballs.', 2, 'Short');
+INSERT INTO `breed` (`id`, `name`, `hypoallergenic`, `hair_type`, `description`, `species_id`, `size`) VALUES (219, 'Mixed cat breed', 0, 'Unknown', 'N/A', 2, 'Unknown');
 
 COMMIT;
 
@@ -771,9 +865,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fureverfriendsdb`;
-INSERT INTO `pet` (`id`, `name`, `size`, `weight`, `age`, `color`, `fixed`, `special_conditions`, `adopted`, `shelter_id`, `breed_id`) VALUES (1, 'Leeloo', 'average', 20, 4, 'Golden', 1, 'None', 0, 1, 1);
-INSERT INTO `pet` (`id`, `name`, `size`, `weight`, `age`, `color`, `fixed`, `special_conditions`, `adopted`, `shelter_id`, `breed_id`) VALUES (2, 'Yuki', 'large', 50, 8, 'Red and white', 1, 'Needs heart worm pills', 0, 1, 2);
-INSERT INTO `pet` (`id`, `name`, `size`, `weight`, `age`, `color`, `fixed`, `special_conditions`, `adopted`, `shelter_id`, `breed_id`) VALUES (3, 'Meeko', 'average', 15, 2, 'Black and brown', 0, 'None', 0, 1, 3);
+INSERT INTO `pet` (`id`, `name`, `size`, `weight`, `age`, `color`, `fixed`, `special_conditions`, `adopted`, `shelter_id`, `breed_id`) VALUES (1, 'Leeloo', 'Average', 20, 4, 'Golden', 1, 'None', 1, 1, 1);
+INSERT INTO `pet` (`id`, `name`, `size`, `weight`, `age`, `color`, `fixed`, `special_conditions`, `adopted`, `shelter_id`, `breed_id`) VALUES (2, 'Yuki', 'Large', 55, 8, 'Red and white', 1, 'Needs heart worm pills', 1, 3, 2);
+INSERT INTO `pet` (`id`, `name`, `size`, `weight`, `age`, `color`, `fixed`, `special_conditions`, `adopted`, `shelter_id`, `breed_id`) VALUES (3, 'Meeko', 'Average', 15, 2, 'Black and brown', 0, 'None', 0, 1, 3);
+INSERT INTO `pet` (`id`, `name`, `size`, `weight`, `age`, `color`, `fixed`, `special_conditions`, `adopted`, `shelter_id`, `breed_id`) VALUES (4, 'Canis', 'Average', 45, 4, 'Black and White', 1, 'None', 1, 2, 2);
 
 COMMIT;
 
@@ -924,7 +1019,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fureverfriendsdb`;
-INSERT INTO `pet_adoption` (`id`, `date_requested`, `accepted_date`, `meet_date`, `meet_req_date`, `meet_notes`, `accepted`, `reason_denied`, `user_id`, `pet_id`) VALUES (1, '2019-12-17', NULL, '2019-12-21', '2019-12-17', NULL, false, NULL, 2, 2);
+INSERT INTO `pet_adoption` (`id`, `date_requested`, `accepted_date`, `meet_date`, `meet_req_date`, `meet_notes`, `accepted`, `reason_denied`, `user_id`, `pet_id`) VALUES (1, '2019-12-15', NULL, '2019-12-17', '2019-12-17', 'Liam canceled the meeting, adopted another dog', false, 'Liam canceled the meeting, adopted another dog', 2, 2);
+INSERT INTO `pet_adoption` (`id`, `date_requested`, `accepted_date`, `meet_date`, `meet_req_date`, `meet_notes`, `accepted`, `reason_denied`, `user_id`, `pet_id`) VALUES (2, '2019-12-16', '2019-12-18', '2019-12-18', '2019-12-18', 'Went well, Brian loved the dog, and has adopted yuki.', true, NULL, 3, 2);
+INSERT INTO `pet_adoption` (`id`, `date_requested`, `accepted_date`, `meet_date`, `meet_req_date`, `meet_notes`, `accepted`, `reason_denied`, `user_id`, `pet_id`) VALUES (3, '2019-12-15', '2019-12-17', '2019-12-17', '2019-12-17', 'David loved Canis, and she seemed really happy with her new owner.', true, NULL, 4, 4);
+INSERT INTO `pet_adoption` (`id`, `date_requested`, `accepted_date`, `meet_date`, `meet_req_date`, `meet_notes`, `accepted`, `reason_denied`, `user_id`, `pet_id`) VALUES (4, '2019-11-30', '2019-12-05', '2019-12-05', '2019-12-05', 'Shawn met leeloo, both got along well. Shawn needed light instructioning on how to raise a dog.', true, NULL, 5, 1);
 
 COMMIT;
 
