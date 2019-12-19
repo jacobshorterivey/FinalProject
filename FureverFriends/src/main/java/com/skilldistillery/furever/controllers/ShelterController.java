@@ -1,4 +1,4 @@
-package com.skilldistillery.controllers;
+package com.skilldistillery.furever.controllers;
 
 import java.util.List;
 
