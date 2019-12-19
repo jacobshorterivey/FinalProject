@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Pet {
 
@@ -30,18 +32,22 @@ public class Pet {
 	@Column(name = "special_conditions")
 	private String specialConditions;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "shelter_id")
 	private Shelter shelter;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "breed_id")
 	private Breed breed;
-
+	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "pet_trait", joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name = "trait_id"))
 	private List<Trait> traits;
-	
+
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "pet_image", joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
 	private List<Image> images;
