@@ -18,6 +18,7 @@ public class ShelterServiceImpl implements ShelterService {
 	
 	@Override
 	public List<Shelter> displayAllShelters() {
+		System.out.println(shelterRepo.findAll());
 		return shelterRepo.findAll();
 	}
 	
