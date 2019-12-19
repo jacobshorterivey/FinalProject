@@ -9,6 +9,6 @@ import com.skilldistillery.furever.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
-	public List<User> findBySkill(Skill s);
+	public List<User> findBySkills(Skill s);
 
 }
