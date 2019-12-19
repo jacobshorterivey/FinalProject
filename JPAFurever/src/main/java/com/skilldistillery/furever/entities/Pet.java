@@ -144,6 +144,8 @@ public class Pet {
 		this.shelter = shelter;
 	}
 
+<<<<<<< HEAD
+=======
 	public List<Trait> getTraits() {
 		return traits;
 	}
@@ -224,6 +226,7 @@ public class Pet {
 		return true;
 	}
 
+>>>>>>> b02e9e935a290b88425a518eda2dcff3ec522363
 	@Override
 	public String toString() {
 		return "Pet [id=" + id + ", color=" + color + ", name=" + name + ", size=" + size + ", age=" + age + ", weight="
