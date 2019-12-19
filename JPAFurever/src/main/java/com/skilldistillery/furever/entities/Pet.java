@@ -41,10 +41,14 @@ public class Pet {
 	@ManyToMany
 	@JoinTable(name = "pet_trait", joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name = "trait_id"))
 	private List<Trait> traits;
+	
+	@ManyToMany
+	@JoinTable(name = "pet_image", joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
+	private List<Image> images;
 
 	// CONSTRUCTORS
 	public Pet(int id, String color, String name, String size, int age, int weight, boolean adopted, boolean fixed,
-			String specialConditions, Shelter shelter, Breed breed, List<Trait> traits) {
+			String specialConditions, Shelter shelter, Breed breed, List<Trait> traits, List<Image> images) {
 		super();
 		this.id = id;
 		this.color = color;
@@ -58,12 +62,12 @@ public class Pet {
 		this.shelter = shelter;
 		this.breed = breed;
 		this.traits = traits;
+		this.images = images;
 	}
 
 	public Pet() {
 		super();
 	}
-
 
 	// GETTERS, SETTERS
 	public int getId() {
@@ -162,6 +166,14 @@ public class Pet {
 		this.breed = breed;
 	}
 	
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
 	// EQUALS, TOSTRING
 	@Override
 	public int hashCode() {

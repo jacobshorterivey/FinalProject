@@ -115,5 +115,9 @@ class ShelterTest {
 		assertEquals(1, shelter.getUsers().size());
 	}
 	
-	//TODO test relationship with Images
+	@DisplayName("test relationship to image")
+	void test12() {
+		assertNotNull(shelter);
+		assertEquals("https://www.animalleague.org/wp-content/uploads/2019/02/logo-humane-society-south-platte.jpg", shelter.getImages().get(0).getImageUrl());
+	}
 }
