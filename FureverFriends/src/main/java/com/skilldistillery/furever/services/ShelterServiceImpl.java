@@ -23,7 +23,7 @@ public class ShelterServiceImpl implements ShelterService {
 	
 	@Override
 	public Shelter showShelter(int id) {
-		return shelterRepo.findByShelterId(id);
+		return shelterRepo.findById(id);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class ShelterServiceImpl implements ShelterService {
 	
 	@Override
 	public Shelter updateShelter(Shelter shelter, int id) {
-		Shelter update = shelterRepo.findByShelterId(id);
+		Shelter update = shelterRepo.findById(id);
 		if (update != null) {
 			update.setPhone(shelter.getPhone());
 			update.setEmail(shelter.getEmail());

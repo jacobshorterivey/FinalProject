@@ -6,11 +6,11 @@ import com.skilldistillery.furever.entities.Pet;
 
 public interface PetService {
 
-	public List <Pet> FindAllPets();
+	public List <Pet> displayAllPets();
 
-	Pet getPet(int id);
+	Pet showPet(int id);
 	
-	Pet addPet(Pet pet);
+	Pet createPet(Pet pet);
 	
 	Pet update(int id, Pet pet);
 	
