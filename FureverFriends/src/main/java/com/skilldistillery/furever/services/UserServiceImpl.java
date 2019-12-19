@@ -62,12 +62,40 @@ public class UserServiceImpl implements UserService {
 //	private List<Skill> skills;
 
 	@Override
-	public User updateUser(User origUser, Integer uid) {
-		User updateUser = showUser(uid);
-		if (updateUser != null) {
+	public User updateUser(User updateUser, Integer uid) {
+		User origUser = showUser(uid);
+		if (origUser != null) {
+			if(updateUser.getUsername() != null) {
+				origUser.setUsername(updateUser.getUsername());
+			}
+			if(updateUser.getPassword() != null) {
+				origUser.setPassword(updateUser.getPassword());
+			}
+			if(updateUser.getFname() != null) {
+				origUser.setFname(updateUser.getFname());
+			}
+			if(updateUser.getLname() != null) {
+				origUser.setLname(updateUser.getLname());
+			}
+			if(updateUser.getAge() != null) {
+				origUser.setAge(updateUser.getAge());
+			}
+			if(updateUser.getPhone() != null) {
+				origUser.setPhone(updateUser.getPhone());
+			}
+			if(updateUser.getAddress() != null) {
+				origUser.setAddress(updateUser.getAddress());
+			}
+			userRepo.saveAndFlush(origUser);
 			
 		}
-		return null;
+		return origUser;
+	}
+
+	@Override
+	public boolean userActivationStatus(Integer uid) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
