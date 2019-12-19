@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Shelter {
 
@@ -38,6 +40,7 @@ public class Shelter {
 	@OneToMany(mappedBy = "shelter")
 	private List<Pet> pets;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "shelters")
 	private List<User> users;
 
