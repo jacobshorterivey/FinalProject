@@ -1,5 +1,6 @@
 package com.skilldistillery.furever.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -45,10 +46,9 @@ class ImageTest {
 	}
 
 	@Test
-	@DisplayName("Entity Mapping Test")
-	void url() {
+	@DisplayName("test pet adoption mapping is correct")
+	void test1() {
 		assertNotNull(image);
-//		assertEquals(expected, actual);
+		assertEquals("https://www.westparkanimalhospital.com/wp-content/uploads/2019/05/WestPark_iStock-600994082-1024x706-1.webp", image.getImageUrl());
 	}
-
 }
