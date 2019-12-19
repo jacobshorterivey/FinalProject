@@ -18,7 +18,6 @@ public class ShelterServiceImpl implements ShelterService {
 	
 	@Override
 	public List<Shelter> displayAllShelters() {
-		System.out.println(shelterRepo.findAll());
 		return shelterRepo.findAll();
 	}
 	
@@ -29,6 +28,7 @@ public class ShelterServiceImpl implements ShelterService {
 
 	@Override
 	public Shelter createShelter(Shelter newShelter) {
+		newShelter.setId(0);
 		try {
 			return shelterRepo.saveAndFlush(newShelter);
 		}
