@@ -85,9 +85,9 @@ public class Trait {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Trait [id=").append(id).append(", description=").append(description).append("]");
-		return builder.toString();
+		return "Trait [id=" + id + ", description=" + description + "]";
 	}
+
+	
 
 }

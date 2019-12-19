@@ -82,9 +82,7 @@ public class Skill {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Skill [id=").append(id).append(", name=").append(name).append("]");
-		return builder.toString();
+		return "Skill [id=" + id + ", name=" + name + "]";
 	}
 
 }

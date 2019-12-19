@@ -7,9 +7,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.furever.entities.Address;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Skill;
 import com.skilldistillery.furever.entities.User;
+import com.skilldistillery.furever.repositories.AddressRepository;
 import com.skilldistillery.furever.repositories.UserRepository;
 
 @Service
@@ -19,6 +21,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired AddressRepository addrRepo;
 
 	@Override
 	public List<User> displayAllUsers() {
@@ -38,7 +41,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createNewUser(User newUser) {
 		try {
+			System.out.println("pre-flush" + newUser.getAddress());
+			Address newUserAddr = addrRepo.saveAndFlush(newUser.getAddress());
+			System.out.println("post-flush" + newUserAddr);
 			newUser.setId(0);
+			newUser.setAddress(newUserAddr);
+			System.out.println("new User" + newUser);
+			
 			if(newUser.getShelters() == null) {
 				newUser.setShelters(new ArrayList<Shelter>());
 			}
@@ -62,12 +71,7 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User updateUser, Integer uid) {
 		User origUser = showUser(uid);
 		if (origUser != null) {
-			if(updateUser.getUsername() != null) {
-				origUser.setUsername(updateUser.getUsername());
-			}
-			if(updateUser.getPassword() != null) {
-				origUser.setPassword(updateUser.getPassword());
-			}
+
 			if(updateUser.getFname() != null) {
 				origUser.setFname(updateUser.getFname());
 			}
@@ -83,7 +87,6 @@ public class UserServiceImpl implements UserService {
 			if(updateUser.getAddress() != null) {
 				origUser.setAddress(updateUser.getAddress());
 			}
-			origUser.setActive(updateUser.isActive());
 			userRepo.saveAndFlush(origUser);
 			
 		}

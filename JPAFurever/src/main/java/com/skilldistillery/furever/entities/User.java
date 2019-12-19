@@ -47,6 +47,7 @@ public class User {
 	@JoinTable(name = "volunteer_skill", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private List<Skill> skills;
 
+
 	@ManyToMany
 	@JoinTable(name = "user_image", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
 	private List<Image> images;
@@ -71,7 +72,6 @@ public class User {
 		this.shelters = shelters;
 		this.adoptions = adoptions;
 		this.skills = skills;
-		this.images = images;
 	}
 
 	// GETTERS, SETTERS
@@ -171,13 +171,7 @@ public class User {
 		this.images = images;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", fname=" + fname + ", lname=" + lname + ", age=" + age + ", phone=" + phone
-				+ ", email=" + email + ", account=" + account + ", address=" + address + ", shelters=" + shelters
-				+ ", adoptions=" + adoptions + ", skills=" + skills + ", images=" + images + "]";
-	}
-	
+
 	// EQUALS, TOSTRING
 	@Override
 	public int hashCode() {
@@ -266,4 +260,13 @@ public class User {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", fname=" + fname + ", lname=" + lname + ", age=" + age + ", phone=" + phone
+				+ ", email=" + email + ", account=" + account + "]";
+	}
+	
+
+	
 }

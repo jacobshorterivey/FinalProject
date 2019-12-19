@@ -168,12 +168,6 @@ public class Shelter {
 	}
 
 	// EQUALS, TOSTRING
-	@Override
-	public String toString() {
-		return "Shelter [id=" + id + ", phone=" + phone + ", email=" + email + ", name=" + name + ", account=" + account
-				+ ", websiteUrl=" + websiteUrl + ", address=" + address + ", pets=" + pets + ", users=" + users
-				+ ", images=" + images + "]";
-	}
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -233,4 +227,11 @@ public class Shelter {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Shelter [id=" + id + ", phone=" + phone + ", email=" + email + ", name=" + name + ", account=" + account
+				+ ", websiteUrl=" + websiteUrl + "]";
+	}
+	
 }
