@@ -44,16 +44,12 @@ public class ShelterServiceImpl implements ShelterService {
 		if (update != null) {
 			update.setPhone(shelter.getPhone());
 			update.setEmail(shelter.getEmail());
-			update.setUsername(shelter.getUsername());
-			update.setPassword(shelter.getPassword());
-			update.setRole(shelter.getRole());
 			update.setName(shelter.getName());
 			update.setWebsiteUrl(shelter.getWebsiteUrl());
 			update.setAddress(shelter.getAddress());
 			update.setPets(shelter.getPets());
 			update.setUsers(shelter.getUsers());
 			update.setImages(shelter.getImages());
-			update.setActive(shelter.isActive());
 			shelterRepo.saveAndFlush(update);
 		}
 		return update;

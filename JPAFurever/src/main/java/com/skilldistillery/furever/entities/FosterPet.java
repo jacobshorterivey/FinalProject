@@ -137,10 +137,9 @@ public class FosterPet {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("FosterPet [id=").append(id).append(", foster=").append(foster).append(", pet=").append(pet)
-				.append(", notes=").append(notes).append(", active=").append(active).append(", dateRequested=")
-				.append(dateRequested).append(", dateCompleted=").append(dateCompleted).append("]");
-		return builder.toString();
+		return "FosterPet [id=" + id + ", foster=" + foster + ", pet=" + pet + ", notes=" + notes + ", active=" + active
+				+ ", dateRequested=" + dateRequested + ", dateCompleted=" + dateCompleted + "]";
 	}
+
+
 }
