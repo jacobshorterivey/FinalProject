@@ -170,12 +170,12 @@ public class Foster {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Foster [id=").append(id).append(", maxFoster=").append(maxFoster).append(", user=").append(user)
-		.append("]");
-		return builder.toString();
+		return "Foster [id=" + id + ", maxFoster=" + maxFoster + ", fosterPets=" + fosterPets + ", user=" + user
+				+ ", fosterReputations=" + fosterReputations + "]";
 	}
+	
 	
 }

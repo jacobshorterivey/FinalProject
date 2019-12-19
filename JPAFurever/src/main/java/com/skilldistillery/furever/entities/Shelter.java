@@ -24,11 +24,11 @@ public class Shelter {
 	private int id;
 	private String phone;
 	private String email;
-	private String username;
-	private String password;
-	private String role;
 	private String name;
-	private boolean active;
+	
+	@OneToOne
+	@JoinColumn(name = "account_id")
+	private Account account;
 
 	@Column(name = "website_url")
 	private String websiteUrl;
@@ -48,27 +48,25 @@ public class Shelter {
 	@JoinTable(name = "shelter_image", joinColumns = @JoinColumn(name = "shelter_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
 	private List<Image> images;
 
+	
 	// CONSTRUCTORS
-	public Shelter(int id, String phone, String email, String username, String password, String role, String name,
-			boolean active, String websiteUrl, Address address, List<Pet> pets, List<User> users, List<Image> images) {
+	public Shelter() {
+		super();
+	}
+	
+	public Shelter(int id, String phone, String email, String name, Account account, String websiteUrl, Address address,
+			List<Pet> pets, List<User> users, List<Image> images) {
 		super();
 		this.id = id;
 		this.phone = phone;
 		this.email = email;
-		this.username = username;
-		this.password = password;
-		this.role = role;
 		this.name = name;
-		this.active = active;
+		this.account = account;
 		this.websiteUrl = websiteUrl;
 		this.address = address;
 		this.pets = pets;
 		this.users = users;
 		this.images = images;
-	}
-
-	public Shelter() {
-		super();
 	}
 
 	// GETTERS, SETTERS
@@ -96,30 +94,6 @@ public class Shelter {
 		this.email = email;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -128,12 +102,12 @@ public class Shelter {
 		this.name = name;
 	}
 
-	public boolean isActive() {
-		return active;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public String getWebsiteUrl() {
@@ -176,15 +150,25 @@ public class Shelter {
 		this.images = images;
 	}
 
-	// EQUALS, TOSTRING
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((images == null) ? 0 : images.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((pets == null) ? 0 : pets.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		result = prime * result + ((users == null) ? 0 : users.hashCode());
+		result = prime * result + ((websiteUrl == null) ? 0 : websiteUrl.hashCode());
 		return result;
 	}
 
+	// EQUALS, TOSTRING
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -194,18 +178,60 @@ public class Shelter {
 		if (getClass() != obj.getClass())
 			return false;
 		Shelter other = (Shelter) obj;
+		if (account == null) {
+			if (other.account != null)
+				return false;
+		} else if (!account.equals(other.account))
+			return false;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (id != other.id)
+			return false;
+		if (images == null) {
+			if (other.images != null)
+				return false;
+		} else if (!images.equals(other.images))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (pets == null) {
+			if (other.pets != null)
+				return false;
+		} else if (!pets.equals(other.pets))
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		if (users == null) {
+			if (other.users != null)
+				return false;
+		} else if (!users.equals(other.users))
+			return false;
+		if (websiteUrl == null) {
+			if (other.websiteUrl != null)
+				return false;
+		} else if (!websiteUrl.equals(other.websiteUrl))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Shelter [id=").append(id).append(", phone=").append(phone).append(", email=").append(email)
-				.append(", username=").append(username).append(", password=").append(password).append(", role=")
-				.append(role).append(", name=").append(name).append(", active=").append(active).append(", websiteUrl=")
-				.append(websiteUrl).append(", address=").append(address).append("]");
-		return builder.toString();
+		return "Shelter [id=" + id + ", phone=" + phone + ", email=" + email + ", name=" + name + ", account=" + account
+				+ ", websiteUrl=" + websiteUrl + "]";
 	}
+	
 }

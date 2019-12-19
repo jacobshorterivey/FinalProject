@@ -70,9 +70,9 @@ public class Image {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Image [id=").append(id).append(", imageUrl=").append(imageUrl).append("]");
-		return builder.toString();
+		return "Image [id=" + id + ", imageUrl=" + imageUrl + "]";
 	}
+
+	
 
 }

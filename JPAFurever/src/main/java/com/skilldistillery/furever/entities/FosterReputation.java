@@ -94,10 +94,10 @@ public class FosterReputation {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("FosterReputation [id=").append(id).append(", content=").append(content).append(", rating=")
-				.append(rating).append(", foster=").append(foster).append("]");
-		return builder.toString();
+		return "FosterReputation [id=" + id + ", content=" + content + ", rating=" + rating + ", foster=" + foster
+				+ "]";
 	}
+
+	
 
 }

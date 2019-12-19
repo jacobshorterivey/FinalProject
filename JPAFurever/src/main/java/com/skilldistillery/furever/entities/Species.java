@@ -85,9 +85,7 @@ public class Species {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Species [id=").append(id).append(", name=").append(name).append("]");
-		return builder.toString();
+		return "Species [id=" + id + ", name=" + name + "]";
 	}
 
 }

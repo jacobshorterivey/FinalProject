@@ -65,12 +65,7 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User updateUser, Integer uid) {
 		User origUser = showUser(uid);
 		if (origUser != null) {
-			if(updateUser.getUsername() != null) {
-				origUser.setUsername(updateUser.getUsername());
-			}
-			if(updateUser.getPassword() != null) {
-				origUser.setPassword(updateUser.getPassword());
-			}
+
 			if(updateUser.getFname() != null) {
 				origUser.setFname(updateUser.getFname());
 			}
@@ -86,7 +81,6 @@ public class UserServiceImpl implements UserService {
 			if(updateUser.getAddress() != null) {
 				origUser.setAddress(updateUser.getAddress());
 			}
-			origUser.setActive(updateUser.isActive());
 			userRepo.saveAndFlush(origUser);
 			
 		}
