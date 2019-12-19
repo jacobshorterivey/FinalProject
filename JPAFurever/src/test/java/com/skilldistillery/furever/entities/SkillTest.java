@@ -41,14 +41,14 @@ class SkillTest {
 	}
 
 	@Test
-	@DisplayName("Testing entity mapping")
-		void name() {
+	@DisplayName("testing skill entity")
+		void test1() {
 			assertNotNull(skill);
 			assertEquals("Grooming", skill.getName());
 	}
 	@Test
-	@DisplayName("Testing relationship mapping with user")
-	void user() {
+	@DisplayName("testing skill user mapping")
+	void test2() {
 		assertNotNull(skill);
 		assertEquals(1, skill.getUsers().size());
 	}

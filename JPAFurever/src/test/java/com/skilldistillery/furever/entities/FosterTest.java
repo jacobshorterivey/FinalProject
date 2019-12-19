@@ -41,14 +41,14 @@ class FosterTest {
 
 	@Test
 	@DisplayName("test foster entity mappings")
-	void testName() {
+	void test1() {
 		assertNotNull(foster);
 		assertEquals(4, foster.getMaxFoster());
 	}
 
 	@Test
 	@DisplayName("test foster getting user")
-	void testSpecies() {
+	void test2() {
 		assertNotNull(foster);
 		assertEquals("testUser", foster.getUser().getUsername());
 	}

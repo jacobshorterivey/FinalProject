@@ -15,26 +15,24 @@ public class Trait {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	private String description;
-	
-	@ManyToMany(mappedBy="traits")
-	private List<Pet> pets;
-	
-	// CONSTRUCTORS
 
-	public Trait(int id, String description) {
+	@ManyToMany(mappedBy = "traits")
+	private List<Pet> pets;
+
+	// CONSTRUCTORS
+	public Trait(int id, String description, List<Pet> pets) {
 		super();
 		this.id = id;
 		this.description = description;
+		this.pets = pets;
 	}
-	
+
 	public Trait() {
 		super();
 	}
-	// Getters and Setters, To String
 
-
+	// GETTERS, SETTERS
 	public int getId() {
 		return id;
 	}
@@ -51,7 +49,6 @@ public class Trait {
 		this.description = description;
 	}
 
-	
 	public List<Pet> getPets() {
 		return pets;
 	}
@@ -60,12 +57,11 @@ public class Trait {
 		this.pets = pets;
 	}
 
-	
+	// EQUALS, TOSTRING
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		return result;
 	}
@@ -79,11 +75,6 @@ public class Trait {
 		if (getClass() != obj.getClass())
 			return false;
 		Trait other = (Trait) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (id != other.id)
 			return false;
 		return true;
@@ -91,9 +82,9 @@ public class Trait {
 
 	@Override
 	public String toString() {
-		return "Trait [id=" + id + ", description=" + description + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Trait [id=").append(id).append(", description=").append(description).append("]");
+		return builder.toString();
 	}
-	
-	
-	
+
 }

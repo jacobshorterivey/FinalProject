@@ -1,35 +1,20 @@
 package com.skilldistillery.furever.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< HEAD
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "foster_reputation")
-
-=======
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "fost_reputation")
->>>>>>> b02e9e935a290b88425a518eda2dcff3ec522363
 public class FosterReputation {
 
 	// FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-	@Column
 	private int id;
 	private String content;
 	private Integer rating;
@@ -39,10 +24,6 @@ public class FosterReputation {
 	private Foster foster;
 
 	// CONSTRUCTORS
-	public FosterReputation() {
-		super();
-	}
-
 	public FosterReputation(int id, String content, Integer rating, Foster foster) {
 		super();
 		this.id = id;
@@ -51,6 +32,11 @@ public class FosterReputation {
 		this.foster = foster;
 	}
 
+	public FosterReputation() {
+		super();
+	}
+
+	// GETTERS, SETTERS
 	public int getId() {
 		return id;
 	}
@@ -83,9 +69,35 @@ public class FosterReputation {
 		this.foster = foster;
 	}
 
+	// EQUALS, TOSTRING
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FosterReputation other = (FosterReputation) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
-		return "FosterReputation [id=" + id + ", content=" + content + ", rating=" + rating + ", foster=" + foster
-				+ "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("FosterReputation [id=").append(id).append(", content=").append(content).append(", rating=")
+				.append(rating).append(", foster=").append(foster).append("]");
+		return builder.toString();
 	}
+
 }

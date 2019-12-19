@@ -19,8 +19,6 @@ public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@Column
 	private String color;
 	private String name;
 	private String size;
@@ -45,11 +43,8 @@ public class Pet {
 	private List<Trait> traits;
 
 	// CONSTRUCTORS
-	public Pet() {
-	}
-
 	public Pet(int id, String color, String name, String size, int age, int weight, boolean adopted, boolean fixed,
-			String specialConditions, Shelter shelter) {
+			String specialConditions, Shelter shelter, Breed breed, List<Trait> traits) {
 		super();
 		this.id = id;
 		this.color = color;
@@ -61,9 +56,16 @@ public class Pet {
 		this.fixed = fixed;
 		this.specialConditions = specialConditions;
 		this.shelter = shelter;
+		this.breed = breed;
+		this.traits = traits;
 	}
 
-	// GETTERS, SETTERS, TOSTRING, EQUALS
+	public Pet() {
+		super();
+	}
+
+
+	// GETTERS, SETTERS
 	public int getId() {
 		return id;
 	}
@@ -144,8 +146,6 @@ public class Pet {
 		this.shelter = shelter;
 	}
 
-<<<<<<< HEAD
-=======
 	public List<Trait> getTraits() {
 		return traits;
 	}
@@ -153,7 +153,7 @@ public class Pet {
 	public void setTraits(List<Trait> traits) {
 		this.traits = traits;
 	}
-	
+
 	public Breed getBreed() {
 		return breed;
 	}
@@ -161,21 +161,13 @@ public class Pet {
 	public void setBreed(Breed breed) {
 		this.breed = breed;
 	}
-
+	
+	// EQUALS, TOSTRING
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (adopted ? 1231 : 1237);
-		result = prime * result + age;
-		result = prime * result + ((color == null) ? 0 : color.hashCode());
-		result = prime * result + (fixed ? 1231 : 1237);
 		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((shelter == null) ? 0 : shelter.hashCode());
-		result = prime * result + ((size == null) ? 0 : size.hashCode());
-		result = prime * result + ((specialConditions == null) ? 0 : specialConditions.hashCode());
-		result = prime * result + weight;
 		return result;
 	}
 
@@ -188,49 +180,20 @@ public class Pet {
 		if (getClass() != obj.getClass())
 			return false;
 		Pet other = (Pet) obj;
-		if (adopted != other.adopted)
-			return false;
-		if (age != other.age)
-			return false;
-		if (color == null) {
-			if (other.color != null)
-				return false;
-		} else if (!color.equals(other.color))
-			return false;
-		if (fixed != other.fixed)
-			return false;
 		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (shelter == null) {
-			if (other.shelter != null)
-				return false;
-		} else if (!shelter.equals(other.shelter))
-			return false;
-		if (size == null) {
-			if (other.size != null)
-				return false;
-		} else if (!size.equals(other.size))
-			return false;
-		if (specialConditions == null) {
-			if (other.specialConditions != null)
-				return false;
-		} else if (!specialConditions.equals(other.specialConditions))
-			return false;
-		if (weight != other.weight)
 			return false;
 		return true;
 	}
 
->>>>>>> b02e9e935a290b88425a518eda2dcff3ec522363
 	@Override
 	public String toString() {
-		return "Pet [id=" + id + ", color=" + color + ", name=" + name + ", size=" + size + ", age=" + age + ", weight="
-				+ weight + ", adopted=" + adopted + ", fixed=" + fixed + ", specialConditions=" + specialConditions
-				+ ", shelter=" + shelter + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pet [id=").append(id).append(", color=").append(color).append(", name=").append(name)
+				.append(", size=").append(size).append(", age=").append(age).append(", weight=").append(weight)
+				.append(", adopted=").append(adopted).append(", fixed=").append(fixed).append(", specialConditions=")
+				.append(specialConditions).append(", shelter=").append(shelter).append(", breed=").append(breed)
+				.append("]");
+		return builder.toString();
 	}
+
 }
