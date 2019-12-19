@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Skill;
 import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.repositories.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService {
 	
 	// FIELDS
