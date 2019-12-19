@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.furever.entities.Account;
 import com.skilldistillery.furever.entities.Address;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Skill;
@@ -67,7 +68,9 @@ public class UserServiceImpl implements UserService {
 		User origUser = showUser(uid);
 		if (origUser != null) {
 			if (updateUser.getAccount().getUsername() != null) {
-				Optional<Account> oAcct = acctRepo.findById(origUser.getAccount().getId());
+				Account oAcct = acctRepo.findById(origUser.getAccount().getId());
+				
+				
 				
 			}
 			if (updateUser.getFname() != null) {
