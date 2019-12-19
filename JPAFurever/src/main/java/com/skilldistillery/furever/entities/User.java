@@ -42,9 +42,14 @@ public class User {
 	@JoinTable(name = "volunteer_skill", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private List<Skill> skills;
 
+	@ManyToMany
+	@JoinTable(name = "user_image", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
+	private List<Image> images;
+	
 	// CONSTRUCTORS
 	public User(int id, String username, String password, String fname, String lname, Integer age, String phone,
-			boolean active, Address address, List<Shelter> shelters, List<PetAdoption> adoptions, List<Skill> skills) {
+			boolean active, Address address, List<Shelter> shelters, List<PetAdoption> adoptions, List<Skill> skills,
+			List<Image> images) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -58,6 +63,7 @@ public class User {
 		this.shelters = shelters;
 		this.adoptions = adoptions;
 		this.skills = skills;
+		this.images = images;
 	}
 
 	public User() {
@@ -159,6 +165,14 @@ public class User {
 
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
+	}
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
 	}
 
 	// EQUALS, TOSTRING

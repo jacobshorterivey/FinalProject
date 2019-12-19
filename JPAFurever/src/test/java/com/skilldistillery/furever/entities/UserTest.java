@@ -71,5 +71,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals(2, user.getSkills().size());
 	}
-
+	
+	@Test
+	@DisplayName("test relationship to image")
+	void test6() {
+		assertNotNull(user);
+		assertEquals("https://journalism.missouri.edu/wp-content/uploads/2019/07/douglas-wilbur-2015-768x1024-300x400.jpg", user.getImages().get(0).getImageUrl());
+	}
 }

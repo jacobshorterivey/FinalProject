@@ -1,10 +1,10 @@
 package com.skilldistillery.furever.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 
 @Entity
 public class Image {
@@ -14,7 +14,7 @@ public class Image {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@JoinColumn(name = "image_url")
+	@Column(name = "image_url")
 	private String imageUrl;
 
 	// CONSTRUCTORS

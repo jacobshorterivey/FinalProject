@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 class SpeciesTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private Shelter shelter;
+	private Species species;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,20 +32,27 @@ class SpeciesTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		shelter = em.find(Shelter.class, 1);
+		species = em.find(Species.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		shelter = null;
+		species = null;
 		em.close();
 	}
 
 	@Test
 	@DisplayName("Testing Entity mapping")
 	void test1() {
-		assertNotNull(shelter);
-		assertEquals("Dog", shelter.getName());
+		assertNotNull(species);
+		assertEquals("Dog", species.getName());
+	}
+	
+	@Test
+	@DisplayName("Testing breeds mapping")
+	void test2() {
+		assertNotNull(species);
+		assertEquals("Shiba Inu", species.getBreeds().get(0).getName());
 	}
 
 }
