@@ -55,7 +55,7 @@ class PetTest {
 	@Test
 	@DisplayName("test size")
 	void test3() {
-		assertEquals("average", pet.getSize());
+		assertEquals("Average", pet.getSize());
 	}
 	
 	@Test
@@ -86,7 +86,7 @@ class PetTest {
 	@Test
 	@DisplayName("test if adopted boolean is true or false")
 	void test8() {
-		assertEquals(false, pet.isAdopted());
+		assertEquals(true, pet.isAdopted());
 	}
 	
 	@Test

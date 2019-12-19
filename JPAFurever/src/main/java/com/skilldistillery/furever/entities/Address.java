@@ -13,7 +13,6 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
 	private String street;
 	private String street2;
 	private String city;
@@ -111,11 +110,9 @@ public class Address {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Address [id=").append(id).append(", street=").append(street).append(", street2=")
-				.append(street2).append(", city=").append(city).append(", zip=").append(zip).append(", stateAbbr=")
-				.append(stateAbbr).append("]");
-		return builder.toString();
+		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", zip=" + zip
+				+ ", stateAbbr=" + stateAbbr + "]";
 	}
 
+	
 }

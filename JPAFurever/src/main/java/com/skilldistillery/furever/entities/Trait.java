@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Trait {
 
@@ -17,6 +19,7 @@ public class Trait {
 	private int id;
 	private String description;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "traits")
 	private List<Pet> pets;
 
@@ -82,9 +85,9 @@ public class Trait {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Trait [id=").append(id).append(", description=").append(description).append("]");
-		return builder.toString();
+		return "Trait [id=" + id + ", description=" + description + "]";
 	}
+
+	
 
 }

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Species {
 
@@ -17,7 +19,7 @@ public class Species {
 	private int id;
 	private String name;
 
-	// @JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "species")
 	private List<Breed> breeds;
 
@@ -83,9 +85,7 @@ public class Species {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Species [id=").append(id).append(", name=").append(name).append("]");
-		return builder.toString();
+		return "Species [id=" + id + ", name=" + name + "]";
 	}
 
 }

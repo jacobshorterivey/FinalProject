@@ -41,7 +41,7 @@ public class Pet {
 	@ManyToOne
 	@JoinColumn(name = "breed_id")
 	private Breed breed;
-	
+
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "pet_trait", joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name = "trait_id"))
@@ -205,13 +205,11 @@ public class Pet {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Pet [id=").append(id).append(", color=").append(color).append(", name=").append(name)
-				.append(", size=").append(size).append(", age=").append(age).append(", weight=").append(weight)
-				.append(", adopted=").append(adopted).append(", fixed=").append(fixed).append(", specialConditions=")
-				.append(specialConditions).append(", shelter=").append(shelter).append(", breed=").append(breed)
-				.append("]");
-		return builder.toString();
+		return "Pet [id=" + id + ", color=" + color + ", name=" + name + ", size=" + size + ", age=" + age + ", weight="
+				+ weight + ", adopted=" + adopted + ", fixed=" + fixed + ", specialConditions=" + specialConditions
+				+ "]";
 	}
+
+	
 
 }

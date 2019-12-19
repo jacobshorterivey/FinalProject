@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Breed {
 
@@ -32,6 +34,7 @@ public class Breed {
 	@JoinColumn(name = "species_id")
 	private Species species;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "breed")
 	private List<Pet> pets;
 
@@ -145,11 +148,10 @@ public class Breed {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Breed [id=").append(id).append(", name=").append(name).append(", hypoallergenic=")
-				.append(hypoallergenic).append(", hairType=").append(hairType).append(", description=")
-				.append(description).append(", size=").append(size).append("]");
-		return builder.toString();
+		return "Breed [id=" + id + ", name=" + name + ", hypoallergenic=" + hypoallergenic + ", hairType=" + hairType
+				+ ", description=" + description + ", species=" + species + ", pets=" + pets + ", size=" + size + "]";
 	}
+
+
 
 }

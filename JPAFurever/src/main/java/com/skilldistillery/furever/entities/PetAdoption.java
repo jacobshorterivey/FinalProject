@@ -172,15 +172,13 @@ public class PetAdoption {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("PetAdoption [id=").append(id).append(", accepted=").append(accepted).append(", dateRequested=")
-				.append(dateRequested).append(", acceptedDate=").append(acceptedDate).append(", meetDate=")
-				.append(meetDate).append(", meetReqDate=").append(meetReqDate).append(", meetNotes=").append(meetNotes)
-				.append(", reasonDenied=").append(reasonDenied).append(", user=").append(user).append(", pet=")
-				.append(pet).append("]");
-		return builder.toString();
+		return "PetAdoption [id=" + id + ", accepted=" + accepted + ", dateRequested=" + dateRequested
+				+ ", acceptedDate=" + acceptedDate + ", meetDate=" + meetDate + ", meetReqDate=" + meetReqDate
+				+ ", meetNotes=" + meetNotes + ", reasonDenied=" + reasonDenied + "]";
 	}
+
 
 }
