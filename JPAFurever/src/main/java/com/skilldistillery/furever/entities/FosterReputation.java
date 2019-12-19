@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,22 +15,30 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "foster_reputation")
 
+=======
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "fost_reputation")
+>>>>>>> b02e9e935a290b88425a518eda2dcff3ec522363
 public class FosterReputation {
-	
-	//FIELDS
+
+	// FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
+
 	@Column
 	private int id;
 	private String content;
 	private Integer rating;
-	
+
 	@ManyToOne
-	@JoinColumn(name="foster_id")
+	@JoinColumn(name = "foster_id")
 	private Foster foster;
-	
-	//CONSTRUCTORS
+
+	// CONSTRUCTORS
 	public FosterReputation() {
 		super();
 	}

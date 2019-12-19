@@ -114,4 +114,6 @@ class ShelterTest {
 		assertNotNull(shelter);
 		assertEquals(1, shelter.getUsers().size());
 	}
+	
+	//TODO test relationship with Images
 }
