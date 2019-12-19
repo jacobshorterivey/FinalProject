@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `shelter` (
   `address_id` INT NOT NULL,
   `username` VARCHAR(50) NOT NULL,
   `password` VARCHAR(50) NOT NULL,
-  `role` VARCHAR(50) NOT NULL,
+  `role` VARCHAR(50) NOT NULL DEFAULT 'shelter',
   PRIMARY KEY (`id`),
   INDEX `fk_shelter_address1_idx` (`address_id` ASC),
   CONSTRAINT `fk_shelter_address1`
@@ -503,17 +503,6 @@ CREATE TABLE IF NOT EXISTS `user_image` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `table1`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `table1` ;
-
-CREATE TABLE IF NOT EXISTS `table1` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
 SET SQL_MODE = '';
 DROP USER IF EXISTS fureverfriend@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -533,6 +522,10 @@ USE `fureverfriendsdb`;
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (1, '13883 E. 104th place', NULL, 'Commerce City', 'CO', 80022);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (2, '2129 W Chenango Ave', 'Unit A', 'Littleton', 'CO', 80120);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (3, '1543 Euclid Cir', NULL, 'Lafayette', 'CO', 80026);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (4, '1005 Galapago St, Denver, CO 80204', NULL, 'Denver', 'CO', 80204);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (5, '2390 S Delaware St', NULL, 'Denver', 'CO', 80223);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (6, '3535 S Allison St', NULL, 'Lakewood', 'CO', 80235);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (7, '2540 Youngfield Street', NULL, 'Lakewood', 'CO', 80215);
 
 COMMIT;
 
@@ -543,6 +536,10 @@ COMMIT;
 START TRANSACTION;
 USE `fureverfriendsdb`;
 INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (1, '3037032938', 'Humane Society Of The South Platte Valley', 'hsspv.org', 'info@hsspv.org', 1, 2, 'testShelter', 'test', 'shelter');
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (2, '3035954917', 'MaxFund Dog Shelter', 'https://maxfund.org/locationhours/', 'N/A', 1, 4, 'maxFund', 'test', 'shelter');
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (3, '3037446076', 'Rocky Mountain Feline Rescue', 'https://www.rmfr-colorado.org/', 'N/A', 1, 5, 'felineRescue', 'test', 'shelter');
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (4, '7203360770', 'Life Is Better Rescue', 'https://lifeisbetterrescue.org/', 'info@lifeisbetterrescue.org', 1, 6, 'x', 'x', 'shelter');
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `active`, `address_id`, `username`, `password`, `role`) VALUES (5, '3032742264', 'Angels With Paws', 'http://www.angelswithpaws.net/', 'angelswithpaws@yahoo.com', 1, 7, 'angelsWithPaws', 'test', 'shelter');
 
 COMMIT;
 
@@ -563,7 +560,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fureverfriendsdb`;
-INSERT INTO `trait` (`id`, `description`) VALUES (1, 'Intellegent');
+INSERT INTO `trait` (`id`, `description`) VALUES (1, 'Intelligent');
 INSERT INTO `trait` (`id`, `description`) VALUES (2, 'Playful');
 INSERT INTO `trait` (`id`, `description`) VALUES (3, 'Gentle');
 INSERT INTO `trait` (`id`, `description`) VALUES (4, 'Alert');
