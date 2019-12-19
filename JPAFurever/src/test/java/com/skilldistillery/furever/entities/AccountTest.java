@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class FosterReputationTest {
+class AccountTest {
 	
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private FosterReputation fr;
+	private Account account;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,26 +32,41 @@ class FosterReputationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		fr = em.find(FosterReputation.class, 1);
+		account = em.find(Account.class, 3);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		fr = null;
-		em.close();
 	}
 
 	@Test
-	@DisplayName("test foster reputation entity")
+	@DisplayName("test address mapping")
 	void test1() {
-		assertNotNull(fr);
-		assertEquals("SOOOOOO GOOOD!!", fr.getContent());
+		assertNotNull(account);
+		assertEquals(3, account.getId());
 	}
+	
 	@Test
-	@DisplayName("testing foster reputation user mapping")
+	@DisplayName("test username")
 	void test2() {
-		assertNotNull(fr);
-		assertEquals("testUser", fr.getFoster().getUser().getAccount().getUsername());
+		assertEquals("bakaie", account.getUsername());
 	}
-
+	
+	@Test
+	@DisplayName("test password")
+	void test3() {
+		assertEquals("test", account.getPassword());
+	}
+	
+	@Test
+	@DisplayName("test active")
+	void test4() {
+		assertEquals(true, account.isActive());
+	}
+	
+	@Test
+	@DisplayName("test role")
+	void test5() {
+		assertEquals("user", account.getRole());
+	}
 }
