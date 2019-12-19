@@ -11,17 +11,21 @@ import com.skilldistillery.furever.entities.Address;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Skill;
 import com.skilldistillery.furever.entities.User;
+import com.skilldistillery.furever.repositories.AccountRepository;
 import com.skilldistillery.furever.repositories.AddressRepository;
 import com.skilldistillery.furever.repositories.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	// FIELDS
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	@Autowired AddressRepository addrRepo;
+	@Autowired
+	AddressRepository addrRepo;
+	@Autowired
+	AccountRepository acctRepo;
 
 	@Override
 	public List<User> displayAllUsers() {
@@ -31,27 +35,24 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User showUser(int uid) {
 		Optional<User> ou = userRepo.findById(uid);
-		if(ou.isPresent()) {
+		if (ou.isPresent()) {
 			return ou.get();
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public User createNewUser(User newUser) {
 		try {
-			System.out.println("pre-flush" + newUser.getAddress());
-			Address newUserAddr = addrRepo.saveAndFlush(newUser.getAddress());
-			System.out.println("post-flush" + newUserAddr);
+			acctRepo.saveAndFlush(newUser.getAccount());
+			addrRepo.saveAndFlush(newUser.getAddress());
 			newUser.setId(0);
-			newUser.setAddress(newUserAddr);
-			System.out.println("new User" + newUser);
-			
-			if(newUser.getShelters() == null) {
+
+			if (newUser.getShelters() == null) {
 				newUser.setShelters(new ArrayList<Shelter>());
 			}
-			if(newUser.getSkills() == null) {
+			if (newUser.getSkills() == null) {
 				newUser.setSkills(new ArrayList<Skill>());
 			}
 			return userRepo.saveAndFlush(newUser);
@@ -62,35 +63,53 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUser(User origUser, Integer uid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public User updateUser(User updateUser, Integer uid) {
 		User origUser = showUser(uid);
 		if (origUser != null) {
-
-			if(updateUser.getFname() != null) {
+			if (updateUser.getAccount().getUsername() != null) {
+				Optional<Account> oAcct = acctRepo.findById(origUser.getAccount().getId());
+				
+			}
+			if (updateUser.getFname() != null) {
 				origUser.setFname(updateUser.getFname());
 			}
-			if(updateUser.getLname() != null) {
+			if (updateUser.getLname() != null) {
 				origUser.setLname(updateUser.getLname());
 			}
-			if(updateUser.getAge() != null) {
+			if (updateUser.getAge() != null) {
 				origUser.setAge(updateUser.getAge());
 			}
-			if(updateUser.getPhone() != null) {
+			if (updateUser.getPhone() != null) {
 				origUser.setPhone(updateUser.getPhone());
 			}
-			if(updateUser.getAddress() != null) {
-				origUser.setAddress(updateUser.getAddress());
+			if (updateUser.getAddress() != null) {
+				Address updatedAddr = updateUser.getAddress();
+
+				Optional<Address> oa = addrRepo.findById(origUser.getAddress().getId());
+
+				if (oa.isPresent()) {
+					Address origAddr = oa.get();
+					if (updatedAddr.getStreet() != null) {
+						origAddr.setStreet(updatedAddr.getStreet());
+					}
+					if (updatedAddr.getStreet2() != null) {
+						origAddr.setStreet2(updatedAddr.getStreet2());
+					}
+					if (updatedAddr.getCity() != null) {
+						origAddr.setCity(updatedAddr.getCity());
+					}
+					if (updatedAddr.getZip() != 0) {
+						origAddr.setZip(updatedAddr.getZip());
+					}
+					if (updatedAddr.getStateAbbr() != null) {
+						origAddr.setStateAbbr(updatedAddr.getStateAbbr());
+					}
+					addrRepo.saveAndFlush(origAddr);
+				}
+				userRepo.saveAndFlush(origUser);
+
 			}
-			userRepo.saveAndFlush(origUser);
-			
 		}
 		return origUser;
 	}
-	
 }
