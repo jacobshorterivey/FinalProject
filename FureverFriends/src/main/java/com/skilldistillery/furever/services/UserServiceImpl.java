@@ -50,16 +50,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
-//	private String username;
-//	private String password;
-//	private String fname;
-//	private String lname;
-//	private Integer age;
-//	private String phone;
-//	private boolean active;
-//	private Address address;
-//	private List<Shelter> shelters;
-//	private List<Skill> skills;
 
 	@Override
 	public User updateUser(User updateUser, Integer uid) {
@@ -86,16 +76,11 @@ public class UserServiceImpl implements UserService {
 			if(updateUser.getAddress() != null) {
 				origUser.setAddress(updateUser.getAddress());
 			}
+			origUser.setActive(updateUser.isActive());
 			userRepo.saveAndFlush(origUser);
 			
 		}
 		return origUser;
-	}
-
-	@Override
-	public boolean userActivationStatus(Integer uid) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 }
