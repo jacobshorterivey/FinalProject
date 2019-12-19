@@ -20,12 +20,12 @@ public class PetServiceImpl implements PetService {
 	// Methods
 	
 	@Override
-	public List<Pet> FindAllPets() {
+	public List<Pet> displayAllPets() {
 		return petRepo.findAll();
 	}
 	
 	@Override
-	public Pet getPet(int id) {
+	public Pet showPet(int id) {
 		Pet pet = null;
 		// TODO use findById, check optional.isPresent(), then optional 
 		Optional<Pet> opt = petRepo.findById(id);
@@ -36,7 +36,7 @@ public class PetServiceImpl implements PetService {
 	}
 	
 	@Override
-	public Pet addPet(Pet pet) {
+	public Pet createPet(Pet pet) {
 		Pet opt = petRepo.saveAndFlush(pet);
 		return opt;
 	}

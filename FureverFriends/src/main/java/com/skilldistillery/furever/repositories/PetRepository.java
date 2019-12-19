@@ -9,5 +9,5 @@ import com.skilldistillery.furever.entities.Pet;
 
 public interface PetRepository extends JpaRepository<Pet, Integer>{
 
-	public List <Pet> SearchByBreed(Breed breed);
+	public List <Pet> findByBreed(Breed breed);
 }
