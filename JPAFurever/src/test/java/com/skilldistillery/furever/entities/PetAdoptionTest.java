@@ -50,13 +50,20 @@ class PetAdoptionTest {
 	@DisplayName("test pet adoption mapping is correct")
 	void test1() {
 		assertNotNull(adoption);
-		assertEquals("1", adoption.getId());
+		assertEquals(1, adoption.getId());
 	}
 	
 	@Test
 	@DisplayName("test pet adoption mapping is correct")
 	void test2() {
 		assertNotNull(adoption);
-		assertEquals("2", adoption.getUser());
+		assertEquals(2, adoption.getUser().getId());
+	}
+	
+	@Test
+	@DisplayName("test pet is mapped correctly")
+	void test3() {
+		assertNotNull(adoption);
+		assertEquals("Yuki", adoption.getPet().getName());
 	}
 }

@@ -42,7 +42,7 @@ class TraitTest {
 	@Test
 	void test1() {
 		assertNotNull(trait);
-		assertEquals("Intellegent", trait.getDescription());
+		assertEquals("Intelligent", trait.getDescription());
 	}
 	
 	@Test
