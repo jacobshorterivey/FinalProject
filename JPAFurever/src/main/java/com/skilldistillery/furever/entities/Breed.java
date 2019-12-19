@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Breed {
 
@@ -32,6 +34,7 @@ public class Breed {
 	@JoinColumn(name = "species_id")
 	private Species species;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "breed")
 	private List<Pet> pets;
 
