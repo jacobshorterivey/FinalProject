@@ -1,4 +1,4 @@
-package com.skilldistillery.controllers;
+package com.skilldistillery.furever.controllers;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.services.UserService;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/users")
 public class UserController {
 	
 	@Autowired private UserService uSvc;
