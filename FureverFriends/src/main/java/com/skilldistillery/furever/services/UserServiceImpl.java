@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService {
 			}
 			return userRepo.saveAndFlush(newUser);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
