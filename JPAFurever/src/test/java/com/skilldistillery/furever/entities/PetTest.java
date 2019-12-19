@@ -90,7 +90,7 @@ class PetTest {
 	}
 	
 	@Test
-	@DisplayName("test if mappoing works")
+	@DisplayName("test if mapping works")
 	void test9() {
 		assertEquals("Littleton", pet.getShelter().getAddress().getCity());
 	}
@@ -99,6 +99,11 @@ class PetTest {
 	@DisplayName("test pet to trait mappings")
 	void test10() {
 		assertEquals("Playful", pet.getTraits().get(0).getDescription());
+	}
+	@Test
+	@DisplayName("test pet to breed mappings")
+	void test11() {
+		assertEquals("Shiba Inu", pet.getBreed().getName());
 	}
 }
 	

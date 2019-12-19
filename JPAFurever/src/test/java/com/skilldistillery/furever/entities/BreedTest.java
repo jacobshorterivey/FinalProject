@@ -57,4 +57,10 @@ class BreedTest {
 		assertNotNull(breed);
 		assertEquals("Dog", breed.getSpecies().getName());
 	}
+	@Test
+	@DisplayName("test breed pet mapping")
+	void testPets() {
+		assertNotNull(breed);
+		assertEquals("Leeloo", breed.getPets().get(0).getName());
+	}
 }

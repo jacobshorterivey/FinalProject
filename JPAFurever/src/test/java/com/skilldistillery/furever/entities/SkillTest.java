@@ -2,7 +2,6 @@ package com.skilldistillery.furever.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class SkillTest {
@@ -41,8 +41,15 @@ class SkillTest {
 	}
 
 	@Test
-		void skill() {
+	@DisplayName("Testing entity mapping")
+		void name() {
 			assertNotNull(skill);
 			assertEquals("Grooming", skill.getName());
+	}
+	@Test
+	@DisplayName("Testing relationship mapping with user")
+	void user() {
+		assertNotNull(skill);
+		assertEquals(1, skill.getUsers().size());
 	}
 }
