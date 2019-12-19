@@ -617,6 +617,7 @@ INSERT INTO `trait` (`id`, `description`) VALUES (7, 'Outgoing');
 INSERT INTO `trait` (`id`, `description`) VALUES (8, 'Aggressive');
 INSERT INTO `trait` (`id`, `description`) VALUES (9, 'Reserved');
 INSERT INTO `trait` (`id`, `description`) VALUES (10, 'Affectionate');
+INSERT INTO `trait` (`id`, `description`) VALUES (11, 'Good with kids');
 
 COMMIT;
 
