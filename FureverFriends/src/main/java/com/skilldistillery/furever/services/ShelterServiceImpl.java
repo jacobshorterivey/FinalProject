@@ -1,13 +1,11 @@
 package com.skilldistillery.furever.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Shelter;
-import com.skilldistillery.furever.entities.Skill;
 import com.skilldistillery.furever.repositories.ShelterRepository;
 
 @Service
@@ -55,10 +53,9 @@ public class ShelterServiceImpl implements ShelterService {
 			update.setUsers(shelter.getUsers());
 			update.setImages(shelter.getImages());
 			update.setActive(shelter.isActive());
+			shelterRepo.saveAndFlush(update);
 		}
-		return null;
-		
-		
+		return update;
 	}
 }
 
