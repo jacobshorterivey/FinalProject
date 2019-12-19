@@ -6,10 +6,12 @@ import com.skilldistillery.furever.entities.Shelter;
 
 public interface ShelterService {
 
-	public List<Shelter> findAllShelters();
+	public List<Shelter> displayAllShelters();
 
-	public Shelter findShelter(Integer id);
+	public Shelter showShelter(int id);
 
 	public Shelter createShelter(Shelter shelter);
+
+	public Shelter updateShelter(Shelter shelter, int id);
 	
 }
