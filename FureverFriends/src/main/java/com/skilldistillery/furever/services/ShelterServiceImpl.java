@@ -62,41 +62,37 @@ public class ShelterServiceImpl implements ShelterService {
 	@Override
 	public Shelter updateShelter(Shelter updateShelter, int id) {
 		Shelter orgShelter = showShelter(id);
-
 		if (orgShelter != null) {
 			String encrypted = encoder.encode(updateShelter.getAccount().getPassword());
-//		updateShelter.getAccount().setActive(true);
-//		updateShelter.getAccount().setRole("shelter");
-//		acctRepo.saveAndFlush(updateShelter.getAccount());
 
 			if (updateShelter.getAccount().getUsername() != null && updateShelter.getAccount().getUsername() != "") {
 				Optional<Account> sa = acctRepo.findById(orgShelter.getAccount().getId());
 				if (sa.isPresent()) {
 					Account sAcct = sa.get();
-					System.out.println(sAcct);
 					sAcct.setUsername(updateShelter.getAccount().getUsername());
 					acctRepo.saveAndFlush(sAcct);
 				}
 			}
-			if (updateShelter.getAccount().getPassword() != null || updateShelter.getAccount().getPassword() != "") {
+			if (updateShelter.getAccount().getPassword() != null && updateShelter.getAccount().getPassword() != "") {
 				Optional<Account> sa = acctRepo.findById(orgShelter.getAccount().getId());
 				if (sa.isPresent()) {
 					Account sAcct = sa.get();
+					
 					updateShelter.getAccount().setPassword(encrypted);
 					sAcct.setPassword(updateShelter.getAccount().getPassword());
 					acctRepo.saveAndFlush(sAcct);
 				}
 			}
-			if (updateShelter.getPhone() != null || updateShelter.getPhone() != "") {
+			if (updateShelter.getPhone() != null && updateShelter.getPhone() != "") {
 				orgShelter.setPhone(updateShelter.getPhone());
 			}
-			if (updateShelter.getEmail() != null || updateShelter.getEmail() != "") {
+			if (updateShelter.getEmail() != null && updateShelter.getEmail() != "") {
 				orgShelter.setEmail(updateShelter.getEmail());
 			}
-			if (updateShelter.getName() != null || updateShelter.getName() != "") {
+			if (updateShelter.getName() != null && updateShelter.getName() != "") {
 				orgShelter.setName(updateShelter.getName());
 			}
-			if (updateShelter.getWebsiteUrl() != null || updateShelter.getWebsiteUrl() != "") {
+			if (updateShelter.getWebsiteUrl() != null && updateShelter.getWebsiteUrl() != "") {
 				orgShelter.setWebsiteUrl(updateShelter.getWebsiteUrl());
 			}
 			if (updateShelter.getPets() != null) {
@@ -115,19 +111,19 @@ public class ShelterServiceImpl implements ShelterService {
 
 				if (oa.isPresent()) {
 					Address origAddr = oa.get();
-					if (updatedAddr.getStreet() != null || updatedAddr.getStreet() != "") {
+					if (updatedAddr.getStreet() != null && updatedAddr.getStreet() != "") {
 						origAddr.setStreet(updatedAddr.getStreet());
 					}
-					if (updatedAddr.getStreet2() != null || updatedAddr.getStreet2() != "") {
+					if (updatedAddr.getStreet2() != null && updatedAddr.getStreet2() != "") {
 						origAddr.setStreet2(updatedAddr.getStreet2());
 					}
-					if (updatedAddr.getCity() != null || updatedAddr.getCity() != "") {
+					if (updatedAddr.getCity() != null && updatedAddr.getCity() != "") {
 						origAddr.setCity(updatedAddr.getCity());
 					}
 					if (updatedAddr.getZip() != null) {
 						origAddr.setZip(updatedAddr.getZip());
 					}
-					if (updatedAddr.getStateAbbr() != null || updatedAddr.getStateAbbr() != "") {
+					if (updatedAddr.getStateAbbr() != null && updatedAddr.getStateAbbr() != "") {
 						origAddr.setStateAbbr(updatedAddr.getStateAbbr());
 					}
 					addrRepo.saveAndFlush(origAddr);
