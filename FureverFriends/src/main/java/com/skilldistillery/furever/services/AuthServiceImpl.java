@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Account;
-import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.repositories.AccountRepository;
 
 @Service
