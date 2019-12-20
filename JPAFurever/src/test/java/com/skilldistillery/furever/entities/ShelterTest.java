@@ -78,7 +78,7 @@ class ShelterTest {
 	@DisplayName("test is shelter is active")
 	void test6() {
 		assertNotNull(shelter);
-		assertEquals(true, shelter.isActive());
+		assertEquals(true, shelter.getAccount().isActive());
 	}
 	
 //	@Test
@@ -92,21 +92,21 @@ class ShelterTest {
 	@DisplayName("test username")
 	void test8() {
 		assertNotNull(shelter);
-		assertEquals("testShelter", shelter.getUsername());
+		assertEquals("testShelter", shelter.getAccount().getUsername());
 	}
 	
 	@Test
 	@DisplayName("test password")
 	void test9() {
 		assertNotNull(shelter);
-		assertEquals("test", shelter.getPassword());
+		assertEquals("test", shelter.getAccount().getPassword());
 	}
 
 	@Test
 	@DisplayName("test role")
 	void test10() {
 		assertNotNull(shelter);
-		assertEquals("shelter", shelter.getRole());
+		assertEquals("shelter", shelter.getAccount().getRole());
 	}
 	@Test
 	@DisplayName("test relationship to User")

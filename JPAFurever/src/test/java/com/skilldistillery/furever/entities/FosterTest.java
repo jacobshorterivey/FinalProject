@@ -50,7 +50,7 @@ class FosterTest {
 	@DisplayName("test foster getting user")
 	void test2() {
 		assertNotNull(foster);
-		assertEquals("testUser", foster.getUser().getUsername());
+		assertEquals("testUser", foster.getUser().getAccount().getUsername());
 	}
 
 
