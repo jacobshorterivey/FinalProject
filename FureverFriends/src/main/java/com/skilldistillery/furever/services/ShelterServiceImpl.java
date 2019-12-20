@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Account;
@@ -24,6 +25,8 @@ public class ShelterServiceImpl implements ShelterService {
 	private AccountRepository acctRepo;
 	@Autowired
 	private AddressRepository addrRepo;
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Override
 	public List<Shelter> displayAllShelters() {
@@ -43,6 +46,10 @@ public class ShelterServiceImpl implements ShelterService {
 	public Shelter createShelter(Shelter newShelter) {
 		newShelter.setId(0);
 		try {
+			String encrypted = encoder.encode(newShelter.getAccount().getPassword());
+			newShelter.getAccount().setPassword(encrypted);
+			newShelter.getAccount().setActive(true);
+			newShelter.getAccount().setRole("user");
 			acctRepo.saveAndFlush(newShelter.getAccount());
 			addrRepo.saveAndFlush(newShelter.getAddress());
 			return shelterRepo.saveAndFlush(newShelter);
