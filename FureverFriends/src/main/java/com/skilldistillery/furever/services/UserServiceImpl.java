@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Account;
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
 	AddressRepository addrRepo;
 	@Autowired
 	AccountRepository acctRepo;
+	@Autowired
+	private PasswordEncoder encoder;
 
 	@Override
 	public List<User> displayAllUsers() {
@@ -46,6 +49,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createNewUser(User newUser) {
 		try {
+			String encrypted = encoder.encode(newUser.getAccount().getPassword());
+			newUser.getAccount().setPassword(encrypted);
+			newUser.getAccount().setActive(true);
+			newUser.getAccount().setRole("user");
 			acctRepo.saveAndFlush(newUser.getAccount());
 			addrRepo.saveAndFlush(newUser.getAddress());
 			newUser.setId(0);
@@ -67,6 +74,11 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User updateUser, Integer uid) {
 		User origUser = showUser(uid);
 		if (origUser != null) {
+//			String encrypted = encoder.encode(origUser.getAccount().getPassword());
+//			origUser.getAccount().setPassword(encrypted);
+//			origUser.getAccount().setActive(true);
+//			origUser.getAccount().setRole("admin");
+//			acctRepo.saveAndFlush(origUser.getAccount());
 			if (updateUser.getAccount().getUsername() != null) {
 				Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
 				if(ua.isPresent()) {

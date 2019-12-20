@@ -38,6 +38,15 @@ public class PetController {
 		return pet;
 	}
 	
+	@GetMapping("lucky")
+	private Pet lucky(@PathVariable int id, HttpServletResponse response) {
+		Pet pet = svc.getLucky();
+		if (pet == null) {
+			response.setStatus(404);
+		}
+		return pet;
+	}
+	
 	@PostMapping
 	public Pet create(@RequestBody Pet pet, HttpServletResponse response) {
 		Pet newPet = svc.createPet(pet);

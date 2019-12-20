@@ -15,4 +15,6 @@ public interface PetService {
 	Pet update(int id, Pet pet);
 	
 	boolean deletePet(int id);
+
+	Pet getLucky();
 }

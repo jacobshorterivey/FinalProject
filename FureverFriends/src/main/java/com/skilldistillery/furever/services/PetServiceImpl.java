@@ -2,6 +2,7 @@ package com.skilldistillery.furever.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,20 @@ public class PetServiceImpl implements PetService {
 			pet = opt.get();
 		}
 		return pet;
+	}
+	@Override
+	public Pet getLucky() {
+		Pet lucky = null;
+				Random rand = new Random();
+				List<Pet> pets = petRepo.findAll();
+				int numberOfElements = pets.size();
+				
+				for (int i = 0; i < numberOfElements; i++) {
+			        int randomIndex = rand.nextInt(pets.size());
+			        lucky = pets.get(randomIndex);
+			        pets.remove(randomIndex);
+			    }
+		return lucky;
 	}
 	
 	@Override
