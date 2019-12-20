@@ -1,3 +1,4 @@
+import { ShelterService } from './services/shelter.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +19,7 @@ import { ShelterListComponent } from './components/shelter-list/shelter-list.com
 import { PetListComponent } from './components/pet-list/pet-list.component';
 import { PetSearchComponent } from './components/pet-search/pet-search.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,11 +40,14 @@ import { UserListComponent } from './components/user-list/user-list.component';
     UserListComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ShelterService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
