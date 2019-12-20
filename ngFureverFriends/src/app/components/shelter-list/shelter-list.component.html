@@ -1,1 +1,10 @@
-<p>shelter-list works!</p>
+
+<h1>List o shelters</h1>
+
+<div class="container">
+  <div *ngFor="let shelter of shelters" class="row">
+    <div class="col">
+      <h3>{{shelter.name}}</h3>
+    </div>
+  </div>
+</div>
