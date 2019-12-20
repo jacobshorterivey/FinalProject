@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS `account` ;
 CREATE TABLE IF NOT EXISTS `account` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(50) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(455) NOT NULL,
   `role` VARCHAR(50) NOT NULL,
   `active` TINYINT NOT NULL,
   PRIMARY KEY (`id`))
