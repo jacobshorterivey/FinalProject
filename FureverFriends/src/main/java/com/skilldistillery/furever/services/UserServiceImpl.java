@@ -74,12 +74,11 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User updateUser, Integer uid) {
 		User origUser = showUser(uid);
 		if (origUser != null) {
-//			String encrypted = encoder.encode(origUser.getAccount().getPassword());
-//			origUser.getAccount().setPassword(encrypted);
+			String encrypted = encoder.encode(origUser.getAccount().getPassword());
 //			origUser.getAccount().setActive(true);
 //			origUser.getAccount().setRole("admin");
 //			acctRepo.saveAndFlush(origUser.getAccount());
-			if (updateUser.getAccount().getUsername() != null) {
+			if (updateUser.getAccount().getUsername() != null || updateUser.getAccount().getUsername() != "") {
 				Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
 				if(ua.isPresent()) {
 					Account uAcct = ua.get();
@@ -87,24 +86,26 @@ public class UserServiceImpl implements UserService {
 				acctRepo.saveAndFlush(uAcct);
 				}
 			}
-			if (updateUser.getAccount().getPassword() != null) {
+			if (updateUser.getAccount().getPassword() != null || updateUser.getAccount().getPassword() != "") {
 				Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
 				if(ua.isPresent()) {
 					Account uAcct = ua.get();
+				updateUser.getAccount().setPassword(encrypted);
 				uAcct.setPassword(updateUser.getAccount().getPassword());
+//				uAcct.setPassword(encrypted);
 				acctRepo.saveAndFlush(uAcct);
 				}
 			}
-			if (updateUser.getFname() != null) {
+			if (updateUser.getFname() != null || updateUser.getFname() != "") {
 				origUser.setFname(updateUser.getFname());
 			}
-			if (updateUser.getLname() != null) {
+			if (updateUser.getLname() != null || updateUser.getLname() != "") {
 				origUser.setLname(updateUser.getLname());
 			}
 			if (updateUser.getAge() != null) {
 				origUser.setAge(updateUser.getAge());
 			}
-			if (updateUser.getPhone() != null) {
+			if (updateUser.getPhone() != null || updateUser.getPhone() != "") {
 				origUser.setPhone(updateUser.getPhone());
 			}
 			if (updateUser.getAddress() != null) {
@@ -114,16 +115,16 @@ public class UserServiceImpl implements UserService {
 
 				if (oa.isPresent()) {
 					Address origAddr = oa.get();
-					if (updatedAddr.getStreet() != null) {
+					if (updatedAddr.getStreet() != null || updatedAddr.getStreet() != "") {
 						origAddr.setStreet(updatedAddr.getStreet());
 					}
-					if (updatedAddr.getStreet2() != null) {
+					if (updatedAddr.getStreet2() != null || updatedAddr.getStreet2() != "") {
 						origAddr.setStreet2(updatedAddr.getStreet2());
 					}
-					if (updatedAddr.getCity() != null) {
+					if (updatedAddr.getCity() != null || updatedAddr.getCity() != "") {
 						origAddr.setCity(updatedAddr.getCity());
 					}
-					if (updatedAddr.getZip() != 0) {
+					if (updatedAddr.getZip() != null || updatedAddr.getZip() != 0) {
 						origAddr.setZip(updatedAddr.getZip());
 					}
 					if (updatedAddr.getStateAbbr() != null) {

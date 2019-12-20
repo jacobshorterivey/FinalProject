@@ -16,9 +16,9 @@ import com.skilldistillery.furever.repositories.ShelterRepository;
 
 @Service
 public class ShelterServiceImpl implements ShelterService {
-	
+
 	// FIELDS
-	
+
 	@Autowired
 	private ShelterRepository shelterRepo;
 	@Autowired
@@ -27,16 +27,16 @@ public class ShelterServiceImpl implements ShelterService {
 	private AddressRepository addrRepo;
 	@Autowired
 	private PasswordEncoder encoder;
-	
+
 	@Override
 	public List<Shelter> displayAllShelters() {
 		return shelterRepo.findAll();
 	}
-	
+
 	@Override
 	public Shelter showShelter(int id) {
 		Optional<Shelter> os = shelterRepo.findById(id);
-		if(os.isPresent()) {
+		if (os.isPresent()) {
 			return os.get();
 		}
 		return null;
@@ -49,67 +49,64 @@ public class ShelterServiceImpl implements ShelterService {
 			String encrypted = encoder.encode(newShelter.getAccount().getPassword());
 			newShelter.getAccount().setPassword(encrypted);
 			newShelter.getAccount().setActive(true);
-			newShelter.getAccount().setRole("user");
+			newShelter.getAccount().setRole("shelter");
 			acctRepo.saveAndFlush(newShelter.getAccount());
 			addrRepo.saveAndFlush(newShelter.getAddress());
 			return shelterRepo.saveAndFlush(newShelter);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Shelter updateShelter(Shelter updateShelter, int id) {
-//		Optional<Shelter> os = shelterRepo.findById(id);
 		Shelter orgShelter = showShelter(id);
-		System.out.println("orgShelter " + orgShelter);
-		
+
 		if (orgShelter != null) {
-			if(updateShelter.getAccount().getUsername() != null) {
+			String encrypted = encoder.encode(updateShelter.getAccount().getPassword());
+//		updateShelter.getAccount().setActive(true);
+//		updateShelter.getAccount().setRole("shelter");
+//		acctRepo.saveAndFlush(updateShelter.getAccount());
+
+			if (updateShelter.getAccount().getUsername() != null && updateShelter.getAccount().getUsername() != "") {
 				Optional<Account> sa = acctRepo.findById(orgShelter.getAccount().getId());
-				if(sa.isPresent()) {
+				if (sa.isPresent()) {
 					Account sAcct = sa.get();
 					System.out.println(sAcct);
-				sAcct.setUsername(updateShelter.getAccount().getUsername());
-				acctRepo.saveAndFlush(sAcct);
+					sAcct.setUsername(updateShelter.getAccount().getUsername());
+					acctRepo.saveAndFlush(sAcct);
 				}
 			}
-			if(updateShelter.getAccount().getPassword() != null) {
+			if (updateShelter.getAccount().getPassword() != null || updateShelter.getAccount().getPassword() != "") {
 				Optional<Account> sa = acctRepo.findById(orgShelter.getAccount().getId());
-				if(sa.isPresent()) {
+				if (sa.isPresent()) {
 					Account sAcct = sa.get();
-				sAcct.setPassword(updateShelter.getAccount().getPassword());
-				acctRepo.saveAndFlush(sAcct);
+					updateShelter.getAccount().setPassword(encrypted);
+					sAcct.setPassword(updateShelter.getAccount().getPassword());
+					acctRepo.saveAndFlush(sAcct);
 				}
 			}
-			if(updateShelter.getPhone() != null) {
-			orgShelter.setPhone(updateShelter.getPhone());
+			if (updateShelter.getPhone() != null || updateShelter.getPhone() != "") {
+				orgShelter.setPhone(updateShelter.getPhone());
 			}
-			if(updateShelter.getEmail() != null) {
-			orgShelter.setEmail(updateShelter.getEmail());
+			if (updateShelter.getEmail() != null || updateShelter.getEmail() != "") {
+				orgShelter.setEmail(updateShelter.getEmail());
 			}
-			if(updateShelter.getName() != null) {
-			orgShelter.setName(updateShelter.getName());
+			if (updateShelter.getName() != null || updateShelter.getName() != "") {
+				orgShelter.setName(updateShelter.getName());
 			}
-			if(updateShelter.getWebsiteUrl() != null) {
-			orgShelter.setWebsiteUrl(updateShelter.getWebsiteUrl());
+			if (updateShelter.getWebsiteUrl() != null || updateShelter.getWebsiteUrl() != "") {
+				orgShelter.setWebsiteUrl(updateShelter.getWebsiteUrl());
 			}
-			if(updateShelter.getAddress() != null) {
-			orgShelter.setAddress(updateShelter.getAddress());
+			if (updateShelter.getPets() != null) {
+				orgShelter.setPets(updateShelter.getPets());
 			}
-			if(updateShelter.getPets() != null) {
-			orgShelter.setPets(updateShelter.getPets());
+			if (updateShelter.getUsers() != null) {
+				orgShelter.setUsers(updateShelter.getUsers());
 			}
-			if(updateShelter.getUsers() != null) {
-			orgShelter.setUsers(updateShelter.getUsers());
-			}
-			if(updateShelter.getImages() != null) {
-			orgShelter.setImages(updateShelter.getImages());
-			}
-			if(updateShelter.getAccount() != null) {
-			orgShelter.setAccount(updateShelter.getAccount());
+			if (updateShelter.getImages() != null) {
+				orgShelter.setImages(updateShelter.getImages());
 			}
 			if (updateShelter.getAddress() != null) {
 				Address updatedAddr = updateShelter.getAddress();
@@ -118,19 +115,19 @@ public class ShelterServiceImpl implements ShelterService {
 
 				if (oa.isPresent()) {
 					Address origAddr = oa.get();
-					if (updatedAddr.getStreet() != null) {
+					if (updatedAddr.getStreet() != null || updatedAddr.getStreet() != "") {
 						origAddr.setStreet(updatedAddr.getStreet());
 					}
-					if (updatedAddr.getStreet2() != null) {
+					if (updatedAddr.getStreet2() != null || updatedAddr.getStreet2() != "") {
 						origAddr.setStreet2(updatedAddr.getStreet2());
 					}
-					if (updatedAddr.getCity() != null) {
+					if (updatedAddr.getCity() != null || updatedAddr.getCity() != "") {
 						origAddr.setCity(updatedAddr.getCity());
 					}
-					if (updatedAddr.getZip() != 0) {
+					if (updatedAddr.getZip() != null) {
 						origAddr.setZip(updatedAddr.getZip());
 					}
-					if (updatedAddr.getStateAbbr() != null) {
+					if (updatedAddr.getStateAbbr() != null || updatedAddr.getStateAbbr() != "") {
 						origAddr.setStateAbbr(updatedAddr.getStateAbbr());
 					}
 					addrRepo.saveAndFlush(origAddr);
@@ -141,4 +138,3 @@ public class ShelterServiceImpl implements ShelterService {
 		return orgShelter;
 	}
 }
-
