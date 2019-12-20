@@ -39,7 +39,7 @@ public class PetController {
 	}
 	
 	@GetMapping("lucky")
-	private Pet lucky(@PathVariable int id, HttpServletResponse response) {
+	private Pet lucky(HttpServletResponse response) {
 		Pet pet = svc.getLucky();
 		if (pet == null) {
 			response.setStatus(404);

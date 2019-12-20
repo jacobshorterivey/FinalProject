@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.skilldistillery.furever.services.ShelterService;
 
 @RestController
 @RequestMapping("api/shelter")
+@CrossOrigin({"*", "http://localhost:4400"})
 public class ShelterController {
 	
 	@Autowired
