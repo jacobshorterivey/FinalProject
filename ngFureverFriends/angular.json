@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/bootstrap4-daydream.css",
               "src/styles.css"
             ],
             "scripts": []
