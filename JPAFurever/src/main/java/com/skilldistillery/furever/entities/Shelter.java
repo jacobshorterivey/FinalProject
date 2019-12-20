@@ -2,6 +2,7 @@ package com.skilldistillery.furever.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,14 +27,14 @@ public class Shelter {
 	private String email;
 	private String name;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "account_id")
 	private Account account;
 
 	@Column(name = "website_url")
 	private String websiteUrl;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "address_id")
 	private Address address;
 
