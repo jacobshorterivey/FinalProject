@@ -16,13 +16,13 @@ public class Address {
 	private String street;
 	private String street2;
 	private String city;
-	private int zip;
+	private Integer zip;
 
 	@Column(name = "state_abbr")
 	private String stateAbbr;
 
 	// CONSTRUCTORS
-	public Address(int id, String street, String street2, String city, int zip, String stateAbbr) {
+	public Address(int id, String street, String street2, String city, Integer zip, String stateAbbr) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -69,11 +69,11 @@ public class Address {
 		this.city = city;
 	}
 
-	public int getZip() {
+	public Integer getZip() {
 		return zip;
 	}
 
-	public void setZip(int zip) {
+	public void setZip(Integer zip) {
 		this.zip = zip;
 	}
 
