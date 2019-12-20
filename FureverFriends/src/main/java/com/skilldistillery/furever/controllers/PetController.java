@@ -38,7 +38,7 @@ public class PetController {
 		return pet;
 	}
 	
-	@GetMapping("{lucky}")
+	@GetMapping("lucky")
 	private Pet lucky(@PathVariable int id, HttpServletResponse response) {
 		Pet pet = svc.getLucky();
 		if (pet == null) {
