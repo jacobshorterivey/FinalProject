@@ -1,4 +1,6 @@
+import { ShelterService } from './../../services/shelter.service';
 import { Component, OnInit } from '@angular/core';
+import { Shelter } from './../../models/shelter';
 
 @Component({
   selector: 'app-shelter-list',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShelterListComponent implements OnInit {
 
-  constructor() { }
+  // FIELDS
+  shelters: Shelter[] = [];
 
+  // CONSTRUCTOR
+  constructor(private svc: ShelterService) { }
+
+  // METHODS
   ngOnInit() {
+    this.loadEvents();
   }
 
+  loadEvents() {
+    this.svc.index().subscribe(
+      (pass) => {
+        this.shelters = pass;
+      },
+      (fail) => {
+        console.error(fail);
+      }
+    );
+  }
 }
