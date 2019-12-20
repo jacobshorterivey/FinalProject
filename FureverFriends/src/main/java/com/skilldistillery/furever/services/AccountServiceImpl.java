@@ -1,6 +1,7 @@
 package com.skilldistillery.furever.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,16 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	@Override
-	public Account showShelter(int id) {
-		return accRepo.findById(id);
+	public Account showAccount(int id) {
+		Optional<Account> os = accRepo.findById(id);
+		if(os.isPresent()) {
+			return os.get();
+		}
+		return null;
 	}
 
 	@Override
-	public Account createShelter(Account newAcc) {
+	public Account createAccount(Account newAcc) {
 		newAcc.setId(0);
 		try {
 			return accRepo.saveAndFlush(newAcc);
@@ -37,15 +42,22 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	@Override
-	public Account updateShelter(Account account, int id) {
-		Account update = accRepo.findById(id);
-		if (update != null) {
-			update.setActive(account.isActive());
-			update.setUsername(account.getUsername());
-			update.setPassword(account.getPassword());
-			update.setRole(account.getRole());
-			accRepo.saveAndFlush(update);
+	public Account updateAccount(Account updateAcct, int id) {
+//		Optional<Account> ao = accRepo.findById(id);
+		Account origAcct = showAccount(id);
+		if (origAcct != null) {
+			origAcct.setActive(updateAcct.isActive());
+			if(updateAcct.getUsername() != null) {
+			origAcct.setUsername(updateAcct.getUsername());
+			}
+			if(updateAcct.getPassword() != null) {
+			origAcct.setPassword(updateAcct.getPassword());
+			}
+			if(updateAcct.getRole() != null) {
+			origAcct.setRole(updateAcct.getRole());
+			}
+			accRepo.saveAndFlush(origAcct);
 		}
-		return update;
+		return origAcct;
 	}
 }

@@ -30,7 +30,7 @@ public class AccountController {
 	
 	@GetMapping("{id}")
 	private Account show(@PathVariable int id, HttpServletResponse response) {
-		Account a = svc.showShelter(id);
+		Account a = svc.showAccount(id);
 		if (a == null) {
 			response.setStatus(404);
 		}
@@ -39,7 +39,7 @@ public class AccountController {
 	
 	@PostMapping
 	public Account create(@RequestBody Account a, HttpServletResponse response) {
-		Account a2 = svc.createShelter(a);
+		Account a2 = svc.createAccount(a);
 		if (a2 == null) {
 			response.setStatus(500);
 		}
@@ -48,7 +48,7 @@ public class AccountController {
 	
 	@PutMapping("{id}")
 	public Account update(@PathVariable int id, @RequestBody Account a, HttpServletResponse response) {
-		Account a2 = svc.updateShelter(a, id);
+		Account a2 = svc.updateAccount(a, id);
 		if (a2 == null) {
 			response.setStatus(404);
 		}
