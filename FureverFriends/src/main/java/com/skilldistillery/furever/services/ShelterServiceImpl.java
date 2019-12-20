@@ -55,11 +55,11 @@ public class ShelterServiceImpl implements ShelterService {
 	
 	@Override
 	public Shelter updateShelter(Shelter updateShelter, int id) {
-		Optional<Shelter> os = shelterRepo.findById(id);
+//		Optional<Shelter> os = shelterRepo.findById(id);
 		Shelter orgShelter = showShelter(id);
 		System.out.println("orgShelter " + orgShelter);
 		
-		if (os.isPresent()) {
+		if (orgShelter != null) {
 			if(updateShelter.getAccount().getUsername() != null) {
 				Optional<Account> sa = acctRepo.findById(orgShelter.getAccount().getId());
 				if(sa.isPresent()) {
