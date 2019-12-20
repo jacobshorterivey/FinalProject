@@ -8,10 +8,10 @@ public interface AccountService {
 
 	public List<Account> displayAllAccounts();
 
-	public Account showShelter(int id);
+	public Account showAccount(int id);
 
-	public Account createShelter(Account newAcc);
+	public Account createAccount(Account newAcc);
 
-	public Account updateShelter(Account account, int id);
+	public Account updateAccount(Account account, int id);
 
 }

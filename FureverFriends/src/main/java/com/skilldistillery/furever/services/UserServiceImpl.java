@@ -68,14 +68,20 @@ public class UserServiceImpl implements UserService {
 		User origUser = showUser(uid);
 		if (origUser != null) {
 			if (updateUser.getAccount().getUsername() != null) {
-				Account oAcct = acctRepo.findById(origUser.getAccount().getId());
-				oAcct.setUsername(updateUser.getAccount().getUsername());
-				acctRepo.saveAndFlush(oAcct);
+				Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
+				if(ua.isPresent()) {
+					Account uAcct = ua.get();
+				uAcct.setUsername(updateUser.getAccount().getUsername());
+				acctRepo.saveAndFlush(uAcct);
+				}
 			}
 			if (updateUser.getAccount().getPassword() != null) {
-				Account oAcct = acctRepo.findById(origUser.getAccount().getId());
-				oAcct.setPassword(updateUser.getAccount().getPassword());
-				acctRepo.saveAndFlush(oAcct);
+				Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
+				if(ua.isPresent()) {
+					Account uAcct = ua.get();
+				uAcct.setPassword(updateUser.getAccount().getPassword());
+				acctRepo.saveAndFlush(uAcct);
+				}
 			}
 			if (updateUser.getFname() != null) {
 				origUser.setFname(updateUser.getFname());
