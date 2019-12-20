@@ -62,12 +62,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUser(User origUser, Integer uid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public User updateUser(User updateUser, Integer uid) {
 		User origUser = showUser(uid);
 		if (origUser != null) {

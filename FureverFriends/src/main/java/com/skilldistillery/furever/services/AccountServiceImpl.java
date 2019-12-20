@@ -37,7 +37,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	@Override
-	public Account updateShelter(Account account, int id) {
+	public Account updateAccount(Account account, int id) {
 		Account update = accRepo.findById(id);
 		if (update != null) {
 			update.setActive(account.isActive());

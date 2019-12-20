@@ -12,6 +12,6 @@ public interface AccountService {
 
 	public Account createShelter(Account newAcc);
 
-	public Account updateShelter(Account account, int id);
+	public Account updateAccount(Account account, int id);
 
 }

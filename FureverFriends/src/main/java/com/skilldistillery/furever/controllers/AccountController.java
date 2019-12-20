@@ -48,7 +48,7 @@ public class AccountController {
 	
 	@PutMapping("{id}")
 	public Account update(@PathVariable int id, @RequestBody Account a, HttpServletResponse response) {
-		Account a2 = svc.updateShelter(a, id);
+		Account a2 = svc.updateAccount(a, id);
 		if (a2 == null) {
 			response.setStatus(404);
 		}

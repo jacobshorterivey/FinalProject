@@ -12,4 +12,6 @@ public class ImageServiceImpl implements ImageService {
 	
 	@Autowired
 	private ImageRepository imageRepo;
+	
+	
 }

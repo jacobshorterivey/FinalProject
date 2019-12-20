@@ -6,4 +6,5 @@ import com.skilldistillery.furever.entities.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 	public Account findById(int id);
+//	public Account findbyUsername(String username);
 }
