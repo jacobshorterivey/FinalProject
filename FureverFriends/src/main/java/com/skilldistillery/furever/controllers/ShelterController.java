@@ -1,6 +1,5 @@
 package com.skilldistillery.furever.controllers;
 
-import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,25 +21,25 @@ import com.skilldistillery.furever.services.ShelterService;
 public class ShelterController {
 	
 	@Autowired
-	private ShelterService svc;
+	private ShelterService sSvc;
 	
 	@GetMapping
 	private List<Shelter> index() {
-		return svc.displayAllShelters();
+		return sSvc.displayAllShelters();
 	}	
 	
 	@GetMapping("{id}")
 	private Shelter show(@PathVariable int id, HttpServletResponse response) {
-		Shelter s = svc.showShelter(id);
+		Shelter s = sSvc.showShelter(id);
 		if (s == null) {
 			response.setStatus(404);
 		}
 		return s;
 	}
 	
-	@PostMapping
+	@PostMapping("/register")
 	public Shelter create(@RequestBody Shelter s, HttpServletResponse response) {
-		Shelter s2 = svc.createShelter(s);
+		Shelter s2 = sSvc.createShelter(s);
 		if (s2 == null) {
 			response.setStatus(500);
 		}
@@ -49,7 +48,7 @@ public class ShelterController {
 	
 	@PutMapping("{id}")
 	public Shelter update(@PathVariable int id, @RequestBody Shelter s, HttpServletResponse response) {
-		Shelter s2 = svc.updateShelter(s, id);
+		Shelter s2 = sSvc.updateShelter(s, id);
 		if (s2 == null) {
 			response.setStatus(404);
 		}
