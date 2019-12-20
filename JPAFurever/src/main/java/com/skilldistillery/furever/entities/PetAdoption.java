@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "pet_adoption")
 public class PetAdoption {
@@ -39,6 +41,7 @@ public class PetAdoption {
 	@Column(name = "reason_denied")
 	private String reasonDenied;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
