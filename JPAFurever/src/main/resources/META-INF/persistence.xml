@@ -9,6 +9,7 @@
     </provider>
 
 	<!--class definitions-->
+	<class>com.skilldistillery.furever.entities.Account</class>
 	<class>com.skilldistillery.furever.entities.Address</class>
 	<class>com.skilldistillery.furever.entities.Breed</class>
 	<class>com.skilldistillery.furever.entities.Foster</class>
