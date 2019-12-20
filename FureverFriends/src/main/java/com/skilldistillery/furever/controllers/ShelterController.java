@@ -46,7 +46,7 @@ public class ShelterController {
 		return s2;
 	}
 	
-	@PutMapping("{id}")
+	@PutMapping("update/{id}")
 	public Shelter update(@PathVariable int id, @RequestBody Shelter s, HttpServletResponse response) {
 		Shelter s2 = sSvc.updateShelter(s, id);
 		if (s2 == null) {

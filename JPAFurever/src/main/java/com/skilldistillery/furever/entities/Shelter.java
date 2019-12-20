@@ -27,14 +27,14 @@ public class Shelter {
 	private String email;
 	private String name;
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "account_id")
 	private Account account;
 
 	@Column(name = "website_url")
 	private String websiteUrl;
 
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "address_id")
 	private Address address;
 
