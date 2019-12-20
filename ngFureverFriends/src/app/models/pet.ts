@@ -11,8 +11,8 @@ export class Pet {
   specialConditions: string;
 
   constructor(id?: number, color?: string,
-    name?: string, size?: number, age?: number, weight?: number,
-    adopted?: boolean, fixed?: boolean, specialConditions?: string) {
+              name?: string, size?: string, age?: number, weight?: number,
+              adopted?: boolean, fixed?: boolean, specialConditions?: string) {
     this.id = id;
     this.color = color;
     this.name = name;
