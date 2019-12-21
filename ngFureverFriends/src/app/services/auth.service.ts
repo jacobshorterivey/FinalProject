@@ -20,7 +20,8 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
-        'X-Requested-With': 'XMLHttpRequest'
+        'X-Requested-With': 'XMLHttpRequest',
+        'content-type': 'application/json'
       })
     };
 
