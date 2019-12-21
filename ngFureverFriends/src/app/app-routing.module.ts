@@ -11,7 +11,6 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
   {path: 'shelters', component: ShelterListComponent},
-  // {path: 'shelters/:id', component: ShelterListComponent},
   {path: 'shelter/:id', component: ShelterProfileComponent},
   {path: 'shelter', component: ShelterProfileComponent},
   {path: 'shelternav', component: ShelternavComponent},
