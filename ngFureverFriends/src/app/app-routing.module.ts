@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ShelterListComponent } from './components/shelter-list/shelter-list.component';
 import { ShelterProfileComponent } from './components/shelter-profile/shelter-profile.component';
+import { PetProfileComponent } from './components/pet-profile/pet-profile.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'shelter', component: ShelterProfileComponent},
   {path: 'shelternav', component: ShelternavComponent},
   {path: '**', component: NotFoundComponent}
+  {path: 'pet', component: PetProfileComponent}
 ];
 
 @NgModule({
