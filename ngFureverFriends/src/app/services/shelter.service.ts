@@ -37,6 +37,7 @@ export class ShelterService {
     );
   }
 
+  // ADD Authorization later
   update(shelter: Shelter) {
     const httpOptions = {
       headers: {
@@ -50,26 +51,4 @@ export class ShelterService {
       })
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // If you need to, headers can be added to an HTTP Request by using the HttpHeaders object.
-  // it is used ONLY inside of functions
-  // const httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type':  'application/json',
-  //     Authorization: 'my-auth-token'
-  //   })
-  // };
 }

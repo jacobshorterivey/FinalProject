@@ -2,7 +2,7 @@ export class User {
 
   // FIELDS
   private id: number;
-  private fname: string;
+  fname: string;
   private lname: string;
   private age: number;
   private phone: string;
