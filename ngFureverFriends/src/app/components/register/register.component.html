@@ -1,1 +1,84 @@
-<p>register works!</p>
+<div *ngIf="!userBool && !shelterBool">
+  <button class="btn btn-primary" (click)="shelterBool = true">Register a shelter</button>
+  <button class="btn btn-primary" (click)="userBool = true">Register a user</button>
+</div>
+
+<div *ngIf="userBool">
+  <form>
+    <label>Email:
+      <input type="email" name="email" id="email" placeholder="Enter email" [(ngModel)]="newUser.email">
+    </label><br>
+    <label>Username:
+      <input type="text" name="username" id="username" placeholder="Enter Username" [(ngModel)]="newUser.account.username">
+    </label><br>
+    <label>Password:
+      <input type="password" name="password" id="password" placeholder="Enter Password" [(ngModel)]="newUser.account.password">
+    </label><br>
+    <label>First Name:
+      <input type="text" name="fname" id="fname" placeholder="Enter First Name" [(ngModel)]="newUser.fname">
+    </label><br>
+    <label>Last Name:
+      <input type="text" name="lname" id="lname" placeholder="Enter Last Name" [(ngModel)]="newUser.lname">
+    </label><br>
+    <label>Age:
+      <input type="number" name="age" id="age" placeholder="Enter Age" [(ngModel)]="newUser.age">
+    </label><br>
+    <label>Phone number:
+      <input type="text" name="phone" id="phone" placeholder="Enter Phone Number" [(ngModel)]="newUser.phone">
+    </label><br>
+    <label>Street Address:
+      <input type="text" name="street" id="street" placeholer="Enter Street Address" [(ngModel)]="newUser.address.street">
+    </label><br>
+    <label>Suite:
+      <input type="text" name="street2" id="street2" placeholder="Enter Suite Number" [(ngModel)]="newUser.address.street2">
+    </label><br>
+    <label>City:
+      <input type="text" name="city" id="city" placeholder="Enter City" [(ngModel)]="newUser.address.city">
+    </label><br>
+    <label>State Abbreviation:
+      <input type="text" name="stateAbbr" id="stateAbbr" placeholer="Enter state abbreviations" [(ngModel)]="newUser.address.stateAbbr">
+    </label>
+    <label>Zip code:
+      <input type="text" name="zip" id="zip" placeholder="Enter zip" [(ngModel)]="newUser.address.zip">
+    </label><br>
+    <button class="btn btn-primary" (click)="registerUser()">Submit</button>
+    <button class="btn btn-danger" (click)="userBool = false">Back</button>
+  </form>
+</div>
+
+<div *ngIf="shelterBool">
+  <form>
+    <label>Email:
+      <input type="email" name="email" id="email" placeholder="Enter Email" [(ngModel)]="newShelter.email">
+    </label><br>
+    <label>Username:
+      <input type="text" name="username" id="username" placeholder="Enter Username" [(ngModel)]="newShelter.account.username">
+    </label><br>
+    <label>Password:
+      <input type="password" name="password" id="password" placeholder="Enter Password" [(ngModel)]="newShelter.account.password">
+    </label><br>
+    <label>Shelter name:
+      <input type="text" name="name" id="name" placeholder="Enter Shelter Name" [(ngModel)]="newShelter.name">
+    </label><br>
+    <label>Phone number:
+      <input type="text" name="phone" id="phone" placeholder="Enter Phone Number" [(ngModel)]="newShelter.phone">
+    </label><br>
+    <label>Street Address:
+      <input type="text" name="street" id="street" placeholer="Enter Street Address" [(ngModel)]="newShelter.address.street">
+    </label><br>
+    <label>Suite:
+      <input type="text" name="street2" id="street2" placeholder="Enter Suite Number" [(ngModel)]="newShelter.address.street2">
+    </label><br>
+    <label>City:
+      <input type="text" name="city" id="city" placeholder="Enter City" [(ngModel)]="newShelter.address.city">
+    </label><br>
+    <label>State Abbreviation:
+      <input type="text" name="stateAbbr" id="stateAbbr" placeholer="Enter state abbreviations" [(ngModel)]="newShelter.address.stateAbbr">
+    </label>
+    <label>Zip code:
+      <input type="text" name="zip" id="zip" placeholder="Enter zip" [(ngModel)]="newShelter.address.zip">
+    </label><br>
+    <button class="btn btn-primary" (click)="registerShelter()">Submit</button>
+    <button class="btn btn-danger" (click)="shelterBool = false">Back</button>
+  </form>
+</div>

@@ -45,6 +45,7 @@ public class UserController {
 	@PostMapping("/register")
 	public User createUser(@RequestBody User newUser, HttpServletResponse response) {
 		User userCreated = uSvc.createNewUser(newUser);
+		System.out.println("controller method: " + newUser);
 		if (userCreated == null) {
 			response.setStatus(500);
 		}
