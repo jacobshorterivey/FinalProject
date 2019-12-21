@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.skilldistillery.furever.services.UserService;
 
 @RestController
 @RequestMapping("api/user")
+@CrossOrigin({"*", "http://localhost:4400"})
 public class UserController {
 	
 	@Autowired private UserService uSvc;
@@ -43,6 +45,7 @@ public class UserController {
 	@PostMapping("/register")
 	public User createUser(@RequestBody User newUser, HttpServletResponse response) {
 		User userCreated = uSvc.createNewUser(newUser);
+		System.out.println("controller method: " + newUser);
 		if (userCreated == null) {
 			response.setStatus(500);
 		}
