@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.skilldistillery.furever.services.PetService;
 
 @RestController
 @RequestMapping("api/pet")
+@CrossOrigin({"*", "http://localhost:4400"})
 public class PetController {
 
 	@Autowired
@@ -26,7 +28,9 @@ public class PetController {
 	
 	@GetMapping
 	private List<Pet> index() {
-		return svc.displayAllPets();
+		List<Pet> pets = svc.displayAllPets();
+		System.out.println("PetController.index(): " + pets);
+		return pets;
 	}	
 	
 	@GetMapping("{id}")
