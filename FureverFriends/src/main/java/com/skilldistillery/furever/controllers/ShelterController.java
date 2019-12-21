@@ -1,5 +1,6 @@
 package com.skilldistillery.furever.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +32,7 @@ public class ShelterController {
 	}	
 	
 	@GetMapping("{id}")
-	private Shelter show(@PathVariable int id, HttpServletResponse response) {
+	private Shelter show(@PathVariable int id, HttpServletResponse response, Principal principal) {
 		Shelter s = sSvc.showShelter(id);
 		if (s == null) {
 			response.setStatus(404);
@@ -49,12 +50,13 @@ public class ShelterController {
 	}
 	
 	@PutMapping("update/{id}")
-	public Shelter update(@PathVariable int id, @RequestBody Shelter s, HttpServletResponse response) {
+	public Shelter update(@PathVariable int id, @RequestBody Shelter s, HttpServletResponse response, Principal principal) {
 		System.err.println(s);
-		Shelter s2 = sSvc.updateShelter(s, id);
+		Shelter s2 = sSvc.updateShelter(s, id, principal);
 		if (s2 == null) {
 			response.setStatus(404);
 		}
 		return s2;
 	}
+	
 }

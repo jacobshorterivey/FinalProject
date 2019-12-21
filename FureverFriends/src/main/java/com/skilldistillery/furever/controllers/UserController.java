@@ -1,11 +1,11 @@
 package com.skilldistillery.furever.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.furever.entities.User;
-import com.skilldistillery.furever.repositories.AccountRepository;
 import com.skilldistillery.furever.services.UserService;
 
 @RestController
@@ -23,8 +22,6 @@ import com.skilldistillery.furever.services.UserService;
 public class UserController {
 	
 	@Autowired private UserService uSvc;
-	@Autowired
-	private AccountRepository accRepo;
 	
 
 	
@@ -53,9 +50,9 @@ public class UserController {
 		
 	}
 	@PutMapping("/update/{uid}")
-	public User updateUser(@PathVariable int uid, @RequestBody User origUser, HttpServletResponse response ) {
+	public User updateUser(@PathVariable int uid, @RequestBody User origUser, HttpServletResponse response, Principal principal ) {
 		
-		User updatedUser = uSvc.updateUser(origUser, uid);
+		User updatedUser = uSvc.updateUser(origUser, uid, principal);
 		if(updatedUser == null) {
 			response.setStatus(404);
 		}
