@@ -2,6 +2,7 @@ package com.skilldistillery.furever.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,11 +31,11 @@ public class User {
 	private String phone;
 	private String email;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "account_id")
 	private Account account;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "address_id")
 	private Address address;
 
