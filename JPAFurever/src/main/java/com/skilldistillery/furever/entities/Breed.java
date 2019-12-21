@@ -29,7 +29,7 @@ public class Breed {
 	private String hairType;
 
 	private String description;
-
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "species_id")
 	private Species species;
