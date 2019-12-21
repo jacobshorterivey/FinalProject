@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.skilldistillery.furever.services.UserService;
 
 @RestController
 @RequestMapping("api/user")
+@CrossOrigin({"*", "http://localhost:4400"})
 public class UserController {
 	
 	@Autowired private UserService uSvc;
@@ -58,6 +60,15 @@ public class UserController {
 		}
 			
 		return updatedUser;
+	}
+	
+	@GetMapping("/skill/{sid}")
+	public List<User> findVolunteerBySkill(@PathVariable Integer sid, HttpServletResponse response)	{
+		List<User> volunteers = uSvc.getVolunteersBySkill(sid);
+		if(volunteers == null) {
+			response.setStatus(404);
+		}
+		return volunteers;
 	}
 
 }

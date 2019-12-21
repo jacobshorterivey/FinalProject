@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "fost_reputation")
 public class FosterReputation {
@@ -18,7 +20,8 @@ public class FosterReputation {
 	private int id;
 	private String content;
 	private Integer rating;
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "foster_id")
 	private Foster foster;

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "foster_pet")
 public class FosterPet {
 
@@ -18,11 +20,12 @@ public class FosterPet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "foster_id")
 	private Foster foster;
-
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
@@ -140,6 +143,5 @@ public class FosterPet {
 		return "FosterPet [id=" + id + ", foster=" + foster + ", pet=" + pet + ", notes=" + notes + ", active=" + active
 				+ ", dateRequested=" + dateRequested + ", dateCompleted=" + dateCompleted + "]";
 	}
-
 
 }

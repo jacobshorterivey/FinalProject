@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/shelter/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/user/**").permitAll()     // will hit the OPTIONS on the route
+        .antMatchers(HttpMethod.GET, "/api/foster/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.PUT, "/api/shelter/update/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.PUT, "/api/user/update/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.PUT, "/api/pet/**").permitAll()     // will hit the OPTIONS on the route
