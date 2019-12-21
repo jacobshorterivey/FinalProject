@@ -2,7 +2,19 @@
   <!-- All shelter content should be within this div -->
   <h1>{{selected.name}}</h1>
   {{selected.email}} <br>
-  {{selected.phone}}
+  {{selected.phone}} <br>
+  {{selected.address.street}} <br>
+
+  <p *ngFor="let image of selected.images">
+    Image: {{image.imageUrl}}
+  </p>
+
+  <h3> Pets</h3>
+  <p *ngFor="let pet of selected.pets">
+    {{pet.name}} <br>
+    {{pet.size}} <br>
+  </p>
+
 
   <br><br>
   # Shelter Profile Stub #

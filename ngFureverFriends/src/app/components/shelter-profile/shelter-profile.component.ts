@@ -12,13 +12,9 @@ export class ShelterProfileComponent implements OnInit {
   // FIELDS
   shelters: Shelter[] = [];
   urlId: number;
-  selected: Shelter = null;
+  selected: Shelter;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute) { }
-
-  // The following code will first load the '/shelter' route with a list then determine which shelter to use.
-  //  This requires buffer time while it dermines which shelter to populate.  For now, shelter id is linked
-  // through the shelter-list page.
 
   ngOnInit() {
     this.loadEvents();
