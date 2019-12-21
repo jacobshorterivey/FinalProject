@@ -1,3 +1,4 @@
+import { ShelternavComponent } from './components/shelternav/shelternav.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ const routes: Routes = [
   // {path: 'shelters/:id', component: ShelterListComponent},
   {path: 'shelter/:id', component: ShelterProfileComponent},
   {path: 'shelter', component: ShelterProfileComponent},
+  {path: 'shelternav', component: ShelternavComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
