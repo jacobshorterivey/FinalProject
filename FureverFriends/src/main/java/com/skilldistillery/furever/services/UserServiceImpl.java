@@ -143,4 +143,11 @@ public class UserServiceImpl implements UserService {
 		}
 		return origUser;
 	}
+
+	@Override
+	public List<User> getVolunteersBySkill(Integer sid) {
+
+			return userRepo.findBySkillsId(sid);
+		
+	}
 }

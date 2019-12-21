@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ShelterService } from 'src/app/services/shelter.service';
+import { Shelter } from './../../models/shelter';
 
 @Component({
   selector: 'app-shelter-profile',
@@ -6,10 +9,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shelter-profile.component.css']
 })
 export class ShelterProfileComponent implements OnInit {
+  // FIELDS
+  shelters: Shelter[] = [];
+  urlId: number;
+  selected: Shelter;
 
-  constructor() { }
+  constructor(private svc: ShelterService, private currentRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loadEvents();
+
+    if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+      this.svc.index().subscribe(
+        data => {
+          this.shelters = data;
+          if (this.currentRoute.snapshot.paramMap.get('id')) {
+            this.urlId = +this.currentRoute.snapshot.paramMap.get('id');
+            this.shelters.forEach((shelter) => {
+              if (shelter.id === this.urlId) {
+              this.selected = shelter;
+              }
+            });
+          }
+        },
+        err => console.error('Reload error in Component')
+      );
+    }
   }
 
+  loadEvents() {
+    this.svc.index().subscribe(
+      (pass) => {
+        this.shelters = pass;
+      },
+      (fail) => {
+        console.error(fail);
+      }
+    );
+  }
 }
+

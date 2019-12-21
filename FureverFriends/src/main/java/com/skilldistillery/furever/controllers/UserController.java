@@ -62,5 +62,14 @@ public class UserController {
 			
 		return updatedUser;
 	}
+	
+	@GetMapping("/skill/{sid}")
+	public List<User> findVolunteerBySkill(@PathVariable Integer sid, HttpServletResponse response)	{
+		List<User> volunteers = uSvc.getVolunteersBySkill(sid);
+		if(volunteers == null) {
+			response.setStatus(404);
+		}
+		return volunteers;
+	}
 
 }

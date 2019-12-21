@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.furever.entities.Shelter;
+import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.services.ShelterService;
+import com.skilldistillery.furever.services.UserService;
 
 @RestController
 @RequestMapping("api/shelter")
@@ -25,6 +27,8 @@ public class ShelterController {
 	
 	@Autowired
 	private ShelterService sSvc;
+	@Autowired 
+	private UserService uSvc;
 	
 	@GetMapping
 	private List<Shelter> index() {
@@ -51,12 +55,21 @@ public class ShelterController {
 	
 	@PutMapping("update/{id}")
 	public Shelter update(@PathVariable int id, @RequestBody Shelter s, HttpServletResponse response, Principal principal) {
-		System.err.println(s);
 		Shelter s2 = sSvc.updateShelter(s, id, principal);
 		if (s2 == null) {
 			response.setStatus(404);
 		}
 		return s2;
 	}
-	
+//	@GetMapping("{skill}")
+//	public List<User> findVolunteerBySkill(@RequestBody String skill, HttpServletResponse response, Principal principal)	{
+//		List<User> volunteers = uSvc.getVolunteersBySkill(skill, principal);
+//		if(volunteers == null) {
+//			response.setStatus(404);
+//		}
+//		
+//		return volunteers;
+//		
+//	
+//	}
 }
