@@ -1,0 +1,15 @@
+
+<h1>List of fosters</h1>
+
+<div *ngIf="!selected">
+  <div class="container">
+    <div *ngFor="let foster of fosters" class="row">
+      <!-- switch to user/user.id when user is setup -->
+      <!-- <a href="/shelter/{{shelter.id}}"> -->
+        <div class="col" >
+          <h3> {{foster.user.fname}} </h3>
+        </div>
+     <!-- </a> -->
+    </div>
+  </div>
+</div>
