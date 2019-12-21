@@ -15,8 +15,8 @@ const routes: Routes = [
   {path: 'shelter/:id', component: ShelterProfileComponent},
   {path: 'shelter', component: ShelterProfileComponent},
   {path: 'shelternav', component: ShelternavComponent},
+  {path: 'pet', component: PetProfileComponent},
   {path: '**', component: NotFoundComponent}
-  {path: 'pet', component: PetProfileComponent}
 ];
 
 @NgModule({
