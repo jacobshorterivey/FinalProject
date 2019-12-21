@@ -1,10 +1,14 @@
 
-<h1>List o shelters</h1>
+<h1>List of shelters</h1>
 
-<div class="container">
-  <div *ngFor="let shelter of shelters" class="row">
-    <div class="col">
-      <h3>{{shelter.name}}</h3>
+<div *ngIf="!selected">
+  <div class="container">
+    <div *ngFor="let shelter of shelters" class="row">
+      <a href="/shelter/{{shelter.id}}">
+        <div class="col" >
+          <h3> {{shelter.name}} </h3>
+        </div>
+     </a>
     </div>
   </div>
 </div>

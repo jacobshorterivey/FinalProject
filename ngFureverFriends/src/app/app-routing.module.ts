@@ -1,3 +1,5 @@
+import { ShelternavComponent } from './components/shelternav/shelternav.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,7 +12,10 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
   {path: 'shelters', component: ShelterListComponent},
+  {path: 'shelter/:id', component: ShelterProfileComponent},
   {path: 'shelter', component: ShelterProfileComponent},
+  {path: 'shelternav', component: ShelternavComponent},
+  {path: '**', component: NotFoundComponent}
   {path: 'pet', component: PetProfileComponent}
 ];
 
