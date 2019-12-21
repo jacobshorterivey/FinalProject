@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
 		if (principal.getName().equals(origUser.getAccount().getUsername())) {
 			System.err.println("line 78 " + updateUser);
 			if (origUser != null) {
-				String encrypted = encoder.encode(origUser.getAccount().getPassword());
+				String encrypted = encoder.encode(updateUser.getAccount().getPassword());
 
 				if (updateUser.getAccount().getUsername() != null && updateUser.getAccount().getUsername() != "") {
 					Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
@@ -93,6 +93,7 @@ public class UserServiceImpl implements UserService {
 						Account uAcct = ua.get();
 						updateUser.getAccount().setPassword(encrypted);
 						uAcct.setPassword(updateUser.getAccount().getPassword());
+//						uAcct.setPassword(encrypted);
 						acctRepo.saveAndFlush(uAcct);
 					}
 				}
