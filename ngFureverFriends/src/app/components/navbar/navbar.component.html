@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav *ngIf="navbar" class="navbar navbar-expand-lg navbar-light bg-success fixed-top">
+  <a class="navbar-brand" href="#">Furever Friends 🐾</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,9 +20,7 @@
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
           <a [routerLink]="['/pet']" > Pets </a>
-
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
@@ -33,10 +31,25 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
+<!-- START SEARCH BAR -->
+      <div class="col-lg-4">
+        <form>
+          <div class="input-group my-2 my-lg-0">
+            <input type="search" class="form-control mr-sm-2" aria-label="Text input with dropdown button" placeholder="Search" style="border-radius: 50px 0px 0px 50px;">
+            <div class="input-group-append dropdown-container">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 0px 50px 50px 0px;">Search</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">s1</a>
+                  <a class="dropdown-item" href="#">s2</a>
+                  <a class="dropdown-item" href="#">s3</a>
+                  <a class="dropdown-item" href="#">s4</a>
+                </div>
+              </div>
+            </div>
+        </form>
+    </div>
+
   </div>
 </nav>
 

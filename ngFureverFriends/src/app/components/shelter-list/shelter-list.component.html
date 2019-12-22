@@ -1,14 +1,19 @@
 
 <h1>List of shelters</h1>
 
-<div *ngIf="!selected">
-  <div class="container">
-    <div *ngFor="let shelter of shelters" class="row">
-      <a href="/shelter/{{shelter.id}}">
-        <div class="col" >
-          <h3> {{shelter.name}} </h3>
-        </div>
-     </a>
+<div *ngFor="let shelter of shelters">
+  <a href="/shelter/{{shelter.id}}">
+   <div class="container shelterCard">
+    <div class="row">
+      <!-- <div class="col-lg-4 col-sm-12 bg-success pic">
+            <img src="{{shelter.images[1].imageUrl}}" width="200px">
+
+      </div> -->
+      <div class="col-lg-8 col-sm-12">
+        <h3> {{shelter.name}} </h3>
+      </div>
     </div>
   </div>
+  </a>
 </div>
+

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
+import { Shelter } from '../models/shelter';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,21 @@ export class PetService {
       show(id): Observable<Pet> {
       return this.http.get<Pet>(this.url + '/' + id);
     }
+
+  // gets single shelter per pet
+  getShelter(id: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+      })
+    };
+    return this.http.get<Shelter>(this.url + '/shelter/' + id)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('find shelter failed');
+      })
+    );
+  }
 
      // Create/Post
   create(data: Pet) {
