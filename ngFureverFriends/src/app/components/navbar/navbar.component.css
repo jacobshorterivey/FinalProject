@@ -16,4 +16,15 @@
 
 .loginStyle {
   margin-left: 10px;
+  margin-right: 10px;
+}
+
+.lButton {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+}
+
+.regLink {
+  text-decoration: none;
 }

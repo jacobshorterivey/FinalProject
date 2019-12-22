@@ -1,3 +1,4 @@
+import { Account } from 'src/app/models/account';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,18 +13,20 @@ export class NavbarComponent implements OnInit {
   constructor(private auth: AuthService, router: Router) { }
 
   navbar = true;
+  acc: Account;
 
   ngOnInit() {
   }
 
-  login(username: string, password: string) {
-    this.auth.login(username, password).subscribe(
+  // attempt loiggin in.  fails.
+  login(form: Account) {
+    this.auth.login(form.username, form.password).subscribe(
       next => {
-        console.log('RegisterComponent.register(): user logged in, routing to /todo.');
-        this.router.navigateByUrl('/todo');
+        console.log('Logged in ');
+        // this.router.navigateByUrl('/todo');
       },
       error => {
-        console.error('RegisterComponent.register(): error logging in.');
+        console.error('error logging in.');
       }
     );
   }
