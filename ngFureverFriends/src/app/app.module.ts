@@ -20,6 +20,8 @@ import { PetListComponent } from './components/pet-list/pet-list.component';
 import { PetSearchComponent } from './components/pet-search/pet-search.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { FormsModule } from '@angular/forms';
+import { ShelternavComponent } from './components/shelternav/shelternav.component';
+import { FosterListComponent } from './components/foster-list/foster-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { FormsModule } from '@angular/forms';
     ShelterListComponent,
     PetListComponent,
     PetSearchComponent,
-    UserListComponent
+    UserListComponent,
+    ShelternavComponent,
+    FosterListComponent
   ],
   imports: [
     FormsModule,

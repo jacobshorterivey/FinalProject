@@ -52,10 +52,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createNewUser(User newUser) {
 		try {
+			System.out.println("service method: " + newUser);
 			String encrypted = encoder.encode(newUser.getAccount().getPassword());
 			newUser.getAccount().setPassword(encrypted);
 			newUser.getAccount().setActive(true);
 			newUser.getAccount().setRole("user");
+			System.out.println("service method before save and flush" + newUser);
 			acctRepo.saveAndFlush(newUser.getAccount());
 			addrRepo.saveAndFlush(newUser.getAddress());
 			newUser.setId(0);
