@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.furever.entities.Pet;
+import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.services.PetService;
 
 @RestController
@@ -51,6 +52,15 @@ public class PetController {
 		return pet;
 	}
 	
+	@GetMapping("shelter/{id}")
+	private Shelter petShelter(@PathVariable int id, HttpServletResponse response) {
+		Shelter shelter = svc.findPetsShelter(id);
+		if (shelter == null) {
+			response.setStatus(404);
+		}
+		return shelter;
+	}
+	
 	@PostMapping
 	public Pet create(@RequestBody Pet pet, HttpServletResponse response) {
 		Pet newPet = svc.createPet(pet);
@@ -68,6 +78,7 @@ public class PetController {
 		}
 		return pet1;
 	}
+	
 	@DeleteMapping("{id}")
 	  void deletePet(@PathVariable Integer id) {
 	    svc.deletePet(id);

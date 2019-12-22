@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Pet;
+import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.repositories.PetRepository;
+import com.skilldistillery.furever.repositories.ShelterRepository;
 
 @Service
 public class PetServiceImpl implements PetService {
@@ -17,6 +19,9 @@ public class PetServiceImpl implements PetService {
 	
 	@Autowired
 	private PetRepository petRepo;
+	
+	@Autowired
+	private ShelterRepository shelterRepo;
 
 	// Methods
 	
@@ -48,6 +53,18 @@ public class PetServiceImpl implements PetService {
 			        pets.remove(randomIndex);
 			    }
 		return lucky;
+	}
+	
+	@Override
+	public Shelter findPetsShelter(int id) {
+	Pet pet = null;
+	Shelter shelter = null;
+		Optional<Pet> opt = petRepo.findById(id);
+		if (opt.isPresent()) {
+			pet = opt.get();
+			shelter = shelterRepo.findByPets_Id(id);
+		}
+		return shelter;
 	}
 	
 	@Override

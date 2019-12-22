@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat:700|Indie+Flower|Neucha&display=swap');
+
+/*
+BOOSTRAP MODS
+*/
+.btn {
+  margin: 10px 10px;
+}
+
+/*
+OPENING DIV
+*/
+.openingDiv {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.openingRow {
+  min-height: calc(100vh - 60px);
+}
+
+.openingOptions {
+  background-image: linear-gradient(rgba(255,255,255, 0.7), rgba(255,255,255, 0.7));
+}
+
+.openingText {
+  font-size: 40px;
+  margin-bottom: 0px;
+  /* font-family: 'Neucha', cursive; */
+  font-family: 'Indie Flower', cursive;
+  margin-left: 15%;
+}
+
+#adopt {
+  color:  rgba(52, 58, 64, 1);
+  animation: text 0.5s 1;
+}
+
+.textCont {
+  margin-top: 20px;
+}
+
+@keyframes text {
+  0% {
+    color: rgba(52, 58, 64, 0);
+    transform: translate(-50px, -0px);
+  }
+  30% {
+    color: rgba(52, 58, 64, 1);
+  }
+}
+
+#foster {
+  color:  rgba(52, 58, 64, 1);
+  transform: translate(30px, 0px);
+  animation: textb 2s 1;
+}
+
+@keyframes textb {
+  0% {
+    color: rgba(52, 58, 64, 0);
+    transform: translate(-50px, -0px);
+  }
+  30% {
+    color: rgba(52, 58, 64, 0);
+  }
+  60% {
+    color: rgba(52, 58, 64, 1);
+    transform: translate(30px, 0px);
+  }
+}
+
+#volunteer {
+  color:  rgba(52, 58, 64, 1);
+  transform: translate(60px, 0px);
+  animation: textc 2s 1;
+}
+
+@keyframes textc {
+  0% {
+    color: rgba(52, 58, 64, 0);
+    transform: translate(-50px, -0px);
+  }
+  60%{
+    color: rgba(52, 58, 64, 0);
+  }
+  100% {
+    color: rgba(52, 58, 64, 1);
+    transform: translate(60px, 0px);
+  }
+}
+
+.helpText {
+  font-size: 20px;
+  margin-bottom: 0px;
+  /* font-family: 'Neucha', cursive; */
+  font-family: 'Indie Flower', cursive;
+}
+
+#help {
+  color:  rgba(52, 58, 64, 1);
+  transform: translate(0px, 0px);
+  animation: textd 2.3s 1;
+}
+
+@keyframes textd {
+  0% {
+    color: rgba(52, 58, 64, 0);
+    transform: translate(-50px, -0px);
+  }
+  80%{
+    color: rgba(52, 58, 64, 0);
+  }
+  100% {
+    color: rgba(52, 58, 64, 1);
+    transform: translate(0px, 0px);
+  }
+}
+
+.middleBtn {
+  padding: 30px 10px;
+}
+
+.bottomBtn {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+/*
+Scrolldown design credit to Matthew Hirsch:
+https://codepen.io/matthewhirsch/pen/qOxmoz
+*/
+.scroll-down {
+  position: absolute;
+  cursor: pointer;
+	left: 50%;
+	bottom: 30px;
+	display: block;
+	text-align: center;
+	font-size: 20px;
+	z-index: 100;
+	text-decoration: none;
+	text-shadow: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom: 3px solid rgba(52, 58, 64, 1);
+  border-right: 3px solid rgba(52, 58, 64, 1);
+  z-index: 9;
+  -webkit-transform: translate(-50%, 0%) rotate(45deg);
+  -moz-transform: translate(-50%, 0%) rotate(45deg);
+  transform: translate(-50%, 0%) rotate(45deg);
+	-webkit-animation: fade_move_down 4s ease-in-out infinite;
+	-moz-animation:    fade_move_down 4s ease-in-out infinite;
+	animation:         fade_move_down 4s ease-in-out infinite;
+}
+
+/*animated scroll arrow animation*/
+@-webkit-keyframes fade_move_down {
+  0%   { -webkit-transform:translate(0,0px) rotate(45deg); opacity: 0;  }
+  50%  { opacity: 1;  }
+  100% { -webkit-transform:translate(0,20px) rotate(45deg); opacity: 0; }
+}
+@-moz-keyframes fade_move_down {
+  0%   { -moz-transform:translate(0,0px) rotate(45deg); opacity: 0;  }
+  50%  { opacity: 1;  }
+  100% { -moz-transform:translate(0,20px) rotate(45deg); opacity: 0; }
+}
+@keyframes fade_move_down {
+  0%   { transform:translate(0,0px) rotate(45deg); opacity: 0;  }
+  50%  { opacity: 1;  }
+  100% { transform:translate(0,20px) rotate(45deg); opacity: 0; }
+}
+
+/*
+FEATURED
+*/
+.featuredText {
+  margin-top: 20px;
+  font-family: 'Indie Flower', cursive;
+  font-size: 40px;
+}
+/*
+PET CARDS
+*/
+.card {
+  max-width: 18rem;
+  min-height: 70vh;
+}
+
+.imgContainer {
+  max-height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.imgContainer img {
+  object-fit: cover;
+  min-height: 100%;
+}
+
+.carousel-item{
+  text-align:center;
+  align-content: center;
+  }
+
+.carousel-item > .card{
+  margin: auto;
+  align-content: center;
+}
+
+.carousel {
+  /* min-height: 80vh; */
+  align-content: center;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+
+
+
+/*
+DOGGO
+*/
+.dogSection {
+  min-height: 90vh;
+}
+
+.doggo {
+  min-height: 90vh;
+}
+
+.kitty {
+  min-height: 90vh;
+};
