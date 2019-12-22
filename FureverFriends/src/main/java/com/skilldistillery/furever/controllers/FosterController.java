@@ -27,7 +27,7 @@ public class FosterController {
 		return fSvc.displayAllFosters();
 	}
 	
-	@GetMapping("/species/{sid}")
+	@GetMapping("species/{sid}")
 	private List<Foster> findFostersBySpeciesPref(@PathVariable Integer sid, HttpServletResponse response){
 		List<Foster> fosters = fSvc.findFostersBySpeciesPref(sid);
 		if(fosters == null) {
@@ -35,7 +35,7 @@ public class FosterController {
 		}
 		return fosters;
 	}
-	@GetMapping("/breed/{bid}")
+	@GetMapping("breed/{bid}")
 	private List<Foster> findFostersByBreedPref(@PathVariable Integer bid, HttpServletResponse response){
 		List<Foster> fosters = fSvc.findFosterByBreedPref(bid);
 		if(fosters == null) {
@@ -43,7 +43,7 @@ public class FosterController {
 		}
 		return fosters;
 	}
-	@GetMapping("/trait/{tid}")
+	@GetMapping("trait/{tid}")
 	private List<Foster> findFostersByTraitPref(@PathVariable Integer tid, HttpServletResponse response){
 		List<Foster> fosters = fSvc.findFosterByTraitPref(tid);
 		if(fosters == null) {

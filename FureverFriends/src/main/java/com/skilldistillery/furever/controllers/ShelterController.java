@@ -27,8 +27,7 @@ public class ShelterController {
 	
 	@Autowired
 	private ShelterService sSvc;
-	@Autowired 
-	private UserService uSvc;
+
 	
 	@GetMapping
 	private List<Shelter> index() {
@@ -44,7 +43,7 @@ public class ShelterController {
 		return s;
 	}
 	
-	@PostMapping("/register")
+	@PostMapping("register")
 	public Shelter create(@RequestBody Shelter s, HttpServletResponse response) {
 		Shelter s2 = sSvc.createShelter(s);
 		if (s2 == null) {
@@ -61,15 +60,5 @@ public class ShelterController {
 		}
 		return s2;
 	}
-//	@GetMapping("{skill}")
-//	public List<User> findVolunteerBySkill(@RequestBody String skill, HttpServletResponse response, Principal principal)	{
-//		List<User> volunteers = uSvc.getVolunteersBySkill(skill, principal);
-//		if(volunteers == null) {
-//			response.setStatus(404);
-//		}
-//		
-//		return volunteers;
-//		
-//	
-//	}
+
 }
