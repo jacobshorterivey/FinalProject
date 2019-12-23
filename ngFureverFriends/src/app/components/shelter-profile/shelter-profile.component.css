@@ -119,3 +119,27 @@
 .subjectBox {
   margin-bottom: 20px;
 }
+
+
+
+
+
+
+
+
+
+/*
+PET CARD -> Move to main css if using in multiple spots!
+*/
+.petCardImgContainer {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+}
+
+.petCardImgContainer img {
+  position: absolute;
+  width: 100%;
+
+}
