@@ -78,7 +78,7 @@
     <label>Zip code:
       <input type="text" name="zip" id="zip" placeholder="Enter zip" [(ngModel)]="newShelter.address.zip">
     </label><br>
-    <button class="btn btn-primary" (click)="registerShelter()">Submit</button>
+    <button class="btn btn-primary" (click)="registerShelter()" [routerLink]="['/appsubmitted']">Submit</button>
     <button class="btn btn-danger" (click)="shelterBool = false">Back</button>
   </form>
 </div>
