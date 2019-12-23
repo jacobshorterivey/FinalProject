@@ -16,37 +16,38 @@ import com.skilldistillery.furever.services.FosterService;
 
 @RestController
 @RequestMapping("api/foster")
-@CrossOrigin({"*", "http://localhost:4400"})
+@CrossOrigin({ "*", "http://localhost:4400" })
 public class FosterController {
 	@Autowired
 	private FosterService fSvc;
-	
-	
+
 	@GetMapping
-	private List<Foster> displayAllFosters(){
+	private List<Foster> displayAllFosters() {
 		return fSvc.displayAllFosters();
 	}
-	
+
 	@GetMapping("species/{sid}")
-	private List<Foster> findFostersBySpeciesPref(@PathVariable Integer sid, HttpServletResponse response){
+	private List<Foster> findFostersBySpeciesPref(@PathVariable Integer sid, HttpServletResponse response) {
 		List<Foster> fosters = fSvc.findFostersBySpeciesPref(sid);
-		if(fosters == null) {
+		if (fosters == null) {
 			response.setStatus(404);
 		}
 		return fosters;
 	}
+
 	@GetMapping("breed/{bid}")
-	private List<Foster> findFostersByBreedPref(@PathVariable Integer bid, HttpServletResponse response){
+	private List<Foster> findFostersByBreedPref(@PathVariable Integer bid, HttpServletResponse response) {
 		List<Foster> fosters = fSvc.findFosterByBreedPref(bid);
-		if(fosters == null) {
+		if (fosters == null) {
 			response.setStatus(404);
 		}
 		return fosters;
 	}
+
 	@GetMapping("trait/{tid}")
-	private List<Foster> findFostersByTraitPref(@PathVariable Integer tid, HttpServletResponse response){
+	private List<Foster> findFostersByTraitPref(@PathVariable Integer tid, HttpServletResponse response) {
 		List<Foster> fosters = fSvc.findFosterByTraitPref(tid);
-		if(fosters == null) {
+		if (fosters == null) {
 			response.setStatus(404);
 		}
 		return fosters;
