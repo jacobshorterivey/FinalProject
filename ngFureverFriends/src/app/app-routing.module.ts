@@ -12,6 +12,7 @@ import { PetProfileComponent } from './components/pet-profile/pet-profile.compon
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ApplicationSubmittedComponent } from './components/application-submitted/application-submitted.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'fosters', component: FosterListComponent},
   {path: 'volunteers', component: UserListComponent},
-  {path: 'pet', component: PetProfileComponent},
+  {path: 'pet/:id', component: PetProfileComponent},
   {path: 'user/:id', component: UserProfileComponent},
   {path: 'shelters', component: ShelterListComponent},
   {path: 'shelter/:id', component: ShelterProfileComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'pet', component: PetProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'petsearch', component: PetSearchComponent},
+  {path: 'appsubmitted', component: ApplicationSubmittedComponent},
   {path: '**', component: NotFoundComponent}
   ];
 

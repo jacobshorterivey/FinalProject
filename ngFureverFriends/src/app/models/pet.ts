@@ -38,8 +38,8 @@ export class Pet {
     this.specialConditions = specialConditions;
     this.shelter = shelter;
     this.breed = breed;
-    this.traits = traits;
-    this.images = images;
+    this.traits = traits ? traits : [];
+    this.images = images ? images : [];
 
   }
 
