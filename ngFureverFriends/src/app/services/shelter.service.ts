@@ -16,12 +16,10 @@ export class ShelterService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   index() {
-    if (!this.auth.checkLogin()) {
-      return null;
-    }
     const httpOptions = {
       headers: {
-        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+        'Content-type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       }
     };
     return this.http.get<Shelter[]>(this.url + '?sorted=true').pipe(

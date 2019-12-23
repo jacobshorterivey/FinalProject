@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/login/login.component';
 import { FosterListComponent } from './components/foster-list/foster-list.component';
 import { ShelternavComponent } from './components/shelternav/shelternav.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'shelter', component: ShelterProfileComponent},
   {path: 'shelternav', component: ShelternavComponent},
   {path: 'pet', component: PetProfileComponent},
+  {path: 'login', component: LoginComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

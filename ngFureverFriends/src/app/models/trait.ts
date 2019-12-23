@@ -1,8 +1,8 @@
 export class Trait {
 
   // FIELDS
-  private id?: number;
-  private description?: string;
+  id?: number;
+  description?: string;
 
   // CONSTRUCTOR
   constructor(id?: number, description?: string) {
