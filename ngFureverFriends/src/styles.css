@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "assets/bootstrap4-daydream.css";
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Caveat:700|Indie+Flower|Neucha&display=swap');
+
+
 body {
   margin-top: 60px;
+  font-family: 'Lato', sans-serif !important;
 }
 
 .modal-backdrop {
