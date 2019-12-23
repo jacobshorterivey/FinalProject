@@ -3,9 +3,7 @@ import { Breed } from './breed';
 import { Shelter } from './shelter';
 import { Image } from './image';
 import { Trait } from './trait';
-import { Image } from './image';
-import { Trait } from './trait';
-import { Shelter } from 'src/app/models/shelter';
+
 
 export class Pet {
 
@@ -28,7 +26,7 @@ export class Pet {
               name?: string, size?: string, age?: number, weight?: number,
               adopted?: boolean, fixed?: boolean, specialConditions?: string,
 
-              shelter?: Shelter, breed?: Breed, trait?: Trait[], image?: Image[]) {
+              shelter?: Shelter, breed?: Breed, traits?: Trait[], images?: Image[]) {
 
     this.id = id;
     this.color = color;
