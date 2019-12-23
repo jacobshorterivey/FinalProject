@@ -4,7 +4,6 @@ import { Shelter } from './shelter';
 import { Image } from './image';
 import { Trait } from './trait';
 
-
 export class Pet {
 
   id: number;
