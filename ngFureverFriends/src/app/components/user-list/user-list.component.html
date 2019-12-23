@@ -1,1 +1,17 @@
-<p>user-list works!</p>
+<h1>List of volunteers</h1>
+
+<div *ngIf="!selected">
+  <div class="container">
+    <div *ngFor="let vol of volunteers" class="row">
+      <!-- switch to user/user.id when user is setup -->
+      <!-- <a href="/shelter/{{shelter.id}}"> -->
+        <div class="col" >
+          <h3> {{vol.fname}} </h3>
+          <div *ngFor="let skill of volunteers.skills" class="row">
+            <h2>{{skill}}</h2>
+          </div>
+        </div>
+     <!-- </a> -->
+    </div>
+  </div>
+</div>

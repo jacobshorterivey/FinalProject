@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
 import { User } from '../models/user';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,21 @@ export class UserService {
         return throwError('UserService.index(): Error creating index of users.');
       })
     );
+  }
+  showOne(id: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+      })
+    };
+    return this.http.get<User>(this.url + '/' + id, httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('User show error');
+      })
+    );
+  }
+    show(id): Observable<User> {
+    return this.http.get<User>(this.url + '/' + id);
   }
 
   create(newUser: User) {
