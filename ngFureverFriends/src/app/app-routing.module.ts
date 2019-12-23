@@ -11,6 +11,7 @@ import { ShelterProfileComponent } from './components/shelter-profile/shelter-pr
 import { PetProfileComponent } from './components/pet-profile/pet-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 const routes: Routes = [
@@ -24,10 +25,12 @@ const routes: Routes = [
   {path: 'shelter/:id', component: ShelterProfileComponent},
   {path: 'shelter', component: ShelterProfileComponent},
   {path: 'shelternav', component: ShelternavComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'pet', component: PetProfileComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'petsearch', component: PetSearchComponent},
   {path: '**', component: NotFoundComponent}
-];
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
