@@ -10,6 +10,7 @@ import { ShelterListComponent } from './components/shelter-list/shelter-list.com
 import { ShelterProfileComponent } from './components/shelter-profile/shelter-profile.component';
 import { PetProfileComponent } from './components/pet-profile/pet-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 import { RegisterComponent } from './components/register/register.component';
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
   {path: 'fosters', component: FosterListComponent},
+  {path: 'volunteers', component: UserListComponent},
   {path: 'pet', component: PetProfileComponent},
   {path: 'user/:id', component: UserProfileComponent},
   {path: 'shelters', component: ShelterListComponent},
