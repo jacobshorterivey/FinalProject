@@ -22,6 +22,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { FormsModule } from '@angular/forms';
 import { ShelternavComponent } from './components/shelternav/shelternav.component';
 import { FosterListComponent } from './components/foster-list/foster-list.component';
+import { DogFilterPipe } from './dog-filter.pipe';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { FosterListComponent } from './components/foster-list/foster-list.compon
     PetSearchComponent,
     UserListComponent,
     ShelternavComponent,
-    FosterListComponent
+    FosterListComponent,
+    DogFilterPipe
   ],
   imports: [
     FormsModule,
