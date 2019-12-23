@@ -1,17 +1,14 @@
-<<<<<<< HEAD
+
 import { UserService } from './services/user.service';
 import { PetService } from './services/pet.service';
 import { FosterService } from './services/foster.service';
 import { AccountService } from './services/account.service';
 import { AuthService } from './services/auth.service';
-=======
 import { HideDogPipe } from './pipes/hide-dog.pipe';
->>>>>>> 505c792cf02dc0739e0cabe8f37d3cd6c07a4915
 import { ShelterService } from './services/shelter.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
