@@ -582,7 +582,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fureverfriendsdb`;
-INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (1, '3037032938', 'Humane Society Of The South Platte Valley', 'hsspv.org', 'info@hsspv.org', 2, 7);
+INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (1, '3037032938', 'Humane Society Of The South Platte Valley', 'https://hsspv.org', 'info@hsspv.org', 2, 7);
 INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (2, '3035954917', 'MaxFund Dog Shelter', 'https://maxfund.org/locationhours/', 'N/A', 4, 8);
 INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (3, '3037446076', 'Rocky Mountain Feline Rescue', 'https://www.rmfr-colorado.org/', 'N/A', 5, 9);
 INSERT INTO `shelter` (`id`, `phone`, `name`, `website_url`, `email`, `address_id`, `account_id`) VALUES (4, '7203360770', 'Life Is Better Rescue', 'https://lifeisbetterrescue.org/', 'info@lifeisbetterrescue.org', 6, 10);
@@ -1070,6 +1070,8 @@ COMMIT;
 START TRANSACTION;
 USE `fureverfriendsdb`;
 INSERT INTO `foster` (`id`, `max_foster`, `user_id`) VALUES (1, 4, 1);
+INSERT INTO `foster` (`id`, `max_foster`, `user_id`) VALUES (2, 3, 4);
+INSERT INTO `foster` (`id`, `max_foster`, `user_id`) VALUES (3, 5, 6);
 
 COMMIT;
 
@@ -1081,6 +1083,12 @@ START TRANSACTION;
 USE `fureverfriendsdb`;
 INSERT INTO `foster_breed` (`foster_id`, `breed_id`) VALUES (1, 1);
 INSERT INTO `foster_breed` (`foster_id`, `breed_id`) VALUES (1, 2);
+INSERT INTO `foster_breed` (`foster_id`, `breed_id`) VALUES (2, 153);
+INSERT INTO `foster_breed` (`foster_id`, `breed_id`) VALUES (2, 6);
+INSERT INTO `foster_breed` (`foster_id`, `breed_id`) VALUES (2, 7);
+INSERT INTO `foster_breed` (`foster_id`, `breed_id`) VALUES (2, 2);
+INSERT INTO `foster_breed` (`foster_id`, `breed_id`) VALUES (2, 82);
+INSERT INTO `foster_breed` (`foster_id`, `breed_id`) VALUES (2, 168);
 
 COMMIT;
 
@@ -1094,6 +1102,10 @@ INSERT INTO `foster_trait` (`trait_id`, `foster_id`) VALUES (2, 1);
 INSERT INTO `foster_trait` (`trait_id`, `foster_id`) VALUES (10, 1);
 INSERT INTO `foster_trait` (`trait_id`, `foster_id`) VALUES (3, 1);
 INSERT INTO `foster_trait` (`trait_id`, `foster_id`) VALUES (7, 1);
+INSERT INTO `foster_trait` (`trait_id`, `foster_id`) VALUES (11, 3);
+INSERT INTO `foster_trait` (`trait_id`, `foster_id`) VALUES (4, 3);
+INSERT INTO `foster_trait` (`trait_id`, `foster_id`) VALUES (8, 3);
+INSERT INTO `foster_trait` (`trait_id`, `foster_id`) VALUES (10, 3);
 
 COMMIT;
 
@@ -1169,6 +1181,9 @@ COMMIT;
 START TRANSACTION;
 USE `fureverfriendsdb`;
 INSERT INTO `species_foster` (`species_id`, `foster_id`) VALUES (1, 1);
+INSERT INTO `species_foster` (`species_id`, `foster_id`) VALUES (2, 2);
+INSERT INTO `species_foster` (`species_id`, `foster_id`) VALUES (1, 3);
+INSERT INTO `species_foster` (`species_id`, `foster_id`) VALUES (2, 3);
 
 COMMIT;
 

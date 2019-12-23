@@ -12,15 +12,17 @@ Add a Pet
       <br>
     </div>
     Total Number of Pets
-  <!-- <span class="badge badge-primary" [ngClass]="badgeColor() ">
+  <!-- <span class="badge badge-primary" [ngClass]="badgeColor() "> -->
     {{countPets()}}
-  </span> -->
+  <!-- </span> -->
     <br>
-  <!-- List all meals -->
+  <!-- List all pets -->
   <div id="petList" *ngIf= "!selectedPet">
     <table class="table table-striped table-hover">
       <thead>
+
         <tr>
+          <th>Image</th>
           <th>Name</th>
           <th>Color</th>
           <th>Size</th>
@@ -30,6 +32,7 @@ Add a Pet
       </thead>
       <tbody>
         <tr *ngFor="let pet of pets">
+          <td> <img src={{pet.image}}> </td>
           <td (click)="selectedPet = pet">{{pet.name}}</td>
           <td>{{pet.color}}</td>
           <td>{{pet.size}}</td>
@@ -43,6 +46,7 @@ Add a Pet
   <div *ngIf="selectedPet">
       <ul>
         <!-- <li> {{ selectedMeal | json }} </li> -->
+        <li>Picture: <img src= {{selectedPet.image}} style="width:500px;height:600px;"> </li>
         <li>Id: {{ selectedPet.id }}</li>
         <li>Name: {{ selectedPet.name}}</li>
         <li>Foods: {{ selectedPet.color }}</li>
@@ -53,7 +57,7 @@ Add a Pet
       </ul>
       <!-- <button (click) = "selectedMeal = null">Back</button> -->
 
-          <h2>Edit Meal # {{selectedPet.id}}</h2>
+          <h2>Edit Pet # {{selectedPet.id}}</h2>
           <form>
 
             Name: <input type = "text" name = "name" [(ngModel)]="selectedPet.name"> <br>

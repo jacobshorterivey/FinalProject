@@ -9,12 +9,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShelterListComponent } from './components/shelter-list/shelter-list.component';
 import { ShelterProfileComponent } from './components/shelter-profile/shelter-profile.component';
 import { PetProfileComponent } from './components/pet-profile/pet-profile.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
   {path: 'fosters', component: FosterListComponent},
+  {path: 'pet', component: PetProfileComponent},
+  {path: 'user/:id', component: UserProfileComponent},
   {path: 'shelters', component: ShelterListComponent},
   {path: 'shelter/:id', component: ShelterProfileComponent},
   {path: 'shelter', component: ShelterProfileComponent},
