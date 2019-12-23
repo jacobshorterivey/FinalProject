@@ -1,6 +1,7 @@
 <div>
 
-Dog:<input type="checkbox" checked> Cat:<input type="checkbox" checked><br>
+Dog:<input type="checkbox" name="removeDogs" [(ngModel)]="removeDogs">
+Cat:<input type="checkbox"><br>
 
 <!-- <select class="form-control" id="subject" *ngFor="">
 
@@ -26,7 +27,7 @@ Dog:<input type="checkbox" checked> Cat:<input type="checkbox" checked><br>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pet of pets">
+      <tr *ngFor="let pet of pets | hideDog:removeDogs">
         <td (click)="selectedPet = pet">{{pet.name}}</td>
         <td>{{pet.color}}</td>
         <td>{{pet.size}}</td>
