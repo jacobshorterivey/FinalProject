@@ -1,7 +1,7 @@
 import { Account } from 'src/app/models/account';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private auth: AuthService, router: Router) { }
+  constructor(private auth: AuthService, router: RouterModule) { }
 
   navbar = true;
   acc: Account;
