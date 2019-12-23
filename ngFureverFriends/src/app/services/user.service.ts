@@ -34,9 +34,10 @@ export class UserService {
   showOne(id: string) {
     const httpOptions = {
       headers: new HttpHeaders({
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<User>(this.url + '/:' + id, httpOptions).pipe(
+    return this.http.get<User>(this.url + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('User show error');

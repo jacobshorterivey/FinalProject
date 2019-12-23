@@ -33,7 +33,7 @@ public class UserController {
 		
 	}
 	@GetMapping("{uid}")
-	public User showUser(@PathVariable int uid, HttpServletResponse response, Principal principal){
+	public User showUser(@PathVariable("uid") Integer uid, HttpServletResponse response, Principal principal){
 		User user = uSvc.showUser(uid, principal);
 		if (user == null) {
 			response.setStatus(404);
