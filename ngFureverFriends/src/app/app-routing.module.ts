@@ -24,8 +24,9 @@ const routes: Routes = [
   {path: 'shelternav', component: ShelternavComponent},
   {path: 'pet', component: PetProfileComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'shelterPet', component: PetSearchComponent},
   {path: '**', component: NotFoundComponent}
-];
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
