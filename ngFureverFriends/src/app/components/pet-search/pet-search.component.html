@@ -1,1 +1,45 @@
-<p>pet-search works!</p>
+<div id="petList" *ngIf= "!selectedPet">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Age</th>
+        <th>Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pet of pets">
+        <td (click)="selectedPet = pet">{{pet.name}}</td>
+        <td>{{pet.color}}</td>
+        <td>{{pet.size}}</td>
+        <td>{{pet.age}}</td>
+        <td>{{pet.weight}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- <div *ngIf="selectedPet">
+    <ul>
+
+      <li>Id: {{ selectedPet.id }}</li>
+      <li>Name: {{ selectedPet.name}}</li>
+      <li>Foods: {{ selectedPet.color }}</li>
+      <li>Calories: {{ selectedPet.size }}</li>
+      <li>Cost: {{ selectedPet.age }}</li>
+      <li>Cost: {{ selectedPet.weight }}</li>
+      <td (click)="deletePet(selectedPet.id)"> <button> Delete </button> </td>
+    </ul>
+        <h2>Edit Meal # {{selectedPet.id}}</h2>
+        <form>
+
+          Name: <input type = "text" name = "name" [(ngModel)]="selectedPet.name"> <br>
+          Foods: <input type="text" name= "color" [(ngModel)]="selectedPet.color" > <br>
+          Calories: <input type="text" name="size" [(ngModel)]="selectedPet.size" ><br>
+          Cost: <input type="text" name="age" [(ngModel)]="selectedPet.age" > <br>
+          Cost: <input type="text" name="weight" [(ngModel)]="selectedPet.weight" > <br>
+          <button (click)="updatePet()">Save</button>
+          <button (click)="selectedPet = null">Cancel</button>
+        </form>
+</div> -->
