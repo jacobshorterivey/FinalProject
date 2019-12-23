@@ -33,8 +33,8 @@ public class UserController {
 		
 	}
 	@GetMapping("{uid}")
-	public User showUser(@PathVariable int uid, HttpServletResponse response){
-		User user = uSvc.showUser(uid);
+	public User showUser(@PathVariable int uid, HttpServletResponse response, Principal principal){
+		User user = uSvc.showUser(uid, principal);
 		if (user == null) {
 			response.setStatus(404);
 		}
@@ -45,6 +45,7 @@ public class UserController {
 	@PostMapping("/register")
 	public User createUser(@RequestBody User newUser, HttpServletResponse response) {
 		User userCreated = uSvc.createNewUser(newUser);
+		System.out.println("controller method: " + newUser);
 		if (userCreated == null) {
 			response.setStatus(500);
 		}

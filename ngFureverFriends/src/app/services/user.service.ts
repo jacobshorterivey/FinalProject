@@ -1,22 +1,77 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
+import { User } from '../models/user';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = 'http://localhost:8087/';
-  // baseUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl;
   url = this.baseUrl + 'api/user';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
-  // If you need to, headers can be added to an HTTP Request by using the HttpHeaders object.
-  // it is used ONLY inside of functions
-  // const httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type':  'application/json',
-  //     Authorization: 'my-auth-token'
-  //   })
-  // };
+  index() {
+    if (!this.auth.checkLogin()) {
+      return null;
+    }
+    const httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
+    return this.http.get<User[]>(this.url + '?sorted=true').pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('UserService.index(): Error creating index of users.');
+      })
+    );
+  }
+
+  create(newUser: User) {
+    const httpOptions = {
+      headers: {
+        'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
+    return this.http.post<User>(this.url + '?sorted=true', newUser, httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('UserService.create(): Error updating user.');
+      })
+    );
+  }
+
+  // ADD Authorization later
+  update(id: number, user: User) {
+    const httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
+    return this.http.put(this.url + '/' + id, user, httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('UserService.update(): Error updating user');
+      })
+    );
+  }
+
+  destroy(id: number) {
+    const httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
+    return this.http.delete<User>(this.url + '/' + id, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('UserService.destroy(): Error deleting user in service');
+      })
+    );
+  }
 }

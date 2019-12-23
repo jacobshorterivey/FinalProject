@@ -38,10 +38,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User showUser(int uid) {
+	public User showUser(int uid, Principal principal) {
 		Optional<User> ou = userRepo.findById(uid);
 		if (ou.isPresent()) {
+			if(ou.get().getAccount().getUsername().equals(principal.getName())) {
 			return ou.get();
+			}
 		}
 
 		return null;
@@ -50,10 +52,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createNewUser(User newUser) {
 		try {
+			System.out.println("service method: " + newUser);
 			String encrypted = encoder.encode(newUser.getAccount().getPassword());
 			newUser.getAccount().setPassword(encrypted);
 			newUser.getAccount().setActive(true);
 			newUser.getAccount().setRole("user");
+			System.out.println("service method before save and flush" + newUser);
 			acctRepo.saveAndFlush(newUser.getAccount());
 			addrRepo.saveAndFlush(newUser.getAddress());
 			newUser.setId(0);
@@ -73,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User updateUser, Integer uid, Principal principal) {
-		User origUser = showUser(uid);
+		User origUser = showUser(uid, principal);
 		if (principal.getName().equals(origUser.getAccount().getUsername())) {
 			System.err.println("line 78 " + updateUser);
 			if (origUser != null) {

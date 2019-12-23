@@ -3,6 +3,7 @@ package com.skilldistillery.furever.controllers;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.furever.services.AuthService;
 
 @RestController
+@CrossOrigin({"*", "http://localhost:4400"})
 public class AuthController {
 
 	@Autowired
@@ -25,7 +27,7 @@ public class AuthController {
 //	    return acc;
 //	}
 
-	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
+	@RequestMapping(path = "authenticate", method = RequestMethod.GET)
 	public Principal authenticate(Principal principal) {
 	    return principal;
 	}

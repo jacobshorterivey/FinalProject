@@ -3,6 +3,7 @@ package com.skilldistillery.furever.services;
 import java.util.List;
 
 import com.skilldistillery.furever.entities.Pet;
+import com.skilldistillery.furever.entities.Shelter;
 
 public interface PetService {
 
@@ -17,4 +18,6 @@ public interface PetService {
 	boolean deletePet(int id);
 
 	Pet getLucky();
+
+	Shelter findPetsShelter(int id);
 }

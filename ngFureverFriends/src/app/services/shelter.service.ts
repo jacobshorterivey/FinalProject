@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { throwError } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,17 @@ export class ShelterService {
   baseUrl = environment.baseUrl;
   url = this.baseUrl + 'api/shelter';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   index() {
+    if (!this.auth.checkLogin()) {
+      return null;
+    }
+    const httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
     return this.http.get<Shelter[]>(this.url + '?sorted=true').pipe(
       catchError((err: any) => {
         console.error(err);
@@ -25,9 +34,9 @@ export class ShelterService {
 
   create(newShelter: Shelter) {
     const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-      })
+      headers: {
+        'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
     };
     return this.http.post<Shelter>(this.url + '?sorted=true', newShelter, httpOptions).pipe(
       catchError((err: any) => {
@@ -37,10 +46,11 @@ export class ShelterService {
     );
   }
 
-  update(shelter: Shelter) {
+  // ADD Authorization later
+  update(id: number, shelter: Shelter) {
     const httpOptions = {
       headers: {
-        'Content-type': 'application/json',
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
       }
     };
     return this.http.put(`{this.url}/${shelter.id}`, shelter, httpOptions).pipe(
@@ -51,25 +61,17 @@ export class ShelterService {
     );
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // If you need to, headers can be added to an HTTP Request by using the HttpHeaders object.
-  // it is used ONLY inside of functions
-  // const httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type':  'application/json',
-  //     Authorization: 'my-auth-token'
-  //   })
-  // };
+  destroy(id: number) {
+    const httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
+    return this.http.delete<Shelter>(this.url + '/' + id, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('ShelterService.destroy(): Error deleting shelter in service');
+      })
+    );
+  }
 }

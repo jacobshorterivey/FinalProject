@@ -1,4 +1,7 @@
+import { Account } from 'src/app/models/account';
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService, router: Router) { }
+
+  navbar = true;
+  acc: Account;
 
   ngOnInit() {
   }
 
+  // attempt loiggin in.  fails.
+  login(form: Account) {
+    this.auth.login(form.username, form.password).subscribe(
+      next => {
+        console.log('Logged in ');
+        // this.router.navigateByUrl('/todo');
+      },
+      error => {
+        console.error('error logging in.');
+      }
+    );
+  }
 }

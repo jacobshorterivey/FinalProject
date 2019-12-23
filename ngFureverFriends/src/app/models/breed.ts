@@ -1,3 +1,4 @@
+import { Species } from './species';
 export class Breed {
   id: number;
   name: string;
@@ -5,6 +6,7 @@ export class Breed {
   hairType: string;
   description: number;
   size: string;
+  species: Species;
 
   constructor(
     id?: number,
@@ -12,12 +14,14 @@ export class Breed {
     hypoallergenic?: boolean,
     hairType?: string,
     description?: number,
-    size?: string) {
+    size?: string,
+    species?: Species) {
     this.id = id;
     this.name = name;
     this.hypoallergenic = hypoallergenic;
     this.hairType = hairType;
     this.description = description;
     this.size = size;
+    this.species = species;
   }
 }

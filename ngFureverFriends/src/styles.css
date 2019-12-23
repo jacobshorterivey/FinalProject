@@ -1,2 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "assets/bootstrap4-daydream.css";
+body {
+  margin-top: 60px;
+}
+
+.modal-backdrop {
+  opacity:0.9 !important;
+}
