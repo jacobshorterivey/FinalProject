@@ -13,6 +13,7 @@ export class ShelterProfileComponent implements OnInit {
   shelters: Shelter[] = [];
   urlId: number;
   selected: Shelter;
+  profilePic: string;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute) { }
 
@@ -28,6 +29,7 @@ export class ShelterProfileComponent implements OnInit {
             this.shelters.forEach((shelter) => {
               if (shelter.id === this.urlId) {
               this.selected = shelter;
+              this.loadProfilePic(shelter);
               }
             });
           }
@@ -35,6 +37,7 @@ export class ShelterProfileComponent implements OnInit {
         err => console.error('Reload error in Component')
       );
     }
+
   }
 
   loadEvents() {
@@ -47,5 +50,13 @@ export class ShelterProfileComponent implements OnInit {
       }
     );
   }
-}
 
+  loadProfilePic(selected: Shelter) {
+    // window.onload = (func) => {
+    //   const profPic = document.querySelector('#what');
+    //   return this.profilePic = selected.images[0].imageUrl;
+      // profPic.setAttribute('style', 'background-image: url("urlPath")');
+      // console.log(urlPath);
+    // };
+  }
+}

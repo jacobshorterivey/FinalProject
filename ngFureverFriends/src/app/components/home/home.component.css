@@ -242,3 +242,33 @@ DOGGO
 .kitty {
   min-height: 90vh;
 };
+
+/* .dogbg {
+  background: linear-gradient(90deg, rgba(85,118,196,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.catbg {
+  background: linear-gradient(270deg, rgba(196,115,85,1) 0%, rgba(255,255,255,1) 100%);
+} */
+
+.doggoImg{
+  position: relative;
+}
+
+.doggoImg img {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  height: 40%;
+}
+
+/* .kittyImg{
+  position: relative;
+}
+
+.kittyImg img {
+  position: absolute;
+  top: 60vh;
+  left: 20px;
+  height: 150px;
+} */

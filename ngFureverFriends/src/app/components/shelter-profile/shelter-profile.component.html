@@ -1,33 +1,127 @@
-<div *ngIf="selected">
+<!-- <div *ngIf="selected"> -->
   <!-- All shelter content should be within this div -->
+<div class="bodyComponent">
+  <!-- COVER -->
+  <div class="coverPhoto container"></div>
 
-  <div class="coverPhoto">
+  <!-- PROFILE PHOTO -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12">
+        <div class="profilePhoto">
+          <img src="{{selected.images[0].imageUrl}}" height="100px">
+        </div>
+      </div>
+    </div>
+  </div>
 
-    blah
+  <!-- PROFILE NAME -->
+  <div class="container bg-light mainInfo">
+    <div class="row">
+      <div class="col title"></div>
+      <div class="col-lg-8 col-md-8 col-sm-12 text-center">
+          <h3 class="bg-primary text-light titleBox">{{selected.name}}</h3>
+      </div>
+    </div>
+    <div class="row">
+
+  <!-- CONTACT INFO -->
+      <div class="col shelterInfo">
+        <p>Email: <br>
+          {{selected.email}}</p>
+
+        <p>Phone: <br>
+        {{selected.phone}} </p>
+
+        <p *ngIf="selected.address.street2">
+          Address: <br>
+          {{selected.address.street}} <br>
+          {{selected.address.street2}}<br>
+          {{selected.address.city}}, {{selected.address.stateAbbr}} {{selected.address.zip}}
+        </p>
+
+        <p *ngIf="!selected.address.street2">
+          Address: <br>
+          {{selected.address.street}} <br>
+          {{selected.address.city}}, {{selected.address.stateAbbr}} {{selected.address.zip}}
+       </p>
+
+       <p>
+         <a href="{{selected.websiteUrl}}" target="_blank">Website</a>
+       </p>
+
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12 text-center commentBox shelterInfo">
+        <form class="form-group">
+
+          <div class="row contactText">
+            <h1 class="text-primary"> Contact Us</h1>
+          </div>
+
+
+          <div class="row">
+            <div class="col-lg-5 logDiv">
+              <div class="row">
+                <div class="col-lg-3 col-sm-2 col-xs-12">
+                  <label for="email">Email:</label>
+                </div>
+                <div class="col-lg-9 col-sm-10 col-xs-12">
+                <input id="email" class="form-control" type="text">
+              </div>
+            </div>
+           </div>
+
+           <div class="col-lg-2 logDiv">
+            - OR -
+          </div>
+
+           <div class="col-lg-5 logDiv">
+            <button class="btn btn-sm btn-primary formBtn2">Login</button>
+           </div>
+          </div>
+
+          <select class="form-control subjectBox" id="subject">
+            <option value="adopt" disabled>Subject</option>
+            <option value="adopt">Adopting</option>
+            <option value="volunteer">Volunteering</option>
+            <option value="foster">Fostering</option>
+            <option value="other">Other</option>
+          </select>
+
+          <textarea name="comment" form="usrform" class="form-control">Enter text here...</textarea>
+          <button class="btn btn-success formBtn">Submit</button>
+        </form>
+      </div>
+    </div>
   </div>
 
 
+  <div class="container mapsPlaceholder">
+    INSERT MAPS API HERE...
+  </div>
 
-  <h1>{{selected.name}}</h1>
-  {{selected.email}} <br>
-  {{selected.phone}} <br>
-  {{selected.address.street}} <br>
 
-  <p *ngFor="let image of selected.images">
-    Image: {{image.imageUrl}}
-  </p>
-
+  <div class="container bg-light">
   <h3> Pets</h3>
   <p *ngFor="let pet of selected.pets">
     {{pet.name}} <br>
     {{pet.size}} <br>
   </p>
+  </div>
 
-
-  <br><br>
-  # Shelter Profile Stub #
-
+<!--
+</div> -->
 </div>
 
+<!-- STUB OF CONTAINER -->
+<!--
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-12">
+
+    </div>
+  </div>
+</div>
+-->
 
 
