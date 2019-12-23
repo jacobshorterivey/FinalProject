@@ -111,37 +111,11 @@
             <input id="password" class="form-control" type="text" name="password" ngModel>
             <button  (click)="login(loginForm)" class="btn btn-success lButton">Login</button>
           </form>
-          <div class="container text-center">
-          <a href="#" class="text-center regLink">Register</a>
-        </div>
 
           <div class="container in-line text-center">
             <button [routerLink]="['/register']" class="btn btn-success">
               Register
             </button>
-          </div>
-          <div class="container text-center">
-            <form class="loginStyle form-group">
-              <label for="username">Username:</label>
-              <input
-                id="username"
-                class="form-control"
-                type="text"
-                name="username"
-                [(ngModel)]="acc.username"
-              />
-              <label for="password">Password:</label>
-              <input
-                id="password"
-                class="form-control"
-                type="text"
-                name="password"
-                [(ngModel)]="acc.password"
-              />
-              <button (click)="login(acc)" class="btn btn-success lButton">
-                Login
-              </button>
-            </form>
           </div>
         </div>
       </div>
