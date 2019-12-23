@@ -1,1 +1,37 @@
 <p>user-profile works!</p>
+
+<!-- PROFILE PHOTO -->
+<div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12">
+        <div class="profilePhoto">
+          <img src="{{selected.images[0].imageUrl}}" height="100px">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- PROFILE NAME -->
+<div class="container bg-light mainInfo">
+    <div class="row">
+      <div class="col title"></div>
+      <div class="col-lg-8 col-md-8 col-sm-12 text-center">
+          <h3 class="bg-primary text-light titleBox">{{selected.name}}</h3>
+      </div>
+    </div>
+    <div class="row">
+
+      <!-- User Info -->
+      <div>
+          <p>Id:{{selected.id}} </p>
+          fname: string;
+          lname: string;
+          age: number;
+          phone: string;
+          email: string;
+          account: Account;
+          address: Address;
+      </div>
+      <!-- Volunteer Info -->
+
+      <!-- Foster Info -->

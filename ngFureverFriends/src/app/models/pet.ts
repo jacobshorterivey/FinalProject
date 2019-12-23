@@ -3,9 +3,6 @@ import { Breed } from './breed';
 import { Shelter } from './shelter';
 import { Image } from './image';
 import { Trait } from './trait';
-import { Image } from './image';
-import { Trait } from './trait';
-import { Shelter } from 'src/app/models/shelter';
 
 export class Pet {
 
@@ -41,8 +38,8 @@ export class Pet {
     this.specialConditions = specialConditions;
     this.shelter = shelter;
     this.breed = breed;
-    this.traits = traits;
-    this.images = images;
+    this.traits = trait;
+    this.images = image;
 
   }
 
