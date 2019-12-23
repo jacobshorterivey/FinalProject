@@ -18,6 +18,7 @@ export class PetProfileComponent implements OnInit {
   selectedPet: Pet = null;
   editPet: Pet = null;
 
+
   // Constructor
   constructor(private petService: PetService, private route: ActivatedRoute, private router: Router) { }
 

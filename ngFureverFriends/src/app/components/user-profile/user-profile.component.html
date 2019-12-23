@@ -1,5 +1,7 @@
 <p>user-profile works!</p>
 
+<div class="bodyComponent"></div>
+
 <!-- PROFILE PHOTO -->
 <div class="container">
     <div class="row">
@@ -11,7 +13,7 @@
     </div>
   </div>
 
-<!-- PROFILE NAME -->
+<!-- USER PROFILE NAME -->
 <div class="container bg-light mainInfo">
     <div class="row">
       <div class="col title"></div>
@@ -23,15 +25,16 @@
 
       <!-- User Info -->
       <div>
-          <p>Id:{{selected.id}} </p>
-          fname: string;
-          lname: string;
-          age: number;
-          phone: string;
-          email: string;
-          account: Account;
-          address: Address;
+          <p>Id:{{user.id}} </p>
+          <p>Name: {{user.fname}} {{selected.lname}}</p>
+          <p>Age: {{user.age}}</p>
+          <p>Phone: {{user.phone}}</p>
+          <p>Email: {{user.email}}</p>
+          <p>Account: {{user.Account}}</p>
+          <p>Address: {{user.Address}}</p>
       </div>
       <!-- Volunteer Info -->
+      <div>
 
+      </div>
       <!-- Foster Info -->
