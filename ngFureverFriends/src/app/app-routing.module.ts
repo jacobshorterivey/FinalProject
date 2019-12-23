@@ -1,3 +1,4 @@
+import { PetSearchComponent } from './components/pet-search/pet-search.component';
 import { LoginComponent } from './components/login/login.component';
 import { FosterListComponent } from './components/foster-list/foster-list.component';
 import { ShelternavComponent } from './components/shelternav/shelternav.component';

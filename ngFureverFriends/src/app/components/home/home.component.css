@@ -243,32 +243,19 @@ DOGGO
   min-height: 90vh;
 };
 
-/* .dogbg {
-  background: linear-gradient(90deg, rgba(85,118,196,1) 0%, rgba(255,255,255,1) 100%);
+.dogbg {
+  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://cdn.pixabay.com/photo/2015/09/18/19/40/footprint-946189_1280.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
-
+  /* background: linear-gradient(90deg, rgba(85,118,196,1) 0%, rgba(255,255,255,1) 100%); */
 .catbg {
-  background: linear-gradient(270deg, rgba(196,115,85,1) 0%, rgba(255,255,255,1) 100%);
-} */
-
-.doggoImg{
-  position: relative;
+  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.pexels.com/photos/38867/pexels-photo-38867.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
-
-.doggoImg img {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  height: 40%;
-}
-
-/* .kittyImg{
-  position: relative;
-}
-
-.kittyImg img {
-  position: absolute;
-  top: 60vh;
-  left: 20px;
-  height: 150px;
-} */
+/* background: linear-gradient(270deg, rgba(196,115,85,1) 0%, rgba(255,255,255,1) 100%); */
