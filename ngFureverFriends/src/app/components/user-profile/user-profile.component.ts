@@ -20,7 +20,9 @@ export class UserProfileComponent implements OnInit {
       this.userService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
         data => {
           this.user = data;
-          if (this.selectedUser === null) {
+          console.log('UserProfileComponent.ngOnInit(): user:');
+          console.log(this.user);
+          if (this.user === null) {
             this.router.navigateByUrl('user' + this.route.snapshot.paramMap.get('id') + 'NotFound');
           }
         },

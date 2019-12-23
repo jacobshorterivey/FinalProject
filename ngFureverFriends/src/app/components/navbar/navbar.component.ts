@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  // attempt loiggin in.  fails.
+  // attempt logging in.  fails.
   login(form: NgForm) {
     console.log('NavbarComponent.login(): ');
     console.log(form.value);
