@@ -32,7 +32,7 @@ Add a Pet
       </thead>
       <tbody>
         <tr *ngFor="let pet of pets">
-          <td> <img src={{pet.images[0].imageUrl}}> </td>
+          <td> </td>
           <td (click)="selectedPet = pet">{{pet.name}}</td>
           <td>{{pet.color}}</td>
           <td>{{pet.size}}</td>
@@ -53,6 +53,7 @@ Add a Pet
         <li>Size: {{ selectedPet.size }}</li>
         <li>Age: {{ selectedPet.age }}</li>
         <li>Weight: {{ selectedPet.weight }}</li>
+        <li>Trait: {{ selectedPet.trait }}</li>
         <td (click)="deletePet(selectedPet.id)"> <button> Delete </button> </td>
       </ul>
       <!-- <button (click) = "selectedPet = null">Back</button> -->

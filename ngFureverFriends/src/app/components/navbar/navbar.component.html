@@ -25,9 +25,6 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
-      <li class="nav-item">
-        <a [routerLink]="['/pet']"> Pets </a>
-      </li>
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
@@ -41,7 +38,9 @@
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a [routerLink]="['/pet']"> Pets </a>
+
+          <a class="dropdown-item" [routerLink]="['/user/:id']"> My Profile </a>
+          <a class="dropdown-item" [routerLink]="['/pet']" > Pets </a>
           <a [routerLink]="['/register']" class="text-center regLink"
             >Register</a
           >
