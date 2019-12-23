@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PetProfileComponent implements OnInit {
 
   // Field
-  title: 'Meal Tracker';
+  title: 'Pet Tracker';
   newPet: Pet = new Pet();
   pets: Pet[] = [];
   selectedPet: Pet = null;

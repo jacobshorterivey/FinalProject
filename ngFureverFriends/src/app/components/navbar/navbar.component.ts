@@ -1,9 +1,10 @@
 import { Account } from 'src/app/models/account';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { NgForm } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ import { NgForm } from '@angular/forms';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, router: RouterModule) { }
 
   navbar = true;
   // acc: Account = new Account();

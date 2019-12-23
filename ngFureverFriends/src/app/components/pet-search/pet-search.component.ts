@@ -1,4 +1,7 @@
+import { HideDogPipe } from './../../pipes/hide-dog.pipe';
+import { PetService } from './../../services/pet.service';
 import { Component, OnInit } from '@angular/core';
+import { Pet } from 'src/app/models/pet';
 
 @Component({
   selector: 'app-pet-search',
@@ -6,10 +9,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pet-search.component.css']
 })
 export class PetSearchComponent implements OnInit {
+  pets: Pet[] = [];
 
-  constructor() { }
+  newPet: Pet = new Pet();
+
+  selectedPet: Pet = null;
+  editPet: Pet = null;
+  removeDogs = true;
+
+  constructor(private petService: PetService, private hideDog: HideDogPipe) { }
 
   ngOnInit() {
+    this.getPets();
+  }
+
+  getPets() {
+
+    this.petService.index().subscribe(
+      data => {
+        this.pets = data;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
+  hideDogs() {
+    const catList = this.hideDog.transform(this.pets);
   }
 
 }

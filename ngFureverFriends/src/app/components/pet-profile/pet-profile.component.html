@@ -32,7 +32,7 @@ Add a Pet
       </thead>
       <tbody>
         <tr *ngFor="let pet of pets">
-          <td> <img src={{pet.image}}> </td>
+          <td> <img src={{pet.images[0].imageUrl}}> </td>
           <td (click)="selectedPet = pet">{{pet.name}}</td>
           <td>{{pet.color}}</td>
           <td>{{pet.size}}</td>
@@ -45,26 +45,26 @@ Add a Pet
   </div>
   <div *ngIf="selectedPet">
       <ul>
-        <!-- <li> {{ selectedMeal | json }} </li> -->
-        <li>Picture: <img src= {{selectedPet.image}} style="width:500px;height:600px;"> </li>
+        <!-- <li> {{ selectedPet | json }} </li> -->
+        <li>Picture: <img src="{{selectedPet.images[0].imageUrl}}" style="width:500px;height:600px;"> </li>
         <li>Id: {{ selectedPet.id }}</li>
         <li>Name: {{ selectedPet.name}}</li>
-        <li>Foods: {{ selectedPet.color }}</li>
-        <li>Calories: {{ selectedPet.size }}</li>
-        <li>Cost: {{ selectedPet.age }}</li>
-        <li>Cost: {{ selectedPet.weight }}</li>
+        <li>Color: {{ selectedPet.color }}</li>
+        <li>Size: {{ selectedPet.size }}</li>
+        <li>Age: {{ selectedPet.age }}</li>
+        <li>Weight: {{ selectedPet.weight }}</li>
         <td (click)="deletePet(selectedPet.id)"> <button> Delete </button> </td>
       </ul>
-      <!-- <button (click) = "selectedMeal = null">Back</button> -->
+      <!-- <button (click) = "selectedPet = null">Back</button> -->
 
           <h2>Edit Pet # {{selectedPet.id}}</h2>
           <form>
 
             Name: <input type = "text" name = "name" [(ngModel)]="selectedPet.name"> <br>
-            Foods: <input type="text" name= "color" [(ngModel)]="selectedPet.color" > <br>
-            Calories: <input type="text" name="size" [(ngModel)]="selectedPet.size" ><br>
-            Cost: <input type="text" name="age" [(ngModel)]="selectedPet.age" > <br>
-            Cost: <input type="text" name="weight" [(ngModel)]="selectedPet.weight" > <br>
+            Color: <input type="text" name= "color" [(ngModel)]="selectedPet.color" > <br>
+            Size: <input type="text" name="size" [(ngModel)]="selectedPet.size" ><br>
+            Age: <input type="text" name="age" [(ngModel)]="selectedPet.age" > <br>
+            Weigt: <input type="text" name="weight" [(ngModel)]="selectedPet.weight" > <br>
             <button (click)="updatePet()">Save</button>
             <button (click)="selectedPet = null">Cancel</button>
           </form>

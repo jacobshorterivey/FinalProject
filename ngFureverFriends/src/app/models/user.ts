@@ -1,5 +1,6 @@
 import { Account } from './account';
 import { Address } from './address';
+import { Skill } from './skill';
 
 export class User {
   // FIELDS
@@ -12,6 +13,8 @@ export class User {
   account: Account;
   address: Address;
 
+  skills: Skill[];
+
 
   // CONSTRUCTOR
   constructor(
@@ -22,7 +25,8 @@ export class User {
     phone?: string,
     email?: string,
     account?: Account,
-    address?: Address
+    address?: Address,
+    skills?: Skill[]
   ) {
     this.id = id;
     this.fname = fname;
@@ -32,5 +36,6 @@ export class User {
     this.email = email;
     this.account = account;
     this.address = address;
+    this.skills = skills;
   }
 }
