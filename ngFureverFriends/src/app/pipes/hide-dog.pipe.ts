@@ -1,13 +1,27 @@
 import { Shelter } from 'src/app/models/shelter';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Pet } from '../models/pet';
 
 @Pipe({
   name: 'hideDog'
 })
 export class HideDogPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
+  transform(pets: Pet[], hideDogs?: boolean): Pet[] {
+    const result: Pet[] = [];
 
+    if (hideDogs === true) {
+      return pets;
+    }
+
+    for (const animal of pets) {
+      if (animal.breed.species.name === 'Cat') {
+        result.push(animal);
+        console.log(result);
+      }
+
+      return result;
+    }
   }
 
 
@@ -28,5 +42,5 @@ export class HideDogPipe implements PipeTransform {
 //     return result;
 //   }
 // }
-  // ng g pipe pipes/
+//   ng g pipe pipes/
 }

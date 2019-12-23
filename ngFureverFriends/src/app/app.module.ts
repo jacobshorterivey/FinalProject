@@ -1,3 +1,4 @@
+import { HideDogPipe } from './pipes/hide-dog.pipe';
 import { ShelterService } from './services/shelter.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -22,7 +23,6 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { FormsModule } from '@angular/forms';
 import { ShelternavComponent } from './components/shelternav/shelternav.component';
 import { FosterListComponent } from './components/foster-list/foster-list.component';
-import { DogFilterPipe } from './dog-filter.pipe';
 import { RouterModule } from '@angular/router';
 import { ApplicationSubmittedComponent } from './components/application-submitted/application-submitted.component';
 
@@ -45,8 +45,8 @@ import { ApplicationSubmittedComponent } from './components/application-submitte
     UserListComponent,
     ShelternavComponent,
     FosterListComponent,
-    DogFilterPipe,
-    ApplicationSubmittedComponent
+    ApplicationSubmittedComponent,
+    HideDogPipe
   ],
   imports: [
     FormsModule,
@@ -55,7 +55,8 @@ import { ApplicationSubmittedComponent } from './components/application-submitte
     HttpClientModule
   ],
   providers: [
-    ShelterService
+    ShelterService,
+    HideDogPipe
   ],
   bootstrap: [AppComponent]
 })
