@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit {
   dogs: Pet[] = [];
   cats: Pet[] = [];
   selected: Pet;
-  shelter: Shelter[] = [];
-  shelterCat: Shelter[] = [];
+  shelters: Shelter[] = [];
+  shelterCats: Shelter[] = [];
 
   // CONSTRUCTORS
   constructor(private petSvc: PetService) { }
@@ -43,13 +43,17 @@ export class HomeComponent implements OnInit {
 
   loadPets() {
     this.petSvc.index().subscribe(
-      (pass) => {
+      pass => {
+        console.log('HomeComponent.loadPets(): pass');
+
         pass.forEach(pet => {
+          console.log(pet);
+
           if (pet.adopted === false && pet.breed.species.name === 'Dog' && this.dogs.length < 6) {
             this.dogs = this.dogs.concat(pet);
             this.petSvc.getShelter(pet.id).subscribe(
               (win) => {
-                this.shelter = this.shelter.concat(win);
+                this.shelters = this.shelters.concat(win);
               },
               (nowin) => {
                 console.error(nowin);
@@ -60,7 +64,7 @@ export class HomeComponent implements OnInit {
             this.cats = this.cats.concat(pet);
             this.petSvc.getShelter(pet.id).subscribe(
               (win) => {
-                this.shelterCat = this.shelterCat.concat(win);
+                this.shelterCats = this.shelterCats.concat(win);
               },
               (nowin) => {
                 console.error(nowin);
@@ -69,7 +73,8 @@ export class HomeComponent implements OnInit {
             }
         });
       },
-      (fail) => {
+      fail => {
+        console.error('HomeComponent.loadPets(): fail');
         console.error(fail);
       }
     );

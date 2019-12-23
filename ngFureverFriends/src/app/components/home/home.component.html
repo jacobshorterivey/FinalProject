@@ -95,6 +95,82 @@
       <p class="featuredText text-center">Featured Dogs</p> -->
       <!-- START DOG CAROUSEL -->
 
+        <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+
+              <div class="card bg-light" (click)="openModule(dogs[0])" data-toggle="modal" data-target=".bd-example-modal-lg">
+                <div class="imgContainer">
+                  <img class="card-img-top" src="{{dogs[0].images[0].imageUrl}}" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    {{dogs[0].name}}<br>
+                    {{dogs[0].breed.name}}<br>
+                    Age: {{dogs[0].age}}<br>
+                    <a href="/shelter/{{shelters[0].id}}">{{shelters[0].name}}</a>
+                  </p>
+                </div>
+            </div>
+
+            </div>
+            <div class="carousel-item">
+
+              <div class="card bg-light" (click)="openModule(dogs[1])" data-toggle="modal" data-target=".bd-example-modal-lg">
+                <div class="imgContainer">
+                  <img class="card-img-top" src="{{dogs[1].images[0].imageUrl}}" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    {{dogs[1].name}}<br>
+                    {{dogs[1].breed.name}}<br>
+                    Age: {{dogs[1].age}}<br>
+                    <a href="/shelter/{{shelters[1].id}}">{{shelters[1].name}}</a>
+                  </p>
+                </div>
+            </div>
+
+            </div>
+            <div class="carousel-item text-center">
+
+              <div class="card bg-light" (click)="openModule(dogs[2])" data-toggle="modal" data-target=".bd-example-modal-lg">
+                <div class="imgContainer">
+                  <img class="card-img-top" src="{{dogs[2].images[0].imageUrl}}" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    {{dogs[2].name}}<br>
+                    {{dogs[2].breed.name}}<br>
+                    Age: {{dogs[2].age}}<br>
+                    <a href="/shelter/{{shelters[2].id}}">{{shelters[2].name}}</a>
+                  </p>
+                </div>
+            </div>
+
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 dogbg">
+
+
+
+
+        Insert something cool about dogs, or how to adopt, w/e here.
+        <div class="doggoImg">
+          <img src="../../../assets/img/dog.svg">
+         </div> -->
+
       <!-- START CAT CAROUSEL -->
         <!-- <div id="catControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
@@ -109,7 +185,7 @@
                     {{cats[0].name}}<br>
                     {{cats[0].breed.name}}<br>
                     Age: {{cats[0].age}}<br>
-                    <a href="/shelter/{{shelterCat[0].id}}">{{shelterCat[0].name}}</a>
+                    <a href="/shelter/{{shelterCats[0].id}}">{{shelterCats[0].name}}</a>
                   </p>
                 </div>
             </div>
@@ -126,7 +202,7 @@
                     {{cats[1].name}}<br>
                     {{cats[1].breed.name}}<br>
                     Age: {{cats[1].age}}<br>
-                    <a href="/shelter/{{shelterCat[1].id}}">{{shelterCat[1].name}}</a>
+                    <a href="/shelter/{{shelterCats[1].id}}">{{shelterCats[1].name}}</a>
                   </p>
                 </div>
             </div>
@@ -143,7 +219,7 @@
                     {{cats[2].name}}<br>
                     {{cats[2].breed.name}}<br>
                     Age: {{cats[2].age}}<br>
-                    <a href="/shelter/{{shelterCat[2].id}}">{{shelterCat[2].name}}</a>
+                    <a href="/shelter/{{shelterCats[2].id}}">{{shelterCats[2].name}}</a>
                   </p>
                 </div>
             </div>
