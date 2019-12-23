@@ -24,6 +24,7 @@ import { ShelternavComponent } from './components/shelternav/shelternav.componen
 import { FosterListComponent } from './components/foster-list/foster-list.component';
 import { DogFilterPipe } from './dog-filter.pipe';
 import { RouterModule } from '@angular/router';
+import { ApplicationSubmittedComponent } from './components/application-submitted/application-submitted.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RouterModule } from '@angular/router';
     UserListComponent,
     ShelternavComponent,
     FosterListComponent,
-    DogFilterPipe
+    DogFilterPipe,
+    ApplicationSubmittedComponent
   ],
   imports: [
     FormsModule,
