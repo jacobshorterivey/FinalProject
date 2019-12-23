@@ -36,7 +36,7 @@ export class UserService {
       headers: new HttpHeaders({
       })
     };
-    return this.http.get<User>(this.url + '/' + id, httpOptions).pipe(
+    return this.http.get<User>(this.url + '/:' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('User show error');

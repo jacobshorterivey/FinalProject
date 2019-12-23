@@ -11,20 +11,35 @@ import { User } from 'src/app/models/user';
 export class UserProfileComponent implements OnInit {
 
   // Field
-  user = User;
+  user: User;
+  selectedUser: User;
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    if (!this.user && this.route.snapshot.paramMap.get('id')) {
+      this.userService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
+        data => {
+          this.user = data;
+          if (this.selectedUser === null) {
+            this.router.navigateByUrl('user' + this.route.snapshot.paramMap.get('id') + 'NotFound');
+          }
+        },
+        err => console.error('failed to find user')
+      );
+    }
+    this.reload();
   }
 
-  // getUser() {
-  //   this.userService.index().subscribe(
-  //     data => {
-  //       this.user = data;
-  //     },
-  //     err => {
-  //       console.error(err);
-  //     }
-  //   );
-  // }
+  reload() {
+    this.userService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.user = aGoodThingHappened;
+      },
+
+      (didntWork) => {
+        console.log(didntWork);
+      }
+    );
+  }
 }
