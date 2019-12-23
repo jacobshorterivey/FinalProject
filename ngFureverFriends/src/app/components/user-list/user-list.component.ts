@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -7,9 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  constructor() { }
+  // FIELDS
+  users: User[] = [];
+  urlId: number;
+  selected: User;
+  volunteers: User[] = [];
 
+  // CONSTRUCTOR
+  constructor(private svc: UserService, private currentRoute: ActivatedRoute) { }
+
+  // METHODS
   ngOnInit() {
+    this.loadEvents();
   }
 
+  loadEvents() {
+    this.svc.index().subscribe(
+      (pass) => {
+        this.users = pass;
+      },
+      (fail) => {
+        console.error(fail);
+      }
+    );
+    this.volunteers = this.getVols(this.users);
+  }
+
+  getVols(users: User[]): User[] {
+    const vols = [];
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].skills.length > 0) {
+        vols.push(users[i]);
+      }
+    }
+    return vols;
+  }
 }
