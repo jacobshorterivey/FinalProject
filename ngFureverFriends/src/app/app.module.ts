@@ -1,3 +1,8 @@
+import { UserService } from './services/user.service';
+import { PetService } from './services/pet.service';
+import { FosterService } from './services/foster.service';
+import { AccountService } from './services/account.service';
+import { AuthService } from './services/auth.service';
 import { ShelterService } from './services/shelter.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -50,7 +55,12 @@ import { FosterListComponent } from './components/foster-list/foster-list.compon
     HttpClientModule
   ],
   providers: [
-    ShelterService
+    ShelterService,
+    AuthService,
+    AccountService,
+    FosterService,
+    PetService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
