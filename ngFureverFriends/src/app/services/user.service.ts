@@ -16,14 +16,16 @@ export class UserService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   index() {
-    if (!this.auth.checkLogin()) {
-      return null;
-    }
+    // if (!this.auth.checkLogin()) {
+    //   return null;
+    // }
     const httpOptions = {
-      headers: {
-        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
-      }
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
     };
+    // Authorization: 'Basic ' + this.auth.getCredentials(),
     return this.http.get<User[]>(this.url + '?sorted=true').pipe(
       catchError((err: any) => {
         console.error(err);
@@ -44,7 +46,7 @@ export class UserService {
       })
     );
   }
-    show(id): Observable<User> {
+  show(id): Observable<User> {
     return this.http.get<User>(this.url + '/' + id);
   }
 

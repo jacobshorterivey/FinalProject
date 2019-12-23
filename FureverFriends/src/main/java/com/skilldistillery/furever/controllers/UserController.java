@@ -20,28 +20,30 @@ import com.skilldistillery.furever.services.UserService;
 
 @RestController
 @RequestMapping("api/user")
-@CrossOrigin({"*", "http://localhost:4400"})
+@CrossOrigin({ "*", "http://localhost:4400" })
 public class UserController {
-	
-	@Autowired private UserService uSvc;
-	
 
-	
+	@Autowired
+	private UserService uSvc;
+
 	@GetMapping
-	public List<User> index(){
+	public List<User> index() {
 		return uSvc.displayAllUsers();
-		
+
 	}
+
 	@GetMapping("{uid}")
+
 	public User showUser(@PathVariable("uid") Integer uid, HttpServletResponse response, Principal principal){
+
 		User user = uSvc.showUser(uid, principal);
 		if (user == null) {
 			response.setStatus(404);
 		}
 		return user;
-		
+
 	}
-	
+
 	@PostMapping("/register")
 	public User createUser(@RequestBody User newUser, HttpServletResponse response) {
 		User userCreated = uSvc.createNewUser(newUser);
@@ -50,23 +52,25 @@ public class UserController {
 			response.setStatus(500);
 		}
 		return userCreated;
-		
+
 	}
+
 	@PutMapping("/update/{uid}")
-	public User updateUser(@PathVariable int uid, @RequestBody User origUser, HttpServletResponse response, Principal principal ) {
-		
+	public User updateUser(@PathVariable int uid, @RequestBody User origUser, HttpServletResponse response,
+			Principal principal) {
+
 		User updatedUser = uSvc.updateUser(origUser, uid, principal);
-		if(updatedUser == null) {
+		if (updatedUser == null) {
 			response.setStatus(404);
 		}
-			
+
 		return updatedUser;
 	}
-	
+
 	@GetMapping("/skill/{sid}")
-	public List<User> findVolunteerBySkill(@PathVariable Integer sid, HttpServletResponse response)	{
+	public List<User> findVolunteerBySkill(@PathVariable Integer sid, HttpServletResponse response) {
 		List<User> volunteers = uSvc.getVolunteersBySkill(sid);
-		if(volunteers == null) {
+		if (volunteers == null) {
 			response.setStatus(404);
 		}
 		return volunteers;

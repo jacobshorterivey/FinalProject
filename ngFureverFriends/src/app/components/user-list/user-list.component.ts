@@ -28,12 +28,12 @@ export class UserListComponent implements OnInit {
     this.svc.index().subscribe(
       (pass) => {
         this.users = pass;
+        this.volunteers = this.getVols(this.users);
       },
       (fail) => {
         console.error(fail);
       }
     );
-    this.volunteers = this.getVols(this.users);
   }
 
   getVols(users: User[]): User[] {

@@ -12,7 +12,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  account: Account = new Account();
   constructor(private auth: AuthService, router: RouterModule) { }
 
   navbar = true;
@@ -22,13 +22,14 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  // attempt loiggin in.  fails.
+  // attempt logging in.  fails.
   login(form: NgForm) {
     console.log('NavbarComponent.login(): ');
     console.log(form.value);
     this.auth.login(form.value.username, form.value.password).subscribe(
       next => {
-        console.log('SOMETHING GOOD HAPPENED!');
+        const loggedIn = next;
+        this.account = loggedIn;
         console.log(next);
         // this.router.navigateByUrl('/user/'`user.id`)
       },
