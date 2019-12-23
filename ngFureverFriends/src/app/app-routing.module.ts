@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'fosters', component: FosterListComponent},
   {path: 'volunteers', component: UserListComponent},
-  {path: 'pet', component: PetProfileComponent},
+  {path: 'pet/:id', component: PetProfileComponent},
   {path: 'user/:id', component: UserProfileComponent},
   {path: 'shelters', component: ShelterListComponent},
   {path: 'shelter/:id', component: ShelterProfileComponent},
