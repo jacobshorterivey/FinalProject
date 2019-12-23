@@ -7,6 +7,21 @@
   overflow: hidden;
 }
 
+.name{
+  margin-top: -50px;
+  min-height: 125px;
+  padding-bottom: 40px;
+}
+
+.shelterControls{
+  margin-top: -50px;
+  height: auto;
+}
+
+.shelterControlRow {
+  padding-top: 50px;
+}
+
 .bodyComponent {
   background-color: rgb(236, 236, 236, 0.9);
 }
@@ -103,4 +118,28 @@
 
 .subjectBox {
   margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+/*
+PET CARD -> Move to main css if using in multiple spots!
+*/
+.petCardImgContainer {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+}
+
+.petCardImgContainer img {
+  position: absolute;
+  width: 100%;
+
 }

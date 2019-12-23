@@ -25,7 +25,7 @@ export class Pet {
               name?: string, size?: string, age?: number, weight?: number,
               adopted?: boolean, fixed?: boolean, specialConditions?: string,
 
-              shelter?: Shelter, breed?: Breed, trait?: Trait[], image?: Image[]) {
+              shelter?: Shelter, breed?: Breed, traits?: Trait[], images?: Image[]) {
 
     this.id = id;
     this.color = color;
@@ -38,8 +38,8 @@ export class Pet {
     this.specialConditions = specialConditions;
     this.shelter = shelter;
     this.breed = breed;
-    this.traits = trait;
-    this.images = image;
+    this.traits = traits;
+    this.images = images;
 
   }
 
