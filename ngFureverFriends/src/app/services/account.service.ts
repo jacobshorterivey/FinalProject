@@ -24,7 +24,7 @@ export class AccountService {
     }
     const httpOptions = {
       headers: {
-        Authorization: 'Basic ' + this.auth.getCredentials(), 'X-Requested-With': 'XMLHttpRequest'
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
       }
     };
     return this.http.get<Account[]>(this.url).pipe(
@@ -36,6 +36,14 @@ export class AccountService {
   }
 
   show(id: number) {
+    if (!this.auth.checkLogin()) {
+      return null;
+    }
+    const httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
     return this.http.get<Account[]>(this.url + '/' + id).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -47,7 +55,7 @@ export class AccountService {
   create(account: Account) {
     const httpOptions = {
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
       }
     };
     return this.http.post<Account>(this.url, account, httpOptions).pipe(
@@ -61,7 +69,7 @@ export class AccountService {
   update(id: number, account: Account) {
     const httpOptions = {
       headers: {
-        'Content-type': 'application/json'
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
       }
     };
     return this.http.put<Account>(this.url + '/' + id, account, httpOptions).pipe(
@@ -75,7 +83,7 @@ export class AccountService {
   destroy(id: number) {
     const httpOptions = {
       headers: {
-        'Content-type': 'application/json'
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
       }
     };
     return this.http.delete<Account>(this.url + '/' + id, httpOptions).pipe(
@@ -85,15 +93,5 @@ export class AccountService {
       })
     );
   }
-
-  // If you need to, headers can be added to an HTTP Request by using the HttpHeaders object.
-  // it is used ONLY inside of functions
-  // const httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     Authorization: 'my-auth-token'
-  //   })
-  // };
-
 
 }

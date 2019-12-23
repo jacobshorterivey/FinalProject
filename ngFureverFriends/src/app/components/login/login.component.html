@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div *ngIf="!userBool && !shelterBool">
+  <button class="btn btn-primary" (click)="userBool = true">User login</button>
+  <button class="btn btn-primary" (click)="shelterBool = true">Shelter login</button>
+</div>
+  <div *ngIf="userBool && !shelterBool">
+    <form>
+      <label>Username:
+        <input type="text" name="username" id="username" placeholder="Enter Username" [(ngModel)]="userLogin.account.username">
+      </label>
+      <label>Password:
+        <input type="password" name="password" id="password" [(ngModel)]="userLogin.account.password">
+      </label>
+      <button class="btn btn-primary" (click)="loginUser()">Submit</button>
+      <button class="btn btn-danger" (click)="userBool = false">Cancel</button>
+    </form>
+  </div>
+  <div *ngIf="shelterBool && !userBool">
+    <form>
+      <label>Shelter Username:
+        <input type="text" name="username" id="username" placeholder="Enter Shelter Username" [(ngModel)]="shelterLogin.account.username">
+      </label>
+      <label>Password:
+        <input type="password" name="password" id="password" [(ngModel)]="shelterLogin.account.password">
+      </label>
+      <button class="btn btn-primary" (click)="loginShelter()">Submit</button>
+      <button class="btn btn-danger" (click)="shelterBool = false">Cancel</button>
+    </form>
+  </div>
