@@ -1,9 +1,14 @@
+
+import { UserService } from './services/user.service';
+import { PetService } from './services/pet.service';
+import { FosterService } from './services/foster.service';
+import { AccountService } from './services/account.service';
+import { AuthService } from './services/auth.service';
 import { HideDogPipe } from './pipes/hide-dog.pipe';
 import { ShelterService } from './services/shelter.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -56,7 +61,13 @@ import { ApplicationSubmittedComponent } from './components/application-submitte
   ],
   providers: [
     ShelterService,
+    AuthService,
+    AccountService,
+    FosterService,
+    PetService,
+    UserService,
     HideDogPipe
+
   ],
   bootstrap: [AppComponent]
 })
