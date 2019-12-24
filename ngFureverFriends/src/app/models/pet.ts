@@ -17,16 +17,13 @@ export class Pet {
   specialConditions: string;
   shelter: Shelter;
   breed: Breed;
-
   traits: Trait[];
   images: Image[];
 
   constructor(id?: number, color?: string,
               name?: string, size?: string, age?: number, weight?: number,
               adopted?: boolean, fixed?: boolean, specialConditions?: string,
-
               shelter?: Shelter, breed?: Breed, traits?: Trait[], images?: Image[]) {
-
     this.id = id;
     this.color = color;
     this.name = name;

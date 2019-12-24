@@ -10,13 +10,12 @@ export class Shelter {
   name: string;
   address: Address;
   websiteUrl: string;
-  pets: Pet[];
   images: Image[];
   account: Account;
 
   // Constructor
   constructor(id?: number, phone?: string, email?: string, name?: string, websiteUrl?: string,
-              address?: Address, pets?: Pet[], images?: Image[], account?: Account) {
+              address?: Address, images?: Image[], account?: Account) {
     this.id = id;
     this.phone = phone;
     this.email = email;
@@ -24,7 +23,6 @@ export class Shelter {
     this.address = address;
     this.websiteUrl = websiteUrl;
     this.address = address;
-    this.pets = pets;
     this.images = images;
     this.account = account;
   }

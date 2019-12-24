@@ -140,14 +140,14 @@
       <!-- <div class="col-lg-3 col-md-3 col-sm-12 petCard"> -->
         <!-- <div class="col-lg-6" [ngClass]="{'left-style': i%2 != 0, 'right-style': i%2 === 0 }"> -->
 
-          <div class="row" *ngFor="let pet of selected.pets;let i = index;">
+          <!-- <div class="row" *ngFor="let pet of selected.pets;let i = index;">
             <div class="col-lg-6 left-style" *ngIf="i%2 == 0">
                 {{pet.name}} asdasda
             </div>
             <div class="col-lg-6 right-style" *ngIf="i%2 != 0">
                 {{pet.name}} asdasdasdasdasdads
             </div>
-        </div>
+        </div> -->
 
           <!-- <div class="petCardImgContainer col-lg-4">
             <div *ngIf="pet.images.length > 0">
@@ -173,13 +173,13 @@
 
 
 
-  <!-- <div class="container bg-light">
+  <div class="container bg-light">
   <h3> Pets</h3>
-  <p *ngFor="let pet of selected.pets">
+  <p *ngFor="let pet of pets">
     {{pet.name}} <br>
     {{pet.size}} <br>
   </p>
-  </div> -->
+  </div>
 
 <!--
 </div> -->

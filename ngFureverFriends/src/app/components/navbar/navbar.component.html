@@ -90,7 +90,9 @@
       </form>
     </div>
 
-    <div>
+<!-- START NGIF TO CHECK IF USER IS LOGGED IN OR NOT....-->
+
+    <div *ngIf="account">
       <a
         class="nav-link dropdown-toggle"
         href="#"

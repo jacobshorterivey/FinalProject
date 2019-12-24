@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.services.ShelterService;
@@ -60,5 +61,13 @@ public class ShelterController {
 		}
 		return s2;
 	}
-
+	
+	@GetMapping("pets/{id}")
+	public List<Pet> getShelterPets(@PathVariable int id, HttpServletResponse response) {
+		List<Pet> pets = sSvc.findPetsByShelter(id);
+		if (pets == null) {
+		response.setStatus(500);
+		}
+		return pets;
+	}
 }

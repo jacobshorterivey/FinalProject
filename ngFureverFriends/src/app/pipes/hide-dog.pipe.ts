@@ -14,10 +14,9 @@ export class HideDogPipe implements PipeTransform {
       return pets;
     }
 
-    for (const animal of pets) {
-      if (animal.breed.species.name === 'Cat') {
+    for (let animal of pets) {
+      if (animal.breed.species.name.toLowerCase() === 'cat') {
         result.push(animal);
-        console.log(result);
       }
 
       return result;
