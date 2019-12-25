@@ -13,7 +13,8 @@ export class PetSearchComponent implements OnInit {
 
   newPet: Pet = new Pet();
   editPet: Pet = null;
-  removeDogs: boolean;
+  showDogs = true;
+  showCats = true;
 
   constructor(private petService: PetService, private hideDog: HideDogPipe) { }
 

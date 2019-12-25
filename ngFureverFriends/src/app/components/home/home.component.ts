@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   // METHODS
   ngOnInit() {
     this.pickBackgroundImg();
-    this.loadPets();
+    // this.loadPets();
   }
 
   pickBackgroundImg() {
@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
     } else if (num === 3) {
       myRow.setAttribute('style', 'background-image: url("../../../assets/img/bgimg4.jpg");');
     }
-    console.log(num);
   }
 
   loadPets() {
