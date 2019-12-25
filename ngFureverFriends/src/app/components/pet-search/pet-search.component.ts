@@ -35,10 +35,7 @@ export class PetSearchComponent implements OnInit {
   }
 
   hideDogs() {
-    // const catList = this.hideDog.transform(this.pets);
-    const catList = this.hideDog.transform(this.pets);
-    console.log(catList);
-    // return catList;
+    this.hideDog.transform(this.pets, this.showDogs);
   }
 
 }

@@ -1,4 +1,3 @@
-
 import { Breed } from './breed';
 import { Shelter } from './shelter';
 import { Image } from './image';

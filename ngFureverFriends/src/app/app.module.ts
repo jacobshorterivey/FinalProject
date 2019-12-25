@@ -1,4 +1,3 @@
-
 import { UserService } from './services/user.service';
 import { PetService } from './services/pet.service';
 import { FosterService } from './services/foster.service';
@@ -57,7 +56,7 @@ import { ApplicationSubmittedComponent } from './components/application-submitte
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     ShelterService,

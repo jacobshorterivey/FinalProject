@@ -183,6 +183,7 @@ FEATURED
   font-family: 'Indie Flower', cursive;
   font-size: 40px;
 }
+
 /*
 PET CARDS
 */
@@ -213,7 +214,6 @@ PET CARDS
 }
 
 .carousel {
-  /* min-height: 80vh; */
   align-content: center;
 }
 
@@ -225,37 +225,61 @@ PET CARDS
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
 }
 
-
-
-
 /*
 DOGGO
 */
-.dogSection {
-  min-height: 90vh;
+.petCardImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 10%;
+  position: absolute;
 }
 
-.doggo {
-  min-height: 90vh;
+.petCardImage {
+  min-height: 300px;
+  overflow: hidden;
+  position: relative;
 }
 
-.kitty {
-  min-height: 90vh;
-};
-
-.dogbg {
-  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://cdn.pixabay.com/photo/2015/09/18/19/40/footprint-946189_1280.jpg');
-  background-position: center;
+/* .dogright {
+  background-image: linear-gradient(rgba(255,255,255, 0.7), rgba(255,255,255, 0.7)), url('https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1527798252000/photosp/3bdf59c1-3c56-4228-9271-1f7fb4186bcb/stock-photo-beach-sand-pets-animals-summer-seaside-vacation-dogs-background-3bdf59c1-3c56-4228-9271-1f7fb4186bcb.jpg');
+  background-position: right;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  font-size: 30px;
+} */
+
+/*
+CAT
+*/
+/* .catleft {
+  background-image: linear-gradient(rgba(255,255,255, 0.7), rgba(255,255,255, 0.7)), url('https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1527798252000/photosp/3bdf59c1-3c56-4228-9271-1f7fb4186bcb/stock-photo-beach-sand-pets-animals-summer-seaside-vacation-dogs-background-3bdf59c1-3c56-4228-9271-1f7fb4186bcb.jpg');
+  background-position: left;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  font-size: 30px;
+} */
+
+.featuredAnimalsBg {
+  background-image: linear-gradient(rgba(255,255,255, 0.8), rgba(255,255,255, 0.5)), url('https://cdn.pixabay.com/photo/2015/11/12/17/09/paw-1040642_1280.jpg');
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   overflow: hidden;
 }
-  /* background: linear-gradient(90deg, rgba(85,118,196,1) 0%, rgba(255,255,255,1) 100%); */
-.catbg {
-  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.pexels.com/photos/38867/pexels-photo-38867.jpeg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
+
+.petSep {
+  height: 10vh;
 }
-/* background: linear-gradient(270deg, rgba(196,115,85,1) 0%, rgba(255,255,255,1) 100%); */
+
+.missionStatement {
+  background-color: rgb(236, 236, 236, 1);
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  font-size: 20px;
+}
