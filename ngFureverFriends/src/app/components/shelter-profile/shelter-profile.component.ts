@@ -16,10 +16,12 @@ export class ShelterProfileComponent implements OnInit {
   selected: Shelter;
   profilePic: string;
   pets: Pet[] = [];
+  selectedPet: Pet;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.scrollToTops();
     this.loadEvents();
 
     if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
@@ -62,6 +64,15 @@ export class ShelterProfileComponent implements OnInit {
         console.error(fail);
       }
     );
+  }
+
+  openModule(animal: Pet) {
+    this.selectedPet = animal;
+  }
+
+  scrollToTops() {
+    const element = document.querySelector('.bodyComponent');
+    element.scrollIntoView({behavior: 'smooth'});
   }
 
 

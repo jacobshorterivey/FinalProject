@@ -15,6 +15,7 @@ export class PetSearchComponent implements OnInit {
   editPet: Pet = null;
   showDogs = true;
   showCats = true;
+  public selected: Pet;
 
   constructor(private petService: PetService, private hideDog: HideDogPipe) { }
 
@@ -32,6 +33,10 @@ export class PetSearchComponent implements OnInit {
         console.error(err);
       }
     );
+  }
+
+  openModule(animal: Pet) {
+    this.selected = animal;
   }
 
   hideDogs() {

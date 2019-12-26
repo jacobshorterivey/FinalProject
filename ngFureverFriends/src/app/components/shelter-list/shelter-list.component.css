@@ -1,10 +1,6 @@
-/* a {
-  text-decoration: none;
-}*/
+/*
 
 .shelterCard {
-  /* margin-top: 20px;
-  border-radius: 10px; */
   background-color: rgb(236, 236, 236, 0.7);
   border-radius: 10px;
   border-color: #5576c4;
@@ -20,12 +16,8 @@
 .shelterDiv {
   min-height: calc(100vh - 60px);
   overflow: hidden;
-}
-
-/* .shelterRow {
-  min-height: calc(100vh - 60px);
-  overflow: hidden;
 } */
+
 
 .sideSearchImg {
   background-image: linear-gradient(rgba(255,255,255, 0.6), rgba(255,255,255, 0.6)), url('../../../assets/img/sheltercover.jpeg');
@@ -36,18 +28,6 @@
   overflow: hidden;
 }
 
-.searchResultsBg {
+/* .searchResultsBg {
   min-height: calc(100vh - 60px);
-}
-
-/* .mainModal {
-  overflow: hidden;
 } */
-body.modal-open {
-  overflow-y: scroll !important;
-  margin: 0 !important;
-}
-
-.modal {
-  overflow: auto !important;
-}

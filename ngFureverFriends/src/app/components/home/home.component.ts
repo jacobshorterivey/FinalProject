@@ -66,6 +66,8 @@ export class HomeComponent implements OnInit {
     this.selected = animal;
   }
 
+
+
   // getShelter(id: number) {
   //   this.petSvc.getShelter(id).subscribe(
   //     (pass) => {
