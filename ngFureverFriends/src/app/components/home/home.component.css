@@ -218,11 +218,11 @@ PET CARDS
 }
 
 .carousel-control-prev-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%235576c4' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
 }
 
 .carousel-control-next-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%235576c4' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
 }
 
 /*
@@ -243,6 +243,13 @@ DOGGO
   position: relative;
 }
 
+.petCard {
+  background-color: white;
+}
+
+.petCard:hover {
+  background-color: rgb(236, 236, 236, 1);
+}
 /* .dogright {
   background-image: linear-gradient(rgba(255,255,255, 0.7), rgba(255,255,255, 0.7)), url('https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1527798252000/photosp/3bdf59c1-3c56-4228-9271-1f7fb4186bcb/stock-photo-beach-sand-pets-animals-summer-seaside-vacation-dogs-background-3bdf59c1-3c56-4228-9271-1f7fb4186bcb.jpg');
   background-position: right;

@@ -14,7 +14,7 @@ body {
 }
 
 .modal-backdrop {
-  opacity:0.9 !important;
+  opacity:0.93 !important;
 }
 
 .doggo {
@@ -78,4 +78,28 @@ PET CARDS
   font-size: 20px;
   padding-top: 3px;
   padding-bottom: 3px;
+}
+
+
+.petCarosel {
+  background-color: black;
+  border-radius: 10px;
+}
+
+.petModalImages{
+  position: relative;
+  /* height: 100%; */
+  overflow: hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.petModalImages img {
+  /* width: 100%; */
+  height: 30vh;
+  /* object-fit: cover;
+  object-position: center;
+  size: cover;
+  position: absolute; */
 }

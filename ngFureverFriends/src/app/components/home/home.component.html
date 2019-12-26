@@ -73,7 +73,7 @@
 .
       </div> -->
       <div class="text-right" style="font-family: 'Indie Flower', cursive; margin-top: 15px;">
-          - Forever Friends Team 🐾
+          - Furever Friends Team 🐾
       </div>
     </div>
   <!-- </div> -->
@@ -88,7 +88,7 @@
 
 <div class="container-fluid dogSection">
   <div class="row">
-    <div class="col-lg-8 col-md-6 col-sm-4 col-xs-12 bg-primary doggo" style="border-radius: 0px 10px 10px 0px;">
+    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 bg-primary doggo" style="border-radius: 0px 10px 10px 0px;">
       <p class="featuredText text-center">Featured Dogs</p>
 
       <!-- START DOG CAROUSEL -->
@@ -102,7 +102,7 @@
             class="carousel-item {{ i == 0 ? 'active' : '' }}"
             *ngFor="let pet of dogs; let i = index"
           >
-            <div class="petCard container">
+            <div class="petCard container" (click)="openModule(pet)" data-toggle="modal" data-target=".bd-example-modal-lg">
               <div class="row">
                 <div class="col-5 petCardImage">
                   <img
@@ -114,7 +114,7 @@
                     src="../../../assets/img/noprofile.png"
                   />
                 </div>
-                <div class="col-7 cardContent bg-light">
+                <div class="col-7 cardContent">
                   <div class="row">
                     <div class="col bg-success text-light petName">
                       {{ pet.name }}
@@ -162,7 +162,7 @@
     </div>
 
     <!-- LEFT SIDE OF DOG CAROUSEL -->
-    <div class="dogright col-lg-4 col-md-6 col-sm-8 col-xs-12">
+    <div class="dogright col-lg-4 col-md-6 col-sm-12 col-xs-12">
 
     </div>
   </div>
@@ -176,13 +176,13 @@
 <div class="container-fluid dogSection">
   <div class="row">
     <!-- RIGHT SIDE OF CAT CAROUSEL -->
-    <div class="catleft col-lg-4 col-md-6 col-sm-8 col-xs-12">
+    <div class="catleft col-lg-4 col-md-6 col-sm-12 col-xs-12">
 
     </div>
 
 
     <!--cat bg here-->
-    <div class="col-lg-8 col-md-6 col-sm-4 col-xs-12 bg-success catto">
+    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 bg-success catto">
       <p class="featuredText text-center">Featured Cats</p>
 
       <!-- START CAT CAROUSEL -->
@@ -196,7 +196,7 @@
             class="carousel-item {{ i == 0 ? 'active' : '' }}"
             *ngFor="let pet of cats; let i = index"
           >
-            <div class="petCard container">
+            <div class="petCard container" (click)="openModule(pet)" data-toggle="modal" data-target=".bd-example-modal-lg">
               <div class="row">
                 <div class="col-5 petCardImage">
                   <img
@@ -208,7 +208,7 @@
                     src="../../../assets/img/noprofile.png"
                   />
                 </div>
-                <div class="col-7 cardContent bg-light">
+                <div class="col-7 cardContent">
                   <div class="row">
                     <div class="col bg-primary text-light petName">
                       {{ pet.name }}
@@ -265,147 +265,62 @@
 
 
 
-
-
-
-<!-- START CAT CAROUSEL
-        <div id="catControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-
-              <div class="card bg-light" (click)="openModule(cats[0])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{cats[0].images[0].imageUrl}}" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{cats[0].name}}<br>
-                    {{cats[0].breed.name}}<br>
-                    Age: {{cats[0].age}}<br>
-                    <a href="/shelter/{{shelterCats[0].id}}">{{shelterCats[0].name}}</a>
-                  </p>
-                </div>
-            </div>
-
-            </div>
-            <div class="carousel-item">
-
-              <div class="card bg-light" (click)="openModule(cats[1])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{cats[1].images[0].imageUrl}}" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{cats[1].name}}<br>
-                    {{cats[1].breed.name}}<br>
-                    Age: {{cats[1].age}}<br>
-                    <a href="/shelter/{{shelterCats[1].id}}">{{shelterCats[1].name}}</a>
-                  </p>
-                </div>
-            </div>
-
-            </div>
-            <div class="carousel-item text-center">
-
-              <div class="card bg-light" (click)="openModule(cats[2])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{cats[2].images[0].imageUrl}}" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{cats[2].name}}<br>
-                    {{cats[2].breed.name}}<br>
-                    Age: {{cats[2].age}}<br>
-                    <a href="/shelter/{{shelterCats[2].id}}">{{shelterCats[2].name}}</a>
-                  </p>
-                </div>
-            </div>
-
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#catControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#catControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div>
-</div> -->
-
-<!--NEW MODAL TEST-->
-<!--
-<div id="carouselExampleControls111" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-
-   <div *ngFor="let dog of dogs">
-    <div class="carousel-item active" *ngIf="dog.id == dogs[0].id">
-        <div class="card bg-light">
-          <div class="imgContainer">
-          <img class="card-img-top" src="{{dog.images[0].imageUrl}}" alt="Card image cap">
-          <p class="text-center">{{dog.name}}</p>
-        </div>
-          <div class="card-body">
-            <p class="card-text">
-              {{dog.name}}<br>
-              Breed: {{dog.breed.name}}<br>
-              Age: {{dog.age}}
-              ayyy
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item" *ngIf="dog.id == dogs[1].id">
-        <div class="card bg-light">
-          <div class="imgContainer">
-          <img class="card-img-top" src="{{dog.images[0].imageUrl}}" alt="Card image cap">
-          <p class="text-center">{{dog.name}}</p>
-        </div>
-          <div class="card-body">
-            <p class="card-text">
-              {{dog.name}}<br>
-              {{dog.breed.name}}<br>
-              Age: {{dog.age}}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls111" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls111" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> -->
-
-<!--FIGURE THIS OUT BETTER?-->
-<!-- {{dog.shelter.name}} -->
-
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
-<!--
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal fade bd-example-modal-lg mainModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+  *ngIf="selected">
     <div class="modal-dialog modal-lg">
      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{selected.name}}</h5>
+        <div class="modal-header bg-primary text-light">
+          <h5 class="modal-title">{{selected?.name}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>
 
-            ## PET MODAL STUB ##
 
-          </p>
+
+
+          <div id="selectedPetCtrl" class="carousel slide petCarosel" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item {{ i == 0 ? 'active' : '' }}" *ngFor="let image of selected.images; let i = index">
+                <div class="petModalImages">
+                <img src="{{image.imageUrl}}">
+              </div>
+                <!-- {{image.imageUrl}} -->
+              </div>
+              <!-- <div class="carousel-item">
+                2
+              </div>
+              <div class="carousel-item">
+                3
+              </div> -->
+            </div>
+            <a class="carousel-control-prev" href="#selectedPetCtrl" role="button" data-slide="prev" *ngIf="selected.images.length > 1">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#selectedPetCtrl" role="button" data-slide="next" *ngIf="selected.images.length > 1">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
@@ -413,6 +328,6 @@
       </div>
   </div>
 
-<BR> -->
+<BR>
 
-<!-- </div> -->
+</div>

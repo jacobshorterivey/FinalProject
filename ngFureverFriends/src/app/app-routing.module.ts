@@ -31,7 +31,6 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'petsearch', component: PetSearchComponent},
   {path: 'appsubmitted', component: ApplicationSubmittedComponent},
-  {path: 'userprofile', component: UserProfileComponent},
   {path: '**', component: NotFoundComponent}
   ];
 

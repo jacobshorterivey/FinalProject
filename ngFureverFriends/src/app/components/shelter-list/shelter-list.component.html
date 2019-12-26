@@ -1,19 +1,41 @@
+<div class="container-fluid shelterDiv">
+  <div class="row shelterRow">
+  <div class="col bg-primary rightImage sideSearchImg"></div>
 
-<h1>List of shelters</h1>
+  <!-- Right side -->
+  <div class="col-lg-10 searchResultsBg">
+    <div *ngFor="let shelter of shelters; let i = index">
 
-<div *ngFor="let shelter of shelters">
-  <a href="/shelter/{{shelter.id}}">
-   <div class="container shelterCard">
-    <div class="row">
-      <!-- <div class="col-lg-4 col-sm-12 bg-success pic">
-            <img src="{{shelter.images[1].imageUrl}}" width="200px">
 
-      </div> -->
-      <div class="col-lg-8 col-sm-12">
-        <h3> {{shelter.name}} </h3>
-      </div>
-    </div>
+      <div class="row shelterCard" routerLink="../shelter/{{shelter.id}}">
+        <div class="col" style="overflow: hidden;">
+
+
+          <table class="table">
+            <tr class="row">
+              <!-- <td class="col-1">
+                <h2><span class="badge badge-primary">{{i+1}}</span></h2>
+              </td> -->
+              <td class="col-12">
+                <h3> {{shelter.name}} </h3>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="col-12">
+                {{shelter.address.street}}<br>
+                {{shelter.address.city}}, {{shelter.address.stateAbbr}} {{shelter.address.zip}}
+              </td>
+            </tr>
+
+          </table>
+
+
+        </div>
+     </div>
+
+
+   </div>
   </div>
-  </a>
+  </div>
 </div>
 

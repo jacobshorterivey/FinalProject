@@ -41,11 +41,7 @@ export class HomeComponent implements OnInit {
   loadPets() {
     this.petSvc.index().subscribe(
       pass => {
-        console.log('HomeComponent.loadPets(): pass');
-
         pass.forEach(pet => {
-          console.log(pet);
-
           if (pet.adopted === false && pet.breed.species.name === 'Dog' && this.dogs.length < 6) {
             this.dogs.push(pet);
           }
