@@ -12,12 +12,15 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  account: Account = new Account();
-  constructor(private auth: AuthService, router: RouterModule) { }
 
-  navbar = true;
-  // acc: Account = new Account();
+  // FIELDS
+
+  account: Account = new Account();
   blankObj: object = null;
+  navbar = true;
+
+  // CONSTRUCTOR
+  constructor(private auth: AuthService, router: RouterModule) { }
 
   ngOnInit() {
   }

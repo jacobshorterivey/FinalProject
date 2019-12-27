@@ -1,19 +1,19 @@
 import { PetService } from './../../services/pet.service';
 import { Component, OnInit } from '@angular/core';
 import { Pet } from 'src/app/models/pet';
-import { Shelter } from 'src/app/models/shelter';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
 
   // FIELDS
-  dogs: Pet[] = [];
-  cats: Pet[] = [];
-  selected: Pet;
+  public dogs: Pet[] = [];
+  public cats: Pet[] = [];
+  public selected: Pet;
 
   // CONSTRUCTORS
   constructor(private petSvc: PetService) { }
@@ -36,17 +36,12 @@ export class HomeComponent implements OnInit {
     } else if (num === 3) {
       myRow.setAttribute('style', 'background-image: url("../../../assets/img/bgimg4.jpg");');
     }
-    console.log(num);
   }
 
   loadPets() {
     this.petSvc.index().subscribe(
       pass => {
-        console.log('HomeComponent.loadPets(): pass');
-
         pass.forEach(pet => {
-          console.log(pet);
-
           if (pet.adopted === false && pet.breed.species.name === 'Dog' && this.dogs.length < 6) {
             this.dogs.push(pet);
           }
@@ -70,6 +65,8 @@ export class HomeComponent implements OnInit {
   openModule(animal: Pet) {
     this.selected = animal;
   }
+
+
 
   // getShelter(id: number) {
   //   this.petSvc.getShelter(id).subscribe(

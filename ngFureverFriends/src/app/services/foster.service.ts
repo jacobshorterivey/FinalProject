@@ -45,7 +45,9 @@ export class FosterService {
     );
   }
 
-  update(foster: Foster) {
+
+  // IF ERRO EXIST WITH UPDATE CHANGE TO update(foster: Foster).  When type 'foster' was removed error went away... for now
+  update(foster) {
     const httpOptions = {
       headers: {
         'Content-type': 'application/json',

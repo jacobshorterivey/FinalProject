@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Account;
 import com.skilldistillery.furever.entities.Address;
+import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.repositories.AccountRepository;
 import com.skilldistillery.furever.repositories.AddressRepository;
+import com.skilldistillery.furever.repositories.PetRepository;
 import com.skilldistillery.furever.repositories.ShelterRepository;
 
 @Service
@@ -28,6 +30,8 @@ public class ShelterServiceImpl implements ShelterService {
 	private AddressRepository addrRepo;
 	@Autowired
 	private PasswordEncoder encoder;
+	@Autowired
+	private PetRepository petRepo;
 
 	@Override
 	public List<Shelter> displayAllShelters() {
@@ -137,5 +141,10 @@ public class ShelterServiceImpl implements ShelterService {
 			}
 		}
 		return orgShelter;
+	}
+	
+	@Override
+	public List<Pet> findPetsByShelter(int id) {
+		return petRepo.findByShelter_Id(id);
 	}
 }

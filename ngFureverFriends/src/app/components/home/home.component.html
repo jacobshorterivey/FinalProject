@@ -1,350 +1,468 @@
 <div class="openingDiv">
   <!-- <div class="container"> -->
-    <div class="row openingRow">
-      <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12 openingOptions">
-
-        <!-- Start adopt. foster .voluneer text-->
-        <div class="container textCont">
-          <div class="row">
-            <div class="col">
-              <p class="openingText" id="adopt">adopt</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <p class="openingText" id="foster">foster</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <p class="openingText" id="volunteer">volunteer</p>
-            </div>
-          </div>
-          <div class="row text-center">
-            <div class="col">
-              <hr>
-              <p class="helpText" id="help">
-                help a friend in need
-              </p>
-              <hr>
-            </div>
+  <div class="row openingRow">
+    <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12 openingOptions">
+      <!-- Start adopt. foster .voluneer text-->
+      <div class="container textCont">
+        <div class="row">
+          <div class="col">
+            <p class="openingText" id="adopt">adopt</p>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <p class="openingText" id="foster">foster</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p class="openingText" id="volunteer">volunteer</p>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <hr />
+            <p class="helpText" id="help">
+              help a friend in need
+            </p>
+            <hr />
+          </div>
+        </div>
+      </div>
 
-        <!-- Start search dogs and cats -->
-        <div class="container text-center middleBtn">
-          <button class="btn btn-success" style="border-radius: 50px;" [routerLink]="['/petsearch']">
-            Search Pets
-          </button>
+      <!-- Start search dogs and cats -->
+      <div class="container text-center middleBtn">
+        <button
+          class="btn btn-success"
+          style="border-radius: 50px;"
+          [routerLink]="['/petsearch']"
+        >
+          Search Pets
+        </button>
 
-          <!-- <button class="btn btn-success" style="border-radius: 50px;" [routerLink]="['/shelters']">
+        <!-- <button class="btn btn-success" style="border-radius: 50px;" [routerLink]="['/shelters']">
             Search Cats
           </button> -->
-        </div>
-
-        <!-- Find local button -->
-        <div class="container text-center bottomBtn">
-          <button class="btn btn-primary" style="border-radius: 50px;" [routerLink]="['/shelters']">
-            Find Local Shelters
-          </button>
-        </div>
-
-        <!-- Scroll down arrow -->
-        <div class="scroll-down" (click)="scrollToPets()" id="featStart"></div>
       </div>
+
+      <!-- Find local button -->
+      <div class="container text-center bottomBtn">
+        <button
+          class="btn btn-primary"
+          style="border-radius: 50px;"
+          [routerLink]="['/shelters']"
+        >
+          Find Local Shelters
+        </button>
+      </div>
+
+      <!-- Scroll down arrow -->
+      <div class="scroll-down" (click)="scrollToPets()" id="featStart"></div>
     </div>
   </div>
-
-  Carosels being refactored...
-  <!-- CANNOT use the following code because carousels expects one "active item"  It sets all or none to active.-->
-    <!-- <div *ngFor="let dog of dogs; let i = index">
-    <div class="card bg-light">
-      <div class="imgContainer">
-      <img class="card-img-top" src="{{dog.images[0].imageUrl}}" alt="Card image cap">
-      <p class="text-center">{{dog.name}}</p>
-    </div>
-      <div class="card-body">
-        <p class="card-text">
-          {{dog.name}}<br>
-          Breed: {{dog.breed.name}}<br>
-          Age: {{dog.age}}
-        </p>
-      </div>
-    </div>
-  </div> -->
+</div>
 
 
-<!-- <div class="bg-secondary">
+
+<div class="missionStatement">
   <div class="container">
-    enter mission statment
-    <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-  </div>
+    Enter mission statement here. (delegated to Sam)
 
-</div> -->
+    <!-- <div class="row">
+      <div class="col-lg-8 col-xs-1">
+.
+      </div> -->
+      <div class="text-right" style="font-family: 'Indie Flower', cursive; margin-top: 15px;">
+          - Furever Friends Team 🐾
+      </div>
+    </div>
+  <!-- </div> -->
+
+</div>
 
 
-<!-- <div class="container-fluid dogSection">
+
+<div class="featuredAnimalsBg">
+
+<div class="petSep"></div>
+
+<div class="container-fluid dogSection">
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 bg-primary doggo">
+    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 bg-primary doggo" style="border-radius: 0px 10px 10px 0px;">
+      <p class="featuredText text-center">Featured Dogs</p>
 
-      <p class="featuredText text-center">Featured Dogs</p> -->
       <!-- START DOG CAROUSEL -->
-
-        <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-
-              <div class="card bg-light" (click)="openModule(dogs[0])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{dogs[0].images[0].imageUrl}}" alt="Card image cap">
+      <div
+        id="carouselExampleControls"
+        class="carousel slide carousel-fade"
+        data-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div
+            class="carousel-item {{ i == 0 ? 'active' : '' }}"
+            *ngFor="let pet of dogs; let i = index"
+          >
+            <div class="petCard container" (click)="openModule(pet)" data-toggle="modal" data-target=".bd-example-modal-lg">
+              <div class="row">
+                <div class="col-5 petCardImage">
+                  <img
+                    *ngIf="pet.images[0]"
+                    src="{{ (pet?.images)[0]?.imageUrl }}"
+                  />
+                  <img
+                    *ngIf="!pet.images[0]"
+                    src="../../../assets/img/noprofile.png"
+                  />
                 </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{dogs[0].name}}<br>
-                    {{dogs[0].breed.name}}<br>
-                    Age: {{dogs[0].age}}<br>
-                    <a href="/shelter/{{shelters[0].id}}">{{shelters[0].name}}</a>
-                  </p>
+                <div class="col-7 cardContent">
+                  <div class="row">
+                    <div class="col bg-success text-light petName">
+                      {{ pet.name }}
+                    </div>
+                  </div>
+                  <table class="table" style="margin-bottom: 0px">
+                    <tr class="row">
+                      <td class="col">
+                        <strong>Breed:</strong><br />{{ pet.breed.name }}
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <td class="col">
+                        <strong>Size:</strong><br />{{ pet.size }}
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <td class="col">{{ pet.age }} years old</td>
+                    </tr>
+                  </table>
                 </div>
-            </div>
-
-            </div>
-            <div class="carousel-item">
-
-              <div class="card bg-light" (click)="openModule(dogs[1])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{dogs[1].images[0].imageUrl}}" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{dogs[1].name}}<br>
-                    {{dogs[1].breed.name}}<br>
-                    Age: {{dogs[1].age}}<br>
-                    <a href="/shelter/{{shelters[1].id}}">{{shelters[1].name}}</a>
-                  </p>
-                </div>
-            </div>
-
-            </div>
-            <div class="carousel-item text-center">
-
-              <div class="card bg-light" (click)="openModule(dogs[2])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{dogs[2].images[0].imageUrl}}" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{dogs[2].name}}<br>
-                    {{dogs[2].breed.name}}<br>
-                    Age: {{dogs[2].age}}<br>
-                    <a href="/shelter/{{shelters[2].id}}">{{shelters[2].name}}</a>
-                  </p>
-                </div>
-            </div>
-
+              </div>
             </div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="prev"
+          >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="next"
+          >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
         </div>
+      </div>
+    </div>
+
+    <!-- LEFT SIDE OF DOG CAROUSEL -->
+    <div class="dogright col-lg-4 col-md-6 col-sm-12 col-xs-12">
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="petSep"></div>
+
+
+<div class="container-fluid dogSection">
+  <div class="row">
+    <!-- RIGHT SIDE OF CAT CAROUSEL -->
+    <div class="catleft col-lg-4 col-md-6 col-sm-12 col-xs-12">
 
     </div>
 
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 dogbg">
 
-
-
-
-        Insert something cool about dogs, or how to adopt, w/e here.
-        <div class="doggoImg">
-          <img src="../../../assets/img/dog.svg">
-         </div> -->
+    <!--cat bg here-->
+    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 bg-success catto">
+      <p class="featuredText text-center">Featured Cats</p>
 
       <!-- START CAT CAROUSEL -->
-        <!-- <div id="catControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-
-              <div class="card bg-light" (click)="openModule(cats[0])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{cats[0].images[0].imageUrl}}" alt="Card image cap">
+      <div
+        id="catControls"
+        class="carousel slide carousel-fade"
+        data-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div
+            class="carousel-item {{ i == 0 ? 'active' : '' }}"
+            *ngFor="let pet of cats; let i = index"
+          >
+            <div class="petCard container" (click)="openModule(pet)" data-toggle="modal" data-target=".bd-example-modal-lg">
+              <div class="row">
+                <div class="col-5 petCardImage">
+                  <img
+                    *ngIf="pet.images[0]"
+                    src="{{ (pet?.images)[0]?.imageUrl }}"
+                  />
+                  <img
+                    *ngIf="!pet.images[0]"
+                    src="../../../assets/img/noprofile.png"
+                  />
                 </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{cats[0].name}}<br>
-                    {{cats[0].breed.name}}<br>
-                    Age: {{cats[0].age}}<br>
-                    <a href="/shelter/{{shelterCats[0].id}}">{{shelterCats[0].name}}</a>
-                  </p>
+                <div class="col-7 cardContent">
+                  <div class="row">
+                    <div class="col bg-primary text-light petName">
+                      {{ pet.name }}
+                    </div>
+                  </div>
+                  <table class="table" style="margin-bottom: 0px">
+                    <tr class="row">
+                      <td class="col">
+                        <strong>Breed:</strong><br />{{ pet.breed.name }}
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <td class="col">
+                        <strong>Size:</strong><br />{{ pet.size }}
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <td class="col">{{ pet.age }} years old</td>
+                    </tr>
+                  </table>
                 </div>
-            </div>
-
-            </div>
-            <div class="carousel-item">
-
-              <div class="card bg-light" (click)="openModule(cats[1])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{cats[1].images[0].imageUrl}}" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{cats[1].name}}<br>
-                    {{cats[1].breed.name}}<br>
-                    Age: {{cats[1].age}}<br>
-                    <a href="/shelter/{{shelterCats[1].id}}">{{shelterCats[1].name}}</a>
-                  </p>
-                </div>
-            </div>
-
-            </div>
-            <div class="carousel-item text-center">
-
-              <div class="card bg-light" (click)="openModule(cats[2])" data-toggle="modal" data-target=".bd-example-modal-lg">
-                <div class="imgContainer">
-                  <img class="card-img-top" src="{{cats[2].images[0].imageUrl}}" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{cats[2].name}}<br>
-                    {{cats[2].breed.name}}<br>
-                    Age: {{cats[2].age}}<br>
-                    <a href="/shelter/{{shelterCats[2].id}}">{{shelterCats[2].name}}</a>
-                  </p>
-                </div>
-            </div>
-
+              </div>
             </div>
           </div>
-          <a class="carousel-control-prev" href="#catControls" role="button" data-slide="prev">
+          <a
+            class="carousel-control-prev"
+            href="#catControls"
+            role="button"
+            data-slide="prev"
+          >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#catControls" role="button" data-slide="next">
+          <a
+            class="carousel-control-next"
+            href="#catControls"
+            role="button"
+            data-slide="next"
+          >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
         </div>
       </div>
     </div>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--NEW MODAL TEST-->
-<!--
-<div id="carouselExampleControls111" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-
-   <div *ngFor="let dog of dogs">
-    <div class="carousel-item active" *ngIf="dog.id == dogs[0].id">
-        <div class="card bg-light">
-          <div class="imgContainer">
-          <img class="card-img-top" src="{{dog.images[0].imageUrl}}" alt="Card image cap">
-          <p class="text-center">{{dog.name}}</p>
-        </div>
-          <div class="card-body">
-            <p class="card-text">
-              {{dog.name}}<br>
-              Breed: {{dog.breed.name}}<br>
-              Age: {{dog.age}}
-              ayyy
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item" *ngIf="dog.id == dogs[1].id">
-        <div class="card bg-light">
-          <div class="imgContainer">
-          <img class="card-img-top" src="{{dog.images[0].imageUrl}}" alt="Card image cap">
-          <p class="text-center">{{dog.name}}</p>
-        </div>
-          <div class="card-body">
-            <p class="card-text">
-              {{dog.name}}<br>
-              {{dog.breed.name}}<br>
-              Age: {{dog.age}}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls111" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls111" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> -->
+</div>
+
+
+<div class="petSep"></div>
+
+</div>
 
 
 
 
-
-    <!--FIGURE THIS OUT BETTER?-->
-    <!-- {{dog.shelter.name}} -->
-
-
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
-<!--
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<!-- START PET MODAL -->
+  <div class="modal fade bd-example-modal-lg mainModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+  *ngIf="selected">
     <div class="modal-dialog modal-lg">
      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{selected.name}}</h5>
+        <div class="modal-header bg-primary text-light">
+          <h5 class="modal-title">{{selected?.name}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>
 
-            ## PET MODAL STUB ##
+<!-- PET IMAGE SLIDE -->
+          <div id="selectedPetCtrl" class="carousel slide petCarosel" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item {{ i == 0 ? 'active' : '' }}" *ngFor="let image of selected.images; let i = index">
+                <div class="petModalImages">
+                <img src="{{image.imageUrl}}">
+              </div>
 
-          </p>
+              </div>
+
+            </div>
+            <a class="carousel-control-prev" href="#selectedPetCtrl" role="button" data-slide="prev" *ngIf="selected.images.length > 1">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#selectedPetCtrl" role="button" data-slide="next" *ngIf="selected.images.length > 1">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+<!-- PET PESCRIPTION -->
+<div class="container">
+  <p class="featuredText text-center text-primary">Pet Description</p>
+          <table class="table container">
+            <tr class="row">
+              <td class="col-4">
+                <strong>Breed:</strong>
+              </td>
+              <td class="col-8">
+                {{selected.breed.name}}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Age:</strong>
+              </td>
+              <td class="col-8">
+                {{selected.age}}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Color:</strong>
+              </td>
+              <td class="col-8">
+                {{selected.color}}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Size:</strong>
+              </td>
+              <td class="col-8">
+                {{selected.size}}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Weight:</strong>
+              </td>
+              <td class="col-8">
+                {{selected.weight}} pounds
+              </td>
+            </tr>
+
+            <tr class="row" *ngIf="selected.fixed === true">
+              <td class="col-4">
+                <strong>Fixed:</strong>
+              </td>
+              <td class="col-8">
+                ✔
+              </td>
+            </tr>
+            <tr class="row" *ngIf="selected.fixed === false">
+              <td class="col-4">
+                <strong>Fixed:</strong>
+              </td>
+              <td class="col-8">
+                ✖
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-12">
+                <strong>Special Conditions:</strong><br>
+                {{selected.specialConditions}}
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- TRAIT BADGES -->
+        <div class="col-3" *ngFor="let trait of selected.traits">
+          <h6><span class="badge badge-success">{{trait.description}}</span></h6>
+        </div>
+
+
+        <br>
+        <br>
+<!--Breed INFORMATION-->
+        <div class="container">
+          <p class="featuredText text-center text-primary">Breed Information</p>
+
+          <div *ngIf="selected.breed.id === 219 || selected.breed.id === 173">
+            There is no information for mixed breeds.
+          </div>
+
+          <table class="table" *ngIf="selected.breed.id !== 219 && selected.breed.id !== 173">
+            <tr class="row">
+              <td class="col-4">
+                <strong>Description:</strong>
+              </td>
+              <td class="col-8">
+                {{selected.breed.description}}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Hair type:</strong>
+              </td>
+              <td class="col-8">
+                {{selected.breed.hairType}}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Hypoallergenic:</strong>
+              </td>
+              <td class="col-8" *ngIf="selected.breed.hypoallergenic === true">
+                ✔
+              </td>
+              <td class="col-8" *ngIf="selected.breed.hypoallergenic === false">
+                ✖
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Breed Size:</strong>
+              </td>
+              <td class="col-8">
+                {{selected.breed.size}}
+              </td>
+            </tr>
+
+          </table>
+        </div>
+        <br>
+        <br>
+
+
+<!--SHELTER LINK-->
+      <p class="featuredText text-center text-primary">Shelter</p>
+          <div class="row shelterCard" routerLink="../shelter/{{selected?.shelter?.id}}" data-dismiss="modal">
+            <div class="col" style="overflow: hidden;">
+              <table class="table">
+                <tr class="row">
+                  <td class="col-12">
+                    <h3> {{selected?.shelter?.name}} </h3>
+                  </td>
+                </tr>
+                <tr class="row">
+                  <td class="col-12">
+                    {{selected?.shelter?.address?.street}}<br>
+                    {{selected?.shelter?.address?.city}}, {{selected?.shelter?.address?.stateAbbr}} {{selected?.shelter?.address?.zip}}
+                  </td>
+                </tr>
+              </table>
+            </div>
+         </div>
+
+
+<!--MODAL CLOSE BUTTON-->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
   </div>
-
-<BR> -->
-
-<!-- </div> -->
-
+<BR>
+</div>

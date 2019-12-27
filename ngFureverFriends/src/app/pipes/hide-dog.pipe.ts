@@ -1,4 +1,3 @@
-import { Shelter } from 'src/app/models/shelter';
 import { Pipe, PipeTransform } from '@angular/core';
 import { Pet } from '../models/pet';
 
@@ -15,32 +14,13 @@ export class HideDogPipe implements PipeTransform {
     }
 
     for (const animal of pets) {
-      if (animal.breed.species.name === 'Cat') {
+      if (animal.breed.species.id === 1) {
+          // name.toLowerCase() === 'cat') {
         result.push(animal);
-        console.log(result);
       }
 
       return result;
     }
   }
 
-
-
-//   transform(todos: Todo[], showAllTodos?: boolean): Todo[] {
-//     const result: Todo[] = [];
-
-//     if (showAllTodos === true) {
-//       return todos;
-//     }
-
-//     for (const todo of todos) {
-//       if (todo.completed !== true) {
-//         result.push(todo);
-//       }
-//     }
-
-//     return result;
-//   }
-// }
-//   ng g pipe pipes/
 }

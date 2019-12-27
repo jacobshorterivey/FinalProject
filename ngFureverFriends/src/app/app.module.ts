@@ -1,4 +1,3 @@
-
 import { UserService } from './services/user.service';
 import { PetService } from './services/pet.service';
 import { FosterService } from './services/foster.service';
@@ -30,6 +29,7 @@ import { ShelternavComponent } from './components/shelternav/shelternav.componen
 import { FosterListComponent } from './components/foster-list/foster-list.component';
 import { RouterModule } from '@angular/router';
 import { ApplicationSubmittedComponent } from './components/application-submitted/application-submitted.component';
+import { PetprofComponent } from './components/petprof/petprof.component';
 
 @NgModule({
   declarations: [
@@ -51,13 +51,14 @@ import { ApplicationSubmittedComponent } from './components/application-submitte
     ShelternavComponent,
     FosterListComponent,
     ApplicationSubmittedComponent,
-    HideDogPipe
+    HideDogPipe,
+    PetprofComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     ShelterService,

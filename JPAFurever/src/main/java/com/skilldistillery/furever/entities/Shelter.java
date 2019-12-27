@@ -38,6 +38,7 @@ public class Shelter {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "shelter")
 	private List<Pet> pets;
 

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Pet } from '../models/pet';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,21 @@ export class ShelterService {
       }
     };
     return this.http.delete<Shelter>(this.url + '/' + id, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('ShelterService.destroy(): Error deleting shelter in service');
+      })
+    );
+  }
+
+  findPets(id: number) {
+    const httpOptions = {
+      headers: {
+        'Content-type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
+    return this.http.get<Pet[]>(this.url + '/pets/' + id).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('ShelterService.destroy(): Error deleting shelter in service');

@@ -12,10 +12,10 @@ export class PetSearchComponent implements OnInit {
   pets: Pet[] = [];
 
   newPet: Pet = new Pet();
-
-  selectedPet: Pet = null;
   editPet: Pet = null;
-  removeDogs = true;
+  showDogs = true;
+  showCats = true;
+  public selected: Pet;
 
   constructor(private petService: PetService, private hideDog: HideDogPipe) { }
 
@@ -35,8 +35,12 @@ export class PetSearchComponent implements OnInit {
     );
   }
 
+  openModule(animal: Pet) {
+    this.selected = animal;
+  }
+
   hideDogs() {
-    const catList = this.hideDog.transform(this.pets);
+    this.hideDog.transform(this.pets, this.showDogs);
   }
 
 }
