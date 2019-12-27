@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   blankObj: object = null;
   navbar = true;
   isUserLoggedIn: boolean;
+  errorMessage: boolean;
 
   // CONSTRUCTOR
   constructor(private auth: AuthService, router: RouterModule) { }
@@ -43,6 +44,7 @@ export class NavbarComponent implements OnInit {
       error => {
         console.log('error logging in.');
         console.log(error);
+        this.errorMessage = true;
       }
     );
   }
@@ -57,5 +59,7 @@ export class NavbarComponent implements OnInit {
     this.auth.logout();
     this.isUserLoggedIn = false;
   }
+
+
 
 }
