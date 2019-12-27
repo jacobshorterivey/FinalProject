@@ -28,3 +28,9 @@
 .regLink {
   text-decoration: none;
 }
+
+.errorMsg{
+  padding: 5px;
+  color: red;
+  font-size: 90%;
+}

@@ -144,17 +144,15 @@
             <button  (click)="login(loginForm)" class="btn btn-success lButton">Login</button>
           </form>
 
+          <p *ngIf="errorMessage" class="errorMsg text-center">
+            Invalid username or password.
+          </p>
+
           <form class="loginStyle form-group">
             <button [routerLink]="['/register']" class="btn btn-success btn-sm lButton">
               Register
             </button>
           </form>
-
-          <!-- <div class="container in-line text-center">
-            <button [routerLink]="['/register']" class="btn btn-success">
-              Register
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
