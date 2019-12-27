@@ -92,7 +92,37 @@
 
 <!-- START NGIF TO CHECK IF USER IS LOGGED IN OR NOT....-->
 
-    <div *ngIf="account">
+
+
+<!-- LOGGED IN ACCOUNT DROPDOWN -->
+    <div *ngIf="isUserLoggedIn">
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+      👤 My Account
+      </a>
+      <div class="input-group-append dropdown-container">
+        <div class="dropdown-menu dropdown-menu-right col-lg-4">
+
+
+
+            <form class="loginStyle form-group">
+              <button class="btn btn-primary lButton" (click)="logout()"> Logout </button>
+            </form>
+
+            Add Profile Link ,etc.
+        </div>
+      </div>
+    </div>
+
+<!-- LOG IN DROP DOWN -->
+    <div *ngIf="!isUserLoggedIn">
       <a
         class="nav-link dropdown-toggle"
         href="#"
@@ -114,11 +144,17 @@
             <button  (click)="login(loginForm)" class="btn btn-success lButton">Login</button>
           </form>
 
-          <div class="container in-line text-center">
+          <form class="loginStyle form-group">
+            <button [routerLink]="['/register']" class="btn btn-success btn-sm lButton">
+              Register
+            </button>
+          </form>
+
+          <!-- <div class="container in-line text-center">
             <button [routerLink]="['/register']" class="btn btn-success">
               Register
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

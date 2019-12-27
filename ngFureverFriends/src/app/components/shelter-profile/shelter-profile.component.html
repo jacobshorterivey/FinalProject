@@ -44,21 +44,21 @@
 
   <!-- CONTACT INFO -->
       <div class="col shelterInfo">
-        <p>Email: <br>
+        <p><strong>Email:</strong> <br>
           {{selected?.email}}</p>
 
-        <p>Phone: <br>
+        <p><strong>Phone:</strong> <br>
         {{selected?.phone}} </p>
 
         <p *ngIf="selected?.address.street2">
-          Address: <br>
+          <strong>Address:</strong> <br>
           {{selected?.address?.street}} <br>
           {{selected?.address?.street2}}<br>
           {{selected?.address?.city}}, {{selected?.address?.stateAbbr}} {{selected?.address?.zip}}
         </p>
 
         <p *ngIf="!selected?.address?.street2">
-          Address: <br>
+          <strong>Address:</strong> <br>
           {{selected?.address?.street}} <br>
           {{selected?.address?.city}}, {{selected?.address?.stateAbbr}} {{selected?.address?.zip}}
        </p>
