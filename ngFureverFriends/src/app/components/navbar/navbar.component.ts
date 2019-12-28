@@ -32,14 +32,9 @@ export class NavbarComponent implements OnInit {
   // attempt logging in.  fails.
   login(form: NgForm) {
     console.log('NavbarComponent.login(): ');
-    console.log(form.value);
     this.auth.login(form.value.username, form.value.password).subscribe(
       next => {
-        const loggedIn = next;
-        this.account = loggedIn;
         this.isUserLoggedIn = true;
-        console.log(next);
-        // this.router.navigateByUrl('/user/'`user.id`)
       },
       error => {
         console.log('error logging in.');
