@@ -45,18 +45,26 @@ Add a Pet
   </div>
   <div *ngIf="selectedPet">
       <ul>
-        <!-- <li> {{ selectedPet | json }} </li> -->
-        <li>Picture: <img src="{{selectedPet.images[0].imageUrl}}" height= "300px"> </li>
+        <li> {{ selectedPet | json }} </li>
+        <img
+                    *ngIf="selectedPet.images[0]"
+                    src="{{ (selectedPet?.images)[0]?.imageUrl }}"
+                  />
+                  <img
+                    *ngIf="!selectedPet.images[0]"
+                    src="../../../assets/img/noprofile.png"
+                  />
+        <!-- <li>Picture: <img src="{{ selectedPet.images[0].imageUrl }}" height= "300px"> </li> -->
         <li>Id: {{ selectedPet.id }}</li>
         <li>Name: {{ selectedPet.name}}</li>
         <li>Color: {{ selectedPet.color }}</li>
         <li>Size: {{ selectedPet.size }}</li>
         <li>Age: {{ selectedPet.age }}</li>
         <li>Weight: {{ selectedPet.weight }}</li>
-        <!-- <li>Trait: {{ selectedPet.trait }}</li> -->
+        <li>Trait: {{ selectedPet.traits }}</li>
         <td (click)="deletePet(selectedPet.id)"> <button> Delete </button> </td>
       </ul>
-      <!-- <button (click) = "selectedPet = null">Back</button> -->
+      <button (click) = "selectedPet = null">Back</button>
 
           <h2>Edit Pet # {{selectedPet.id}}</h2>
           <form>
@@ -70,3 +78,4 @@ Add a Pet
             <button (click)="selectedPet = null">Cancel</button>
           </form>
   </div>
+
