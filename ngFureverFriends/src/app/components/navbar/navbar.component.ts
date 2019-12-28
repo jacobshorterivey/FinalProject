@@ -35,6 +35,8 @@ export class NavbarComponent implements OnInit {
     this.auth.login(form.value.username, form.value.password).subscribe(
       next => {
         this.isUserLoggedIn = true;
+        window.location.reload(); // remove when routing is added.
+        // this.router.navigateByUrl('/user/'`user.id`)
       },
       error => {
         console.log('error logging in.');
@@ -53,6 +55,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.isUserLoggedIn = false;
+    window.location.reload();
   }
 
 
