@@ -45,7 +45,6 @@ export class AuthService {
   }
 
   registerUser(user) {
-    // create request to register a new account
     return this.http.post(this.baseUrl + 'api/user/register', user)
     .pipe(
       catchError((err: any) => {
