@@ -13,7 +13,9 @@ export class ShelternavComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
+    if (this.auth.getCredentials()) {
     this.checkLogin();
+    }
   }
 
   checkLogin() {
