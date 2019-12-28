@@ -64,7 +64,4 @@ export class NavbarComponent implements OnInit {
     this.isUserLoggedIn = false;
     window.location.reload();
   }
-
-
-
 }
