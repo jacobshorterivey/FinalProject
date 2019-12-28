@@ -1,9 +1,9 @@
 export class FosterPet {
   id: number;
-  notes: string;
-  active: boolean;
-  dateRequested: Date;
-  dateCompleted: Date;
+  notes?: string;
+  active?: boolean;
+  dateRequested?: Date;
+  dateCompleted?: Date;
 
   constructor(
     id?: number,

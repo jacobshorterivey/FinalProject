@@ -32,7 +32,6 @@ public class Pet {
 	@Column(name = "special_conditions")
 	private String specialConditions;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "shelter_id")
 	private Shelter shelter;

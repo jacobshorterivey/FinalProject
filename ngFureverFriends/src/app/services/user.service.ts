@@ -46,6 +46,7 @@ export class UserService {
       })
     );
   }
+
   show(id): Observable<User> {
     return this.http.get<User>(this.url + '/' + id);
   }

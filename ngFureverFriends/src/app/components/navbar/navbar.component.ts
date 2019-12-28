@@ -1,3 +1,4 @@
+import { subscribeOn } from 'rxjs/operators';
 import { Account } from 'src/app/models/account';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,14 +13,20 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  // FIELDS
+
   account: Account = new Account();
+  blankObj: object = null;
+  navbar = true;
+  isUserLoggedIn: boolean;
+  errorMessage: boolean;
+
+  // CONSTRUCTOR
   constructor(private auth: AuthService, router: RouterModule) { }
 
-  navbar = true;
-  // acc: Account = new Account();
-  blankObj: object = null;
-
   ngOnInit() {
+    this.checkLogin();
   }
 
   // attempt logging in.  fails.
@@ -30,13 +37,29 @@ export class NavbarComponent implements OnInit {
       next => {
         const loggedIn = next;
         this.account = loggedIn;
+        this.isUserLoggedIn = true;
         console.log(next);
         // this.router.navigateByUrl('/user/'`user.id`)
       },
       error => {
         console.log('error logging in.');
         console.log(error);
+        this.errorMessage = true;
       }
     );
   }
+
+  checkLogin() {
+    if (this.auth.checkLogin() === true) {
+      this.isUserLoggedIn = true;
+    }
+  }
+
+  logout() {
+    this.auth.logout();
+    this.isUserLoggedIn = false;
+  }
+
+
+
 }

@@ -1,12 +1,3 @@
-
-<div class="d-flex justify-content-center">
-<div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status" *ngIf="!selected">
-  <span class="sr-only">Loading...</span>
-</div>
-</div>
-
-
-
 <!-- <div *ngIf="selected"> --> <!-- All shelter content should be within this div -->
 <div class="bodyComponent">
   <!-- COVER -->
@@ -17,7 +8,7 @@
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="profilePhoto">
-          <img src="{{selected.images[0].imageUrl}}" height="100px">
+          <img src="{{selected?.images[0]?.imageUrl}}" height="100px">
         </div>
       </div>
     </div>
@@ -28,7 +19,7 @@
   <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12" style="padding-top: 40px;"></div>
       <div class="col-lg-8 col-md-8 col-sm-12 text-center bg-successs" style="margin-top: 20px; padding-bottom: 30px;">
-          <h3 class="bg-primary text-light">{{selected.name}}</h3>
+          <h3 class="bg-primary text-light">{{selected?.name}}</h3>
       </div>
     </div>
 </div>
@@ -53,27 +44,27 @@
 
   <!-- CONTACT INFO -->
       <div class="col shelterInfo">
-        <p>Email: <br>
-          {{selected.email}}</p>
+        <p><strong>Email:</strong> <br>
+          {{selected?.email}}</p>
 
-        <p>Phone: <br>
-        {{selected.phone}} </p>
+        <p><strong>Phone:</strong> <br>
+        {{selected?.phone}} </p>
 
-        <p *ngIf="selected.address.street2">
-          Address: <br>
-          {{selected.address.street}} <br>
-          {{selected.address.street2}}<br>
-          {{selected.address.city}}, {{selected.address.stateAbbr}} {{selected.address.zip}}
+        <p *ngIf="selected?.address.street2">
+          <strong>Address:</strong> <br>
+          {{selected?.address?.street}} <br>
+          {{selected?.address?.street2}}<br>
+          {{selected?.address?.city}}, {{selected?.address?.stateAbbr}} {{selected?.address?.zip}}
         </p>
 
-        <p *ngIf="!selected.address.street2">
-          Address: <br>
-          {{selected.address.street}} <br>
-          {{selected.address.city}}, {{selected.address.stateAbbr}} {{selected.address.zip}}
+        <p *ngIf="!selected?.address?.street2">
+          <strong>Address:</strong> <br>
+          {{selected?.address?.street}} <br>
+          {{selected?.address?.city}}, {{selected?.address?.stateAbbr}} {{selected?.address?.zip}}
        </p>
 
        <p>
-         <a href="{{selected.websiteUrl}}" target="_blank">Website</a>
+         <a href="{{selected?.websiteUrl}}" target="_blank">Website</a>
        </p>
 
       </div>
@@ -122,60 +113,56 @@
   </div>
 
 
-  <div class="container mapsPlaceholder">
+<div class="container mapsPlaceholder">
     INSERT MAPS API HERE...
+</div>
+
+
+<div class="container bg-light" style="padding-top: 20px; padding-bottom: 50px;">
+  <div class="row contactText">
+    <h1 class="text-primary"> Our Pets </h1>
   </div>
 
-
-
-
-
-
-
-
-  <div class="container">
-    ADD PETS LIST HERE
-  <!-- <div class="row"> -->
-    <!-- <div *ngFor="let pet of selected.pets"> -->
-      <!-- <div class="col-lg-3 col-md-3 col-sm-12 petCard"> -->
-        <!-- <div class="col-lg-6" [ngClass]="{'left-style': i%2 != 0, 'right-style': i%2 === 0 }"> -->
-
-          <div class="row" *ngFor="let pet of selected.pets;let i = index;">
-            <div class="col-lg-6 left-style" *ngIf="i%2 == 0">
-                {{pet.name}} asdasda
+  <div class="row">
+    <div *ngFor="let pet of pets" class="col-lg-4 col-md-6 col-sm-12 col-12">
+      <div class="petCard container" (click)="openModule(pet)" data-toggle="modal" data-target=".bd-example-modal-lg">
+         <div class="row">
+            <div class="col-5 bg-danger petCardImage">
+              <img *ngIf="pet.images[0]" src="{{pet?.images[0]?.imageUrl}}">
+              <img *ngIf="!pet.images[0]" src="../../../assets/img/noprofile.png">
             </div>
-            <div class="col-lg-6 right-style" *ngIf="i%2 != 0">
-                {{pet.name}} asdasdasdasdasdads
-            </div>
+            <div class="col-7 cardContent">
+              <div class="row">
+                <div class="col bg-primary text-light petName">
+                  {{pet.name}}
+                </div>
+              </div>
+
+               <table class="table" style="margin-bottom: 0px">
+                <tr class="row">
+                  <td class="col"><strong>Breed:</strong><br>{{pet.breed.name}}</td>
+                </tr>
+                <tr class="row">
+                  <td class="col"><strong>Size:</strong><br>{{pet.size}}</td>
+                </tr>
+                <tr class="row">
+                  <td class="col">{{pet.age}} years old</td>
+                </tr>
+              </table>
+
+          </div>
         </div>
-
-          <!-- <div class="petCardImgContainer col-lg-4">
-            <div *ngIf="pet.images.length > 0">
-              <img src="{{pet.images[0].imageUrl}}">
-            </div>
-          <div class="col-lg-8">
-            {{pet.name}}
-          </div> -->
-
-
-          <!-- <img src="{{pet.images[0].imageUrl}}"> -->
       </div>
-    <!-- </div> -->
-  <!-- </div> -->
-  <!-- </div>
-</div> -->
-
-
-
-
-
+    </div>
+  </div>
+</div>
 
 
 
 
   <!-- <div class="container bg-light">
   <h3> Pets</h3>
-  <p *ngFor="let pet of selected.pets">
+  <p *ngFor="let pet of pets">
     {{pet.name}} <br>
     {{pet.size}} <br>
   </p>
@@ -195,5 +182,192 @@
   </div>
 </div>
 -->
+
+
+
+
+
+
+
+
+<!-- START PET MODAL -->
+<div class="modal fade bd-example-modal-lg mainModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+*ngIf="selectedPet">
+  <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title">{{selectedPet?.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+<!-- PET IMAGE SLIDE -->
+        <div id="selectedPetCtrl" class="carousel slide petCarosel" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item {{ i == 0 ? 'active' : '' }}" *ngFor="let image of selectedPet?.images; let i = index">
+              <div class="petModalImages">
+              <img src="{{image.imageUrl}}">
+\
+            </div>
+
+            </div>
+
+          </div>
+          <a class="carousel-control-prev" href="#selectedPetCtrl" role="button" data-slide="prev" *ngIf="selectedPet.images.length > 1">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#selectedPetCtrl" role="button" data-slide="next" *ngIf="selectedPet.images.length > 1">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+<!-- PET PESCRIPTION -->
+<div class="container">
+<p class="featuredText text-center text-primary">Pet Description</p>
+        <table class="table container">
+          <tr class="row">
+            <td class="col-4">
+              <strong>Breed:</strong>
+            </td>
+            <td class="col-8">
+              {{selectedPet.breed.name}}
+            </td>
+          </tr>
+
+          <tr class="row">
+            <td class="col-4">
+              <strong>Age:</strong>
+            </td>
+            <td class="col-8">
+              {{selectedPet.age}}
+            </td>
+          </tr>
+
+          <tr class="row">
+            <td class="col-4">
+              <strong>Color:</strong>
+            </td>
+            <td class="col-8">
+              {{selectedPet.color}}
+            </td>
+          </tr>
+
+          <tr class="row">
+            <td class="col-4">
+              <strong>Size:</strong>
+            </td>
+            <td class="col-8">
+              {{selectedPet.size}}
+            </td>
+          </tr>
+
+          <tr class="row">
+            <td class="col-4">
+              <strong>Weight:</strong>
+            </td>
+            <td class="col-8">
+              {{selectedPet.weight}} pounds
+            </td>
+          </tr>
+
+          <tr class="row" *ngIf="selectedPet.fixed === true">
+            <td class="col-4">
+              <strong>Fixed:</strong>
+            </td>
+            <td class="col-8">
+              ✔
+            </td>
+          </tr>
+          <tr class="row" *ngIf="selectedPet.fixed === false">
+            <td class="col-4">
+              <strong>Fixed:</strong>
+            </td>
+            <td class="col-8">
+              ✖
+            </td>
+          </tr>
+
+          <tr class="row">
+            <td class="col-12">
+              <strong>Special Conditions:</strong><br>
+              {{selectedPet.specialConditions}}
+            </td>
+          </tr>
+        </table>
+      </div>
+
+<!-- TRAIT BADGES -->
+      <div class="col-3" *ngFor="let trait of selectedPet.traits">
+        <h6><span class="badge badge-success">{{trait.description}}</span></h6>
+      </div>
+
+
+      <br>
+      <br>
+<!--Breed INFORMATION-->
+      <div class="container">
+        <p class="featuredText text-center text-primary">Breed Information</p>
+
+        <div *ngIf="selectedPet.breed.id === 219 || selectedPet.breed.id === 173">
+          There is no information for mixed breeds.
+        </div>
+
+        <table class="table" *ngIf="selectedPet.breed.id !== 219 && selectedPet.breed.id !== 173">
+          <tr class="row">
+            <td class="col-4">
+              <strong>Description:</strong>
+            </td>
+            <td class="col-8">
+              {{selectedPet.breed.description}}
+            </td>
+          </tr>
+
+          <tr class="row">
+            <td class="col-4">
+              <strong>Hair type:</strong>
+            </td>
+            <td class="col-8">
+              {{selectedPet.breed.hairType}}
+            </td>
+          </tr>
+
+          <tr class="row">
+            <td class="col-4">
+              <strong>Hypoallergenic:</strong>
+            </td>
+            <td class="col-8" *ngIf="selectedPet.breed.hypoallergenic === true">
+              ✔
+            </td>
+            <td class="col-8" *ngIf="selectedPet.breed.hypoallergenic === false">
+              ✖
+            </td>
+          </tr>
+
+          <tr class="row">
+            <td class="col-4">
+              <strong>Breed Size:</strong>
+            </td>
+            <td class="col-8">
+              {{selectedPet.breed.size}}
+            </td>
+          </tr>
+
+        </table>
+      </div>
+
+
+<!--MODAL CLOSE BUTTON-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</div>
+<BR>
+</div>
 
 

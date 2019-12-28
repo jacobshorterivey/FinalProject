@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShelterService } from 'src/app/services/shelter.service';
 import { Shelter } from './../../models/shelter';
+import { Pet } from 'src/app/models/pet';
 
 @Component({
   selector: 'app-shelter-profile',
@@ -14,10 +15,13 @@ export class ShelterProfileComponent implements OnInit {
   urlId: number;
   selected: Shelter;
   profilePic: string;
+  pets: Pet[] = [];
+  selectedPet: Pet;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.scrollToTops();
     this.loadEvents();
 
     if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
@@ -29,7 +33,7 @@ export class ShelterProfileComponent implements OnInit {
             this.shelters.forEach((shelter) => {
               if (shelter.id === this.urlId) {
               this.selected = shelter;
-              this.loadProfilePic(shelter);
+              this.loadShelterPets(shelter.id);
               }
             });
           }
@@ -51,12 +55,25 @@ export class ShelterProfileComponent implements OnInit {
     );
   }
 
-  loadProfilePic(selected: Shelter) {
-    // window.onload = (func) => {
-    //   const profPic = document.querySelector('#what');
-    //   return this.profilePic = selected.images[0].imageUrl;
-      // profPic.setAttribute('style', 'background-image: url("urlPath")');
-      // console.log(urlPath);
-    // };
+  loadShelterPets(id: number) {
+    this.svc.findPets(id).subscribe(
+      (pass) => {
+        this.pets = pass;
+      },
+      (fail) => {
+        console.error(fail);
+      }
+    );
   }
+
+  openModule(animal: Pet) {
+    this.selectedPet = animal;
+  }
+
+  scrollToTops() {
+    const element = document.querySelector('.bodyComponent');
+    element.scrollIntoView({behavior: 'smooth'});
+  }
+
+
 }
