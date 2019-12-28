@@ -32,13 +32,10 @@ export class NavbarComponent implements OnInit {
   // attempt logging in.  fails.
   login(form: NgForm) {
     console.log('NavbarComponent.login(): ');
-    console.log(form.value);
     this.auth.login(form.value.username, form.value.password).subscribe(
       next => {
-        const loggedIn = next;
-        this.account = loggedIn;
         this.isUserLoggedIn = true;
-        console.log(next);
+        window.location.reload(); // remove when routing is added.
         // this.router.navigateByUrl('/user/'`user.id`)
       },
       error => {
@@ -58,6 +55,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.isUserLoggedIn = false;
+    window.location.reload();
   }
 
 
