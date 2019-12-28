@@ -16,7 +16,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <!-- <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#"
           >Home <span class="sr-only">(current)</span></a
@@ -55,10 +55,10 @@
           >Disabled</a
         >
       </li>
-    </ul>
+    </ul> -->
 
     <!-- START SEARCH BAR -->
-    <div class="col-lg-4">
+    <div class="col-lg-4 ml-auto">
       <form>
         <div class="input-group my-2 my-lg-0">
           <input
@@ -105,18 +105,22 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-      👤 My Account
+      👤 My Account {{account.username}}
       </a>
       <div class="input-group-append dropdown-container">
         <div class="dropdown-menu dropdown-menu-right col-lg-4">
 
 
+          <!-- <form class="loginStyle form-group">
+            <button class="btn btn-primary lButton" [routerLink]="['/user/:id']"> My Profile </button>
+          </form> -->
 
             <form class="loginStyle form-group">
+              <button class="btn btn-primary lButton" [routerLink]="['/user/:id']"> My Profile </button>
+
               <button class="btn btn-primary lButton" (click)="logout()"> Logout </button>
             </form>
 
-            Add Profile Link ,etc.
         </div>
       </div>
     </div>
@@ -152,9 +156,21 @@
             <button [routerLink]="['/register']" class="btn btn-success btn-sm lButton">
               Register
             </button>
+            <!-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target=".registerModal">Register</button> -->
           </form>
         </div>
       </div>
     </div>
   </div>
 </nav>
+
+
+
+
+<!-- <div class="modal fade registerModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <app-register></app-register>
+    </div>
+  </div>
+</div> -->

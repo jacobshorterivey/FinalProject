@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShelternavComponent implements OnInit {
 
-  constructor() { }
+  isUserLoggedIn: boolean;
+
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+    if (this.auth.getCredentials()) {
+    this.checkLogin();
+    }
+  }
+
+  checkLogin() {
+    if (this.auth.checkLogin() === true) {
+      this.isUserLoggedIn = true;
+    }
   }
 
 }

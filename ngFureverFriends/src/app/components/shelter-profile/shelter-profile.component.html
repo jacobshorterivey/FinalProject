@@ -24,9 +24,10 @@
     </div>
 </div>
 
-  <!-- <div class="container bg-primary shelterControls" style="height: 150px">
-    <div class="row shelterControlRow">
-        THIS WILL BE AREA WITH SHELTER BUTTONS WHEN A SHELTER IS LOGGED IN.
+  <!-- <div class="container bg-secondary shelterControls" style="height: 150px">
+    <div class="row shelterControlRow" stlye="position: relative">
+
+
     </div>
 
   </div> -->
@@ -34,12 +35,19 @@
 
   <!-- PROFILE NAME -->
   <div class="container bg-light mainInfo">
-    <!-- <div class="row">
-      <div class="col title"></div>
-      <div class="col-lg-8 col-md-8 col-sm-12 text-center">
-          <h3 class="bg-primary text-light titleBox">{{selected.name}}</h3>
-      </div>
-    </div> -->
+
+    <!-- SHELTER INFO -->
+    <div class="container bg-success innerAdmin">
+      <app-shelternav></app-shelternav>
+    </div>
+
+
+
+
+
+
+
+
     <div class="row">
 
   <!-- CONTACT INFO -->
@@ -93,7 +101,8 @@
           </div>
 
            <div class="col-lg-5 logDiv">
-            <button class="btn btn-sm btn-primary formBtn2">Login</button>
+            <button class="btn btn-sm btn-primary formBtn2">
+            Login</button>
            </div>
           </div>
 
@@ -336,13 +345,13 @@
           </tr>
 
           <tr class="row">
-            <td class="col-4">
+            <td class="col-lg-4 col-sm-4 col-xs-5">
               <strong>Hypoallergenic:</strong>
             </td>
-            <td class="col-8" *ngIf="selectedPet.breed.hypoallergenic === true">
+            <td class="col-lg-8 col-sm-8 col-xs-7" *ngIf="selectedPet.breed.hypoallergenic === true">
               ✔
             </td>
-            <td class="col-8" *ngIf="selectedPet.breed.hypoallergenic === false">
+            <td class="col-lg-8 col-sm-8 col-xs-7" *ngIf="selectedPet.breed.hypoallergenic === false">
               ✖
             </td>
           </tr>

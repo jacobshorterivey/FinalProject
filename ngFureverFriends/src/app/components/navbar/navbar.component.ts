@@ -37,8 +37,12 @@ export class NavbarComponent implements OnInit {
       next => {
         const loggedIn = next;
         this.account = loggedIn;
+
         this.isUserLoggedIn = true;
+
         console.log(next);
+
+        window.location.reload(); // remove when routing is added.
         // this.router.navigateByUrl('/user/'`user.id`)
       },
       error => {
@@ -58,6 +62,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.isUserLoggedIn = false;
+    window.location.reload();
   }
 
 
