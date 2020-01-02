@@ -1,8 +1,8 @@
 <!-- FILTERS -->
 <div>
 
-Dog:<input type="checkbox" name="showDogs" [(ngModel)]="showDogs" checked>
-Cat:<input type="checkbox"><br>
+Dog:<input type="checkbox" name="filterPets" [(ngModel)]="showDogs" checked>
+Cat:<input type="checkbox" name="filterPets" [(ngModel)]="showCats" checked><br>
 
 <!-- <select class="form-control" id="subject" *ngFor="">
 
@@ -18,7 +18,7 @@ Cat:<input type="checkbox"><br>
 <!-- SEARCH RESULTS-->
 <div class="container">
   <div class="row">
-    <div *ngFor="let pet of pets | hideDog:showDogs" class="col-lg-4 col-md-6 col-sm-12 col-12">
+    <div *ngFor="let pet of pets | filterPets: showDogs:showCats" class="col-lg-4 col-md-6 col-sm-12 col-12">
       <div class="petCard container" (click)="openModule(pet)" data-toggle="modal" data-target=".bd-example-modal-lg">
          <div class="row">
             <div class="col-5 petCardImage">
