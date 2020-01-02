@@ -83,4 +83,11 @@ public class PetController {
 	  void deletePet(@PathVariable Integer id) {
 	    svc.deletePet(id);
 	  }
+	
+	@GetMapping("search/{keyword}")
+	private List<Pet> nameTraitsBreedSearch(@PathVariable String keyword) {
+		List<Pet> searchResults = svc.searchByNameTraitsBreed(keyword);
+		System.out.println("PetController.nameTraitsBreedSearch(): " + searchResults);
+		return searchResults;
+	}	
 }

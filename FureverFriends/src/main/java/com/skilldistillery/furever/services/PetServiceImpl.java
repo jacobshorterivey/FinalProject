@@ -97,4 +97,10 @@ public class PetServiceImpl implements PetService {
 		petRepo.deleteById(id);
 		return false;
 	}
+	
+	@Override
+	public List<Pet> searchByNameTraitsBreed(String key){
+		String keyword = "%" + key + "%";
+		return petRepo.findDistinctByNameLikeOrTraits_DescriptionLikeOrBreed_NameLikeOrBreed_DescriptionLike(keyword, keyword, keyword, keyword);
+	}
 }
