@@ -20,4 +20,6 @@ public interface PetService {
 	Pet getLucky();
 
 	Shelter findPetsShelter(int id);
+	
+	List<Pet> searchByNameTraitsBreed(String key);
 }

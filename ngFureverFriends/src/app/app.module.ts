@@ -29,7 +29,11 @@ import { FosterListComponent } from './components/foster-list/foster-list.compon
 import { RouterModule } from '@angular/router';
 import { ApplicationSubmittedComponent } from './components/application-submitted/application-submitted.component';
 import { PetprofComponent } from './components/petprof/petprof.component';
+<<<<<<< HEAD
+import { NavSearchComponent } from './components/nav-search/nav-search.component';
+=======
 import { FilterPetsPipe } from './pipes/filter-pets.pipe';
+>>>>>>> 89e508253912937fe98d6a95b6dee629cdbcee84
 
 @NgModule({
   declarations: [
@@ -51,8 +55,14 @@ import { FilterPetsPipe } from './pipes/filter-pets.pipe';
     ShelternavComponent,
     FosterListComponent,
     ApplicationSubmittedComponent,
+<<<<<<< HEAD
+    HideDogPipe,
+    PetprofComponent,
+    NavSearchComponent
+=======
     PetprofComponent,
     FilterPetsPipe
+>>>>>>> 89e508253912937fe98d6a95b6dee629cdbcee84
   ],
   imports: [
     FormsModule,

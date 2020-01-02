@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   isUserLoggedIn: boolean;
   errorMessage: boolean;
   user: User;
+  searchKeyword: string = null;
   shelter: Shelter;
   account: Account;
   logUsername: string;
@@ -35,7 +36,7 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private accountService: AccountService,
     private shelterService: ShelterService
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (this.auth.checkLogin() === true) {
@@ -58,7 +59,7 @@ export class NavbarComponent implements OnInit {
         console.log(error);
         this.errorMessage = true;
       }
-      );
+    );
     this.accountService.index(form.value.username, form.value.password).subscribe(
       ret => {
         const accounts = ret;
@@ -140,16 +141,10 @@ export class NavbarComponent implements OnInit {
           }
         );
       }
-      //   this.userService.showOne(this.account.user).subscribe(
-      //     data => {
-      //       this.user = data;
-
-      //       if (this.user === null) {
-      //         // this.router.navigateByUrl('user' + this.route.snapshot.paramMap.get('id') + 'NotFound');
-      //       }
-      //     },
-      //     err => console.error('failed to find user')
-      //   );
     }
+  }
+
+  searchSubmit(key: string) {
+    this.searchKeyword = key;
   }
 }
