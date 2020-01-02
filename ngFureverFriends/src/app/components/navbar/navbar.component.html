@@ -116,7 +116,7 @@
           </form> -->
 
             <form class="loginStyle form-group">
-              <button class="btn btn-primary lButton" [routerLink]="['/user/:id']"> My Profile </button>
+              <button class="btn btn-primary lButton" *ngIf="user" routerLink="../user/{{user.id}}"> My Profile </button>
 
               <button class="btn btn-primary lButton" (click)="logout()"> Logout </button>
             </form>
