@@ -1,3 +1,4 @@
+<br>
 <div class="bodyComponent" *ngIf="user">
 
 <!-- PROFILE PHOTO -->
@@ -5,31 +6,32 @@
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-12">
         <div class="profilePhoto">
-          <!-- <img src="{{user.images[0].imageUrl}}" height="100px"> -->
+          <img src="{{user.images[0].imageUrl}}" height="200px">
         </div>
       </div>
     </div>
   </div>
-
+  <br>
 <!-- USER PROFILE NAME -->
 <div class="container bg-light mainInfo">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col title"></div>
       <div class="col-lg-8 col-md-8 col-sm-12 text-center">
           <h3 class="bg-primary text-light titleBox">{{user.fname}} {{user.lname}}</h3>
       </div>
-    </div>
+    </div> -->
     <div class="row">
 
       <!-- User Info -->
-      <div>
-          <p>Id:{{user.id}} </p>
-          <p>Name: {{user.fname}} {{user.lname}}</p>
+      <div class="card">
+          <!-- <p>Id:{{user.id}} </p> -->
+          <h3 class="bg-primary text-light titleBox">{{user.fname}} {{user.lname}}</h3>
           <p>Age: {{user.age}}</p>
           <p>Phone: {{user.phone}}</p>
           <p>Email: {{user.email}}</p>
           <p>Account: {{user.account.role}}</p>
-          <!-- <p>Address: {{user.Address}}</p> -->
+          <p>Address: {{user.address.street}}</p>
+          <p>{{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}</p>
       </div>
       <!-- Volunteer Info -->
       <div>
