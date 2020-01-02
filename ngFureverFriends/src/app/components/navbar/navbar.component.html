@@ -2,7 +2,7 @@
   *ngIf="navbar"
   class="navbar navbar-expand-lg navbar-light bg-success fixed-top"
 >
-  <a class="navbar-brand" href="#">Furever Friends 🐾</a>
+  <a class="navbar-brand" href="/home">Furever Friends 🐾</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -116,7 +116,7 @@
           </form> -->
 
             <form class="loginStyle form-group">
-              <button class="btn btn-primary lButton" *ngIf="user" routerLink="../user/{{user.id}}"> My Profile </button>
+              <button class="btn btn-primary lButton" *ngIf="user" routerLink="/user/{{user.id}}"> My Profile </button>
 
               <button class="btn btn-primary lButton" (click)="logout()"> Logout </button>
             </form>

@@ -67,7 +67,6 @@ import { FilterPetsPipe } from './pipes/filter-pets.pipe';
     FosterService,
     PetService,
     UserService,
-
   ],
   bootstrap: [AppComponent]
 })
