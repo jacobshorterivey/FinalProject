@@ -68,7 +68,6 @@ import { PetprofComponent } from './components/petprof/petprof.component';
     PetService,
     UserService,
     HideDogPipe
-
   ],
   bootstrap: [AppComponent]
 })

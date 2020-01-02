@@ -21,13 +21,13 @@ export class UserService {
     // }
     const httpOptions = {
       headers: new HttpHeaders({
-        // Authorization: 'Basic ' + this.auth.getCredentials(),
+        Authorization: 'Basic ' + this.auth.getCredentials(),
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
     // Authorization: 'Basic ' + this.auth.getCredentials(),
-    return this.http.get<User[]>(this.url + '?sorted=true').pipe(
+    return this.http.get<User[]>(this.url, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('UserService.index(): Error creating index of users.');
