@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   isUserLoggedIn: boolean;
   errorMessage: boolean;
   user: User;
+  searchKeyword: string = null;
 
   // CONSTRUCTOR
   constructor(private auth: AuthService, private router: RouterModule,
@@ -87,5 +88,8 @@ export class NavbarComponent implements OnInit {
       }
   }
 
-
+  searchSubmit(key: string) {
+    this.searchKeyword = key;
+    console.log(this.searchKeyword);
+  }
 }

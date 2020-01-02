@@ -30,6 +30,7 @@ import { FosterListComponent } from './components/foster-list/foster-list.compon
 import { RouterModule } from '@angular/router';
 import { ApplicationSubmittedComponent } from './components/application-submitted/application-submitted.component';
 import { PetprofComponent } from './components/petprof/petprof.component';
+import { NavSearchComponent } from './components/nav-search/nav-search.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { PetprofComponent } from './components/petprof/petprof.component';
     FosterListComponent,
     ApplicationSubmittedComponent,
     HideDogPipe,
-    PetprofComponent
+    PetprofComponent,
+    NavSearchComponent
   ],
   imports: [
     FormsModule,

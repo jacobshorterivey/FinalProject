@@ -57,6 +57,7 @@ public class PetServiceImpl implements PetService {
 	
 	@Override
 	public Shelter findPetsShelter(int id) {
+	@SuppressWarnings("unused")
 	Pet pet = null;
 	Shelter shelter = null;
 		Optional<Pet> opt = petRepo.findById(id);
