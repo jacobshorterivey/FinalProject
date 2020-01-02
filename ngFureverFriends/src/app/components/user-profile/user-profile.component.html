@@ -1,11 +1,11 @@
-<div class="bodyComponent"></div>
+<div class="bodyComponent" *ngIf="user">
 
 <!-- PROFILE PHOTO -->
 <div class="container">
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-12">
         <div class="profilePhoto">
-          <img src="{{user.images[0].imageUrl}}" height="100px">
+          <!-- <img src="{{user.images[0].imageUrl}}" height="100px"> -->
         </div>
       </div>
     </div>
@@ -28,11 +28,18 @@
           <p>Age: {{user.age}}</p>
           <p>Phone: {{user.phone}}</p>
           <p>Email: {{user.email}}</p>
-          <p>Account: {{user.Account}}</p>
-          <p>Address: {{user.Address}}</p>
+          <p>Account: {{user.account.role}}</p>
+          <!-- <p>Address: {{user.Address}}</p> -->
       </div>
       <!-- Volunteer Info -->
       <div>
 
       </div>
       <!-- Foster Info -->
+</div>
+</div>
+</div>
+
+<div class="bodyComponent" *ngIf="!user">
+  Unauthorized.
+</div>

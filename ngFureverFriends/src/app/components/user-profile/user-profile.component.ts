@@ -12,7 +12,7 @@ export class UserProfileComponent implements OnInit {
 
   // Field
   user: User;
-  selectedUser: User;
+  // selectedUser: User;
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -29,19 +29,19 @@ export class UserProfileComponent implements OnInit {
         err => console.error('failed to find user')
       );
     }
-    this.reload();
+    // this.reload();
   }
 
-  reload() {
-    this.userService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
-      (aGoodThingHappened) => {
-        console.log(aGoodThingHappened);
-        this.user = aGoodThingHappened;
-      },
+  // reload() {
+  //   this.userService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
+  //     (aGoodThingHappened) => {
+  //       console.log(aGoodThingHappened);
+  //       this.user = aGoodThingHappened;
+  //     },
 
-      (didntWork) => {
-        console.log(didntWork);
-      }
-    );
-  }
+  //     (didntWork) => {
+  //       console.log(didntWork);
+  //     }
+  //   );
+  // }
 }

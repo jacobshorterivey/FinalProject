@@ -21,6 +21,7 @@ export class UserService {
     // }
     const httpOptions = {
       headers: new HttpHeaders({
+        // Authorization: 'Basic ' + this.auth.getCredentials(),
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
