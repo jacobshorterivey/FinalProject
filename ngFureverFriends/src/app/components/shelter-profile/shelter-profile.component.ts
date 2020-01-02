@@ -32,8 +32,8 @@ export class ShelterProfileComponent implements OnInit {
             this.urlId = +this.currentRoute.snapshot.paramMap.get('id');
             this.shelters.forEach((shelter) => {
               if (shelter.id === this.urlId) {
-              this.selected = shelter;
-              this.loadShelterPets(shelter.id);
+                this.selected = shelter;
+                this.loadShelterPets(shelter.id);
               }
             });
           }
@@ -41,7 +41,6 @@ export class ShelterProfileComponent implements OnInit {
         err => console.error('Reload error in Component')
       );
     }
-
   }
 
   loadEvents() {
@@ -72,7 +71,7 @@ export class ShelterProfileComponent implements OnInit {
 
   scrollToTops() {
     const element = document.querySelector('.bodyComponent');
-    element.scrollIntoView({behavior: 'smooth'});
+    element.scrollIntoView({ behavior: 'smooth' });
   }
 
 
