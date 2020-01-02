@@ -4,7 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { NgForm } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -21,9 +22,11 @@ export class NavbarComponent implements OnInit {
   navbar = true;
   isUserLoggedIn: boolean;
   errorMessage: boolean;
+  user: User;
 
   // CONSTRUCTOR
-  constructor(private auth: AuthService, router: RouterModule) { }
+  constructor(private auth: AuthService, private router: RouterModule,
+              private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
     this.checkLogin();
@@ -50,6 +53,7 @@ export class NavbarComponent implements OnInit {
     if (this.auth.checkLogin() === true) {
       this.isUserLoggedIn = true;
     }
+    this.getUser();
   }
 
   logout() {
@@ -58,6 +62,30 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
 
+  getUser() {
+    // this.userService.index().subscribe(
+    //   (pass) => {
+    //     pass.forEach(element => {
+    //       if (element) {
+    //         this.user = element;
+    //       }
+    //     });
+    //   },
+    //   (fail) => {console.error(fail);
+    //   });
+      if (!this.user) {
+        this.userService.showOne('1').subscribe(
+          data => {
+            this.user = data;
+
+            if (this.user === null) {
+              // this.router.navigateByUrl('user' + this.route.snapshot.paramMap.get('id') + 'NotFound');
+            }
+          },
+          err => console.error('failed to find user')
+        );
+      }
+  }
 
 
 }
