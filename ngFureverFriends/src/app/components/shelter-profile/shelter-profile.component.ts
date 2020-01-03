@@ -12,22 +12,23 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ShelterProfileComponent implements OnInit {
   // FIELDS
+  account: Account;
   shelters: Shelter[] = [];
   urlId: number;
   selected: Shelter;
   profilePic: string;
   pets: Pet[] = [];
   selectedPet: Pet;
-  isUserLoggedIn: boolean;
+  currentShelter: Shelter;
+  isShelterLoggedIn: boolean;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit() {
+    this.account = JSON.parse(localStorage.getItem('account'));
+    console.log('account info: ' + this.account.id);
     this.scrollToTops();
     this.loadEvents();
-    if (this.auth.getCredentials()) {
-      this.checkLogin();
-      }
 
     if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
       this.svc.index().subscribe(
@@ -38,15 +39,23 @@ export class ShelterProfileComponent implements OnInit {
             this.shelters.forEach((shelter) => {
               if (shelter.id === this.urlId) {
                 this.selected = shelter;
+                console.log('Selected info: ' + this.selected.account.id);
                 this.loadShelterPets(shelter.id);
+                // tslint:disable-next-line: radix
+                if (this.selected.account.id === parseInt(this.account.id)) {
+                  console.log('account info: ' + this.account);
+                  this.isShelterLoggedIn = true;
+                }
               }
             });
           }
         },
         err => console.error('Reload error in Component')
       );
+
     }
   }
+
 
   loadEvents() {
     this.svc.index().subscribe(
@@ -78,13 +87,7 @@ export class ShelterProfileComponent implements OnInit {
     const element = document.querySelector('.bodyComponent');
     element.scrollIntoView({ behavior: 'smooth' });
   }
-  checkLogin() {
-    if (this.auth.checkLogin() === true) {
-      // if (this.auth.getCredentials === this.selected.account.username) {
-      // this.isUserLoggedIn = true;
-      // }
-    }
-  }
+
 
 
 }
