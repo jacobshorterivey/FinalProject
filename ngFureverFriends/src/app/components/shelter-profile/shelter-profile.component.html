@@ -1,5 +1,22 @@
 <!-- <div *ngIf="selected"> --> <!-- All shelter content should be within this div -->
 <div class="bodyComponent">
+<!-- SHELTER NAVIGATION -->
+  <div class="shelterAdminControls" *ngIf="isUserLoggedIn">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-4">
+          <button class="btn btn-primary" [routerLink]="['/fosters']">Find Foster Homes</button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary" [routerLink]="['/volunteers']">Find Volunteers</button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary" [routerLink]="['/pet']">Update / Add Pets</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
   <!-- COVER -->
   <div class="coverPhoto container"></div>
 

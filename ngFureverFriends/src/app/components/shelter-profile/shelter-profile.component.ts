@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ShelterService } from 'src/app/services/shelter.service';
 import { Shelter } from './../../models/shelter';
 import { Pet } from 'src/app/models/pet';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-shelter-profile',
@@ -17,12 +18,16 @@ export class ShelterProfileComponent implements OnInit {
   profilePic: string;
   pets: Pet[] = [];
   selectedPet: Pet;
+  isUserLoggedIn: boolean;
 
-  constructor(private svc: ShelterService, private currentRoute: ActivatedRoute) { }
+  constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit() {
     this.scrollToTops();
     this.loadEvents();
+    if (this.auth.getCredentials()) {
+      this.checkLogin();
+      }
 
     if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
       this.svc.index().subscribe(
@@ -72,6 +77,13 @@ export class ShelterProfileComponent implements OnInit {
   scrollToTops() {
     const element = document.querySelector('.bodyComponent');
     element.scrollIntoView({ behavior: 'smooth' });
+  }
+  checkLogin() {
+    if (this.auth.checkLogin() === true) {
+      if (this.auth.getCredentials === this.selected.account.username) {
+      this.isUserLoggedIn = true;
+      }
+    }
   }
 
 
