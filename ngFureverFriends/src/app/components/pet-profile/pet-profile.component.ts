@@ -152,6 +152,9 @@ export class PetProfileComponent implements OnInit {
         console.log(data);
         this.newAnimal = new Pet();
         this.loadShelterPets(this.shelter.id);
+        this.dogCreate = false;
+        this.catCreate = false;
+        this.create = false;
     },
       err => {
         console.error(err);
