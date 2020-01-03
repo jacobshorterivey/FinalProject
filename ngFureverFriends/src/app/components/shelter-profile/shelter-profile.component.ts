@@ -21,12 +21,14 @@ export class ShelterProfileComponent implements OnInit {
   selectedPet: Pet;
   currentShelter: Shelter;
   isShelterLoggedIn: boolean;
+  isAnyoneLoggedIn: boolean;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit() {
     this.account = JSON.parse(localStorage.getItem('account'));
-    console.log('account info: ' + this.account.id);
+    console.log(this.account);
+    this.checkIfLoggedIn();
     this.scrollToTops();
     this.loadEvents();
 
@@ -88,6 +90,12 @@ export class ShelterProfileComponent implements OnInit {
     element.scrollIntoView({ behavior: 'smooth' });
   }
 
+  toggleLogin() {
+    const login = document.querySelector('.linktoggle');
+  }
 
+  checkIfLoggedIn() {
+    this.isAnyoneLoggedIn = this.auth.checkLogin();
+  }
 
 }
