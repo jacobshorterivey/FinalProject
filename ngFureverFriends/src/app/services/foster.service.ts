@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { throwError } from 'rxjs';
 import { Foster } from '../models/foster';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class FosterService {
   baseUrl = environment.baseUrl;
   url = this.baseUrl + 'api/foster';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   // TRY TO ADD AUTH SO ONLY SHELTERS CAN UTILIZE THIS SEARCH.
   index() {
@@ -45,15 +46,13 @@ export class FosterService {
     );
   }
 
-
-  // IF ERRO EXIST WITH UPDATE CHANGE TO update(foster: Foster).  When type 'foster' was removed error went away... for now
   update(foster) {
     const httpOptions = {
       headers: {
-        'Content-type': 'application/json',
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
       }
     };
-    return this.http.put(`{this.url}/${foster.id}`, foster, httpOptions).pipe(
+    return this.http.put(`${this.url}/${foster.id}`, foster, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('FosterService.update(): Error updating foster');
