@@ -21,7 +21,8 @@
 <div class="container">
     <div class="row">
       <div *ngFor="let vol of volunteers" class="col-lg-4 col-md-6 col-sm-12 col-12">
-        <div class="petCard container" (click)="openModule(vol)" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <div class="petCard container" (click)= a class="nav-link" routerLink="/user/{{vol.id}}">
+
            <div class="row">
               <div class="col-5 petCardImage">
                 <img *ngIf="vol.images[0]" src="{{vol?.images[0]?.imageUrl}}">

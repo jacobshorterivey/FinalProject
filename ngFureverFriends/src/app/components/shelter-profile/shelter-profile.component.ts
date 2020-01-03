@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ShelterService } from 'src/app/services/shelter.service';
 import { Shelter } from './../../models/shelter';
 import { Pet } from 'src/app/models/pet';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-shelter-profile',
@@ -11,16 +12,21 @@ import { Pet } from 'src/app/models/pet';
 })
 export class ShelterProfileComponent implements OnInit {
   // FIELDS
+  account: Account;
   shelters: Shelter[] = [];
   urlId: number;
   selected: Shelter;
   profilePic: string;
   pets: Pet[] = [];
   selectedPet: Pet;
+  currentShelter: Shelter;
+  isShelterLoggedIn: boolean;
 
-  constructor(private svc: ShelterService, private currentRoute: ActivatedRoute) { }
+  constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit() {
+    this.account = JSON.parse(localStorage.getItem('account'));
+    console.log('account info: ' + this.account.id);
     this.scrollToTops();
     this.loadEvents();
 
@@ -33,15 +39,23 @@ export class ShelterProfileComponent implements OnInit {
             this.shelters.forEach((shelter) => {
               if (shelter.id === this.urlId) {
                 this.selected = shelter;
+                console.log('Selected info: ' + this.selected.account.id);
                 this.loadShelterPets(shelter.id);
+                // tslint:disable-next-line: radix
+                if (this.selected.account.id === parseInt(this.account.id)) {
+                  console.log('account info: ' + this.account);
+                  this.isShelterLoggedIn = true;
+                }
               }
             });
           }
         },
         err => console.error('Reload error in Component')
       );
+
     }
   }
+
 
   loadEvents() {
     this.svc.index().subscribe(
@@ -73,6 +87,7 @@ export class ShelterProfileComponent implements OnInit {
     const element = document.querySelector('.bodyComponent');
     element.scrollIntoView({ behavior: 'smooth' });
   }
+
 
 
 }
