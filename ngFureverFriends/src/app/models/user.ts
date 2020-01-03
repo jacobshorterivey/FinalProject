@@ -1,3 +1,4 @@
+import { Image } from './image';
 import { Account } from './account';
 import { Address } from './address';
 import { Skill } from './skill';
