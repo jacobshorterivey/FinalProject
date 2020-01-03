@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { NgForm } from '@angular/forms';
-import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { AccountService } from 'src/app/services/account.service';
 import { Shelter } from 'src/app/models/shelter';
@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
   // CONSTRUCTOR
   constructor(
     private auth: AuthService,
-    private router: RouterModule,
+    private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
     private accountService: AccountService,
@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
       this.isUserLoggedIn = true;
     }
     this.account = JSON.parse(localStorage.getItem('account'));
-    this.getUser();
+    this.getUser(false);
   }
 
   login(form: NgForm) {
@@ -68,7 +68,7 @@ export class NavbarComponent implements OnInit {
           if (accounts[i].username === this.logUsername) {
             this.account = accounts[i];
             localStorage.setItem('account', JSON.stringify(this.account));
-            this.getUser();
+            this.getUser(true);
           }
         }
       },
@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
     if (this.auth.checkLogin() === true) {
       this.isUserLoggedIn = true;
     }
-    this.getUser();
+    this.getUser(false);
   }
 
   logout() {
@@ -92,7 +92,7 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
 
-  getUser() {
+  getUser(profilePage: boolean) {
     // this.userService.index().subscribe(
     //   (pass) => {
     //     pass.forEach(element => {
@@ -114,6 +114,9 @@ export class NavbarComponent implements OnInit {
                 this.user = users[i];
               }
             }
+            if (profilePage) {
+              this.router.navigateByUrl('/user/' + `${this.user.id}`);
+            }
           },
           error => {
             console.log(
@@ -131,6 +134,9 @@ export class NavbarComponent implements OnInit {
               if (shelters[i].account.id === this.account.id) {
                 this.shelter = shelters[i];
               }
+            }
+            if (profilePage) {
+              this.router.navigateByUrl('/shelter/' + `${this.shelter.id}`);
             }
           },
           error => {
