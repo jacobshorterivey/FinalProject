@@ -33,4 +33,8 @@ export class FosterListComponent implements OnInit {
       }
     );
   }
+
+  openModule(foster: Foster) {
+    this.selected = foster;
+  }
 }
