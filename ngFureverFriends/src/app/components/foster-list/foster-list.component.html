@@ -1,56 +1,38 @@
 
-<!-- <h1>List of fosters</h1>
+<div class="container-fluid">
+  <div class="row contactText">
+    <h1 class="text-primary"> Fosters </h1>
+  </div>
 
-<div *ngIf="!selected">
-  <div class="container">
-    <div *ngFor="let foster of fosters" class="row"> -->
-      <!-- switch to user/user.id when user is setup -->
-      <!-- <a href="/shelter/{{shelter.id}}"> -->
-        <!-- <div class="col" >
-          <h3> {{foster.user.fname}} </h3>
+  <div class="row">
+    <div *ngFor="let foster of fosters" class="col-lg-4 col-md-6 col-sm-12 col-12">
+      <div class="petCard container" (click)="openModule(foster)" data-toggle="modal" data-target=".bd-example-modal-lg">
+         <div class="row">
+            <div class="col-5 petCardImage">
+              <img *ngIf="foster.user.images[0]" src="{{foster.user.images[0]?.imageUrl}}">
+              <img *ngIf="!foster.user.images[0]" src="../../../assets/img/noprofile.png">
+            </div>
+            <div class="col-7 cardContent">
+              <div class="row">
+                <div class="col bg-primary text-light petName">
+                  {{foster.user.fname}} {{foster.user.lname}}
+                </div>
+              </div>
+
+               <table class="table" style="margin-bottom: 0px">
+                <tr class="row">
+                  <td class="col"><strong>Available Slots:</strong><br>{{foster.maxFoster - foster.fosterPets.length}}</td>
+                </tr>
+                <tr class="row">
+                  <td class="col"><strong>Willing to Foster:</strong><br>
+                    <div *ngIf="foster.breedList.length < 1">N/A</div>
+                    <div *ngFor="let breed of foster.breedList">{{breed.name}}</div>
+                  </td>
+                </tr>
+              </table>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
-</div> -->
-
-
-<div class="container-fluid shelterDiv">
-  <div class="row shelterRow">
-  <div class="col bg-primary rightImage sideSearchImg"></div>
-
-  <!-- Right side -->
-  <div class="col-lg-10 searchResultsBg">
-    <div *ngFor="let foster of fosters; let i = index">
-
-
-      <div class="row shelterCard">
-        <!-- Add routerLink in div above ^^ -->
-        <div class="col" style="overflow: hidden;">
-
-
-          <table class="table">
-            <tr class="row">
-              <td class="col-12">
-                      <!-- switch to user/user.id when user is setup -->
-      <!-- <a href="/shelter/{{shelter.id}}"> -->
-                <h3> {{foster.user.fname}} </h3>
-              </td>
-            </tr>
-            <!-- <tr class="row">
-              <td class="col-12">
-                {{shelter.address.street}}<br>
-                {{shelter.address.city}}, {{shelter.address.stateAbbr}} {{shelter.address.zip}}
-              </td>
-            </tr> -->
-
-          </table>
-
-
-        </div>
-     </div>
-
-
-   </div>
-  </div>
   </div>
 </div>
