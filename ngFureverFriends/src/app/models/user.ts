@@ -1,6 +1,8 @@
+import { Image } from './image';
 import { Account } from './account';
 import { Address } from './address';
 import { Skill } from './skill';
+import { Image } from './image';
 
 export class User {
   // FIELDS
@@ -12,7 +14,7 @@ export class User {
   email: string;
   account: Account;
   address: Address;
-
+  images: Image[];
   skills: Skill[];
 
 
@@ -26,7 +28,8 @@ export class User {
     email?: string,
     account?: Account,
     address?: Address,
-    skills?: Skill[]
+    skills?: Skill[],
+    images?: Image[]
   ) {
     this.id = id;
     this.fname = fname;
@@ -37,5 +40,6 @@ export class User {
     this.account = account;
     this.address = address;
     this.skills = skills;
+    this.images = images;
   }
 }
