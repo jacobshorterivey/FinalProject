@@ -21,9 +21,10 @@
 <div class="container">
     <div class="row">
       <div *ngFor="let vol of volunteers" class="col-lg-4 col-md-6 col-sm-12 col-12">
-        <div class="petCard container" (click)= a class="nav-link" routerLink="/user/{{vol.id}}">
+        <div class="petCard container" (click)="openModule(vol)" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <!-- (click)= a class="nav-link" routerLink="/user/{{vol.id}}"> -->
 
-           <div class="row">
+          <div class="row">
               <div class="col-5 petCardImage">
                 <img *ngIf="vol.images[0]" src="{{vol?.images[0]?.imageUrl}}">
                 <img *ngIf="!vol.images[0]" src="../../../assets/img/noprofile.png">
@@ -49,10 +50,79 @@
                     <td class="col"><strong>Phone:</strong><br>{{vol.phone}}</td>
                   </tr>
                 </table>
-
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- START Volunteer MODAL -->
+<div class="modal fade bd-example-modal-lg mainModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+*ngIf="selected">
+  <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title">{{selected?.fname}} {{selected?.lname}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+          <div class="row">
+              <div class="col-5 volCardImage">
+                <img *ngIf="selected.images[0]" src="{{selected?.images[0]?.imageUrl}}">
+              </div>
+          </div>
+
+<!-- VOLUNTEER DESCRIPTION -->
+<div class="container">
+    <p class="featuredText text-center text-primary">Volunteer Description</p>
+            <table class="table container">
+              <tr class="row">
+                <td class="col-4">
+                  <strong>Age:</strong>
+                </td>
+                <td class="col-8">
+                  {{selected.age}}
+                </td>
+              </tr>
+
+              <tr class="row">
+                <td class="col-4">
+                  <strong>Phone:</strong>
+                </td>
+                <td class="col-8">
+                  {{selected.phone}}
+                </td>
+              </tr>
+
+              <tr class="row">
+                <td class="col-4">
+                  <strong>Email:</strong>
+                </td>
+                <td class="col-8">
+                  {{selected.email}}
+                </td>
+              </tr>
+
+                  <tr class="row"><strong>Skill:</strong>
+                <tr class="row">
+                    <div *ngFor="let skill of selected.skills">
+                  <td class="col"><br>{{skill.name}}</td>
+                  </div>
+                </tr>
+            </table>
+          </div>
+        <!--MODAL CLOSE BUTTON-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</div>
+<BR>
+</div>
