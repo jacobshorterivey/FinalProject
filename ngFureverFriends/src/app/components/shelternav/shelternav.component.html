@@ -1,0 +1,23 @@
+<!-- <button [routerLink]="['/fosters']">Find Foster Homes</button>
+<button [routerLink]="['/volunteers']">Find Volunteers</button> -->
+<div class="shelterAdminControls" *ngIf="isUserLoggedIn">
+  <div class="container text-center innerAdmin">
+    Shelter Navigation
+  </div>
+  Auth needs to be added in shelternav to check for account id and role.  Searches need auth or roles.<br><br>
+
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-4">
+        <button class="btn btn-primary" [routerLink]="['/fosters']">Find Foster Homes</button>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-primary" [routerLink]="['/volunteers']">Find Volunteers</button>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-primary" [routerLink]="['/pet']">Update / Add Pets</button>
+      </div>
+    </div>
+  </div>
+
+</div>

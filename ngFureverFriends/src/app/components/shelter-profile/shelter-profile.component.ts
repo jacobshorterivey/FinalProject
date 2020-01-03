@@ -80,9 +80,9 @@ export class ShelterProfileComponent implements OnInit {
   }
   checkLogin() {
     if (this.auth.checkLogin() === true) {
-      if (this.auth.getCredentials === this.selected.account.username) {
-      this.isUserLoggedIn = true;
-      }
+      // if (this.auth.getCredentials === this.selected.account.username) {
+      // this.isUserLoggedIn = true;
+      // }
     }
   }
 
