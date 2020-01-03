@@ -4,6 +4,7 @@ import { FosterListComponent } from './components/foster-list/foster-list.compon
 import { ShelternavComponent } from './components/shelternav/shelternav.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { NavSearchComponent } from './components/nav-search/nav-search.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ShelterListComponent } from './components/shelter-list/shelter-list.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'fosters', component: FosterListComponent},
   {path: 'volunteers', component: UserListComponent},
   {path: 'pet/:id', component: PetProfileComponent},
+  {path: 'pet/search/:keyword', component: NavSearchComponent},
   {path: 'user/:id', component: UserProfileComponent},
   {path: 'shelters', component: ShelterListComponent},
   {path: 'shelter/:id', component: ShelterProfileComponent},
