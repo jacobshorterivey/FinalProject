@@ -1,8 +1,11 @@
+import { ShelterService } from 'src/app/services/shelter.service';
+import { Shelter } from 'src/app/models/shelter';
 import { PetService } from './../../services/pet.service';
 import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
 import { subscribeOn } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Account } from 'src/app/models/account';
 
 @Component({
   selector: 'app-pet-profile',
@@ -13,89 +16,94 @@ export class PetProfileComponent implements OnInit {
 
   // Field
   title: 'Pet Tracker';
-  newPet: Pet = new Pet();
+  newAnimal: Pet = new Pet();
   pets: Pet[] = [];
   selectedPet: Pet = null;
   editPet: Pet = null;
+  shelter: Shelter;
+  account: Account;
 
 
   // Constructor
-  constructor(private petService: PetService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private petService: PetService, private route: ActivatedRoute, private router: Router, private shelterSVC: ShelterService) { }
 
   // Methods
   ngOnInit() {
-    if (!this.selectedPet && this.route.snapshot.paramMap.get('id')) {
-      this.petService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
-        data => {
-          this.selectedPet = data;
-          if (this.selectedPet === null) {
-            this.router.navigateByUrl('pet' + this.route.snapshot.paramMap.get('id') + 'NotFound');
-          }
-        },
-        err => console.error('failed to find a single pet')
-      );
-    }
-    this.reload();
-  }
-  getPets() {
-    this.petService.index().subscribe(
+    this.shelterSVC.index().subscribe(
       data => {
-        this.pets = data;
+        this.account = JSON.parse(localStorage.getItem('account'));
+        data.forEach(element => {
+          if (element.account.id === this.account.id) {
+            this.loadShelterPets(element.id);
+          }
+        });
       },
       err => {
         console.error(err);
+        console.error('TodoListCompenent.loadtodoList():error loading todos');
       }
+
     );
+    // if (!this.selectedPet && this.route.snapshot.paramMap.get('id')) {
+    //   this.petService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
+    //     data => {
+    //       this.selectedPet = data;
+    //       if (this.selectedPet === null) {
+    //         this.router.navigateByUrl('pet' + this.route.snapshot.paramMap.get('id') + 'NotFound');
+    //       }
+    //     },
+    //     err => console.error('failed to find a single pet')
+    //   );
+    // }
   }
-  addPet() {
-    this.petService.create(this.newPet).subscribe(
+
+  addPet(newPet: Pet) {
+    this.petService.create(newPet).subscribe(
       data => {
         console.log(data);
-        this.reload();
-        this.newPet = new Pet();
+        this.newAnimal = new Pet();
+        this.loadShelterPets(this.shelter.id);
     },
       err => {
         console.error(err);
       }
     );
-    this.reload();
+    // this.reload();
   }
+
   updatePet() {
     this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
       data => {
         console.log(data);
-        this.reload();
+        // this.reload();
       },
       err => {
         console.error(err);
       }
     );
-    this.reload();
+    // this.reload();
   }
+
   deletePet(id: number) {
     this.petService.destroy(id).subscribe(
-      data => {
-        console.log(data);
-        this.reload();
+      (data) => {
+        this.loadShelterPets(this.shelter.id);
       },
         err => {
           console.error(err);
         }
     );
   }
-  reload() {
-    this.petService.index().subscribe(
-      (aGoodThingHappened) => {
-        console.log(aGoodThingHappened);
-        this.pets = aGoodThingHappened;
-      },
 
-      (didntWork) => {
-        console.log(didntWork);
+  loadShelterPets(id: number) {
+    this.shelterSVC.findPets(id).subscribe(
+      (pass) => {
+        this.pets = pass;
+      },
+      (fail) => {
+        console.error(fail);
       }
     );
   }
-  countPets() {
-    return this.pets.length;
-  }
 }
+
