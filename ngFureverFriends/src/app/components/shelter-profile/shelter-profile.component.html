@@ -1,5 +1,7 @@
 <!-- <div *ngIf="selected"> --> <!-- All shelter content should be within this div -->
 <div class="bodyComponent">
+<!-- SHELTER NAVIGATION -->
+
   <!-- COVER -->
   <div class="coverPhoto container"></div>
 
@@ -37,9 +39,25 @@
   <div class="container bg-light mainInfo">
 
     <!-- SHELTER INFO -->
-    <div class="container bg-success innerAdmin">
-      <app-shelternav></app-shelternav>
+    <div class="shelterAdminControls" *ngIf="isShelterLoggedIn">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-4">
+            <button class="btn btn-primary" [routerLink]="['/fosters']">Find Foster Homes</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-primary" [routerLink]="['/volunteers']">Find Volunteers</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-primary" [routerLink]="['/pet']">Update / Add Pets</button>
+          </div>
+        </div>
+      </div>
+
     </div>
+    <!-- <div class="container bg-success innerAdmin">
+      <app-shelternav></app-shelternav>
+    </div> -->
 
 
 
