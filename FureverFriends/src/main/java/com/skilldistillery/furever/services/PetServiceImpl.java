@@ -7,10 +7,14 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.furever.entities.Breed;
 import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
+import com.skilldistillery.furever.entities.Trait;
+import com.skilldistillery.furever.repositories.BreedRepository;
 import com.skilldistillery.furever.repositories.PetRepository;
 import com.skilldistillery.furever.repositories.ShelterRepository;
+import com.skilldistillery.furever.repositories.TraitRepository;
 
 @Service
 public class PetServiceImpl implements PetService {
@@ -22,6 +26,12 @@ public class PetServiceImpl implements PetService {
 	
 	@Autowired
 	private ShelterRepository shelterRepo;
+	
+	@Autowired
+	private BreedRepository breedRepo;
+	
+	@Autowired
+	private TraitRepository traitRepo;
 
 	// Methods
 	
@@ -103,5 +113,15 @@ public class PetServiceImpl implements PetService {
 	public List<Pet> searchByNameTraitsBreed(String key){
 		String keyword = "%" + key + "%";
 		return petRepo.findDistinctByNameLikeOrTraits_DescriptionLikeOrBreed_NameLikeOrBreed_DescriptionLike(keyword, keyword, keyword, keyword);
+	}
+
+	@Override
+	public List<Breed> displayAllBreeds() {
+		return breedRepo.findAll();
+	}
+
+	@Override
+	public List<Trait> displayAllTraits() {
+		return traitRepo.findAll();
 	}
 }

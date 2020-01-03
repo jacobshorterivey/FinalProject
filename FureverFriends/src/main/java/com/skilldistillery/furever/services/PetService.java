@@ -2,8 +2,10 @@ package com.skilldistillery.furever.services;
 
 import java.util.List;
 
+import com.skilldistillery.furever.entities.Breed;
 import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
+import com.skilldistillery.furever.entities.Trait;
 
 public interface PetService {
 
@@ -22,4 +24,8 @@ public interface PetService {
 	Shelter findPetsShelter(int id);
 	
 	List<Pet> searchByNameTraitsBreed(String key);
+	
+	List<Breed> displayAllBreeds();
+	
+	List<Trait> displayAllTraits();
 }

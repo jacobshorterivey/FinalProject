@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.furever.entities.Breed;
 import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
+import com.skilldistillery.furever.entities.Trait;
 import com.skilldistillery.furever.services.PetService;
 
 @RestController
@@ -89,5 +91,19 @@ public class PetController {
 		List<Pet> searchResults = svc.searchByNameTraitsBreed(keyword);
 		System.out.println("PetController.nameTraitsBreedSearch(): " + searchResults);
 		return searchResults;
-	}	
+	}
+	
+	@GetMapping("breed")
+	private	List<Breed> indexBreed() {
+		List<Breed> breedList = svc.displayAllBreeds();
+		System.out.println("PetController.index(): " + breedList);
+		return breedList;
+	}
+	
+	@GetMapping("trait")
+	private	List<Trait> indexTrait() {
+		List<Trait> traitList = svc.displayAllTraits();
+		System.out.println("PetController.index(): " + traitList);
+		return traitList;
+	}
 }

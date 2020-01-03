@@ -5,6 +5,8 @@ import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { Shelter } from '../models/shelter';
 import { AuthService } from './auth.service';
+import { Breed } from '../models/breed';
+import { Trait } from '../models/trait';
 
 @Injectable({
   providedIn: 'root'
@@ -91,7 +93,9 @@ export class PetService {
   create(data: Pet) {
     const httpOptions = {
       headers: {
-        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'Content-type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       }
     };
     return this.http.post<Pet>(this.url + '/create', data, httpOptions)
@@ -133,6 +137,36 @@ export class PetService {
       catchError((err: any) => {
         console.log(err);
         return throwError('update failed');
+      })
+    );
+  }
+
+  // Get list of breeds
+  indexBreed() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Breed[]>(this.url + '/breed', httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('PetService.indexBreed(): Error retrieving breeds');
+      })
+    );
+  }
+
+  // Get list of traits
+  indexTrait() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Trait[]>(this.url + '/trait', httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('PetService.indexBreed(): Error retrieving breeds');
       })
     );
   }
