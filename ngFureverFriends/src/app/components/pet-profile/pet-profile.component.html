@@ -66,7 +66,10 @@ Add a Pet
         <li>Size: {{ selectedPet.size }}</li>
         <li>Age: {{ selectedPet.age }}</li>
         <li>Weight: {{ selectedPet.weight }}</li>
-        <li>Trait: {{ selectedPet.traits }}</li>
+        <!-- TRAIT BADGES -->
+      <div class="col-3" *ngFor="let trait of selectedPet.traits">
+          <h6><span class="badge badge-success">{{trait.description}}</span></h6>
+        </div>
         <td (click)="deletePet(selectedPet.id)"> <button> Delete </button> </td>
       </ul>
       <button (click) = "selectedPet = null">Back</button>

@@ -57,6 +57,7 @@ public class PetServiceImpl implements PetService {
 	
 	@Override
 	public Shelter findPetsShelter(int id) {
+	@SuppressWarnings("unused")
 	Pet pet = null;
 	Shelter shelter = null;
 		Optional<Pet> opt = petRepo.findById(id);
@@ -96,5 +97,11 @@ public class PetServiceImpl implements PetService {
 	public boolean deletePet(int id) {
 		petRepo.deleteById(id);
 		return false;
+	}
+	
+	@Override
+	public List<Pet> searchByNameTraitsBreed(String key){
+		String keyword = "%" + key + "%";
+		return petRepo.findDistinctByNameLikeOrTraits_DescriptionLikeOrBreed_NameLikeOrBreed_DescriptionLike(keyword, keyword, keyword, keyword);
 	}
 }

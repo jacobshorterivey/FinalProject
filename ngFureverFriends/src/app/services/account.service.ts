@@ -18,16 +18,20 @@ export class AccountService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  index() {
-    if (!this.auth.checkLogin()) {
-      return null;
-    }
+  index(username, password) {
+    // if (!this.auth.checkLogin()) {
+    //   return null;
+    // }
+    const credentials = this.auth.generateBasicAuthCredentials(username, password);
+
     const httpOptions = {
       headers: {
-        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+        Authorization: 'Basic ' + credentials,
+        'Content-type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       }
     };
-    return this.http.get<Account[]>(this.url).pipe(
+    return this.http.get<Account[]>(this.url, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('AccountService.index(): Error retrieving accounts');

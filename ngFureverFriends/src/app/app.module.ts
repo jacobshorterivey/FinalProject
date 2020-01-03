@@ -3,7 +3,6 @@ import { PetService } from './services/pet.service';
 import { FosterService } from './services/foster.service';
 import { AccountService } from './services/account.service';
 import { AuthService } from './services/auth.service';
-import { HideDogPipe } from './pipes/hide-dog.pipe';
 import { ShelterService } from './services/shelter.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -30,6 +29,11 @@ import { FosterListComponent } from './components/foster-list/foster-list.compon
 import { RouterModule } from '@angular/router';
 import { ApplicationSubmittedComponent } from './components/application-submitted/application-submitted.component';
 import { PetprofComponent } from './components/petprof/petprof.component';
+<<<<<<< HEAD
+import { NavSearchComponent } from './components/nav-search/nav-search.component';
+=======
+import { FilterPetsPipe } from './pipes/filter-pets.pipe';
+>>>>>>> 89e508253912937fe98d6a95b6dee629cdbcee84
 
 @NgModule({
   declarations: [
@@ -51,8 +55,14 @@ import { PetprofComponent } from './components/petprof/petprof.component';
     ShelternavComponent,
     FosterListComponent,
     ApplicationSubmittedComponent,
+<<<<<<< HEAD
     HideDogPipe,
-    PetprofComponent
+    PetprofComponent,
+    NavSearchComponent
+=======
+    PetprofComponent,
+    FilterPetsPipe
+>>>>>>> 89e508253912937fe98d6a95b6dee629cdbcee84
   ],
   imports: [
     FormsModule,
@@ -67,8 +77,6 @@ import { PetprofComponent } from './components/petprof/petprof.component';
     FosterService,
     PetService,
     UserService,
-    HideDogPipe
-
   ],
   bootstrap: [AppComponent]
 })

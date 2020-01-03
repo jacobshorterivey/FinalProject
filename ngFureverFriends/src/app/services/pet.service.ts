@@ -42,6 +42,20 @@ export class PetService {
       );
     }
 
+    nameTraitsBreedSearch(keyword: string) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'X-Requested-With': 'XMLHttpRequest'
+        })
+      };
+      return this.http.get<Pet[]>(this.url + '/search/' + keyword, httpOptions).pipe(
+        catchError((err: any) => {
+          console.error(err);
+          return throwError('PetService.nameTraitsBreedSearch(): Error retrieving pets');
+        })
+      );
+    }
+
     showOne(id: string) {
       const httpOptions = {
         headers: new HttpHeaders({
