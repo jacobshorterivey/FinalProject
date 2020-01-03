@@ -10,6 +10,5 @@ public interface FosterService {
 	List<Foster> findFostersBySpeciesPref(Integer sid);
 	List<Foster> findFosterByBreedPref(Integer bid);
 	List<Foster> findFosterByTraitPref(Integer tid);
-	
-
+	Foster update(int id, Foster foster);
 }
