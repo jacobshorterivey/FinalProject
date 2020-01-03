@@ -1,17 +1,58 @@
 <h1>List of volunteers</h1>
-<p> </p>
+<!-- <p> </p>
 <div *ngIf="!selected">
   <div class="container">
     <div *ngFor="let vol of volunteers" class="row">
       <!-- switch to user/user.id when user is setup -->
       <!-- <a href="/shelter/{{shelter.id}}"> -->
-        <div class="col" >
+        <!-- <div class="col" >
           <h3> {{vol.fname}} </h3>
           <div *ngFor="let skill of vol.skills">
             <h5>{{skill.name}}</h5>
           </div>
         </div>
      <!-- </a> -->
+    <!-- </div>
+  </div>
+</div> -->
+
+<!-- SEARCH RESULTS-->
+<div *ngIf="!selected">
+<div class="container">
+    <div class="row">
+      <div *ngFor="let vol of volunteers" class="col-lg-4 col-md-6 col-sm-12 col-12">
+        <div class="petCard container" (click)= a class="nav-link" routerLink="/user/{{vol.id}}">
+
+           <div class="row">
+              <div class="col-5 petCardImage">
+                <img *ngIf="vol.images[0]" src="{{vol?.images[0]?.imageUrl}}">
+                <img *ngIf="!vol.images[0]" src="../../../assets/img/noprofile.png">
+              </div>
+              <div class="col-7 cardContent">
+                <div class="row">
+                  <div class="col bg-primary text-light petName">
+                    {{vol.fname}} {{vol.lname}}
+                  </div>
+                </div>
+
+                 <table class="table" style="margin-bottom: 0px">
+                    <tr class="row"><strong>Skill:</strong>
+                  <tr class="row">
+                      <div *ngFor="let skill of vol.skills">
+                    <td class="col"><br>{{skill.name}}</td>
+                    </div>
+                  </tr>
+                  <tr class="row">
+                    <td class="col"><strong>Email:</strong><br>{{vol.email}}</td>
+                  </tr>
+                  <tr class="row">
+                    <td class="col"><strong>Phone:</strong><br>{{vol.phone}}</td>
+                  </tr>
+                </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
