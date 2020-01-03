@@ -87,7 +87,7 @@ export class PetService {
     );
   }
 
-     // Create/Post
+  // Create/Post
   create(data: Pet) {
     const httpOptions = {
       headers: {
@@ -105,9 +105,14 @@ export class PetService {
 
   // Update
   update(id: number, data: Pet) {
+    const httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
     console.log('in update');
     console.log(data);
-    const httpOptions = { };
+
     return this.http.put<Pet>(this.url + '/' + id, data, httpOptions)
     .pipe(
       catchError((err: any) => {

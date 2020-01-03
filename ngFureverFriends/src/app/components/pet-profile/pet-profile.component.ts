@@ -5,6 +5,7 @@ import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
 import { subscribeOn } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Account } from 'src/app/models/account';
 
 @Component({
   selector: 'app-pet-profile',
@@ -20,6 +21,7 @@ export class PetProfileComponent implements OnInit {
   selectedPet: Pet = null;
   editPet: Pet = null;
   shelter: Shelter;
+  account: Account;
 
 
   // Constructor
@@ -29,8 +31,12 @@ export class PetProfileComponent implements OnInit {
   ngOnInit() {
     this.shelterSVC.index().subscribe(
       data => {
-        this.shelter = data[1];
-        this.loadShelterPets(this.shelter.id);
+        this.account = JSON.parse(localStorage.getItem('account'));
+        data.forEach(element => {
+          if (element.account.id === this.account.id) {
+            this.loadShelterPets(element.id);
+          }
+        });
       },
       err => {
         console.error(err);
