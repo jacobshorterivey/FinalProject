@@ -46,4 +46,8 @@ export class UserListComponent implements OnInit {
     }
     return vols;
   }
+
+  openModule(vol: User) {
+    this.selected = vol;
+  }
 }
