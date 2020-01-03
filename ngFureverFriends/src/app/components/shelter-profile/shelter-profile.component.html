@@ -95,18 +95,18 @@
 
       </div>
       <div class="col-lg-8 col-md-8 col-sm-12 text-center commentBox shelterInfo">
-        <form class="form-group">
+        <form class="form-group" action="MAILTO:" method="POST" enctype="text/plain">
 
           <div class="row contactText">
             <h1 class="text-primary"> Contact Us</h1>
           </div>
 
-
-          <div class="row">
-            <div class="col-lg-5 logDiv">
+          <!-- Visible only if not logged in -->
+          <div class="row" *ngIf="!isAnyoneLoggedIn">
+            <div class="col logDiv">
               <div class="row">
                 <div class="col-lg-3 col-sm-2 col-xs-12">
-                  <label for="email">Email:</label>
+                  <label for="email" style="margin-top: 7px;">Email:</label>
                 </div>
                 <div class="col-lg-9 col-sm-10 col-xs-12">
                 <input id="email" class="form-control" type="text">
@@ -114,15 +114,17 @@
             </div>
            </div>
 
-           <div class="col-lg-2 logDiv">
+           <!-- <div class="col-lg-2 logDiv">
             - OR -
           </div>
 
            <div class="col-lg-5 logDiv">
-            <button class="btn btn-sm btn-primary formBtn2">
+            <button class="btn btn-sm btn-primary formBtn2" (click)="toggleLogin()">
             Login</button>
-           </div>
+           </div> -->
           </div>
+
+          <input *ngIf="isAnyoneLoggedIn" type="hidden" value="account.email" name="email">
 
           <select class="form-control subjectBox" id="subject">
             <option value="adopt" disabled>Subject</option>
@@ -133,7 +135,7 @@
           </select>
 
           <textarea name="comment" form="usrform" class="form-control">Enter text here...</textarea>
-          <button class="btn btn-success formBtn">Submit</button>
+          <button class="btn btn-success formBtn" type="submit">Submit</button>
         </form>
       </div>
     </div>
