@@ -36,3 +36,126 @@
     </div>
   </div>
 </div>
+
+<!-- START PET MODAL -->
+<div
+  class="modal fade bd-example-modal-lg mainModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+  *ngIf="selected"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title">{{ selected?.user.fname }} {{ selected?.user.lname }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- PET IMAGE SLIDE -->
+        <div
+          id="selectedPetCtrl"
+          class="carousel slide petCarosel"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div
+              class="carousel-item {{ i == 0 ? 'active' : '' }}"
+              *ngFor="let image of selected?.user.images; let i = index"
+            >
+              <div class="petModalImages">
+                <img src="{{ image.imageUrl }}" />
+                \
+              </div>
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#selectedPetCtrl"
+            role="button"
+            data-slide="prev"
+            *ngIf="selected.user.images.length > 1"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#selectedPetCtrl"
+            role="button"
+            data-slide="next"
+            *ngIf="selected.user.images.length > 1"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <!-- PET PESCRIPTION -->
+        <div class="container">
+          <p class="featuredText text-center text-primary">Foster Description</p>
+          <table class="table container">
+            <tr class="row">
+              <td class="col-4">
+                <strong>Available Slots for Foster Pets:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.maxFoster - selected.fosterPets.length}}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Willing to Foster:</strong>
+              </td>
+              <td class="col-8">
+                <span *ngIf="selected.breedList.length < 1">N/A</span>
+                <span *ngFor="let breed of selected.breedList; let i = index">
+                  <span *ngIf="i+1 === selected.breedList.length">
+                    {{breed.name}}
+                  </span>
+                  <span *ngIf="i+1 !== selected.breedList.length">
+                    {{breed.name}},
+                  </span>
+                </span>
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Email:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.user.email }}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Phone #:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.user.phone }}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!--MODAL CLOSE BUTTON-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+  <BR />
+</div>

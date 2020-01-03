@@ -17,20 +17,22 @@ export class NavSearchComponent implements OnInit {
   constructor(
     private petService: PetService,
     private route: ActivatedRoute
-    ) { }
+  ) { }
 
   ngOnInit() {
     console.log('Nav search page!');
-    this.loadEvents();
+    if (this.route.snapshot.paramMap.get('keyword')) {
+
+    }
+
     if (this.route.snapshot.paramMap.get('keyword')) {
       const keyword = this.route.snapshot.paramMap.get('keyword');
       this.searchForPets(keyword);
       console.log(this.searchedPets);
-
     } else {
-      // ???
+      // window.location.reload();
     }
-
+    this.loadEvents();
   }
 
   loadEvents() {

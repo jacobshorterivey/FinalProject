@@ -44,6 +44,19 @@ export class NavbarComponent implements OnInit {
     }
     this.account = JSON.parse(localStorage.getItem('account'));
     this.getUser(false);
+    this.loadEvents();
+  }
+
+  loadEvents() {
+    this.searchKeyword = null;
+    // this.svc.index().subscribe(
+    //   (pass) => {
+    //     this.shelters = pass;
+    //   },
+    //   (fail) => {
+    //     console.error(fail);
+    //   }
+    // );
   }
 
   login(form: NgForm) {
@@ -152,5 +165,6 @@ export class NavbarComponent implements OnInit {
 
   searchSubmit(key: string) {
     this.searchKeyword = key;
+    // this.router.navigateByUrl('/pet/search/' + `${this.searchKeyword}`);
   }
 }

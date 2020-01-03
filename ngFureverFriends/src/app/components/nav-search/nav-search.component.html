@@ -1,5 +1,41 @@
-<div *ngFor="let pet of searchedPets">
+<!-- <div *ngFor="let pet of searchedPets">
   <tr>
     <td>{{pet.name}}</td>
   </tr>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div *ngFor="let pet of searchedPets" class="col-lg-4 col-md-6 col-sm-12 col-12">
+      <div class="petCard container" data-toggle="modal" data-target=".bd-example-modal-lg">
+         <div class="row">
+            <div class="col-5 petCardImage">
+              <img *ngIf="pet.images[0]" src="{{pet?.images[0]?.imageUrl}}">
+              <img *ngIf="!pet.images[0]" src="../../../assets/img/noprofile.png">
+            </div>
+            <div class="col-7 cardContent">
+              <div class="row">
+                <div class="col bg-primary text-light petName">
+                  {{pet.name}}
+                </div>
+              </div>
+
+               <table class="table" style="margin-bottom: 0px">
+                <tr class="row">
+                  <td class="col"><strong>Breed:</strong><br>{{pet.breed.name}}</td>
+                </tr>
+                <tr class="row">
+                  <td class="col"><strong>Size:</strong><br>{{pet.size}}</td>
+                </tr>
+                <tr class="row">
+                  <td class="col">{{pet.age}} years old</td>
+                </tr>
+              </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
