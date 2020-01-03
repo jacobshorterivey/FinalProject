@@ -1,11 +1,12 @@
-import { ShelterService } from 'src/app/services/shelter.service';
-import { Shelter } from 'src/app/models/shelter';
-import { PetService } from './../../services/pet.service';
-import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
-import { subscribeOn } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/models/account';
+import { Breed } from 'src/app/models/breed';
+import { Shelter } from 'src/app/models/shelter';
+import { ShelterService } from 'src/app/services/shelter.service';
+import { Pet } from './../../models/pet';
+import { PetService } from './../../services/pet.service';
+import { Trait } from 'src/app/models/trait';
 
 @Component({
   selector: 'app-pet-profile',
@@ -16,12 +17,70 @@ export class PetProfileComponent implements OnInit {
 
   // Field
   title: 'Pet Tracker';
+  createPet: Pet = new Pet();
   newAnimal: Pet = new Pet();
   pets: Pet[] = [];
   selectedPet: Pet = null;
   editPet: Pet = null;
   shelter: Shelter;
   account: Account;
+  create: false;
+  dogCreate: false;
+  catCreate: false;
+  breedList: Breed[] = [];
+  traitList: Trait[] = [];
+  traitsToAdd: Trait[] = [];
+  traitBoolean = [
+    {
+      id: 1,
+      active: false
+    },
+    {
+      id: 2,
+      active: false
+    },
+    {
+      id: 3,
+      active: false
+    },
+    {
+      id: 4,
+      active: false
+    },
+    {
+      id: 5,
+      active: false
+    },
+    {
+      id: 6,
+      active: false
+    },
+    {
+      id: 7,
+      active: false
+    },
+    {
+      id: 8,
+      active: false
+    },
+    {
+      id: 9,
+      active: false
+    },
+    {
+      id: 10,
+      active: false
+    },
+    {
+      id: 11,
+      active: false
+    },
+    {
+      id: 12,
+      active: false
+    },
+
+  ];
 
 
   // Constructor
@@ -29,12 +88,14 @@ export class PetProfileComponent implements OnInit {
 
   // Methods
   ngOnInit() {
+    this.createPet.breed = new Breed();
     this.shelterSVC.index().subscribe(
       data => {
         this.account = JSON.parse(localStorage.getItem('account'));
         data.forEach(element => {
           if (element.account.id === this.account.id) {
             this.loadShelterPets(element.id);
+            this.shelter = element;
           }
         });
       },
@@ -44,6 +105,8 @@ export class PetProfileComponent implements OnInit {
       }
 
     );
+
+    this.loadBreedAndTraitLists();
     // if (!this.selectedPet && this.route.snapshot.paramMap.get('id')) {
     //   this.petService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
     //     data => {
@@ -57,8 +120,34 @@ export class PetProfileComponent implements OnInit {
     // }
   }
 
-  addPet(newPet: Pet) {
-    this.petService.create(newPet).subscribe(
+  addPet() {
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.traitBoolean.length; i++) {
+      const bool = this.traitBoolean[i];
+      // tslint:disable-next-line: prefer-for-of
+      for (let k = 0; k < this.traitList.length; k++) {
+        const trait = this.traitList[k];
+        if ((trait.id === bool.id) && bool.active) {
+          this.traitsToAdd.push(trait);
+        }
+      }
+    }
+
+    this.createPet.adopted = false;
+    this.createPet.traits = this.traitsToAdd;
+    this.createPet.shelter = this.shelter;
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.breedList.length; i++) {
+      const breed = this.breedList[i];
+      // tslint:disable-next-line: triple-equals
+      if (breed.id == this.createPet.breed.id) {
+        this.createPet.breed = breed;
+        i = this.breedList.length;
+      }
+    }
+
+    this.petService.create(this.createPet).subscribe(
       data => {
         console.log(data);
         this.newAnimal = new Pet();
@@ -102,6 +191,28 @@ export class PetProfileComponent implements OnInit {
       },
       (fail) => {
         console.error(fail);
+      }
+    );
+  }
+
+  loadBreedAndTraitLists() {
+    this.petService.indexBreed().subscribe(
+      data => {
+        this.breedList = data;
+      },
+      error => {
+        console.log('pet-profile.ts: loadBreedAndTraitLists(): Error getting breeds');
+        console.log(error);
+      }
+    );
+
+    this.petService.indexTrait().subscribe(
+      data => {
+        this.traitList = data;
+      },
+      error => {
+        console.log('pet-profile.ts: loadBreedAndTraitLists(): Error getting traits');
+        console.log(error);
       }
     );
   }
