@@ -57,7 +57,7 @@
     </ul> -->
 
     <!-- START SEARCH BAR -->
-    <div class="col-lg-4 ml-auto">
+    <div class="col-lg-4 navbar-center">
       <form>
         <div class="input-group my-2 my-lg-0">
           <input
@@ -111,7 +111,7 @@
 
 
 <!-- LOGGED IN ACCOUNT DROPDOWN -->
-    <div *ngIf="isUserLoggedIn">
+    <div *ngIf="isUserLoggedIn" class="ml-auto">
       <a
         class="nav-link dropdown-toggle"
         href="#"
@@ -142,7 +142,7 @@
     </div>
 
 <!-- LOG IN DROP DOWN -->
-    <div *ngIf="!isUserLoggedIn">
+    <div *ngIf="!isUserLoggedIn" class="ml-auto">
       <a
         class="nav-link dropdown-toggle linktoggle"
         href="#"
