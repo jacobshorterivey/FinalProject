@@ -61,7 +61,7 @@ public class PetController {
 		return shelter;
 	}
 	
-	@PostMapping
+	@PostMapping("create")
 	public Pet create(@RequestBody Pet pet, HttpServletResponse response) {
 		Pet newPet = svc.createPet(pet);
 		if (newPet == null) {
@@ -79,7 +79,7 @@ public class PetController {
 		return pet1;
 	}
 	
-	@DeleteMapping("{id}")
+	@DeleteMapping("delete/{id}")
 	  void deletePet(@PathVariable Integer id) {
 	    svc.deletePet(id);
 	  }

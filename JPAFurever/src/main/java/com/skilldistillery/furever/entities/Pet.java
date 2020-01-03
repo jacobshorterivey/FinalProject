@@ -21,6 +21,8 @@ public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column
 	private String color;
 	private String name;
 	private String size;

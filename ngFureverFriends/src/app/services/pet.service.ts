@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { Shelter } from '../models/shelter';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PetService {
   // baseUrl = environment.baseUrl;
   url = this.baseUrl + 'api/pet';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   // If you need to, headers can be added to an HTTP Request by using the HttpHeaders object.
   // it is used ONLY inside of functions
@@ -75,11 +76,11 @@ export class PetService {
      // Create/Post
   create(data: Pet) {
     const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
     };
-    return this.http.post<Pet>(this.url, data, httpOptions)
+    return this.http.post<Pet>(this.url + '/create', data, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -103,8 +104,12 @@ export class PetService {
   }
     // Delete
   destroy(id: number) {
-    const httpOptions = { };
-    return this.http.delete<Pet>(this.url + '/' + id, httpOptions)
+    const httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+      }
+    };
+    return this.http.delete<Pet>(this.url + '/delete/' + id, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
