@@ -54,7 +54,6 @@ import { FilterPetsPipe } from './pipes/filter-pets.pipe';
     ApplicationSubmittedComponent,
     PetprofComponent,
     NavSearchComponent,
-    PetprofComponent,
     FilterPetsPipe
   ],
   imports: [
