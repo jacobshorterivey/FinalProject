@@ -1,3 +1,4 @@
+import { AccountService } from './../../services/account.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,8 +13,11 @@ export class UserProfileComponent implements OnInit {
 
   // Field
   user: User;
-  // selectedUser: User;
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
+  admin: User;
+  selectedUser: User;
+  users: User[];
+  constructor(private userService: UserService, private accountService: AccountService,
+              private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     if (!this.user && this.route.snapshot.paramMap.get('id')) {

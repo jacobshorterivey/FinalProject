@@ -6,6 +6,10 @@
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-12">
         <div class="profilePhoto">
+            <!-- <img
+            *ngIf="user.images[0]"
+            src="{{ (user?.images)[0]?.imageUrl }}" height="200px"
+          /> -->
           <img src="{{user.images[0].imageUrl}}" height="200px">
         </div>
       </div>
@@ -14,12 +18,7 @@
   <br>
 <!-- USER PROFILE NAME -->
 <div class="container bg-light mainInfo">
-    <!-- <div class="row">
-      <div class="col title"></div>
-      <div class="col-lg-8 col-md-8 col-sm-12 text-center">
-          <h3 class="bg-primary text-light titleBox">{{user.fname}} {{user.lname}}</h3>
-      </div>
-    </div> -->
+
     <div class="row">
 
       <!-- User Info -->
@@ -34,8 +33,9 @@
           <p>{{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}</p>
       </div>
       <!-- Volunteer Info -->
-      <div>
-
+      <div class="card">
+          <h3 class="bg-primary text-light titleBox"> Volunteer Info </h3>
+        <p>Skills: {{user.skills}}</p>
       </div>
       <!-- Foster Info -->
 </div>
@@ -43,5 +43,37 @@
 </div>
 
 <div class="bodyComponent" *ngIf="!user">
-  Unauthorized.
+    Unauthorized.
 </div>
+
+<div class="bodyComponent" *ngIf="admin">
+
+  <!-- List all users -->
+  <div id="userList" *ngIf= "!selectedUser">
+      <table class="table table-striped table-hover">
+        <thead>
+
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Account</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td> </td>
+            <td (click)="selectedUser = user">{{user.fname}} {{user.lname}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.account.role}}</td>
+            <td>{{user.address.street}}</td>
+            <!-- <td (click)="deleteUser(user.id)"> <button> X </button> </td> -->
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
