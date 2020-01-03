@@ -261,7 +261,7 @@ CAT
 } */
 
 .featuredAnimalsBg {
-  background-image: linear-gradient(rgba(255,255,255, 0.8), rgba(255,255,255, 0.5)), url('https://cdn.pixabay.com/photo/2015/11/12/17/09/paw-1040642_1280.jpg');
+  background-image: linear-gradient(rgba(255,255,255, 0.8), rgba(255,255,255, 0.5)), url('https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555925156/shape/mentalfloss/157653954.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -274,6 +274,7 @@ CAT
 }
 
 .missionStatement {
+  background-image: linear-gradient(rgba(255,255,255, 0.8), rgba(255,255,255, 0.5)), url('https://cdn.pixabay.com/photo/2015/11/12/17/09/paw-1040642_1280.jpg');
   background-color: rgb(236, 236, 236, 1);
   padding-top: 10vh;
   padding-bottom: 10vh;
