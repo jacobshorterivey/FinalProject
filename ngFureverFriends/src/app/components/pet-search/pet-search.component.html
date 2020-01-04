@@ -1,9 +1,16 @@
 <!-- FILTERS -->
 <div>
-
+  <div>
+<h4>Species:</h4>
 Dog:<input type="checkbox" name="filterPets" [(ngModel)]="showDogs" checked>
 Cat:<input type="checkbox" name="filterPets" [(ngModel)]="showCats" checked><br>
-
+</div>
+<div>
+<h4>Traits:</h4>
+Intelligent:<input type="checkbox" name="filterPets" [(ngModel)]="isIntelligent" checked>
+Playful:<input type="checkbox" name="filterPets" [(ngModel)]="isPlayful" checked>
+Gentle:<input type="checkbox" name="filterPets" [(ngModel)]="isGentle" checked>
+</div>
 <!-- <select class="form-control" id="subject" *ngFor="">
 
   <option value="adopt" disabled>Subject</option>
@@ -18,7 +25,7 @@ Cat:<input type="checkbox" name="filterPets" [(ngModel)]="showCats" checked><br>
 <!-- SEARCH RESULTS-->
 <div class="container">
   <div class="row">
-    <div *ngFor="let pet of pets | filterPets: showDogs:showCats" class="col-lg-4 col-md-6 col-sm-12 col-12">
+    <div *ngFor="let pet of pets | filterPets: showDogs:showCats:isIntelligent:isPlayful:isGentle" class="col-lg-4 col-md-6 col-sm-12 col-12">
       <div class="petCard container" (click)="openModule(pet)" data-toggle="modal" data-target=".bd-example-modal-lg">
          <div class="row">
             <div class="col-5 petCardImage">
