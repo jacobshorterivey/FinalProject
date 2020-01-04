@@ -70,10 +70,12 @@ export class UserService {
   update(id: number, user: User) {
     const httpOptions = {
       headers: {
-        Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'Content-type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       }
     };
-    return this.http.put(this.url + '/' + id, user, httpOptions).pipe(
+    return this.http.put(this.url + '/update/' + id, user, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('UserService.update(): Error updating user');

@@ -87,4 +87,15 @@ export class UserProfileComponent implements OnInit {
       }
     );
   }
+
+  updateUser() {
+    this.userService.update(this.user.id, this.user).subscribe(
+      data => {
+        console.log(data);
+       },
+      error => {
+        console.error('error updating user');
+      }
+    );
+  }
 }

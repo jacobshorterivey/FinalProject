@@ -132,8 +132,8 @@
           </form> -->
 
             <form class="loginStyle form-group">
-              <button class="btn btn-primary lButton" *ngIf="user" routerLink="/user/{{user.id}}"> My Profile </button>
-              <button class="btn btn-primary lButton" *ngIf="shelter" routerLink="/shelter/{{shelter.id}}">My Shelter</button>
+              <button class="btn btn-primary lButton" *ngIf="user && !shelter" routerLink="/user/{{user.id}}"> My Profile </button>
+              <button class="btn btn-primary lButton" *ngIf="shelter && !user" routerLink="/shelter/{{shelter.id}}">My Shelter</button>
               <button class="btn btn-primary lButton" (click)="logout()"> Logout </button>
             </form>
 
@@ -142,7 +142,7 @@
     </div>
 
 <!-- LOG IN DROP DOWN -->
-    <div *ngIf="!isUserLoggedIn" class="ml-auto">
+    <div *ngIf="!isUserLoggedIn">
       <a
         class="nav-link dropdown-toggle linktoggle"
         href="#"
@@ -160,7 +160,7 @@
             <label for="username">Username:</label>
             <input id="username" class="form-control" type="text" name="username" ngModel>
             <label for="password">Password:</label>
-            <input id="password" class="form-control" type="text" name="password" ngModel>
+            <input id="password" class="form-control" type="password" name="password" ngModel>
             <button  (click)="login(loginForm)" class="btn btn-success lButton">Login</button>
           </form>
 

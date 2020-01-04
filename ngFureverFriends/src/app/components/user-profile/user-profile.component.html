@@ -78,49 +78,68 @@
   <button class="btn btn-primary btn-sm" (click)="updateVolunteer(user)">Update</button>
 </form> -->
 
-Foster:<br>
+Max pets willing to foster:<br>
 <form *ngIf="foster">
-  <input type="number" min="0" name="maxFoster" value="foster?.maxFoster" [(ngModel)]="foster.maxFoster"> Max pets willing to Foster
+  <input type="number" min="0" name="maxFoster" value="foster?.maxFoster" [(ngModel)]="foster.maxFoster">
   <button class="btn btn-primary btn-sm" (click)="updateFoster(foster)">Update</button>
 </form >
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Update Profile</button>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="container">
+        <form>
+          <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
+          Username: <input type="text" value="{{user.account.username}}" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
+          Password: <input type="password" value="{{user.account.password}}" name="password" class="form-control" [(ngModel)]="user.account.password"> <br>
+          <hr>
+          Personal Information:<BR><BR>
+
+          First Name: <input type="text" value="{{user.fname}}" class="form-control" name="fname" [(ngModel)]="user.fname">
+          Last Name: <input type="text" value="{{user.lname}}" class="form-control" name="lname" [(ngModel)]="user.lname">
+          Age: <input type="number" min="1" value="{{user.age}}" class="form-control" name="age" [(ngModel)]="user.age">
+          Phone: <input type="text" value="{{user.phone}}" class="form-control" name="phone" [(ngModel)]="user.phone">
+          Email: <input type="text" value="{{user.email}}" class="form-control" name="email" [(ngModel)]="user.email">
+
+          <hr>
+          Address: <BR><BR>
+            Steet: <input type="text" value="{{user.address.street}}" class="form-control" name="street" [(ngModel)]="user.address.street">
+            Street 2: <input type="text" value="{{user.address.street2}}" class="form-control" name="street2" [(ngModel)]="user.address.street2">
+            City: <input type="text" value="{{user.address.city}}" class="form-control" name="city" [(ngModel)]="user.address.city">
+            State: <input type="text" value="{{user.address.stateAbbr}}" class="form-control" name="stateAbbr" [(ngModel)]="user.address.stateAbbr">
+            Zip: <input type="text" value="{{user.address.zip}}" class="form-control" name="zip" [(ngModel)]="user.address.zip">
+          <hr>
+
+          <button class="btn btn-primary" (click)="updateUser()">Update</button>
+
+            <!-- Add image later... -->
+        </form>
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
 
 </div>
 
 
 <div class="bodyComponent" *ngIf="admin">
-
-  <!-- List all users -->
-  <div id="userList" *ngIf= "!selectedUser">
-      <table class="table table-striped table-hover">
-        <thead>
-
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Account</th>
-            <th>Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td> </td>
-            <td (click)="selectedUser = user">{{user.fname}} {{user.lname}}</td>
-            <td>{{user.age}}</td>
-            <td>{{user.phone}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.account.role}}</td>
-            <td>{{user.address.street}}</td>
-            <!-- <td (click)="deleteUser(user.id)"> <button> X </button> </td> -->
-          </tr>
-        </tbody>
-      </table>
-  </div>
-
-
-
-  <div class="container shelterUserView" *ngIf="showDetails">
-    This should only show up for shelters.
-  </div>
-
+  Admin Center:<br>
+  <button class="btn-primary">Users</button>
+</div>

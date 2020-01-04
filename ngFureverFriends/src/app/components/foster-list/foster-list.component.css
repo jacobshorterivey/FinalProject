@@ -1,0 +1,180 @@
+.mapsPlaceholder {
+  background-image: url("https://miro.medium.com/max/3188/1*FbzQStUzSsLChBJE9108hg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.innerAdmin {
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.name{
+  margin-top: -50px;
+  min-height: 125px;
+  padding-bottom: 40px;
+}
+
+.shelterControls{
+  margin-top: -50px;
+  height: auto;
+}
+
+.shelterControlRow {
+  padding-top: 50px;
+}
+
+.bodyComponent {
+  background-color: rgb(236, 236, 236, 0.9);
+}
+
+.coverPhoto {
+  background-image: url("../../../assets/img/shelterCover.svg");
+  background-position-y: -17rem;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.profilePhoto {
+  margin: auto;
+  margin-top: -100px;
+  min-height: 150px;
+  width: 150px;
+  overflow: hidden;
+  border-width: 2px;
+  border-color: #5576c4;;
+  border-style: solid;
+  border-radius: 10px;
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.profilePhoto img {
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+
+.mainInfo {
+  margin-top: -50px;
+  padding: 40px;
+}
+
+.shelterInfo {
+  padding: 10px;
+  border-width: 1px;
+  border-color: #5576c4;
+  border-style: solid;
+  border-radius: 10px;
+  margin: 10px;
+  background-color: rgb(236, 236, 236, 0.4);
+}
+
+.title {
+  margin-bottom: 3vh;
+}
+
+.titleBox {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-radius: 10px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.contactText {
+  font-size: 20px;
+  font-family: 'Indie Flower', cursive;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+}
+
+.commentBox {
+  margin: 10px;
+  padding: 0px 30px 0px 30px;
+
+}
+
+.formBtn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.formBtn2 {
+  display: block;
+  width: 100%;
+}
+
+.logDiv {
+  margin-bottom: 20px;
+}
+
+.subjectBox {
+  margin-bottom: 20px;
+}
+
+.petCard {
+
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: rgb(236, 236, 236, 0.7);
+  border-color: #5576c4;
+  border-style: solid;
+  border-width: 1px;
+  min-height: 100px;
+  overflow: hidden;
+  padding-bottom: 0px;
+}
+
+.petCard:hover {
+  background-color: rgb(236, 236, 236, 1);
+}
+
+.petCardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  size: cover;
+  position: absolute;
+}
+
+.petCardImage {
+  width: 125px;
+  overflow: hidden;
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.cardContent{
+  overflow: hidden;
+}
+
+.petName {
+  font-size: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+
+
+
+
+
+
+
