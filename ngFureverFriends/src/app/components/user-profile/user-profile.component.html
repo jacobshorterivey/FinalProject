@@ -94,8 +94,9 @@ Max pets willing to foster:<br>
       <div class="container">
         <form>
           <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
-          Username: <input type="text" value="{{user.account.username}}" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
-          Password: <input type="password" value="{{user.account.password}}" name="password" class="form-control" [(ngModel)]="user.account.password"> <br>
+          Username: <input type="text" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
+
+          Password: <input type="password" name="password" class="form-control" [(ngModel)]="user.account.password"> <br>
           <hr>
           Personal Information:<BR><BR>
 

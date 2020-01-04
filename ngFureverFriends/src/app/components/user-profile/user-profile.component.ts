@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Foster } from './../../models/foster';
 import { FosterService } from './../../services/foster.service';
 import { AccountService } from './../../services/account.service';
@@ -7,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { Shelter } from 'src/app/models/shelter';
 import { Account } from 'src/app/models/account';
+import { PassThrough } from 'stream';
 
 @Component({
   selector: 'app-user-profile',
@@ -24,12 +26,14 @@ export class UserProfileComponent implements OnInit {
   showDetails: boolean;
   account: Account;
   foster: Foster;
+  pass: string;
 
   constructor(private userService: UserService, private accountService: AccountService,
               private route: ActivatedRoute, private router: Router,
-              private fostersvc: FosterService) { }
+              private fostersvc: FosterService, private authSVC: AuthService) { }
 
   ngOnInit() {
+    this.getUserPass();
     if (!this.user && this.route.snapshot.paramMap.get('id')) {
       this.userService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
         data => {
@@ -97,5 +101,12 @@ export class UserProfileComponent implements OnInit {
         console.error('error updating user');
       }
     );
+  }
+
+  getUserPass() {
+    let a = (atob(this.authSVC.getCredentials()));
+    let b = a.split(':');
+    let c = b[1];
+    this.pass = c;
   }
 }
