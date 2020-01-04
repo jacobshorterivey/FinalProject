@@ -553,6 +553,7 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) V
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (10, '11011 Kendall Way', NULL, 'Broomfield', 'CO', 80020);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (11, '13883 E. 124th place', NULL, 'Arvada', 'CO', 80113);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (12, '1457 Hickory Ct', NULL, 'Erie', 'CO', 80516);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (13, '12936 Hudson S', NULL, 'Thornton', 'CO', 80241);
 
 COMMIT;
 
@@ -607,6 +608,7 @@ INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id
 INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (6, 'tester@gmail.com', 'User', 'McUserson', 24, '7209807543', 10, 6);
 INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (7, 'person.email@gmail.com', 'Test', 'Person', 55, '3033598941', 11, 12);
 INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (8, 'saint.shaba@gmail.com', 'Justin', 'Case', 29, '7208916654', 12, 13);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (9, 'gingie@gmail.com', 'Shanda', 'Leer', 35, '7201745103', 13, 14);
 
 COMMIT;
 
