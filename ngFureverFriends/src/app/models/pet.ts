@@ -4,6 +4,9 @@ import { Image } from './image';
 import { Trait } from './trait';
 
 export class Pet {
+  reset() {
+    throw new Error("Method not implemented.");
+  }
 
   id: number;
   color: string;
