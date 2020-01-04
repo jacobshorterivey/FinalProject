@@ -25,7 +25,7 @@
                 </tr>
                 <tr class="row">
                   <td class="col"><strong>Willing to Foster:</strong><br>
-                    <div *ngIf="foster.breedList.length < 1">N/A</div>
+                    <div *ngIf="foster.breedList.length < 1">No Preference</div>
                     <div *ngFor="let breed of foster.breedList">{{breed.name}}</div>
                   </td>
                 </tr>
@@ -117,7 +117,7 @@
                 <strong>Willing to Foster:</strong>
               </td>
               <td class="col-8">
-                <span *ngIf="selected.breedList.length < 1">N/A</span>
+                <span *ngIf="selected.breedList.length < 1">No Preference</span>
                 <span *ngFor="let breed of selected.breedList; let i = index">
                   <span *ngIf="i+1 === selected.breedList.length">
                     {{breed.name}}
