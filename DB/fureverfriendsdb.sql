@@ -552,6 +552,8 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) V
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (9, '9701 pearl street', 'Apartment 7208', 'Thornton', 'CO', 80229);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (10, '11011 Kendall Way', NULL, 'Broomfield', 'CO', 80020);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (11, '13883 E. 124th place', NULL, 'Arvada', 'CO', 80113);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (12, '1457 Hickory Ct', NULL, 'Erie', 'CO', 80516);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_abbr`, `zip`) VALUES (13, '12936 Hudson S', NULL, 'Thornton', 'CO', 80241);
 
 COMMIT;
 
@@ -573,6 +575,8 @@ INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (9
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (10, 's', '$2a$10$3m2RLZsNS66R4Tct78t.yOEbqJoMSBSEhplmxOEON6SMaERNof2Ne', 'shelter', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (11, 'angelsWithPaws', '$2a$10$9WwG3v4TACP6EetrrDucU.GG8Y.CRaBHExZon0C7DcpS2HvRqNXRa', 'shelter', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (12, 'testbob', '$2a$10$iyWklXC1EIk3O33PnIVdF.trkp4vLleCanhvEUvgN2z9mTQHtBfvW', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (13, 'SaintShaba', '$2a$10$/KRNue65VM6pUiuqsBVPdOrMHOhFAOl9HZPH0Qp9WNdF1CI7FBqz2', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (14, 'Gingie', '$2a$10$6wsqw8dOQFDjBCQSTcn3EuQyimoItJ2/gSevNJ4yoeYf7gg5j7p0u', 'user', 1);
 
 COMMIT;
 
@@ -603,6 +607,8 @@ INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id
 INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (5, 'shawn@gmail.com', 'Shawn', 'Benyak', 26, '3037568901', 9, 5);
 INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (6, 'tester@gmail.com', 'User', 'McUserson', 24, '7209807543', 10, 6);
 INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (7, 'person.email@gmail.com', 'Test', 'Person', 55, '3033598941', 11, 12);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (8, 'saint.shaba@gmail.com', 'Justin', 'Case', 29, '7208916654', 12, 13);
+INSERT INTO `user` (`id`, `email`, `fname`, `lname`, `age`, `phone`, `address_id`, `account_id`) VALUES (9, 'gingie@gmail.com', 'Shanda', 'Leer', 35, '7201745103', 13, 14);
 
 COMMIT;
 
@@ -1152,6 +1158,10 @@ START TRANSACTION;
 USE `fureverfriendsdb`;
 INSERT INTO `volunteer_skill` (`skill_id`, `user_id`) VALUES (1, 2);
 INSERT INTO `volunteer_skill` (`skill_id`, `user_id`) VALUES (2, 2);
+INSERT INTO `volunteer_skill` (`skill_id`, `user_id`) VALUES (6, 8);
+INSERT INTO `volunteer_skill` (`skill_id`, `user_id`) VALUES (3, 8);
+INSERT INTO `volunteer_skill` (`skill_id`, `user_id`) VALUES (4, 9);
+INSERT INTO `volunteer_skill` (`skill_id`, `user_id`) VALUES (5, 9);
 
 COMMIT;
 
