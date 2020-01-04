@@ -55,7 +55,7 @@ public class UserController {
 
 	}
 
-	@PutMapping("/update/{uid}")
+	@PutMapping("update/{uid}")
 	public User updateUser(@PathVariable int uid, @RequestBody User origUser, HttpServletResponse response,
 			Principal principal) {
 

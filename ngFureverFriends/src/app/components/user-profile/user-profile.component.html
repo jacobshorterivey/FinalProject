@@ -91,43 +91,34 @@ Max pets willing to foster:<br>
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
 
-      <form>
-        Username: <input type="text" value="{{user.account.username}}"> <br>
-        Password: <input type="password" value="{{user.account.password}}"> <br>
-        <hr>
-        Personal Information:<BR><BR>
+      <div class="container">
+        <form>
+          <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
+          Username: <input type="text" value="{{user.account.username}}" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
+          Password: <input type="password" value="{{user.account.password}}" name="password" class="form-control" [(ngModel)]="user.account.password"> <br>
+          <hr>
+          Personal Information:<BR><BR>
 
-        First Name: <input type="text" value="{{user.email}}">
-        Last Name: <input type="text" value="{{user.email}}">
-        Age: <input type="number" min="1" value="{{user.email}}">
-        Phone: <input type="text" value="{{user.email}}">
-        Email: <input type="text" value="{{user.email}}">
+          First Name: <input type="text" value="{{user.fname}}" class="form-control" name="fname" [(ngModel)]="user.fname">
+          Last Name: <input type="text" value="{{user.lname}}" class="form-control" name="lname" [(ngModel)]="user.lname">
+          Age: <input type="number" min="1" value="{{user.age}}" class="form-control" name="age" [(ngModel)]="user.age">
+          Phone: <input type="text" value="{{user.phone}}" class="form-control" name="phone" [(ngModel)]="user.phone">
+          Email: <input type="text" value="{{user.email}}" class="form-control" name="email" [(ngModel)]="user.email">
 
-        <hr>
-        Address: <BR><BR>
+          <hr>
+          Address: <BR><BR>
+            Steet: <input type="text" value="{{user.address.street}}" class="form-control" name="street" [(ngModel)]="user.address.street">
+            Street 2: <input type="text" value="{{user.address.street2}}" class="form-control" name="street2" [(ngModel)]="user.address.street2">
+            City: <input type="text" value="{{user.address.city}}" class="form-control" name="city" [(ngModel)]="user.address.city">
+            State: <input type="text" value="{{user.address.stateAbbr}}" class="form-control" name="stateAbbr" [(ngModel)]="user.address.stateAbbr">
+            Zip: <input type="text" value="{{user.address.zip}}" class="form-control" name="zip" [(ngModel)]="user.address.zip">
+          <hr>
 
+          <button class="btn btn-primary" (click)="updateUser()">Update</button>
 
-        <hr>
-
-
-        <!-- id: number;
-        fname: string;
-        lname: string;
-        age: number;
-        phone: string;
-        email: string;
-        account: Account;
-        address: Address;
-        images: Image[];
-        skills: Skill[]; -->
-
-
-      </form>
-
-
-
-
-
+            <!-- Add image later... -->
+        </form>
+     </div>
 
 
 
