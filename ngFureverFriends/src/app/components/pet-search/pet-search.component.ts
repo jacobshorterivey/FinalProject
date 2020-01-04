@@ -15,6 +15,18 @@ export class PetSearchComponent implements OnInit {
   editPet: Pet = null;
   showDogs = true;
   showCats = true;
+  isIntelligent = false;
+  isPlayful = false;
+  isGentle = false;
+  isAlert = false;
+  isConfident = false;
+  isFaithful = false;
+  isOutgoing = false;
+  isCuddly = false;
+  isReserved = false;
+  isAffectionate = false;
+  isQuiet = false;
+  isAdventurous = false;
   public selected: Pet;
 
   constructor(private petService: PetService) { }
@@ -39,8 +51,5 @@ export class PetSearchComponent implements OnInit {
     this.selected = animal;
   }
 
-  // hideDogs() {
-  //   this.hideDog.transform(this.pets, this.showDogs);
-  // }
 
 }

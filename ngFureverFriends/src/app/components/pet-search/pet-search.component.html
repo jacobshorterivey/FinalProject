@@ -1,13 +1,83 @@
 <!-- FILTERS -->
 <div>
-  Dog:<input type="checkbox" name="filterPets" [(ngModel)]="showDogs" checked />
-  Cat:<input
-    type="checkbox"
-    name="filterPets"
-    [(ngModel)]="showCats"
-    checked
-  /><br />
-
+  <div id="speciesFilter" class="container text-center">
+    <h4>Species:</h4>
+    Dog:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="showDogs"
+      checked
+    />
+    Cat:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="showCats"
+      checked
+    /><br />
+  </div>
+  <div id="traitsFilter" class="container text-center form-check checkbox-rounded checkbox-living-coral-filled mb-2">
+    <h4>Traits:</h4>
+    Intelligent:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isIntelligent"
+    />
+    Playful:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isPlayful"
+    />
+    Gentle:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isGentle"
+    />
+    Alert:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isAlert"
+    />
+    Confident:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isConfident"
+    />
+    Faithful:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isFaithful"
+    />
+    Outgoing:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isOutgoing"
+    />
+    Cuddly:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isCuddly"
+    />
+    Reserved:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isReserved"
+    />
+    Affectionate:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isAffectionate"
+    />
+    Quiet:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isQuiet"
+    />
+    Adventurous:<input
+      type="checkbox"
+      name="filterPets"
+      [(ngModel)]="isAdventurous"
+    />
+  </div>
   <!-- <select class="form-control" id="subject" *ngFor="">
 
   <option value="adopt" disabled>Subject</option>
@@ -22,7 +92,11 @@
 <div class="container">
   <div class="row">
     <div
-      *ngFor="let pet of pets | filterPets: showDogs:showCats"
+      *ngFor="
+        let pet of pets
+          | filterPets: showDogs:showCats:isIntelligent:isPlayful:isGentle:isAlert:
+          isConfident:isFaithful:isOutgoing:isCuddly:isReserved:isAffectionate:isQuiet:isAdventurous
+      "
       class="col-lg-4 col-md-6 col-sm-12 col-12"
     >
       <div
