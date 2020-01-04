@@ -93,8 +93,11 @@
          <a href="{{selected?.websiteUrl}}" target="_blank">Website</a>
        </p>
 
+       <div class="col updateShelterInfo">
+         <button class="btn btn-primary">Update Info</button>
+       </div>
       </div>
-      <div class="col-lg-8 col-md-8 col-sm-12 text-center commentBox shelterInfo">
+      <div class="col-lg-8 col-md-8 col-sm-12 text-center commentBox shelterInfo" *ngIf="!isShelterLoggedIn">
         <form class="form-group" action="MAILTO:" method="POST" enctype="text/plain">
 
           <div class="row contactText">
