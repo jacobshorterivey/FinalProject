@@ -1,30 +1,88 @@
-Add a Pet
-  <div id="createNewPet">
-      <form>
+<div id="createNewPet" *ngIf= "create">
+  Add a Pet
+  <form>
 
-        <!-- <input type="number" name="id" [(ngModel)]="newMeal.id" placeholder="id"><br> -->
-        <!-- <input type="text" name="name" [(ngModel)]="newPet.name" placeholder="Name"><br>
-        <input type="text" name="color" [(ngModel)]="newPet.color" placeholder="Color"><br>
-        <input type="number" name="size" [(ngModel)]="newPet.size" placeholder="Size"><br>
-        <input type="number" name="age" [(ngModel)]="newPet.age" placeholder="Age"><br>
-        <input type="number" name="weight" [(ngModel)]="newPet.weight" placeholder="Weigth"><br>
-        <input type="hidden" name="shelter" [(ngModel)]="newPet.shelter" value="{{shelter}}">
-        <input type="hidden" name="images" [(ngModel)]="newPet.images" value="1">
-        <input type="hidden" name="id" [(ngModel)]="newPet.id" value="1">
-        <input type="hidden" name="breed_id" [(ngModel)]="newPet.breed.id" value="pets[1].breed">
-        <input type="submit" value="create" (click)="addPet(newPet)" value=""> -->
+    <label>Name:
+      <br><input type="text" name="name" [(ngModel)]="createPet.name" placeholder="Enter name">
+    </label><br>
+    <label>Color(s):
+      <br><input type="text" name="color" [(ngModel)]="createPet.color" placeholder="Enter color(s)">
+    </label><br>
+    <label>Age:
+      <br><input type="number" name="age" [(ngModel)]="createPet.age" placeholder="Enter age">
+    </label><br>
+    <label>Weight:
+      <br><input type="number" name="weight" [(ngModel)]="createPet.weight" placeholder="Weight">
+    </label><br>
+    <label>
+      <br><input type="text" name="images" [(ngModel)]="createPet.images" placeholder="Image Url">
+    </label><br><br>
+    <label> Special Conditions:
+      <br><input type="text" name="specialConditions" [(ngModel)]="createPet.specialConditions" placeholder="Special Conditions">
+    </label><br><br>
+    <label>Enter pet size: <br>
+      <input type="radio" name="size" [(ngModel)]="createPet.size" value="large"> Large<br>
+      <input type="radio" name="size" [(ngModel)]="createPet.size" value="average"> Average<br>
+      <input type="radio" name="size" [(ngModel)]="createPet.size" value="small"> Small<br>
+    </label><br><br>
+    <label>Is the animal fixed: <br>
+      <input type="radio" name="fixed" [(ngModel)]="createPet.fixed" value="true"> Spayed/Neutered<br>
+      <input type="radio" name="fixed" [(ngModel)]="createPet.fixed" value="false"> Un-Spayed/Un-Neutered<br>
+    </label><br><br>
+      <label *ngIf="!dogCreate && !catCreate">Choose pet species:<br>
+
+      <button (click)="dogCreate = true">Dog</button>
+
+      <button (click)="catCreate = true">Cat</button>
+
+    </label>
+    <label *ngIf="dogCreate && !catCreate">Choose breed of dog: <br>
+
+      <select name="dogBreed" [(ngModel)]="createPet.breed.id">
+        <option *ngFor="let dogBreed of breedList | breedSeparator: true" name="dogBreed" [value]="dogBreed.id">{{dogBreed.name}}</option>
+      </select><br>
+
+      <button class="btn btn-primary lButton" (click)="dogCreate = false">Back</button>
+
+    </label>
+    <label *ngIf="!dogCreate && catCreate">Choose breed of cat: <br>
+
+      <select name="catBreed" [(ngModel)]="createPet.breed.id">
+        <option *ngFor="let catBreed of breedList | breedSeparator: false" name="catBreed" [value]="catBreed.id">{{catBreed.name}}</option>
+      </select><br>
+
+      <button class="btn btn-primary lButton" (click)="catCreate = false">Back</button>
+
+    </label><br><br>
+    <label>Choose Traits: <br>
+
+      Intellegent: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[0].active">
+      Playful: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[1].active">
+      Gentle: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[2].active"><br>
+      Alert: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[3].active">
+      Confident: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[4].active">
+      Faithful: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[5].active"><br>
+      Outgoing: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[6].active">
+      Cuddly: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[7].active">
+      Reserved: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[8].active"><br>
+      Affectionate: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[9].active">
+      Quiet: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[10].active">
+      Adventurous: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[11].active">
+
+    </label><br>
+    <input type="submit" value="Submit" (click)="addPet()">
 
       </form>
       <br>
+      {{shelter.name}}
+      Total Number of Pets
+      <!-- <span class="badge badge-primary" [ngClass]="badgeColor() ">
+        {{countPets()}}
+      </span> -->
     </div>
-    Total Number of Pets
-    {{shelter?.name}}
-  <!-- <span class="badge badge-primary" [ngClass]="badgeColor() "> -->
-    <!-- {{countPets()}} -->
-  <!-- </span> -->
     <br>
   <!-- List all pets -->
-  <div id="petList" *ngIf= "!selectedPet">
+  <div id="petList" *ngIf= "!selectedPet && !create">
     <table class="table table-striped table-hover">
       <thead>
 
@@ -49,6 +107,7 @@ Add a Pet
         </tr>
       </tbody>
     </table>
+    <button class = "btn btn-primary lButton" (click)="create = true">Enter new pet</button>
   </div>
   <div *ngIf="selectedPet">
       <ul>
@@ -74,7 +133,6 @@ Add a Pet
         </div>
         <td (click)="deletePet(selectedPet.id)"> <button> Delete </button> </td>
       </ul>
-      <button (click) = "selectedPet = null">Back</button>
 
           <h2>Edit Pet # {{selectedPet.id}}</h2>
           <form>

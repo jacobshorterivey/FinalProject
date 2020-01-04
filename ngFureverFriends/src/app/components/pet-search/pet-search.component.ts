@@ -15,18 +15,18 @@ export class PetSearchComponent implements OnInit {
   editPet: Pet = null;
   showDogs = true;
   showCats = true;
-  isIntelligent = true;
-  isPlayful = true;
-  isGentle = true;
-  isAlert = true;
-  isConfident = true;
-  isFaithful = true;
-  isOutgoing = true;
-  isCuddly = true;
-  isReserved = true;
-  isAffectionate = true;
-  isQuiet = true;
-  isAdventurous = true;
+  isIntelligent = false;
+  isPlayful = false;
+  isGentle = false;
+  isAlert = false;
+  isConfident = false;
+  isFaithful = false;
+  isOutgoing = false;
+  isCuddly = false;
+  isReserved = false;
+  isAffectionate = false;
+  isQuiet = false;
+  isAdventurous = false;
   public selected: Pet;
 
   constructor(private petService: PetService) { }

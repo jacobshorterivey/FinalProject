@@ -31,6 +31,7 @@ import { ApplicationSubmittedComponent } from './components/application-submitte
 import { PetprofComponent } from './components/petprof/petprof.component';
 import { NavSearchComponent } from './components/nav-search/nav-search.component';
 import { FilterPetsPipe } from './pipes/filter-pets.pipe';
+import { BreedSeparatorPipe } from './pipes/breed-separator.pipe';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { FilterPetsPipe } from './pipes/filter-pets.pipe';
     ApplicationSubmittedComponent,
     PetprofComponent,
     NavSearchComponent,
-    FilterPetsPipe
+    FilterPetsPipe,
+    BreedSeparatorPipe
   ],
   imports: [
     FormsModule,

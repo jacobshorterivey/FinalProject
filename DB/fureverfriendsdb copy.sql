@@ -562,17 +562,18 @@ COMMIT;
 START TRANSACTION;
 USE `fureverfriendsdb`;
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (1, 'testUser', '$2a$10$4/uOpqYJAuFaGdV8NEAPbemjP83BxDOlHl7HtHR56nG5/VYlnjO/W', 'user', 1);
-INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (2, 'secondUser', '$2a$10$7mTrbTc/mW2F8kI8QWnOOOpjN/5wrp12yfHPjQnUaTExA0FBILxim', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (2, 'secondUser', '$2a$10$7mTrbTc/mW2F8kI8QWnOOOpjN/5wrp12yfHPjQnUaTExA0FBILxim', 'admin', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (3, 'bakaie', '$2a$10$3XsGXUjbMqOXwe4xr7.aeeuDrJX8tjDrGrOj7jD3GvT94lsa/mFEy', 'user', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (4, 'Vint3r', '$2a$10$Boq8TvC/FHax/Qv99MP/2OdE32WldKh0ehB8IW./F1RqwOPn6l0VS', 'user', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (5, 'shawn', '$2a$10$oLHOtibKwe1vDmkxR5fF2OCEgayErFwNR91IKuH7RMvjnxDTCsuxi', 'user', 1);
-INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (6, 'u', '$2a$10$SXrc2yoMtn61aS6nBePqXOeOqHDju/RYvehyrYnq.3aZqcLyj6gYC', 'admin', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (6, 'u', '$2a$10$SXrc2yoMtn61aS6nBePqXOeOqHDju/RYvehyrYnq.3aZqcLyj6gYC', 'user', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (7, 'testShelter', '$2a$10$gPAwMyKSpYyOki4xMV0mSOkn6EmrzDR8yODMT2repEsnHhNyEzRD', 'shelter', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (8, 'maxFund', '$2a$10$2/GbjHwqsMpC2jPIM.X0cOoTsRy1A72ubbHBrnM8ie3fE/Zn97asa', 'shelter', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (9, 'felineRescue', '$2a$10$JNScNr0HWwZgtg3Yj/Q8gu2JIiRutUm8fTZZDT24gcD0AJbgRU32O', 'shelter', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (10, 's', '$2a$10$3m2RLZsNS66R4Tct78t.yOEbqJoMSBSEhplmxOEON6SMaERNof2Ne', 'shelter', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (11, 'angelsWithPaws', '$2a$10$9WwG3v4TACP6EetrrDucU.GG8Y.CRaBHExZon0C7DcpS2HvRqNXRa', 'shelter', 1);
 INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (12, 'testbob', '$2a$10$iyWklXC1EIk3O33PnIVdF.trkp4vLleCanhvEUvgN2z9mTQHtBfvW', 'user', 1);
+INSERT INTO `account` (`id`, `username`, `password`, `role`, `active`) VALUES (13, 'andrew', '$2a$10$SXrc2yoMtn61aS6nBePqXOeOqHDju/RYvehyrYnq.3aZqcLyj6gYC', 'admin', 1);
 
 COMMIT;
 
@@ -622,7 +623,7 @@ INSERT INTO `trait` (`id`, `description`) VALUES (7, 'Outgoing');
 INSERT INTO `trait` (`id`, `description`) VALUES (8, 'Cuddly');
 INSERT INTO `trait` (`id`, `description`) VALUES (9, 'Reserved');
 INSERT INTO `trait` (`id`, `description`) VALUES (10, 'Affectionate');
-INSERT INTO `trait` (`id`, `description`) VALUES (11, 'Quiet');
+INSERT INTO `trait` (`id`, `description`) VALUES (11, 'Quite');
 INSERT INTO `trait` (`id`, `description`) VALUES (12, 'Adventurous');
 
 COMMIT;

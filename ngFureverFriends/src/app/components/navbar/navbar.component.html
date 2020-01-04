@@ -57,7 +57,7 @@
     </ul> -->
 
     <!-- START SEARCH BAR -->
-    <div class="col-lg-4 ml-auto">
+    <div class="col-lg-4 navbar-center">
       <form>
         <div class="input-group my-2 my-lg-0">
           <input
@@ -77,7 +77,6 @@
               type="submit"
               style="border-radius: 0px 50px 50px 0px;"
               (click)="searchSubmit(searchKeyword)"
-
               [routerLink]="['/pet', 'search', searchKeyword]"
             >
               Search
@@ -112,7 +111,7 @@
 
 
 <!-- LOGGED IN ACCOUNT DROPDOWN -->
-    <div *ngIf="isUserLoggedIn">
+    <div *ngIf="isUserLoggedIn" class="ml-auto">
       <a
         class="nav-link dropdown-toggle"
         href="#"
@@ -122,7 +121,7 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-      👤 My Account {{account.username}}
+      👤 My Account
       </a>
       <div class="input-group-append dropdown-container">
         <div class="dropdown-menu dropdown-menu-right col-lg-4">
@@ -143,9 +142,9 @@
     </div>
 
 <!-- LOG IN DROP DOWN -->
-    <div *ngIf="!isUserLoggedIn">
+    <div *ngIf="!isUserLoggedIn" class="ml-auto">
       <a
-        class="nav-link dropdown-toggle"
+        class="nav-link dropdown-toggle linktoggle"
         href="#"
         id="navbarDropdown"
         role="button"

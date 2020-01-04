@@ -1,6 +1,7 @@
 package com.skilldistillery.furever.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,18 @@ public class FosterServiceImpl implements FosterService {
 	@Override
 	public List<Foster> findFosterByTraitPref(Integer tid) {
 		return fRepo.findByTraitListId(tid);
+	}
+	
+	@Override
+	public Foster update(int id, Foster foster) {
+		Foster fosterToUpdate = null;
+		Optional<Foster>opt = fRepo.findById(id);
+		if (opt.isPresent()) {
+			fosterToUpdate = opt.get();
+			fosterToUpdate.setUser(foster.getUser());
+			fosterToUpdate.setMaxFoster(foster.getMaxFoster());
+			fRepo.saveAndFlush(fosterToUpdate);
+		}
+		return fosterToUpdate;
 	}
 }
