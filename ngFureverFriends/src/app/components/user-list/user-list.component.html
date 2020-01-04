@@ -1,130 +1,260 @@
-<div class="row contactText">
-  <h1 class="text-primary"> Volunteers </h1>
-</div>
 <!-- <p> </p>
 <div *ngIf="!selected">
   <div class="container">
     <div *ngFor="let vol of volunteers" class="row">
       <!-- switch to user/user.id when user is setup -->
-      <!-- <a href="/shelter/{{shelter.id}}"> -->
-        <!-- <div class="col" >
+<!-- <a href="/shelter/{{shelter.id}}"> -->
+<!-- <div class="col" >
           <h3> {{vol.fname}} </h3>
           <div *ngFor="let skill of vol.skills">
             <h5>{{skill.name}}</h5>
           </div>
         </div>
      <!-- </a> -->
-    <!-- </div>
+<!-- </div>
   </div>
 </div> -->
 
 <!-- SEARCH RESULTS-->
-<div *ngIf="!selected">
-<div class="container">
-    <div class="row">
-      <div *ngFor="let vol of volunteers" class="col-lg-4 col-md-6 col-sm-12 col-12">
-        <div class="petCard container" (click)="openModule(vol)" data-toggle="modal" data-target=".bd-example-modal-lg">
+
+<div class="container-fluid">
+  <div class="row contactText">
+    <h1 class="text-primary">Volunteers</h1>
+  </div>
+  <div class="row">
+    <div
+      *ngFor="let vol of volunteers"
+      class="col-lg-4 col-md-6 col-sm-12 col-12"
+    >
+      <div
+        class="petCard container"
+        (click)="openModule(vol)"
+        data-toggle="modal"
+        data-target=".bd-example-modal-lg"
+      >
         <!-- (click)= a class="nav-link" routerLink="/user/{{vol.id}}"> -->
 
-          <div class="row">
-              <div class="col-5 petCardImage">
-                <img *ngIf="vol.images[0]" src="{{vol?.images[0]?.imageUrl}}">
-                <img *ngIf="!vol.images[0]" src="../../../assets/img/noprofile.png">
-              </div>
-              <div class="col-7 cardContent">
-                <div class="row">
-                  <div class="col bg-primary text-light petName">
-                    {{vol.fname}} {{vol.lname}}
-                  </div>
-                </div>
-
-                 <table class="table" style="margin-bottom: 0px">
-                    <tr class="row"><strong>Skill:</strong>
-                  <tr class="row">
-                      <div *ngFor="let skill of vol.skills">
-                    <td class="col"><br>{{skill.name}}</td>
-                    </div>
-                  </tr>
-                  <tr class="row">
-                    <td class="col"><strong>Email:</strong><br>{{vol.email}}</td>
-                  </tr>
-                  <tr class="row">
-                    <td class="col"><strong>Phone:</strong><br>{{vol.phone}}</td>
-                  </tr>
-                </table>
+        <div class="row">
+          <div class="col-5 petCardImage">
+            <img *ngIf="vol.images[0]" src="{{ (vol?.images)[0]?.imageUrl }}" />
+            <img
+              *ngIf="!vol.images[0]"
+              src="../../../assets/img/noprofile.png"
+            />
+          </div>
+          <div class="col-7 cardContent">
+            <div class="row">
+              <div class="col bg-primary text-light petName">
+                {{ vol.fname }} {{ vol.lname }}
               </div>
             </div>
+
+            <table class="table" style="margin-bottom: 0px">
+              <tr class="row">
+                <td class="col">
+                  <strong>Skills:</strong><br />
+                  <div *ngFor="let skill of vol.skills">{{ skill.name }}</div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="col">
+                  <strong>Email:</strong><br />{{ vol.email }}
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="col">
+                  <strong>Phone:</strong><br />{{ vol.phone }}
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- START Volunteer MODAL -->
-<div class="modal fade bd-example-modal-lg mainModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-*ngIf="selected">
+<!--  -->
+
+<!-- START PET MODAL -->
+<div
+  class="modal fade bd-example-modal-lg mainModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+  *ngIf="selected"
+>
   <div class="modal-dialog modal-lg">
-   <div class="modal-content">
+    <div class="modal-content">
       <div class="modal-header bg-primary text-light">
-        <h5 class="modal-title">{{selected?.fname}} {{selected?.lname}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title">{{ selected?.fname }} {{ selected?.lname }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
-
-          <div class="row">
-              <div class="col-5 volCardImage">
-                <img *ngIf="selected.images[0]" src="{{selected?.images[0]?.imageUrl}}">
+        <!-- PET IMAGE SLIDE -->
+        <div
+          id="selectedPetCtrl"
+          class="carousel slide petCarosel"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div
+              class="carousel-item {{ i == 0 ? 'active' : '' }}"
+              *ngFor="let image of selected?.images; let i = index"
+            >
+              <div class="petModalImages">
+                <img src="{{ image.imageUrl }}" />
+                \
               </div>
+            </div>
           </div>
+          <a
+            class="carousel-control-prev"
+            href="#selectedPetCtrl"
+            role="button"
+            data-slide="prev"
+            *ngIf="selected.images.length > 1"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#selectedPetCtrl"
+            role="button"
+            data-slide="next"
+            *ngIf="selected.images.length > 1"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
 
-<!-- VOLUNTEER DESCRIPTION -->
-<div class="container">
-    <p class="featuredText text-center text-primary">Volunteer Description</p>
-            <table class="table container">
-              <tr class="row">
-                <td class="col-4">
-                  <strong>Age:</strong>
-                </td>
-                <td class="col-8">
-                  {{selected.age}}
-                </td>
-              </tr>
+        <!-- PET PESCRIPTION -->
+        <div class="container">
+          <p class="featuredText text-center text-primary">
+            Volunteer Description
+          </p>
+          <table class="table container">
+            <tr class="row">
+              <td class="col-4">
+                <strong>Volunteer Skills:</strong>
+              </td>
+              <td class="col-8">
+                <span *ngFor="let skill of selected.skills; let i = index">
+                  <span *ngIf="i + 1 === selected.skills.length">
+                    {{ skill.name }}
+                  </span>
+                  <span *ngIf="i + 1 !== selected.skills.length">
+                    {{ skill.name }},
+                  </span>
+                </span>
+              </td>
+            </tr>
 
-              <tr class="row">
-                <td class="col-4">
-                  <strong>Phone:</strong>
-                </td>
-                <td class="col-8">
-                  {{selected.phone}}
-                </td>
-              </tr>
+            <tr class="row">
+              <td class="col-4">
+                <strong>Email:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.email }}
+              </td>
+            </tr>
 
-              <tr class="row">
-                <td class="col-4">
-                  <strong>Email:</strong>
-                </td>
-                <td class="col-8">
-                  {{selected.email}}
-                </td>
-              </tr>
+            <tr class="row">
+              <td class="col-4">
+                <strong>Phone #:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.phone }}
+              </td>
+            </tr>
+          </table>
 
-                  <tr class="row"><strong>Skill:</strong>
-                <tr class="row">
-                    <div *ngFor="let skill of selected.skills">
-                  <td class="col"><br>{{skill.name}}</td>
+          <!-- CONTACT BOX START -->
+          <div
+            class="col-lg-12 col-md-8 col-sm-12 text-center commentBox shelterInfo"
+          >
+            <form
+              class="form-group"
+              action="MAILTO:"
+              method="POST"
+              enctype="text/plain"
+            >
+              <div class="row contactText">
+                <h1 class="text-primary">Contact Me</h1>
+              </div>
+
+              <!-- Visible only if not logged in -->
+              <div class="row">
+                <div class="col logDiv">
+                  <div class="row">
+                    <div class="col-lg-3 col-sm-2 col-xs-12">
+                      <!-- <label for="email" style="margin-top: 7px;">Email:</label> -->
+                    </div>
+                    <div class="col-lg-12 col-sm-10 col-xs-12">
+                      <input
+                        id="email"
+                        class="form-control"
+                        type="text"
+                        placeholder="{{ selected.email }}"
+                      />
+                    </div>
                   </div>
-                </tr>
-            </table>
+                </div>
+
+                <!-- <div class="col-lg-2 logDiv">
+               - OR -
+               </div>
+
+              <div class="col-lg-5 logDiv">
+               <button class="btn btn-sm btn-primary formBtn2" (click)="toggleLogin()">
+               Login</button>
+              </div> -->
+              </div>
+
+              <input
+                type="hidden"
+                value="{{ selected.email }}"
+                name="email"
+              />
+
+              <select class="form-control subjectBox" id="subject">
+                <option value="adopt" disabled>Subject</option>
+                <option value="volunteer">Volunteering</option>
+                <option value="other">Other</option>
+              </select>
+
+              <textarea
+                name="comment"
+                form="usrform"
+                class="form-control"
+                placeholder="Enter text here..."
+              ></textarea>
+              <button class="btn btn-success formBtn" type="submit">
+                Submit
+              </button>
+            </form>
           </div>
+          <!-- CONTACT BOX END -->
+        </div>
+
         <!--MODAL CLOSE BUTTON-->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
-</div>
-<BR>
+  </div>
+  <BR />
 </div>

@@ -1,35 +1,55 @@
-
 <div class="container-fluid">
   <div class="row contactText">
-    <h1 class="text-primary"> Fosters </h1>
+    <h1 class="text-primary">Fosters</h1>
   </div>
 
   <div class="row">
-    <div *ngFor="let foster of fosters" class="col-lg-4 col-md-6 col-sm-12 col-12">
-      <div class="petCard container" (click)="openModule(foster)" data-toggle="modal" data-target=".bd-example-modal-lg">
-         <div class="row">
-            <div class="col-5 petCardImage">
-              <img *ngIf="foster.user.images[0]" src="{{foster.user.images[0]?.imageUrl}}">
-              <img *ngIf="!foster.user.images[0]" src="../../../assets/img/noprofile.png">
-            </div>
-            <div class="col-7 cardContent">
-              <div class="row">
-                <div class="col bg-primary text-light petName">
-                  {{foster.user.fname}} {{foster.user.lname}}
-                </div>
+    <div
+      *ngFor="let foster of fosters"
+      class="col-lg-4 col-md-6 col-sm-12 col-12"
+    >
+      <div
+        class="petCard container"
+        (click)="openModule(foster)"
+        data-toggle="modal"
+        data-target=".bd-example-modal-lg"
+      >
+        <div class="row">
+          <div class="col-5 petCardImage">
+            <img
+              *ngIf="foster.user.images[0]"
+              src="{{ foster.user.images[0]?.imageUrl }}"
+            />
+            <img
+              *ngIf="!foster.user.images[0]"
+              src="../../../assets/img/noprofile.png"
+            />
+          </div>
+          <div class="col-7 cardContent">
+            <div class="row">
+              <div class="col bg-primary text-light petName">
+                {{ foster.user.fname }} {{ foster.user.lname }}
               </div>
+            </div>
 
-               <table class="table" style="margin-bottom: 0px">
-                <tr class="row">
-                  <td class="col"><strong>Available Slots:</strong><br>{{foster.maxFoster - foster.fosterPets.length}}</td>
-                </tr>
-                <tr class="row">
-                  <td class="col"><strong>Willing to Foster:</strong><br>
-                    <div *ngIf="foster.breedList.length < 1">No Preference</div>
-                    <div *ngFor="let breed of foster.breedList">{{breed.name}}</div>
-                  </td>
-                </tr>
-              </table>
+            <table class="table" style="margin-bottom: 0px">
+              <tr class="row">
+                <td class="col">
+                  <strong>Available Slots:</strong><br />{{
+                    foster.maxFoster - foster.fosterPets.length
+                  }}
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="col">
+                  <strong>Willing to Foster:</strong><br />
+                  <div *ngIf="foster.breedList.length < 1">No Preference</div>
+                  <div *ngFor="let breed of foster.breedList">
+                    {{ breed.name }}
+                  </div>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
@@ -49,7 +69,9 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-primary text-light">
-        <h5 class="modal-title">{{ selected?.user.fname }} {{ selected?.user.lname }}</h5>
+        <h5 class="modal-title">
+          {{ selected?.user.fname }} {{ selected?.user.lname }}
+        </h5>
         <button
           type="button"
           class="close"
@@ -101,14 +123,16 @@
 
         <!-- PET PESCRIPTION -->
         <div class="container">
-          <p class="featuredText text-center text-primary">Foster Description</p>
+          <p class="featuredText text-center text-primary">
+            Foster Description
+          </p>
           <table class="table container">
             <tr class="row">
               <td class="col-4">
                 <strong>Available Slots for Foster Pets:</strong>
               </td>
               <td class="col-8">
-                {{ selected.maxFoster - selected.fosterPets.length}}
+                {{ selected.maxFoster - selected.fosterPets.length }}
               </td>
             </tr>
 
@@ -119,11 +143,11 @@
               <td class="col-8">
                 <span *ngIf="selected.breedList.length < 1">No Preference</span>
                 <span *ngFor="let breed of selected.breedList; let i = index">
-                  <span *ngIf="i+1 === selected.breedList.length">
-                    {{breed.name}}
+                  <span *ngIf="i + 1 === selected.breedList.length">
+                    {{ breed.name }}
                   </span>
-                  <span *ngIf="i+1 !== selected.breedList.length">
-                    {{breed.name}},
+                  <span *ngIf="i + 1 !== selected.breedList.length">
+                    {{ breed.name }},
                   </span>
                 </span>
               </td>
@@ -147,6 +171,73 @@
               </td>
             </tr>
           </table>
+
+          <!-- CONTACT BOX START -->
+          <div
+            class="col-lg-12 col-md-8 col-sm-12 text-center commentBox shelterInfo"
+          >
+            <form
+              class="form-group"
+              action="MAILTO:"
+              method="POST"
+              enctype="text/plain"
+            >
+              <div class="row contactText">
+                <h1 class="text-primary">Contact Me</h1>
+              </div>
+
+              <!-- Visible only if not logged in -->
+              <div class="row">
+                <div class="col logDiv">
+                  <div class="row">
+                    <div class="col-lg-3 col-sm-2 col-xs-12">
+                      <!-- <label for="email" style="margin-top: 7px;">Email:</label> -->
+                    </div>
+                    <div class="col-lg-12 col-sm-10 col-xs-12">
+                      <input
+                        id="email"
+                        class="form-control"
+                        type="text"
+                        placeholder="{{ selected.user.email }}"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="col-lg-2 logDiv">
+                - OR -
+                </div>
+
+               <div class="col-lg-5 logDiv">
+                <button class="btn btn-sm btn-primary formBtn2" (click)="toggleLogin()">
+                Login</button>
+               </div> -->
+              </div>
+
+              <input
+                type="hidden"
+                value="{{ selected.user.email }}"
+                name="email"
+              />
+
+              <select class="form-control subjectBox" id="subject">
+                <option value="adopt" disabled>Subject</option>
+                <option value="foster">Fostering</option>
+                <option value="other">Other</option>
+              </select>
+
+              <textarea
+                name="comment"
+                form="usrform"
+                class="form-control"
+                placeholder="Enter text here..."
+              ></textarea>
+              <button class="btn btn-success formBtn" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+          <!-- CONTACT BOX END -->
         </div>
         <!--MODAL CLOSE BUTTON-->
       </div>
