@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row contactText">
-    <h1 class="text-primary">Fosters</h1>
+    <h1 class="text-primary" style="margin-top: 40px;">Fosters</h1>
   </div>
 
   <div class="row">
@@ -173,69 +173,67 @@
           </table>
 
           <!-- CONTACT BOX START -->
-          <div
-            class="col-lg-12 col-md-8 col-sm-12 text-center commentBox shelterInfo"
-          >
-            <form
-              class="form-group"
-              action="MAILTO:"
-              method="POST"
-              enctype="text/plain"
-            >
+          <div class="col-lg-12 col-md-8 col-sm-12 text-center commentBox shelterInfo">
+
+
+
+            <form class="form-group" #emailForm="ngForm">
+
               <div class="row contactText">
-                <h1 class="text-primary">Contact Me</h1>
+                <div class="col">
+                  <h1 class="text-primary"> Contact Me</h1>
+                </div>
+                <div class="col">
+                  <div class="updateText" *ngIf="sentEmailMessage">Email sent!</div>
+                </div>
               </div>
 
               <!-- Visible only if not logged in -->
+              <!-- *ngIf="!isAnyoneLoggedIn" -->
               <div class="row">
                 <div class="col logDiv">
                   <div class="row">
                     <div class="col-lg-3 col-sm-2 col-xs-12">
-                      <!-- <label for="email" style="margin-top: 7px;">Email:</label> -->
+                      <label for="email" style="margin-top: 7px;">Email:</label>
                     </div>
-                    <div class="col-lg-12 col-sm-10 col-xs-12">
-                      <input
-                        id="email"
-                        class="form-control"
-                        type="text"
-                        placeholder="{{ selected.user.email }}"
-                      />
-                    </div>
+                    <div class="col-lg-9 col-sm-10 col-xs-12">
+                    <input id="email" class="form-control" type="text" name="email" ngModel>
                   </div>
                 </div>
-
-                <!-- <div class="col-lg-2 logDiv">
-                - OR -
-                </div>
-
-               <div class="col-lg-5 logDiv">
-                <button class="btn btn-sm btn-primary formBtn2" (click)="toggleLogin()">
-                Login</button>
-               </div> -->
+               </div>
               </div>
 
-              <input
-                type="hidden"
-                value="{{ selected.user.email }}"
-                name="email"
-              />
 
-              <select class="form-control subjectBox" id="subject">
-                <option value="adopt" disabled>Subject</option>
-                <option value="foster">Fostering</option>
-                <option value="other">Other</option>
-              </select>
+              <!--ADD BACK WHEN DONE!-->
+              <!-- *ngIf="isAnyoneLoggedIn"  -->
+              <!-- <input type="text" value="{{account.email}}" name="email"> -->
+              <div class="row">
+                <div class="col logDiv">
+                  <div class="row">
+                    <div class="col-lg-3 col-sm-2 col-xs-12">
+                      <label for="email" style="margin-top: 7px;">Subject:</label>
+                    </div>
+                    <div class="col-lg-9 col-sm-10 col-xs-12">
 
-              <textarea
-                name="comment"
-                form="usrform"
-                class="form-control"
-                placeholder="Enter text here..."
-              ></textarea>
-              <button class="btn btn-success formBtn" type="submit">
-                Submit
-              </button>
+                        <select class="form-control subjectBox" id="subject" name="subject" ngModel>
+                          <option value="Foster Request">Fostering</option>
+                          <option value="Misc Subject - ForeverFriends">Other</option>
+                        </select>
+
+                      </div>
+                    </div>
+                   </div>
+                  </div>
+              <!-- <input type="text" name="subject" ngModel> -->
+
+              <!-- form="usrform"  -->
+              <textarea name="body" class="form-control" ngModel>Enter text here...</textarea>
+
+              <button class="btn btn-success formBtn" (click)="sendEmail(emailForm)">Submit</button>
             </form>
+
+
+
           </div>
           <!-- CONTACT BOX END -->
         </div>
