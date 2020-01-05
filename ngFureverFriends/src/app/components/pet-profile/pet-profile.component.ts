@@ -180,6 +180,7 @@ export class PetProfileComponent implements OnInit {
     this.petService.destroy(id).subscribe(
       (data) => {
         this.loadShelterPets(this.shelter.id);
+        this.selectedPet = null;
       },
       err => {
         console.error(err);
