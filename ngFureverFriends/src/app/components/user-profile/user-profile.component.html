@@ -1,47 +1,69 @@
-<br>
 <div class="bodyComponent" *ngIf="user">
 
 <!-- PROFILE PHOTO -->
-<div class="container">
-    <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-12">
-        <div class="profilePhoto">
-            <!-- <img
-            *ngIf="user.images[0]"
-            src="{{ (user?.images)[0]?.imageUrl }}" height="200px"
-          /> -->
-          <img src="{{user.images[0].imageUrl}}" height="200px">
+<div class="container profileBody bg-light">
+  <div class="row">
+    <div class="col-lg-3 text-center">
+
+      <div class="profilePhoto" style="margin-top: 30px;">
+        <img src="{{user?.images[0]?.imageUrl}}" height="100px">
+      </div>
+
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-top: 20px; margin-bottom: 30px;">Update Profile</button>
+
+    </div>
+    <div class="col-lg-9">
+      <div class="card">
+  <!-- Name and Username -->
+        <div class="row text-light bg-primary container titleBox text-center" >
+          <div class=col-lg-4>{{user.fname}} {{user.lname}}</div>
+          <div class=col-lg-4>({{user.account.username}})</div>
+          <div class=col-lg-4>
+
+          </div>
         </div>
+
+ <!-- User information -->
+        <div class="container">
+          <table class="table">
+            <tr class="row">
+              <td class="col-lg-2"><strong>Age:</strong></td>
+              <td class="col-lg-10">{{user.age}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-lg-2"><strong>Phone:</strong></td>
+              <td class="col-lg-10">{{user.phone}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-lg-2"><strong>Email:</strong></td>
+              <td class="col-lg-10">{{user.email}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-lg-2"><strong>Address:</strong></td>
+              <td class="col-lg-10" *ngIf="!user?.address?.street2">{{user.address.street}}<br>
+                {{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}
+              </td>
+              <td class="col-lg-10" *ngIf="user?.address?.street2">{{user.address.street}}<br>
+                {{user.address.street2}}<br>
+                {{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}
+              </td>
+            </tr>
+          </table>
       </div>
     </div>
+
+    </div>
   </div>
-  <br>
-<!-- USER PROFILE NAME -->
-<div class="container bg-light mainInfo">
+  </div>
 
-    <div class="row">
-
-      <!-- User Info -->
-      <div class="card">
-          <!-- <p>Id:{{user.id}} </p> -->
-
-          <h3 class="bg-primary text-light titleBox">{{user.fname}} {{user.lname}}</h3>
-          <p>Age: {{user.age}}</p>
-          <p>Phone: {{user.phone}}</p>
-          <p>Email: {{user.email}}</p>
-          <p>Account: {{user.account.role}}</p>
-          <p>Address: {{user.address.street}}</p>
-          <p>{{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}</p>
-      </div>
-      <!-- Volunteer Info -->
-      <div class="card">
+<!-- VOL INFO -->
+<!--  <div class="card">
           <h3 class="bg-primary text-light titleBox"> Volunteer Info </h3>
         <p>Skills: {{user.skills}}</p>
         <p *ngFor="let skill of user.skills"> {{skill.name}} </p>
-      </div>
-      <!-- Foster Info -->
-</div>
-</div>
+      </div> -->
+
+
 
 <!-- The user may pick if the -->
 <div class="container volOptions">
@@ -103,7 +125,7 @@ Max pets willing to foster:<br>
 </form >
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Update Profile</button>
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Update Profile</button> -->
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -159,6 +181,7 @@ Max pets willing to foster:<br>
   </div>
 </div>
 
+</div>
 </div>
 
 

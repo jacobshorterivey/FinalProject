@@ -1,9 +1,20 @@
+.bodyComponent {
+  background-color: rgb(236, 236, 236, 0.9);
+  min-height: calc(100vh - 60px);
+}
+
+.profileBody {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
+  border-radius: 10px; /* 10px rounded corners */
   margin: 4px 4px 4px 8px;
+  padding: 10px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -12,18 +23,47 @@
 }
 
 /* Add some padding inside the card container */
-.container {
+/* .container {
   padding: 5px 16px;
+} */
+
+.titleBox {
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 10px;
+  margin-left: 0px;
 }
 
-img {
+/* img {
   border-radius: 5px 5px 0 0;
-}
+} */
 
 /* Margins for p */
-p {
+/* p {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-right: 10px;
   margin-left: 10px;
+} */
+
+.profilePhoto {
+  margin: auto;
+  /* margin-top: -100px; */
+  min-height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-width: 2px;
+  border-color: #5576c4;;
+  border-style: solid;
+  border-radius: 10px;
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.profilePhoto img {
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
 }
