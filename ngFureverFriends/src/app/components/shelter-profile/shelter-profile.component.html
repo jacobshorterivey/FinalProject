@@ -69,7 +69,7 @@
     <div class="row">
 
   <!-- CONTACT INFO -->
-      <div class="col shelterInfo">
+      <div class="col shelterInfo" *ngIf="!editShelter">
         <p><strong>Email:</strong> <br>
           {{selected?.email}}</p>
 
@@ -94,8 +94,22 @@
        </p>
 
        <div class="col updateShelterInfo">
-         <button class="btn btn-primary">Update Info</button>
+         <button class="btn btn-primary" (click)="editShelter = selected">Update Info</button>
        </div>
+      </div>
+      <div class="col shelterInfo" *ngIf="editShelter">
+        <p><strong>Email:</strong><br>
+        <input type = "text" name = "email" placeholder="selected.email" default="selected.email" [(ngModel)]="editShelter.email"></p><br>
+        <p><strong>Phone:</strong><br>
+        <input type = "text" name = "phone" placeholder="selected.phone" default="selected.phone" [(ngModel)]="editShelter.phone"></p><br>
+       <p> <strong>Address:</strong><br>
+        <input type = "text" name = "address.street" placeholder="selected.address.street" default="selected.address.street" [(ngModel)]="editShelter.address.street"><br>
+        <input *ngIf="selected.address.street2" type = "text" name = "address.street2" placeholder="selected.address.street2" default="selected.address.street2" [(ngModel)]="editShelter.address.street2"><br *ngIf="selected.address.street2">
+        <input type = "text" name = "address.city" placeholder="selected.address.city" default="selected.address.city" [(ngModel)]="editShelter.address.city"><br>
+        <input type = "text" name = "address.stateAbbr" placeholder="selected.address.stateAbbr" default="selected.address.stateAbbr" [(ngModel)]="editShelter.address.stateAbbr"><br>
+        <input type = "text" name = "address.zip" placeholder="selected.address.zip" default="selected.address.zip" [(ngModel)]="editShelter.address.zip"></p><br>
+        <button class="btn btn-primary" (click)="updateShelter()">Save</button>
+        <button class="btn btn-primary" (click)="editShelter = null">Cancel</button>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-12 text-center commentBox shelterInfo" *ngIf="!isShelterLoggedIn">
         <form class="form-group" action="MAILTO:" method="POST" enctype="text/plain">

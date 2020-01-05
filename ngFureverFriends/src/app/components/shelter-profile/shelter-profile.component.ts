@@ -22,6 +22,7 @@ export class ShelterProfileComponent implements OnInit {
   currentShelter: Shelter;
   isShelterLoggedIn: boolean;
   isAnyoneLoggedIn: boolean;
+  editShelter: Shelter;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService) { }
 
@@ -57,7 +58,18 @@ export class ShelterProfileComponent implements OnInit {
 
     }
   }
-
+  updateShelter() {
+    this.svc.update(this.editShelter.id, this.editShelter).subscribe(
+      data => {
+        console.log(data);
+        // this.reload();
+      },
+      err => {
+        console.error(err);
+      }
+    );
+    // this.reload();
+  }
 
   loadEvents() {
     this.svc.index().subscribe(
