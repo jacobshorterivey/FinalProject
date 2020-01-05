@@ -164,6 +164,9 @@
             <button  (click)="login(loginForm)" class="btn btn-success lButton">Login</button>
           </form>
 
+          <p *ngIf="disableMessage" class="errorMsg text-center">
+            Account has been disabled or removed, please contact a site administrator
+          </p>
           <p *ngIf="errorMessage" class="errorMsg text-center">
             Invalid username or password.
           </p>

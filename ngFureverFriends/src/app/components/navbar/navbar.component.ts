@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   navbar = true;
   isUserLoggedIn: boolean;
   errorMessage: boolean;
+  disableMessage: boolean;
   user: User;
   searchKeyword: string = null;
   shelter: Shelter;
@@ -70,7 +71,7 @@ export class NavbarComponent implements OnInit {
       error => {
         console.log('error logging in.');
         console.log(error);
-        this.errorMessage = true;
+        this.disableMessage = true;
       }
     );
     this.accountService.index(form.value.username, form.value.password).subscribe(
