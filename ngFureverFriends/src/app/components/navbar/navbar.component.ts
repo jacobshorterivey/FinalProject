@@ -81,7 +81,13 @@ export class NavbarComponent implements OnInit {
           if (accounts[i].username === this.logUsername) {
             this.account = accounts[i];
             localStorage.setItem('account', JSON.stringify(this.account));
-            this.getUser(true);
+            if (this.account.active) {
+              this.getUser(true);
+            } else {
+              localStorage.removeItem('account');
+              localStorage.removeItem('credentials');
+              this.errorMessage = true;
+            }
           }
         }
       },
@@ -117,7 +123,7 @@ export class NavbarComponent implements OnInit {
     //   (fail) => {console.error(fail);
     //   });
     if (!this.user || !this.shelter) {
-      if (this.account.role === 'user') {
+      if (this.account.role === 'user' || this.account.role === 'admin') {
         this.userService.index().subscribe(
           data => {
             const users = data;

@@ -32,6 +32,7 @@ import { PetprofComponent } from './components/petprof/petprof.component';
 import { NavSearchComponent } from './components/nav-search/nav-search.component';
 import { FilterPetsPipe } from './pipes/filter-pets.pipe';
 import { BreedSeparatorPipe } from './pipes/breed-separator.pipe';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { BreedSeparatorPipe } from './pipes/breed-separator.pipe';
     PetprofComponent,
     NavSearchComponent,
     FilterPetsPipe,
-    BreedSeparatorPipe
+    BreedSeparatorPipe,
+    AdminPageComponent
   ],
   imports: [
     FormsModule,

@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { EmailService } from './../../services/email.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShelterService } from 'src/app/services/shelter.service';
 import { Shelter } from './../../models/shelter';
 import { Pet } from 'src/app/models/pet';
 import { AuthService } from 'src/app/services/auth.service';
+import { EmailServiceImpl } from 'src/app/models/email';
 
 @Component({
   selector: 'app-shelter-profile',
@@ -17,6 +20,9 @@ export class ShelterProfileComponent implements OnInit {
   urlId: number;
   selected: Shelter;
   profilePic: string;
+  newEmail: EmailServiceImpl;
+  userEmail: string;
+  sentEmailMessage: boolean;
   pets: Pet[] = [];
   selectedPet: Pet;
   currentShelter: Shelter;
@@ -24,7 +30,8 @@ export class ShelterProfileComponent implements OnInit {
   isAnyoneLoggedIn: boolean;
   editShelter: Shelter;
 
-  constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService) { }
+  constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService,
+              private emailSvc: EmailService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.account = JSON.parse(localStorage.getItem('account'));
@@ -110,4 +117,22 @@ export class ShelterProfileComponent implements OnInit {
     this.isAnyoneLoggedIn = this.auth.checkLogin();
   }
 
+  sendEmail(email: NgForm) {
+    this.newEmail = email.value;
+    this.newEmail.toAddress = 'fureverfriendsemail@gmail.com';
+    // tslint:disable-next-line: max-line-length
+    this.newEmail.body = 'Please send replies to the following email: <br/>' + email.value.email + '<br/><br/>----------------------<br/>Original Message:<br/>' + email.value.body;
+    this.emailSvc.send(this.newEmail).subscribe(
+      (pass) => {
+        email.reset();
+      },
+      (fail) => {
+        email.reset();
+      }
+    );
+    // TRIGGERS UPDATE MESSAGE
+    this.sentEmailMessage = false;
+    this.cdRef.detectChanges();
+    this.sentEmailMessage = true;
+  }
 }

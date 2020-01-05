@@ -1,145 +1,308 @@
-<br>
 <div class="bodyComponent" *ngIf="user">
 
 <!-- PROFILE PHOTO -->
-<div class="container">
-    <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-12">
-        <div class="profilePhoto">
-            <!-- <img
-            *ngIf="user.images[0]"
-            src="{{ (user?.images)[0]?.imageUrl }}" height="200px"
-          /> -->
-          <img src="{{user.images[0].imageUrl}}" height="200px">
+<div class="container profileBody bg-light">
+  <div class="row">
+    <div class="col-lg-3 text-center">
+
+      <div class="profilePhoto" style="margin-top: 30px;">
+        <img src="{{user?.images[0]?.imageUrl}}" height="100px">
+      </div>
+
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-top: 20px; margin-bottom: 30px;">Update Profile</button>
+
+    </div>
+    <div class="col-lg-9">
+      <div class="card">
+  <!-- Name and Username -->
+        <div class="row text-light bg-primary container titleBox text-center" >
+          <div class=col-lg-4>{{user.fname}} {{user.lname}}</div>
+          <div class=col-lg-4>({{user.account.username}})</div>
+          <div class=col-lg-4>
+
+          </div>
         </div>
+
+ <!-- User information -->
+        <div class="container">
+          <table class="table">
+            <tr class="row">
+              <td class="col-lg-2"><strong>Age:</strong></td>
+              <td class="col-lg-10">{{user.age}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-lg-2"><strong>Phone:</strong></td>
+              <td class="col-lg-10">{{user.phone}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-lg-2"><strong>Email:</strong></td>
+              <td class="col-lg-10">{{user.email}}</td>
+            </tr>
+            <tr class="row">
+              <td class="col-lg-2"><strong>Address:</strong></td>
+              <!-- <td class="col-lg-10" *ngIf="!user?.address?.street2">{{user.address.street}}<br>
+                <h6>{{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}</h6>
+              </td> -->
+              <td class="col-lg-10">
+                <h6 *ngIf="user?.address?.street">{{user.address.street}}</h6>
+                <h6 *ngIf="user?.address?.street2">{{user.address.street2}}<br></h6>
+                <h6 *ngIf="!user?.address?.city">{{user.address.stateAbbr}} {{user.address.zip}}</h6>
+                <h6 *ngIf="user?.address?.city">{{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}</h6>
+              </td>
+            </tr>
+          </table>
       </div>
     </div>
+
+    </div>
   </div>
-  <br>
-<!-- USER PROFILE NAME -->
-<div class="container bg-light mainInfo">
+
+<!--Update volunteer and foster -->
+  <div class="row updateOptionsDiv">
+<!-- Volunteer Checkbox -->
+  <div class="col-lg-6 volunteerDiv">
 
     <div class="row">
-
-      <!-- User Info -->
-      <div class="card">
-          <!-- <p>Id:{{user.id}} </p> -->
-
-          <h3 class="bg-primary text-light titleBox">{{user.fname}} {{user.lname}}</h3>
-          <p>Age: {{user.age}}</p>
-          <p>Phone: {{user.phone}}</p>
-          <p>Email: {{user.email}}</p>
-          <p>Account: {{user.account.role}}</p>
-          <p>Address: {{user.address.street}}</p>
-          <p>{{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}</p>
+      <div class="col">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="customSwitch1" [(ngModel)]="isVolEmpty" (click)="volunterSwitch()">
+          <label class="custom-control-label" for="customSwitch1">Volunteer</label>
+        </div>
+        </div>
+      <div class="col">
+        <div class="updateText" *ngIf="updateMessage">update saved!</div>
       </div>
-      <!-- Volunteer Info -->
-      <div class="card">
-          <h3 class="bg-primary text-light titleBox"> Volunteer Info </h3>
-        <p>Skills: {{user.skills}}</p>
-        <p *ngFor="let skill of user.skills"> {{skill}} </p>
+    </div>
+
+    <div *ngIf="!isVolEmpty" class="divEncl">
+      Volunteer service is disabled.  Shelters will not be able to find you in a volunteer search while disabled.
+    </div>
+  <!--Update volunteer skills-->
+    <div class="divEncl" *ngIf="isVolEmpty">
+      <p><strong>Your skills:</strong></p>
+    <form>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitchc" name="c" [(ngModel)]="skills[2].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchc">General Pet Care</label>
       </div>
-      <!-- Foster Info -->
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitcha" name="a" [(ngModel)]="skills[0].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitcha">Grooming</label>
+      </div>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" name="b" class="custom-control-input" id="customSwitchb" [(ngModel)]="skills[1].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchb">Training</label>
+      </div>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitchd" name="d" [(ngModel)]="skills[3].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchd">Vet</label>
+      </div>
+
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitche" name="e" [(ngModel)]="skills[4].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitche">Customer Service</label>
+      </div>
+
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitchf" name="f" [(ngModel)]="skills[5].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchf">General Maintenance & Repair</label>
+      </div>
+     </form>
+    </div>
+  </div>
+
+<!-- Foster Checkbox -->
+  <div class="col-lg-6 fosterDiv">
+    <div class="row">
+      <div class="col">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitch2" [(ngModel)]="isFosterActive" (click)="fosterSwitch()">
+        <label class="custom-control-label" for="customSwitch2">Foster</label>
+      </div>
+     </div>
+     <div class="col">
+      <div class="updateText" *ngIf="updateMessage2">update saved!</div>
+    </div>
+    </div>
+
+
+  <!--Update foster div-->
+    <div *ngIf="!isFosterActive" class="divEncl">
+      Foster service is disabled.  Shelters will not be able to find you in a foster search while disabled.
+    </div>
+
+    <div *ngIf="isFosterActive" class="divEncl">
+    Max pets willing to foster:<br>
+    <form *ngIf="foster">
+      <input type="number" min="0" name="maxFoster" value="foster?.maxFoster"
+             [(ngModel)]="foster.maxFoster" class="form-control" (change)="updateFoster()">
+      <!-- <button class="btn btn-primary btn-sm" (click)="updateFoster(foster)">Update</button> -->
+    </form >
+  </div>
+  </div>
+
+  </div>
+
+  <div class="adminCenter text-center" *ngIf="admin">
+    <h3 class="AdminCTitle">Admin Center:</h3>
+    <button class="btn btn-primary">Enable / Disable Users</button>
+  </div>
 </div>
-</div>
+
+
+
 
 <!-- The user may pick if the -->
 <div class="container volOptions">
-  <!-- Volunteer Option -->
-  <div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-    <label class="custom-control-label" for="customSwitch1">Volunteer</label>
-  </div>
 
-  <!-- Foster Option -->
-  <!-- <div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="customSwitch2">
-    <label class="custom-control-label" for="customSwitch2">Foster</label>
-  </div>
-</div>
-
-<form>
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-  <label class="form-check-label" for="defaultCheck1">
-    Default checkbox
-  </label>
-</form> -->
-
-
-<!-- <form>
-  <fieldset name="user.skills" [(ngModel)]="user.skills">
-    <input type="checkbox" name="skills" value="1" > Grooming <br>
-    <input type="checkbox" name="skills" value="2"> Training  <br>
-    <input type="checkbox" name="skills" value="3"> General pet care  <br>
-    <input type="checkbox" name="skills" value="4"> Vet  <br>
-    <input type="checkbox" name="skills" value="5"> Customer Service  <br>
-    <input type="checkbox" name="skills" value="6"> General Maintenance & Repair  <br>
-  </fieldset>
-  <button class="btn btn-primary btn-sm" (click)="updateVolunteer(user)">Update</button>
-</form> -->
-
-Max pets willing to foster:<br>
-<form *ngIf="foster">
-  <input type="number" min="0" name="maxFoster" value="foster?.maxFoster" [(ngModel)]="foster.maxFoster">
-  <button class="btn btn-primary btn-sm" (click)="updateFoster(foster)">Update</button>
-</form >
-
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Update Profile</button>
+<!-- UPDATE MODAL -->
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-
+      <div class="modal-header bg-dark text-light">
+        <h5 class="modal-title" id="staticBackdropLabel">Update Profile</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
       <div class="container">
         <form>
-          <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
-          Username: <input type="text" value="{{user.account.username}}" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
-          Password: <input type="password" value="{{user.account.password}}" name="password" class="form-control" [(ngModel)]="user.account.password"> <br>
-          <hr>
-          Personal Information:<BR><BR>
+        <p class="bg-primary text-light text-center updateTitles"><strong>Account</strong></p>
+        <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
+        <div class="row">
+          <div class="col-3 updateLabel">
+            Username:
+          </div>
+          <div class="col-9">
+            <input type="text" name="username" class="form-control" [(ngModel)]="user.account.username">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3 updateLabel">
+            Password:
+          </div>
+          <div class="col-9">
+            <input type="text" name="password" class="form-control" [(ngModel)]="pass">
+          </div>
+        </div>
 
-          First Name: <input type="text" value="{{user.fname}}" class="form-control" name="fname" [(ngModel)]="user.fname">
-          Last Name: <input type="text" value="{{user.lname}}" class="form-control" name="lname" [(ngModel)]="user.lname">
-          Age: <input type="number" min="1" value="{{user.age}}" class="form-control" name="age" [(ngModel)]="user.age">
-          Phone: <input type="text" value="{{user.phone}}" class="form-control" name="phone" [(ngModel)]="user.phone">
-          Email: <input type="text" value="{{user.email}}" class="form-control" name="email" [(ngModel)]="user.email">
+       <br>
+       <p class="bg-primary text-light text-center updateTitles"><strong>Personal Information</strong></p>
+       <div class="row">
+        <div class="col-3 updateLabel">
+          First Name:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.fname}}" class="form-control" name="fname" [(ngModel)]="user.fname">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Last Name:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.lname}}" class="form-control" name="lname" [(ngModel)]="user.lname">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Age:
+        </div>
+        <div class="col-9">
+          <input type="number" min="1" value="{{user.age}}" class="form-control" name="age" [(ngModel)]="user.age">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Phone:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.phone}}" class="form-control" name="phone" [(ngModel)]="user.phone">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Email:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.email}}" class="form-control" name="email" [(ngModel)]="user.email">
+        </div>
+      </div>
 
-          <hr>
-          Address: <BR><BR>
-            Steet: <input type="text" value="{{user.address.street}}" class="form-control" name="street" [(ngModel)]="user.address.street">
-            Street 2: <input type="text" value="{{user.address.street2}}" class="form-control" name="street2" [(ngModel)]="user.address.street2">
-            City: <input type="text" value="{{user.address.city}}" class="form-control" name="city" [(ngModel)]="user.address.city">
-            State: <input type="text" value="{{user.address.stateAbbr}}" class="form-control" name="stateAbbr" [(ngModel)]="user.address.stateAbbr">
-            Zip: <input type="text" value="{{user.address.zip}}" class="form-control" name="zip" [(ngModel)]="user.address.zip">
-          <hr>
+      <br>
+      <p class="bg-primary text-light text-center updateTitles"><strong>Address</strong></p>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Street:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.street}}" class="form-control" name="street" [(ngModel)]="user.address.street">
+        </div>
+       </div>
+       <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Street 2:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.street2}}" class="form-control" name="street2" [(ngModel)]="user.address.street2">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          City:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.city}}" class="form-control" name="city" [(ngModel)]="user.address.city">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          State:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.stateAbbr}}" class="form-control" name="stateAbbr" [(ngModel)]="user.address.stateAbbr">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          State:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.zip}}" class="form-control" name="zip" [(ngModel)]="user.address.zip" required>
+        </div>
+      </div>
+      <br>
 
-          <button class="btn btn-primary" (click)="updateUser()">Update</button>
+      <p class="bg-primary text-light text-center updateTitles"><strong>Profile Picture</strong></p>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Image URL:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.images[0].imageUrl}}" class="form-control" name="imageUrl" [(ngModel)]="user.images[0].imageUrl">
+        </div>
+       </div>
 
-            <!-- Add image later... -->
-        </form>
+      <br>
+
+      <button class="btn btn-success formBtn" (click)="updateUser()">Update</button>
+       </form>
      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
     </div>
   </div>
 </div>
 
 </div>
-
-
-<div class="bodyComponent" *ngIf="admin">
-  Admin Center:<br>
-  <button class="btn-primary">Users</button>
 </div>

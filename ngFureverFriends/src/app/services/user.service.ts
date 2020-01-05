@@ -19,6 +19,7 @@ export class UserService {
     // if (!this.auth.checkLogin()) {
     //   return null;
     // }
+    console.log(this.auth.getCredentials());
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Basic ' + this.auth.getCredentials(),
