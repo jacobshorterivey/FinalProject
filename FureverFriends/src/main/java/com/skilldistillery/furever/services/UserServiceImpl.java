@@ -41,8 +41,15 @@ public class UserServiceImpl implements UserService {
 	public User showUser(int uid, Principal principal) {
 		Optional<User> ou = userRepo.findById(uid);
 		if (ou.isPresent()) {
-			if(ou.get().getAccount().getUsername().equals(principal.getName())) {
-			return ou.get();
+			if (ou.get().getAccount().getUsername().equals(principal.getName())) {
+				return ou.get();
+			} else {
+				User loggedUser = userRepo.findByAccountUsernameLike(principal.getName());
+				if (loggedUser.getAccount().getRole().equals("admin")) {
+					if (principal.getName().equals(loggedUser.getAccount().getUsername())) {
+						return ou.get();
+					}
+				}
 			}
 		}
 
@@ -78,8 +85,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUser(User updateUser, Integer uid, Principal principal) {
 		User origUser = showUser(uid, principal);
-		if (principal.getName().equals(origUser.getAccount().getUsername())) {
-			System.err.println("line 78 " + updateUser);
 			if (origUser != null) {
 				String encrypted = encoder.encode(updateUser.getAccount().getPassword());
 
@@ -88,6 +93,7 @@ public class UserServiceImpl implements UserService {
 					if (ua.isPresent()) {
 						Account uAcct = ua.get();
 						uAcct.setUsername(updateUser.getAccount().getUsername());
+						uAcct.setActive(updateUser.getAccount().isActive());
 						acctRepo.saveAndFlush(uAcct);
 					}
 				}
@@ -98,6 +104,7 @@ public class UserServiceImpl implements UserService {
 						updateUser.getAccount().setPassword(encrypted);
 						uAcct.setPassword(updateUser.getAccount().getPassword());
 //						uAcct.setPassword(encrypted);
+						uAcct.setActive(updateUser.getAccount().isActive());
 						acctRepo.saveAndFlush(uAcct);
 					}
 				}
@@ -145,14 +152,13 @@ public class UserServiceImpl implements UserService {
 
 				}
 			}
-		}
 		return origUser;
 	}
 
 	@Override
 	public List<User> getVolunteersBySkill(Integer sid) {
 
-			return userRepo.findBySkillsId(sid);
-		
+		return userRepo.findBySkillsId(sid);
+
 	}
 }
