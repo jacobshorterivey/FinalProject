@@ -4,9 +4,17 @@
 }
 
 .profileBody {
-  padding-top: 30px;
-  padding-bottom: 30px;
   min-height: calc(100vh - 60px);
+  padding: 0px;
+  padding-bottom: 40px;
+}
+
+.userProfileTop {
+  padding: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-image: linear-gradient(rgba(255,255,255, 0.8), rgba(255,255,255, 0.5)), url("../../../assets/img/profilebg.jpg");
+  background-attachment: fixed;
 }
 
 .card {
