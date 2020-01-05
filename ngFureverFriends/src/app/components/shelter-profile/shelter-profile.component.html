@@ -119,7 +119,12 @@
         <form class="form-group" #emailForm="ngForm">
 
           <div class="row contactText">
-            <h1 class="text-primary"> Contact Us</h1>
+            <div class="col">
+              <h1 class="text-primary"> Contact Us</h1>
+            </div>
+            <div class="col">
+              <div class="updateText" *ngIf="sentEmailMessage">Email sent!</div>
+            </div>
           </div>
 
           <!-- Visible only if not logged in -->

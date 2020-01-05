@@ -1,6 +1,6 @@
 import { NgForm } from '@angular/forms';
 import { EmailService } from './../../services/email.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShelterService } from 'src/app/services/shelter.service';
 import { Shelter } from './../../models/shelter';
@@ -22,6 +22,7 @@ export class ShelterProfileComponent implements OnInit {
   profilePic: string;
   newEmail: EmailServiceImpl;
   userEmail: string;
+  sentEmailMessage: boolean;
   pets: Pet[] = [];
   selectedPet: Pet;
   currentShelter: Shelter;
@@ -30,7 +31,7 @@ export class ShelterProfileComponent implements OnInit {
   editShelter: Shelter;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService,
-              private emailSvc: EmailService) { }
+              private emailSvc: EmailService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.account = JSON.parse(localStorage.getItem('account'));
@@ -122,8 +123,16 @@ export class ShelterProfileComponent implements OnInit {
     // tslint:disable-next-line: max-line-length
     this.newEmail.body = 'Please send replies to the following email: <br/>' + email.value.email + '<br/><br/>----------------------<br/>Original Message:<br/>' + email.value.body;
     this.emailSvc.send(this.newEmail).subscribe(
-      (pass) => {},
-      (fail) => {}
+      (pass) => {
+        email.reset();
+      },
+      (fail) => {
+        email.reset();
+      }
     );
+    // TRIGGERS UPDATE MESSAGE
+    this.sentEmailMessage = false;
+    this.cdRef.detectChanges();
+    this.sentEmailMessage = true;
   }
 }
