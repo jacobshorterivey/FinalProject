@@ -118,7 +118,7 @@ export class ShelterProfileComponent implements OnInit {
 
   sendEmail(email: NgForm) {
     this.newEmail = email.value;
-    this.newEmail.toAddress = 'zsaylors11@gmail.com';
+    this.newEmail.toAddress = 'fureverfriendsemail@gmail.com';
     // tslint:disable-next-line: max-line-length
     this.newEmail.body = 'Please send replies to the following email: <br/>' + email.value.email + '<br/><br/>----------------------<br/>Original Message:<br/>' + email.value.body;
     this.emailSvc.send(this.newEmail).subscribe(
