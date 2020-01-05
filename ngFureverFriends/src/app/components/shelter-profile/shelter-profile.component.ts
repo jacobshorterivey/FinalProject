@@ -69,6 +69,10 @@ export class ShelterProfileComponent implements OnInit {
     this.svc.update(this.selected.id, this.editShelter).subscribe(
       data => {
         console.log(data);
+        this.editShelter = null;
+        this.logout();
+        this.login(this.selected.account.username, this.selected.account.password);
+        console.log(this.selected.id + ' ' + this.selected.name);
         // this.reload();
       },
       err => {
@@ -76,6 +80,20 @@ export class ShelterProfileComponent implements OnInit {
       }
     );
     // this.reload();
+  }
+  logout() {
+    this.auth.logout();
+  }
+
+  login(username, password) {
+    this.auth.login(username, password).subscribe(
+      next => {
+
+      },
+      error => {
+        console.error('error logging in.');
+      }
+    );
   }
 
   loadEvents() {
