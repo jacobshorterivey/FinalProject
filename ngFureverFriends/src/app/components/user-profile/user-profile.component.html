@@ -55,33 +55,71 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-6">
-
-
-<!-- Volunteer Option -->
+<!--Update volunteer and foster -->
+  <div class="row updateOptionsDiv">
+<!-- Volunteer Checkbox -->
+  <div class="col-lg-6 volunteerDiv">
     <div class="custom-control custom-switch">
       <input type="checkbox" class="custom-control-input" id="customSwitch1" [(ngModel)]="isVolEmpty" (click)="volunterSwitch()">
       <label class="custom-control-label" for="customSwitch1">Volunteer</label>
     </div>
+
+    <div *ngIf="!isVolEmpty" class="divEncl">
+      Volunteer service is disabled.  Shelters will not be able to find you in a volunteer search while disabled.
+    </div>
   <!--Update volunteer skills-->
-    <div>
-    <form *ngIf="isVolEmpty">
-        <input type="checkbox" name="a" [(ngModel)]="skills[0].active" checked (change)=updateVolunteer()> Grooming <br>
-        <input type="checkbox" name="b" [(ngModel)]="skills[1].active" checked (change)=updateVolunteer()> Training  <br>
-        <input type="checkbox" name="c" [(ngModel)]="skills[2].active" checked (change)=updateVolunteer()> General pet care  <br>
-        <input type="checkbox" name="d" [(ngModel)]="skills[3].active" checked (change)=updateVolunteer()> Vet  <br>
-        <input type="checkbox" name="e" [(ngModel)]="skills[4].active" checked (change)=updateVolunteer()> Customer Service  <br>
-        <input type="checkbox" name="f" [(ngModel)]="skills[5].active" checked (change)=updateVolunteer()> General Maintenance & Repair  <br>
-    </form>
+    <div class="divEncl" *ngIf="isVolEmpty">
+    <form>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitcha" name="a" [(ngModel)]="skills[0].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitcha">Grooming</label>
+      </div>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" name="b" class="custom-control-input" id="customSwitchb" [(ngModel)]="skills[1].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchb">Training</label>
+      </div>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitchc" name="c" [(ngModel)]="skills[2].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchc">General Pet Care</label>
+      </div>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitchd" name="d" [(ngModel)]="skills[3].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchd">Vet</label>
+      </div>
+
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitche" name="e" [(ngModel)]="skills[4].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitche">Customer Service</label>
+      </div>
+
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitchf" name="f" [(ngModel)]="skills[5].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchf">General Maintenance & Repair</label>
+      </div>
+     </form>
     </div>
   </div>
 
-  <div class="col-lg-6">
+<!-- Foster Checkbox -->
+  <div class="col-lg-6 fosterDiv">
     <div class="custom-control custom-switch">
       <input type="checkbox" class="custom-control-input" id="customSwitch2" [(ngModel)]="isFosterActive" (click)="fosterSwitch()">
       <label class="custom-control-label" for="customSwitch2">Foster</label>
     </div>
+
+  <!--Update foster div-->
+    <div *ngIf="!isFosterActive" class="divEncl">
+      Foster service is disabled.  Shelters will not be able to find you in a foster search while disabled.
+    </div>
+
+    <div *ngIf="isFosterActive" class="divEncl">
+    Max pets willing to foster:<br>
+    <form *ngIf="foster">
+      <input type="number" min="0" name="maxFoster" value="foster?.maxFoster"
+             [(ngModel)]="foster.maxFoster" class="form-control" (change)="updateFoster()">
+      <!-- <button class="btn btn-primary btn-sm" (click)="updateFoster(foster)">Update</button> -->
+    </form >
+  </div>
   </div>
 
 
@@ -91,12 +129,6 @@
   </div>
 </div>
 
-<!-- VOL INFO -->
-<!--  <div class="card">
-          <h3 class="bg-primary text-light titleBox"> Volunteer Info </h3>
-        <p>Skills: {{user.skills}}</p>
-        <p *ngFor="let skill of user.skills"> {{skill.name}} </p>
-      </div> -->
 
 
 
@@ -119,11 +151,7 @@
 
 
 
-Max pets willing to foster:<br>
-<form *ngIf="foster">
-  <input type="number" min="0" name="maxFoster" value="foster?.maxFoster" [(ngModel)]="foster.maxFoster" checked (change)="updateFoster()">
-  <!-- <button class="btn btn-primary btn-sm" (click)="updateFoster(foster)">Update</button> -->
-</form >
+
 
 
 

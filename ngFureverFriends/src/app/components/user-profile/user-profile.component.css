@@ -6,6 +6,7 @@
 .profileBody {
   padding-top: 30px;
   padding-bottom: 30px;
+  min-height: calc(100vh - 60px);
 }
 
 .card {
@@ -66,4 +67,25 @@
   height: 100%;
   object-fit: cover;
   position: absolute;
+}
+
+.updateOptionsDiv {
+  margin-top: 10px;
+}
+
+.fosterDiv {
+  margin-top: 50px;
+}
+
+.volunteerDiv {
+  margin-top: 50px;
+}
+
+.divEncl {
+  margin-top: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #5576c4;
+  padding: 10px;
 }
