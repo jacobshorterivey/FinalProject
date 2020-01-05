@@ -1,4 +1,3 @@
-import { ShelterService } from 'src/app/services/shelter.service';
 import { catchError } from 'rxjs/operators';
 import { Shelter } from './../models/shelter';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -54,7 +53,7 @@ export class ShelterService {
         Authorization: 'Basic ' + this.auth.getCredentials(), 'Content-type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'
       }
     };
-    return this.http.put(`{this.url}/${shelter.id}`, shelter, httpOptions).pipe(
+    return this.http.put(this.url + '/update/' + id, shelter, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('ShelterService.update(): Error updating shelter');
