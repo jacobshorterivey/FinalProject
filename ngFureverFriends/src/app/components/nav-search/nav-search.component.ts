@@ -22,7 +22,6 @@ export class NavSearchComponent implements OnInit {
   ngOnInit() {
     console.log('Nav search page!');
     if (this.route.snapshot.paramMap.get('keyword')) {
-
     }
 
     if (this.route.snapshot.paramMap.get('keyword')) {
