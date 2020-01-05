@@ -95,6 +95,8 @@ export class UserProfileComponent implements OnInit {
       this.userService.showOne(this.route.snapshot.paramMap.get('id')).subscribe(
         data => {
           this.user = data;
+
+          this.checkedSkill();
           console.log('UserProfileComponent.ngOnInit(): user:');
           console.log(this.user);
           if (this.user === null) {
@@ -195,6 +197,7 @@ export class UserProfileComponent implements OnInit {
 
   updateVolunteer() {
     // this.user.skills = this.volBoolean;
+    this.newSkillList = [];
     this.skills.forEach(e => {
       if (e.active === true) {
         this.newSkillList.push(this.volBoolean[e.id - 1]);
@@ -217,18 +220,13 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-    // // tslint:disable-next-line: prefer-for-of
-    // for (let i = 0; i < this.traitBoolean.length; i++) {
-    //   const bool = this.traitBoolean[i];
-    //   // tslint:disable-next-line: prefer-for-of
-    //   for (let k = 0; k < this.traitList.length; k++) {
-    //     const trait = this.traitList[k];
-    //     if ((trait.id === bool.id) && bool.active) {
-    //       this.traitsToAdd.push(trait);
-    //     }
-    //   }
-    // }
-
-    // this.createPet.adopted = false;
-    // this.createPet.traits = this.traitsToAdd;
+  checkedSkill() {
+    this.skills.forEach(e => {
+      this.user.skills.forEach(i => {
+        if (i.id === e.id) {
+          e.active = true;
+        }
+      });
+    });
+  }
 }

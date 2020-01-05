@@ -68,17 +68,17 @@
 
 
 <form>
-  <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
-  <input type="hidden" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
+  <!-- <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
+  <input type="hidden" name="username" class="form-control" [(ngModel)]="user.account.username"> <br> -->
 
-    <input type="checkbox" name="skills" [(ngModel)]="skills[0].active"> Grooming <br>
-    <input type="checkbox" name="skills" [(ngModel)]="skills[1].active"> Training  <br>
-    <input type="checkbox" name="skills" [(ngModel)]="skills[2].active"> General pet care  <br>
-    <input type="checkbox" name="skills" [(ngModel)]="skills[3].active"> Vet  <br>
-    <input type="checkbox" name="skills" [(ngModel)]="skills[4].active"> Customer Service  <br>
-    <input type="checkbox" name="skills" [(ngModel)]="skills[5].active"> General Maintenance & Repair  <br>
+    <input type="checkbox" name="a" [(ngModel)]="skills[0].active" checked (change)=updateVolunteer()> Grooming <br>
+    <input type="checkbox" name="b" [(ngModel)]="skills[1].active" checked (change)=updateVolunteer()> Training  <br>
+    <input type="checkbox" name="c" [(ngModel)]="skills[2].active" checked (change)=updateVolunteer()> General pet care  <br>
+    <input type="checkbox" name="d" [(ngModel)]="skills[3].active" checked (change)=updateVolunteer()> Vet  <br>
+    <input type="checkbox" name="e" [(ngModel)]="skills[4].active" checked (change)=updateVolunteer()> Customer Service  <br>
+    <input type="checkbox" name="f" [(ngModel)]="skills[5].active" checked (change)=updateVolunteer()> General Maintenance & Repair  <br>
 
-  <button class="btn btn-primary btn-sm" (click)="updateVolunteer()">Update</button>
+  <!-- <button class="btn btn-primary btn-sm" (click)="updateVolunteer()">Update</button> -->
 </form>
 
 
@@ -98,8 +98,8 @@
 
 Max pets willing to foster:<br>
 <form *ngIf="foster">
-  <input type="number" min="0" name="maxFoster" value="foster?.maxFoster" [(ngModel)]="foster.maxFoster">
-  <button class="btn btn-primary btn-sm" (click)="updateFoster(foster)">Update</button>
+  <input type="number" min="0" name="maxFoster" value="foster?.maxFoster" [(ngModel)]="foster.maxFoster" checked (change)="updateFoster(foster)">
+  <!-- <button class="btn btn-primary btn-sm" (click)="updateFoster(foster)">Update</button> -->
 </form >
 
 
