@@ -1,9 +1,18 @@
 <div *ngIf="!userBool && !shelterBool">
+    <div class="container">
+      <div class="card">
   <button class="btn btn-primary" (click)="shelterBool = true">Register a shelter</button>
+  <br>
   <button class="btn btn-primary" (click)="userBool = true">Register a user</button>
+      </div>
+    </div>
 </div>
+<br>
 
 <div *ngIf="userBool">
+  <div class="container">
+  <div class="card">
+    <h3>New User Registration</h3>
   <form>
     <label>Email:
       <input type="email" name="email" id="email" placeholder="Email" [(ngModel)]="newUser.email">
@@ -44,9 +53,14 @@
     <button class="btn btn-primary" (click)="registerUser()">Submit</button>
     <button class="btn btn-danger" (click)="userBool = false">Back</button>
   </form>
+  </div>
+  </div>
 </div>
 
 <div *ngIf="shelterBool">
+    <div class="container">
+    <div class="card">
+      <h3>New Shelter Registration</h3>
   <form>
     <label>Email:
       <input type="email" name="email" id="email" placeholder="Email" [(ngModel)]="newShelter.email">
@@ -81,4 +95,6 @@
     <button class="btn btn-primary" (click)="registerShelter()" [routerLink]="['/appsubmitted']">Submit</button>
     <button class="btn btn-danger" (click)="shelterBool = false">Back</button>
   </form>
+  </div>
+  </div>
 </div>

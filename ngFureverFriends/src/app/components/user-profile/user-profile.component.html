@@ -66,8 +66,10 @@
 </form> -->
 
 
-<!-- <form>
-  <fieldset name="user.skills" [(ngModel)]="user.skills">
+<form>
+  <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
+  <input type="hidden" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
+  <fieldset name="skills" [(ngModel)]="user.skills">
     <input type="checkbox" name="skills" value="1" > Grooming <br>
     <input type="checkbox" name="skills" value="2"> Training  <br>
     <input type="checkbox" name="skills" value="3"> General pet care  <br>
@@ -75,8 +77,9 @@
     <input type="checkbox" name="skills" value="5"> Customer Service  <br>
     <input type="checkbox" name="skills" value="6"> General Maintenance & Repair  <br>
   </fieldset>
-  <button class="btn btn-primary btn-sm" (click)="updateVolunteer(user)">Update</button>
-</form> -->
+  <button class="btn btn-primary btn-sm" (click)="updateVolunteer()">Update</button>
+</form>
+
 
 Max pets willing to foster:<br>
 <form *ngIf="foster">
@@ -93,10 +96,11 @@ Max pets willing to foster:<br>
 
       <div class="container">
         <form>
-          <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
+        <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
           Username: <input type="text" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
 
-          Password: <input type="password" name="password" class="form-control" [(ngModel)]="user.account.password"> <br>
+          <!-- Password: <input type="password" name="password" class="form-control" [(ngModel)]="user.account.password"> <br> -->
+         Password: <input type="text" name="password" class="form-control" [(ngModel)]="pass"> <br>
           <hr>
           Personal Information:<BR><BR>
 
@@ -118,6 +122,9 @@ Max pets willing to foster:<br>
           <button class="btn btn-primary" (click)="updateUser()">Update</button>
 
             <!-- Add image later... -->
+            <!-- Username: <input type="text" name="account.username" value="{{user.account.username}}" class="form-control" ngModel> <br>
+            Password: <input type="password" placeholder="{{pass}}" name="account.password" class="form-control" ngModel> <br>
+            <button class="btn btn-primary" (click)="updateUser(updateForm)">Update</button> -->
         </form>
      </div>
 
