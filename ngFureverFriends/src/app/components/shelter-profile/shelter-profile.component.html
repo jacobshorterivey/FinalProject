@@ -98,6 +98,7 @@
        </div>
       </div>
       <div class="col shelterInfo" *ngIf="editShelter">
+        <input type="hidden" value="editShelter.id" name="id" [(ngModel)]="editShelter.id">
         <p><strong>Email:</strong><br>
         <input type = "text" name = "email" placeholder="selected.email" default="selected.email" [(ngModel)]="editShelter.email"></p><br>
         <p><strong>Phone:</strong><br>
