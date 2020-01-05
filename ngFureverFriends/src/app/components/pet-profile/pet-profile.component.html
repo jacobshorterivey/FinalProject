@@ -89,8 +89,8 @@
   <!-- List all pets -->
 
 <!-- BUTTON TO CREATE A PET -->
-  <div class="container text-center" *ngIf="!create && selectedPet === null">
-    <button class = "btn btn-primary lButton" (click)="create = true">Enter new pet</button>
+  <div class="container text-center addPetBtnDiv" *ngIf="!create && selectedPet === null">
+    <button class = "btn btn-primary lButton formBtnPet" (click)="create = true">Enter new pet</button>
   </div>
 
 <!-- PET TABLE -->
@@ -117,36 +117,89 @@
 
 <!-- PET "PROFILE" -->
   <div *ngIf="selectedPet" class="container">
-    <div class="container text-center">
-      <button class="btn btn-lg btn-primary" (click)="selectedPet = null">Back</button>
-    </div>
+
 
     <!-- PET PROFILE PICTURE -->
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-4">
+        <div class="container text-center">
+          <button class="btn btn-primary formBtnPet" (click)="selectedPet = null">Back</button>
+        </div>
+
         <div class="profilePhotoPet" style="margin-top: 30px;">
           <img *ngIf="selectedPet.images[0]" src="{{ (selectedPet?.images)[0]?.imageUrl }}"/>
           <img *ngIf="!selectedPet.images[0]" src="../../../assets/img/noprofile.png"/>
         </div>
       </div>
 
-      <div class="col-lg-6">
+      <div class="col-lg-8">
+        <div class="petProfileUpdateDiv">
+        <div class="container petProfileTitle">
+          <div class="row">
+              <div class="col-5 petProfileTitleCol">
+                <h1 class="text-primary contactTextPet"> Update {{selectedPet.name}}</h1>
+             </div>
+             <div class="col-5 petProfileTitleCol">
+              <p *ngIf="updatePetMessage" class="updateTextPet">Saved!</p>
+           </div>
+          </div>
+        </div>
 
-        <h2>Edit Pet # {{selectedPet.id}}</h2>
+
         <form>
 
-          Name: <input type = "text" name = "name" [(ngModel)]="selectedPet.name"> <br>
-          Color: <input type="text" name= "color" [(ngModel)]="selectedPet.color" > <br>
-          Size: <input type="text" name="size" [(ngModel)]="selectedPet.size" ><br>
-          Age: <input type="text" name="age" [(ngModel)]="selectedPet.age" > <br>
-          Weigt: <input type="text" name="weight" [(ngModel)]="selectedPet.weight" > <br>
-          <button (click)="updatePet()">Save</button>
-          <button (click)="selectedPet = null">Cancel</button>
+          <div class="row">
+            <div class="col-3 text-center">
+              Name:
+            </div>
+            <div class="col-9">
+              <input type = "text" name = "name" class="form-control" [(ngModel)]="selectedPet.name">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-3 text-center">
+              Size:
+            </div>
+            <div class="col-9">
+              <input type="text" name= "color" class="form-control" [(ngModel)]="selectedPet.color" >
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-3 text-center">
+              Age:
+            </div>
+            <div class="col-9">
+              <input type="text" name="age" class="form-control" [(ngModel)]="selectedPet.age" >
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-3 text-center">
+              Weight:
+            </div>
+            <div class="col-9">
+              <input type="text" name="weight" class="form-control" [(ngModel)]="selectedPet.weight" >
+            </div>
+          </div>
+          <br>
+          <div class="container text-center">
+            <div class="row">
+              <div class="col-lg-6">
+                <button class="btn btn-primary formBtnPet" (click)="updatePet()">Update</button>
+              </div>
+              <div class="col-lg-6">
+                 <button class="btn btn-danger formBtnPet" (click)="deletePet(selectedPet.id)">Delete</button>
+              </div>
+
+            </div>
+
+          </div>
         </form>
 
 
-
-
+        </div>
       </div>
    </div>
 
@@ -154,25 +207,17 @@
 
 
         <!-- TRAIT BADGES -->
-      <div class="col-3" *ngFor="let trait of selectedPet.traits">
-          <h6><span class="badge badge-success">{{trait.description}}</span></h6>
+
+
+    <div class="col-4">
+      <strong>Traits:</strong>
+      <div class="row">
+        <div class="col-3" *ngFor="let trait of selectedPet.traits">
+            <h6><span class="badge badge-success">{{trait.description}}</span></h6>
         </div>
-
-        <td (click)="deletePet(selectedPet.id)"> <button> Delete </button> </td>
-
-
-          <!-- <h2>Edit Pet # {{selectedPet.id}}</h2>
-          <form>
-
-            Name: <input type = "text" name = "name" [(ngModel)]="selectedPet.name"> <br>
-            Color: <input type="text" name= "color" [(ngModel)]="selectedPet.color" > <br>
-            Size: <input type="text" name="size" [(ngModel)]="selectedPet.size" ><br>
-            Age: <input type="text" name="age" [(ngModel)]="selectedPet.age" > <br>
-            Weigt: <input type="text" name="weight" [(ngModel)]="selectedPet.weight" > <br>
-            <button (click)="updatePet()">Save</button>
-            <button (click)="selectedPet = null">Cancel</button>
-          </form> -->
+    </div>
   </div>
 
+    </div>
   </div>
 </div>
