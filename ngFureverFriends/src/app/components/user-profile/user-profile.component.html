@@ -54,7 +54,42 @@
 
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+
+
+<!-- Volunteer Option -->
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="customSwitch1" [(ngModel)]="isVolEmpty" (click)="volunterSwitch()">
+      <label class="custom-control-label" for="customSwitch1">Volunteer</label>
+    </div>
+  <!--Update volunteer skills-->
+    <div>
+    <form *ngIf="isVolEmpty">
+        <input type="checkbox" name="a" [(ngModel)]="skills[0].active" checked (change)=updateVolunteer()> Grooming <br>
+        <input type="checkbox" name="b" [(ngModel)]="skills[1].active" checked (change)=updateVolunteer()> Training  <br>
+        <input type="checkbox" name="c" [(ngModel)]="skills[2].active" checked (change)=updateVolunteer()> General pet care  <br>
+        <input type="checkbox" name="d" [(ngModel)]="skills[3].active" checked (change)=updateVolunteer()> Vet  <br>
+        <input type="checkbox" name="e" [(ngModel)]="skills[4].active" checked (change)=updateVolunteer()> Customer Service  <br>
+        <input type="checkbox" name="f" [(ngModel)]="skills[5].active" checked (change)=updateVolunteer()> General Maintenance & Repair  <br>
+    </form>
+    </div>
   </div>
+
+  <div class="col-lg-6">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="customSwitch2" [(ngModel)]="isFosterActive" (click)="fosterSwitch()">
+      <label class="custom-control-label" for="customSwitch2">Foster</label>
+    </div>
+  </div>
+
+
+
+
+
+  </div>
+</div>
 
 <!-- VOL INFO -->
 <!--  <div class="card">
@@ -67,41 +102,7 @@
 
 <!-- The user may pick if the -->
 <div class="container volOptions">
-  <!-- Volunteer Option -->
-  <div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-    <label class="custom-control-label" for="customSwitch1">Volunteer</label>
-  </div>
 
-  <!-- Foster Option -->
-  <!-- <div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="customSwitch2">
-    <label class="custom-control-label" for="customSwitch2">Foster</label>
-  </div>
-</div>
-
-<form>
-  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-  <label class="form-check-label" for="defaultCheck1">
-    Default checkbox
-  </label>
-</form> -->
-
-
-
-<form>
-  <!-- <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
-  <input type="hidden" name="username" class="form-control" [(ngModel)]="user.account.username"> <br> -->
-
-    <input type="checkbox" name="a" [(ngModel)]="skills[0].active" checked (change)=updateVolunteer()> Grooming <br>
-    <input type="checkbox" name="b" [(ngModel)]="skills[1].active" checked (change)=updateVolunteer()> Training  <br>
-    <input type="checkbox" name="c" [(ngModel)]="skills[2].active" checked (change)=updateVolunteer()> General pet care  <br>
-    <input type="checkbox" name="d" [(ngModel)]="skills[3].active" checked (change)=updateVolunteer()> Vet  <br>
-    <input type="checkbox" name="e" [(ngModel)]="skills[4].active" checked (change)=updateVolunteer()> Customer Service  <br>
-    <input type="checkbox" name="f" [(ngModel)]="skills[5].active" checked (change)=updateVolunteer()> General Maintenance & Repair  <br>
-
-  <!-- <button class="btn btn-primary btn-sm" (click)="updateVolunteer()">Update</button> -->
-</form>
 
 
 
@@ -120,9 +121,31 @@
 
 Max pets willing to foster:<br>
 <form *ngIf="foster">
-  <input type="number" min="0" name="maxFoster" value="foster?.maxFoster" [(ngModel)]="foster.maxFoster" checked (change)="updateFoster(foster)">
+  <input type="number" min="0" name="maxFoster" value="foster?.maxFoster" [(ngModel)]="foster.maxFoster" checked (change)="updateFoster()">
   <!-- <button class="btn btn-primary btn-sm" (click)="updateFoster(foster)">Update</button> -->
 </form >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Update Profile</button> -->

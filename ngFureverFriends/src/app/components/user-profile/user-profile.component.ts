@@ -30,6 +30,8 @@ export class UserProfileComponent implements OnInit {
   foster: Foster;
   pass: string;
   form: FormGroup;
+  isVolEmpty: boolean;
+  isFosterActive = true;
   newSkillList = [];
   skills = [
     {
@@ -116,6 +118,9 @@ export class UserProfileComponent implements OnInit {
               pass.forEach(element => {
                 if (element.user.id === this.user.id) {
                   this.foster = element;
+                  if (this.foster.maxFoster <= 0) {
+                    this.isFosterActive = false;
+                  }
                 }
               });
             },
@@ -130,8 +135,12 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  updateFoster(fosterUpdate: Foster) {
-    this.fostersvc.update(fosterUpdate).subscribe(
+  updateFoster() {
+    if (this.foster.maxFoster <= 0) {
+      this.foster.maxFoster = 0;
+      this.isFosterActive = false;
+    }
+    this.fostersvc.update(this.foster).subscribe(
       data => { },
       error => {
         console.error('error updating foster');
@@ -204,6 +213,11 @@ export class UserProfileComponent implements OnInit {
       }
     });
 
+    // Collapses vol div if there are no skills
+    if (this.newSkillList.length === 0) {
+      this.isVolEmpty = false;
+    }
+
     this.user.skills = this.newSkillList;
     this.user.account.password = this.pass;
     this.userService.update(this.user.id, this.user).subscribe(
@@ -225,8 +239,33 @@ export class UserProfileComponent implements OnInit {
       this.user.skills.forEach(i => {
         if (i.id === e.id) {
           e.active = true;
+          this.isVolEmpty = true;
         }
       });
     });
   }
+
+  // Updates for the checkbox.
+  volunterSwitch() {
+    if (this.isVolEmpty) {
+      this.skills.forEach(e => {
+        e.active = false;
+      });
+      this.updateVolunteer();
+    } else {
+      this.skills[2].active = true;
+      this.updateVolunteer();
+    }
+  }
+
+  fosterSwitch() {
+    if (this.isFosterActive) {
+      this.foster.maxFoster = 0;
+      this.updateFoster();
+    } else {
+      this.foster.maxFoster = 1;
+      this.updateFoster();
+    }
+  }
+
 }
