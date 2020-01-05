@@ -1,3 +1,4 @@
+import { Skill } from './../../models/skill';
 import { AuthService } from 'src/app/services/auth.service';
 import { Foster } from './../../models/foster';
 import { FosterService } from './../../services/foster.service';
@@ -29,6 +30,59 @@ export class UserProfileComponent implements OnInit {
   foster: Foster;
   pass: string;
   form: FormGroup;
+  newSkillList = [];
+  skills = [
+    {
+      id: 1,
+      active: false
+    },
+    {
+      id: 2,
+      active: false
+    },
+    {
+      id: 3,
+      active: false
+    },
+    {
+      id: 4,
+      active: false
+    },
+    {
+      id: 5,
+      active: false
+    },
+    {
+      id: 6,
+      active: false
+    }
+  ]
+  volBoolean = [
+    {
+      id: 1,
+      name: 'Grooming'
+    },
+    {
+      id: 2,
+      name: 'Training'
+    },
+    {
+      id: 3,
+      name: 'General pet care'
+    },
+    {
+      id: 4,
+      name: 'Vet'
+    },
+    {
+      id: 5,
+      name: 'Customer Service'
+    },
+    {
+      id: 6,
+      name: 'General Maintenance & Repair'
+    }
+  ];
 
   constructor(private userService: UserService, private accountService: AccountService,
               private route: ActivatedRoute, private router: Router,
@@ -98,17 +152,14 @@ export class UserProfileComponent implements OnInit {
   //   );
   // }
 
-  updateUser(form) {
-    // console.log(form.value.username);
-    // console.log(form.value[0]);
+  updateUser() {
     this.user.account.password = this.pass;
     console.log(this.pass);
     console.log(this.user.account.password);
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
         console.log(data);
-        // this.user.account.password = form.password;
-        // this.user.account.username = form.username;
+
         this.logout();
         this.login(this.user.account.username, this.user.account.password);
         console.log('success Loggin in!');
@@ -120,10 +171,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUserPass() {
-    let a = (atob(this.authSVC.getCredentials()));
-    let b = a.split(':');
-    let c = b[1];
-    this.pass = c;
+    const a = (atob(this.authSVC.getCredentials()));  // converts to username:password
+    const b = a.split(':'); // splits into an array of [username, password]
+    const c = b[1]; // obtains password
+    this.pass = c; // sets password for form and update
   }
 
   logout() {
@@ -143,6 +194,14 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateVolunteer() {
+    // this.user.skills = this.volBoolean;
+    this.skills.forEach(e => {
+      if (e.active === true) {
+        this.newSkillList.push(this.volBoolean[e.id - 1]);
+      }
+    });
+
+    this.user.skills = this.newSkillList;
     this.user.account.password = this.pass;
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
@@ -158,5 +217,18 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+    // // tslint:disable-next-line: prefer-for-of
+    // for (let i = 0; i < this.traitBoolean.length; i++) {
+    //   const bool = this.traitBoolean[i];
+    //   // tslint:disable-next-line: prefer-for-of
+    //   for (let k = 0; k < this.traitList.length; k++) {
+    //     const trait = this.traitList[k];
+    //     if ((trait.id === bool.id) && bool.active) {
+    //       this.traitsToAdd.push(trait);
+    //     }
+    //   }
+    // }
 
+    // this.createPet.adopted = false;
+    // this.createPet.traits = this.traitsToAdd;
 }

@@ -111,6 +111,9 @@ public class UserServiceImpl implements UserService {
 				if (updateUser.getAge() != null) {
 					origUser.setAge(updateUser.getAge());
 				}
+				if (updateUser.getSkills() != null) {
+					origUser.setSkills(updateUser.getSkills());
+				}
 				if (updateUser.getPhone() != null && updateUser.getPhone() != "") {
 					origUser.setPhone(updateUser.getPhone());
 				}

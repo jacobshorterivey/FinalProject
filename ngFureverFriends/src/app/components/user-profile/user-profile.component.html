@@ -37,7 +37,7 @@
       <div class="card">
           <h3 class="bg-primary text-light titleBox"> Volunteer Info </h3>
         <p>Skills: {{user.skills}}</p>
-        <p *ngFor="let skill of user.skills"> {{skill}} </p>
+        <p *ngFor="let skill of user.skills"> {{skill.name}} </p>
       </div>
       <!-- Foster Info -->
 </div>
@@ -66,19 +66,34 @@
 </form> -->
 
 
+
 <form>
   <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
   <input type="hidden" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
-  <fieldset name="skills" [(ngModel)]="user.skills">
-    <input type="checkbox" name="skills" value="1" > Grooming <br>
-    <input type="checkbox" name="skills" value="2"> Training  <br>
-    <input type="checkbox" name="skills" value="3"> General pet care  <br>
-    <input type="checkbox" name="skills" value="4"> Vet  <br>
-    <input type="checkbox" name="skills" value="5"> Customer Service  <br>
-    <input type="checkbox" name="skills" value="6"> General Maintenance & Repair  <br>
-  </fieldset>
+
+    <input type="checkbox" name="skills" [(ngModel)]="skills[0].active"> Grooming <br>
+    <input type="checkbox" name="skills" [(ngModel)]="skills[1].active"> Training  <br>
+    <input type="checkbox" name="skills" [(ngModel)]="skills[2].active"> General pet care  <br>
+    <input type="checkbox" name="skills" [(ngModel)]="skills[3].active"> Vet  <br>
+    <input type="checkbox" name="skills" [(ngModel)]="skills[4].active"> Customer Service  <br>
+    <input type="checkbox" name="skills" [(ngModel)]="skills[5].active"> General Maintenance & Repair  <br>
+
   <button class="btn btn-primary btn-sm" (click)="updateVolunteer()">Update</button>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Max pets willing to foster:<br>

@@ -1,3 +1,4 @@
+import { ShelterService } from 'src/app/services/shelter.service';
 import { catchError } from 'rxjs/operators';
 import { Shelter } from './../models/shelter';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -6,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Pet } from '../models/pet';
+
 
 @Injectable({
   providedIn: 'root'
