@@ -1,3 +1,4 @@
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { PetSearchComponent } from './components/pet-search/pet-search.component';
 import { LoginComponent } from './components/login/login.component';
 import { FosterListComponent } from './components/foster-list/foster-list.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'petsearch', component: PetSearchComponent},
   {path: 'appsubmitted', component: ApplicationSubmittedComponent},
+  {path: 'admin', component: AdminPageComponent},
   {path: '**', component: NotFoundComponent}
   ];
 
