@@ -7,7 +7,6 @@ import { throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Pet } from '../models/pet';
 
-
 @Injectable({
   providedIn: 'root'
 })
