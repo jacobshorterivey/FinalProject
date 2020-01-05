@@ -2,91 +2,224 @@
   <div class="PetUpdateInner container bg-light">
 
 <div id="createNewPet" *ngIf="create">
-  <button class="btn btn-primary" (click)="create = false">Back</button>
-  Add a Pet
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <button class="btn btn-primary formBtnPet" (click)="create = false"> << Back</button>
+      </div>
+      <div class="col-8">
+      </div>
+    </div>
+    <p class="contactTextPet text-center" style="margin-top: 10px;">Add A Pet</p>
+  </div>
+
   <form>
-
-    <label>Name:
-      <br><input type="text" name="name" [(ngModel)]="createPet.name" placeholder="Enter name">
-    </label><br>
-    <label>Color(s):
-      <br><input type="text" name="color" [(ngModel)]="createPet.color" placeholder="Enter color(s)">
-    </label><br>
-    <label>Age:
-      <br><input type="number" name="age" [(ngModel)]="createPet.age" placeholder="Enter age">
-    </label><br>
-    <label>Weight:
-      <br><input type="number" name="weight" [(ngModel)]="createPet.weight" placeholder="Weight">
-    </label><br>
-    <label>
-      <br><input type="text" name="images" [(ngModel)]="createPet.images" placeholder="Image Url">
-    </label><br><br>
-    <label> Special Conditions:
-      <br><input type="text" name="specialConditions" [(ngModel)]="createPet.specialConditions" placeholder="Special Conditions">
-    </label><br><br>
-    <label>Enter pet size: <br>
-      <input type="radio" name="size" [(ngModel)]="createPet.size" value="large"> Large<br>
-      <input type="radio" name="size" [(ngModel)]="createPet.size" value="average"> Average<br>
-      <input type="radio" name="size" [(ngModel)]="createPet.size" value="small"> Small<br>
-    </label><br><br>
-    <label>Is the animal fixed: <br>
-      <input type="radio" name="fixed" [(ngModel)]="createPet.fixed" value="true"> Spayed/Neutered<br>
-      <input type="radio" name="fixed" [(ngModel)]="createPet.fixed" value="false"> Un-Spayed/Un-Neutered<br>
-    </label><br><br>
-      <label *ngIf="!dogCreate && !catCreate">Choose pet species:<br>
-
-      <button (click)="dogCreate = true">Dog</button>
-
-      <button (click)="catCreate = true">Cat</button>
-
-    </label>
-    <label *ngIf="dogCreate && !catCreate">Choose breed of dog: <br>
-
-      <select name="dogBreed" [(ngModel)]="createPet.breed.id">
-        <option *ngFor="let dogBreed of breedList | breedSeparator: true" name="dogBreed" [value]="dogBreed.id">{{dogBreed.name}}</option>
-      </select><br>
-
-      <button class="btn btn-primary lButton" (click)="dogCreate = false">Back</button>
-
-    </label>
-    <label *ngIf="!dogCreate && catCreate">Choose breed of cat: <br>
-
-      <select name="catBreed" [(ngModel)]="createPet.breed.id">
-        <option *ngFor="let catBreed of breedList | breedSeparator: false" name="catBreed" [value]="catBreed.id">{{catBreed.name}}</option>
-      </select><br>
-
-      <button class="btn btn-primary lButton" (click)="catCreate = false">Back</button>
-
-    </label><br><br>
-    <label>Choose Traits: <br>
-
-      Intellegent: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[0].active">
-      Playful: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[1].active">
-      Gentle: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[2].active"><br>
-      Alert: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[3].active">
-      Confident: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[4].active">
-      Faithful: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[5].active"><br>
-      Outgoing: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[6].active">
-      Cuddly: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[7].active">
-      Reserved: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[8].active"><br>
-      Affectionate: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[9].active">
-      Quiet: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[10].active">
-      Adventurous: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[11].active">
-
-    </label><br>
-    <input type="submit" value="Submit" (click)="addPet()">
-    <button class="btn btn-primary" (click)="create = false">Back</button>
-
-      </form>
-      <br>
-      {{shelter.name}}
-      Total Number of Pets
-      <!-- <span class="badge badge-primary" [ngClass]="badgeColor() ">
-        {{countPets()}}
-      </span> -->
+    <div class="row">
+      <div class="col-3 text-center">
+        Name:
+      </div>
+      <div class="col-9">
+        <input type="text" name="name" class="form-control" [(ngModel)]="createPet.name" placeholder="Enter name">
+      </div>
     </div>
     <br>
-  <!-- List all pets -->
+    <div class="row">
+      <div class="col-3 text-center">
+        Color(s):
+      </div>
+      <div class="col-9">
+        <input type="text" name="color" class="form-control" [(ngModel)]="createPet.color" placeholder="Enter color(s)">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 text-center">
+        Color(s):
+      </div>
+      <div class="col-9">
+        <input type="number" name="age" class="form-control" [(ngModel)]="createPet.age" placeholder="Enter age">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 text-center">
+        Age:
+      </div>
+      <div class="col-9">
+        <input type="number" name="age" class="form-control" [(ngModel)]="createPet.age" placeholder="Enter age">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 text-center">
+        Weight:
+      </div>
+      <div class="col-9">
+        <input type="number" name="weight" class="form-control" [(ngModel)]="createPet.weight" placeholder="Weight">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 text-center">
+        Image:
+      </div>
+      <div class="col-9">
+        <input type="text" name="images" class="form-control" [(ngModel)]="createPet.images" placeholder="Image Url">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 text-center">
+        Special Conditions:
+      </div>
+      <div class="col-9">
+        <input type="text" name="specialConditions" class="form-control" [(ngModel)]="createPet.specialConditions" placeholder="Special Conditions">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 text-center">
+        Pet Size:
+      </div>
+      <div class="col-9">
+        <div class="row" style="margin-left: 5px;">
+          <div class="col-lg-4">
+            <input type="radio" class="form-check-input" name="size" [(ngModel)]="createPet.size" value="large"> Large<br>
+          </div>
+          <div class="col-lg-4">
+            <input type="radio" class="form-check-input" name="size" [(ngModel)]="createPet.size" value="average"> Average<br>
+          </div>
+          <div class="col-lg-4">
+            <input type="radio" class="form-check-input" name="size" [(ngModel)]="createPet.size" value="small"> Small<br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 text-center">
+        Fixed:
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="col-lg-4">
+            <input type="radio" name="fixed" [(ngModel)]="createPet.fixed" value="true"> Spayed/Neutered<br>
+          </div>
+          <div class="col-lg-4">
+            <input type="radio" name="fixed" [(ngModel)]="createPet.fixed" value="false"> Un-Spayed/Un-Neutered<br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col text-center">
+        <label *ngIf="!dogCreate && !catCreate">Choose pet species:<br>
+
+          <div style="margin-bottom: 1px; margin-top: 3px;">
+          <button (click)="dogCreate = true" class="btn btn-primary" style="border-radius: 50px 0px 0px 50px;">Dog</button>
+          <button (click)="catCreate = true" class="btn btn-success" style="border-radius: 0px 50px 50px 0px;">Cat</button>
+        </div>
+
+        </label>
+        <label *ngIf="dogCreate && !catCreate">Choose breed of dog: <br>
+
+          <select class="form-control" name="dogBreed" [(ngModel)]="createPet.breed.id">
+            <option *ngFor="let dogBreed of breedList | breedSeparator: true" name="dogBreed" [value]="dogBreed.id">{{dogBreed.name}}</option>
+          </select><br>
+
+          <button class="btn btn-primary lButton" (click)="dogCreate = false">Back</button>
+
+        </label>
+        <label *ngIf="!dogCreate && catCreate">Choose breed of cat: <br>
+
+          <select class="form-control" name="catBreed" [(ngModel)]="createPet.breed.id">
+            <option *ngFor="let catBreed of breedList | breedSeparator: false" name="catBreed" [value]="catBreed.id">{{catBreed.name}}</option>
+          </select>
+
+          <button class="btn btn-primary btn-sm lButton" (click)="catCreate = false" style="margin-top: 5px;">Back</button>
+
+        </label><br><br>
+
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3 text-center">
+        Choose Traits: <br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+
+      </div>
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Intellegent: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[0].active">
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Playful: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[1].active">
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Gentle: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[2].active">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Confident: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[4].active">
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Faithful: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[5].active">
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Outgoing: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[6].active">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Reserved: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[8].active">
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Affectionate: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[9].active">
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Quiet: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[10].active">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Adventurous: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[11].active">
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Cuddly: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[7].active">
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            Alert: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[3].active">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-lg-6">
+        <input class="btn btn-success formBtnPet" type="submit" value="Submit" (click)="addPet()">
+      </div>
+      <div class="col-lg-6">
+        <button class="btn btn-primary formBtnPet" (click)="create = false"> << Back</button>
+      </div>
+    </div>
+  </form>
+  </div>
+    <br>
+
 
 <!-- BUTTON TO CREATE A PET -->
   <div class="container text-center addPetBtnDiv" *ngIf="!create && selectedPet === null">
@@ -123,7 +256,7 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="container text-center">
-          <button class="btn btn-primary formBtnPet" (click)="selectedPet = null">Back</button>
+          <button class="btn btn-primary formBtnPet" (click)="selectedPet = null"> << Back</button>
         </div>
 
         <div class="profilePhotoPet" style="margin-top: 30px;">
@@ -192,7 +325,6 @@
               <div class="col-lg-6">
                  <button class="btn btn-danger formBtnPet" (click)="deletePet(selectedPet.id)">Delete</button>
               </div>
-
             </div>
 
           </div>
