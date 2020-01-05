@@ -40,12 +40,14 @@
             </tr>
             <tr class="row">
               <td class="col-lg-2"><strong>Address:</strong></td>
-              <td class="col-lg-10" *ngIf="!user?.address?.street2">{{user.address.street}}<br>
-                {{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}
-              </td>
-              <td class="col-lg-10" *ngIf="user?.address?.street2">{{user.address.street}}<br>
-                {{user.address.street2}}<br>
-                {{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}
+              <!-- <td class="col-lg-10" *ngIf="!user?.address?.street2">{{user.address.street}}<br>
+                <h6>{{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}</h6>
+              </td> -->
+              <td class="col-lg-10">
+                <h6 *ngIf="user?.address?.street">{{user.address.street}}</h6>
+                <h6 *ngIf="user?.address?.street2">{{user.address.street2}}<br></h6>
+                <h6 *ngIf="!user?.address?.city">{{user.address.stateAbbr}} {{user.address.zip}}</h6>
+                <h6 *ngIf="user?.address?.city">{{user.address.city}}, {{user.address.stateAbbr}} {{user.address.zip}}</h6>
               </td>
             </tr>
           </table>
@@ -59,9 +61,17 @@
   <div class="row updateOptionsDiv">
 <!-- Volunteer Checkbox -->
   <div class="col-lg-6 volunteerDiv">
-    <div class="custom-control custom-switch">
-      <input type="checkbox" class="custom-control-input" id="customSwitch1" [(ngModel)]="isVolEmpty" (click)="volunterSwitch()">
-      <label class="custom-control-label" for="customSwitch1">Volunteer</label>
+
+    <div class="row">
+      <div class="col">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="customSwitch1" [(ngModel)]="isVolEmpty" (click)="volunterSwitch()">
+          <label class="custom-control-label" for="customSwitch1">Volunteer</label>
+        </div>
+        </div>
+      <div class="col">
+        <div class="updateText" *ngIf="updateMessage">update saved!</div>
+      </div>
     </div>
 
     <div *ngIf="!isVolEmpty" class="divEncl">
@@ -69,7 +79,12 @@
     </div>
   <!--Update volunteer skills-->
     <div class="divEncl" *ngIf="isVolEmpty">
+      <p><strong>Your skills:</strong></p>
     <form>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitchc" name="c" [(ngModel)]="skills[2].active" checked (change)=updateVolunteer()>
+        <label class="custom-control-label" for="customSwitchc">General Pet Care</label>
+      </div>
       <div class="custom-control custom-switch">
         <input type="checkbox" class="custom-control-input" id="customSwitcha" name="a" [(ngModel)]="skills[0].active" checked (change)=updateVolunteer()>
         <label class="custom-control-label" for="customSwitcha">Grooming</label>
@@ -77,10 +92,6 @@
       <div class="custom-control custom-switch">
         <input type="checkbox" name="b" class="custom-control-input" id="customSwitchb" [(ngModel)]="skills[1].active" checked (change)=updateVolunteer()>
         <label class="custom-control-label" for="customSwitchb">Training</label>
-      </div>
-      <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitchc" name="c" [(ngModel)]="skills[2].active" checked (change)=updateVolunteer()>
-        <label class="custom-control-label" for="customSwitchc">General Pet Care</label>
       </div>
       <div class="custom-control custom-switch">
         <input type="checkbox" class="custom-control-input" id="customSwitchd" name="d" [(ngModel)]="skills[3].active" checked (change)=updateVolunteer()>
@@ -102,10 +113,18 @@
 
 <!-- Foster Checkbox -->
   <div class="col-lg-6 fosterDiv">
-    <div class="custom-control custom-switch">
-      <input type="checkbox" class="custom-control-input" id="customSwitch2" [(ngModel)]="isFosterActive" (click)="fosterSwitch()">
-      <label class="custom-control-label" for="customSwitch2">Foster</label>
+    <div class="row">
+      <div class="col">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitch2" [(ngModel)]="isFosterActive" (click)="fosterSwitch()">
+        <label class="custom-control-label" for="customSwitch2">Foster</label>
+      </div>
+     </div>
+     <div class="col">
+      <div class="updateText" *ngIf="updateMessage2">update saved!</div>
     </div>
+    </div>
+
 
   <!--Update foster div-->
     <div *ngIf="!isFosterActive" class="divEncl">
@@ -122,10 +141,11 @@
   </div>
   </div>
 
+  </div>
 
-
-
-
+  <div class="adminCenter text-center" *ngIf="admin">
+    <h3 class="AdminCTitle">Admin Center:</h3>
+    <button class="btn btn-primary">Enable / Disable Users</button>
   </div>
 </div>
 
@@ -135,108 +155,154 @@
 <!-- The user may pick if the -->
 <div class="container volOptions">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Update Profile</button> -->
+<!-- UPDATE MODAL -->
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-
+      <div class="modal-header bg-dark text-light">
+        <h5 class="modal-title" id="staticBackdropLabel">Update Profile</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
       <div class="container">
         <form>
+        <p class="bg-primary text-light text-center updateTitles"><strong>Account</strong></p>
         <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
-          Username: <input type="text" name="username" class="form-control" [(ngModel)]="user.account.username"> <br>
+        <div class="row">
+          <div class="col-3 updateLabel">
+            Username:
+          </div>
+          <div class="col-9">
+            <input type="text" name="username" class="form-control" [(ngModel)]="user.account.username">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3 updateLabel">
+            Password:
+          </div>
+          <div class="col-9">
+            <input type="text" name="password" class="form-control" [(ngModel)]="pass">
+          </div>
+        </div>
 
-          <!-- Password: <input type="password" name="password" class="form-control" [(ngModel)]="user.account.password"> <br> -->
-         Password: <input type="text" name="password" class="form-control" [(ngModel)]="pass"> <br>
-          <hr>
-          Personal Information:<BR><BR>
+       <br>
+       <p class="bg-primary text-light text-center updateTitles"><strong>Personal Information</strong></p>
+       <div class="row">
+        <div class="col-3 updateLabel">
+          First Name:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.fname}}" class="form-control" name="fname" [(ngModel)]="user.fname">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Last Name:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.lname}}" class="form-control" name="lname" [(ngModel)]="user.lname">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Age:
+        </div>
+        <div class="col-9">
+          <input type="number" min="1" value="{{user.age}}" class="form-control" name="age" [(ngModel)]="user.age">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Phone:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.phone}}" class="form-control" name="phone" [(ngModel)]="user.phone">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Email:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.email}}" class="form-control" name="email" [(ngModel)]="user.email">
+        </div>
+      </div>
 
-          First Name: <input type="text" value="{{user.fname}}" class="form-control" name="fname" [(ngModel)]="user.fname">
-          Last Name: <input type="text" value="{{user.lname}}" class="form-control" name="lname" [(ngModel)]="user.lname">
-          Age: <input type="number" min="1" value="{{user.age}}" class="form-control" name="age" [(ngModel)]="user.age">
-          Phone: <input type="text" value="{{user.phone}}" class="form-control" name="phone" [(ngModel)]="user.phone">
-          Email: <input type="text" value="{{user.email}}" class="form-control" name="email" [(ngModel)]="user.email">
+      <br>
+      <p class="bg-primary text-light text-center updateTitles"><strong>Address</strong></p>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Street:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.street}}" class="form-control" name="street" [(ngModel)]="user.address.street">
+        </div>
+       </div>
+       <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Street 2:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.street2}}" class="form-control" name="street2" [(ngModel)]="user.address.street2">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          City:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.city}}" class="form-control" name="city" [(ngModel)]="user.address.city">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          State:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.stateAbbr}}" class="form-control" name="stateAbbr" [(ngModel)]="user.address.stateAbbr">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          State:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.address.zip}}" class="form-control" name="zip" [(ngModel)]="user.address.zip" required>
+        </div>
+      </div>
+      <br>
 
-          <hr>
-          Address: <BR><BR>
-            Steet: <input type="text" value="{{user.address.street}}" class="form-control" name="street" [(ngModel)]="user.address.street">
-            Street 2: <input type="text" value="{{user.address.street2}}" class="form-control" name="street2" [(ngModel)]="user.address.street2">
-            City: <input type="text" value="{{user.address.city}}" class="form-control" name="city" [(ngModel)]="user.address.city">
-            State: <input type="text" value="{{user.address.stateAbbr}}" class="form-control" name="stateAbbr" [(ngModel)]="user.address.stateAbbr">
-            Zip: <input type="text" value="{{user.address.zip}}" class="form-control" name="zip" [(ngModel)]="user.address.zip">
-          <hr>
+      <p class="bg-primary text-light text-center updateTitles"><strong>Profile Picture</strong></p>
+      <div class="row">
+        <div class="col-3 updateLabel">
+          Image URL:
+        </div>
+        <div class="col-9">
+          <input type="text" value="{{user.images[0].imageUrl}}" class="form-control" name="imageUrl" [(ngModel)]="user.images[0].imageUrl">
+        </div>
+       </div>
 
-          <button class="btn btn-primary" (click)="updateUser()">Update</button>
+      <br>
 
-            <!-- Add image later... -->
-            <!-- Username: <input type="text" name="account.username" value="{{user.account.username}}" class="form-control" ngModel> <br>
-            Password: <input type="password" placeholder="{{pass}}" name="account.password" class="form-control" ngModel> <br>
-            <button class="btn btn-primary" (click)="updateUser(updateForm)">Update</button> -->
-        </form>
+      <button class="btn btn-success formBtn" (click)="updateUser()">Update</button>
+       </form>
      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
     </div>
   </div>
 </div>
 
 </div>
-</div>
-
-
-<div class="bodyComponent" *ngIf="admin">
-  Admin Center:<br>
-  <button class="btn-primary">Users</button>
 </div>

@@ -124,16 +124,16 @@ public class UserServiceImpl implements UserService {
 
 					if (oa.isPresent()) {
 						Address origAddr = oa.get();
-						if (updatedAddr.getStreet() != null && updatedAddr.getStreet() != "") {
+						if (updatedAddr.getStreet() != null) {
 							origAddr.setStreet(updatedAddr.getStreet());
 						}
-						if (updatedAddr.getStreet2() != null && updatedAddr.getStreet2() != "") {
+						if (updatedAddr.getStreet2() != null) {
 							origAddr.setStreet2(updatedAddr.getStreet2());
 						}
-						if (updatedAddr.getCity() != null && updatedAddr.getCity() != "") {
+						if (updatedAddr.getCity() != null) {
 							origAddr.setCity(updatedAddr.getCity());
 						}
-						if (updatedAddr.getZip() != null && updatedAddr.getZip() != 0) {
+						if (updatedAddr.getZip() != null) {
 							origAddr.setZip(updatedAddr.getZip());
 						}
 						if (updatedAddr.getStateAbbr() != null) {

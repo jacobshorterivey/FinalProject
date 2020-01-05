@@ -4,7 +4,7 @@ import { Foster } from './../../models/foster';
 import { FosterService } from './../../services/foster.service';
 import { AccountService } from './../../services/account.service';
 import { UserService } from './../../services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { Shelter } from 'src/app/models/shelter';
@@ -21,10 +21,12 @@ export class UserProfileComponent implements OnInit {
 
   // Field
   user: User;
-  admin: User;
+  admin: boolean;
   selectedUser: User;
   users: User[];
   shelter: Shelter;
+  updateMessage: boolean;
+  updateMessage2: boolean;
   showDetails: boolean;
   account: Account;
   foster: Foster;
@@ -88,7 +90,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private userService: UserService, private accountService: AccountService,
               private route: ActivatedRoute, private router: Router,
-              private fostersvc: FosterService, private authSVC: AuthService) { }
+              private fostersvc: FosterService, private authSVC: AuthService,
+              private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getUserPass();
@@ -99,8 +102,6 @@ export class UserProfileComponent implements OnInit {
           this.user = data;
 
           this.checkedSkill();
-          console.log('UserProfileComponent.ngOnInit(): user:');
-          console.log(this.user);
           if (this.user === null) {
             this.router.navigateByUrl('user' + this.route.snapshot.paramMap.get('id') + 'NotFound');
           }
@@ -109,6 +110,11 @@ export class UserProfileComponent implements OnInit {
           this.account = JSON.parse(localStorage.getItem('account'));
           if (this.account.role === 'shelter') {
             this.showDetails = true;
+          }
+
+          // checks if user is an admin
+          if (this.account.role === 'admin') {
+            this.admin = true;
           }
 
           // Checks if a user is a foster.  More efficent to create backend search by id.  Maybe in the future.
@@ -125,7 +131,6 @@ export class UserProfileComponent implements OnInit {
               });
             },
             err => {
-              console.error(err);
               console.error('TodoListCompenent.loadtodoList():error loading todos');
             }
           );
@@ -141,39 +146,24 @@ export class UserProfileComponent implements OnInit {
       this.isFosterActive = false;
     }
     this.fostersvc.update(this.foster).subscribe(
-      data => { },
+      data => {
+        // TRIGGERS UPDATE MESSAGE
+        this.updateMessage2 = false;
+        this.cdRef.detectChanges();
+        this.updateMessage2 = true;
+      },
       error => {
         console.error('error updating foster');
       }
     );
   }
 
-  // updateVolunteer(user) {
-  //   this.userService.update(this.user.id, this.user).subscribe(
-  //     data => {
-  //       console.log(data);
-  //       this.logout();
-  //       this.login(this.user.account.username, this.user.account.password);
-  //       console.log('success Loggin in!');
-  //     },
-  //     error => {
-  //       console.error('error updating volunteer');
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-
   updateUser() {
     this.user.account.password = this.pass;
-    console.log(this.pass);
-    console.log(this.user.account.password);
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
-        console.log(data);
-
         this.logout();
         this.login(this.user.account.username, this.user.account.password);
-        console.log('success Loggin in!');
        },
       error => {
         console.error('error updating user');
@@ -195,17 +185,15 @@ export class UserProfileComponent implements OnInit {
   login(username, password) {
     this.authSVC.login(username, password).subscribe(
       next => {
-        console.log('logged in');
+
       },
       error => {
-        console.log('error logging in.');
-        console.log(error);
+        console.error('error logging in.');
       }
     );
   }
 
   updateVolunteer() {
-    // this.user.skills = this.volBoolean;
     this.newSkillList = [];
     this.skills.forEach(e => {
       if (e.active === true) {
@@ -213,7 +201,7 @@ export class UserProfileComponent implements OnInit {
       }
     });
 
-    // Collapses vol div if there are no skills
+    // COLLAPSES VOLUNTEER DIV WHEN THERE ARE NO SKILLS
     if (this.newSkillList.length === 0) {
       this.isVolEmpty = false;
     }
@@ -222,14 +210,17 @@ export class UserProfileComponent implements OnInit {
     this.user.account.password = this.pass;
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
-        console.log(data);
+        // LOGS OUT AND LOGS IN TO REFRESH CREDENTIALS
         this.logout();
         this.login(this.user.account.username, this.user.account.password);
-        console.log('success Loggin in!');
+
+        // TRIGGERS UPDATE MESSAGE
+        this.updateMessage = false;
+        this.cdRef.detectChanges();
+        this.updateMessage = true;
       },
       error => {
         console.error('error updating volunteer');
-        console.log(error);
       }
     );
   }

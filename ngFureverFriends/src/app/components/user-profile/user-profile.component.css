@@ -65,6 +65,7 @@
 
 .profilePhoto img {
   height: 100%;
+  width: 100%;
   object-fit: cover;
   position: absolute;
 }
@@ -88,4 +89,58 @@
   border-width: 1px;
   border-color: #5576c4;
   padding: 10px;
+}
+
+.updateText {
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  /* transform: translate(60px, 0px);*/
+  animation: updatemess 3s 1;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@keyframes updatemess {
+  0% {
+    color: white;
+  }
+  50% {
+    color: green;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.updateTitles {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.formBtn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.AdminCTitle {
+  font-size: 30px;
+  font-family: 'Indie Flower', cursive;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+}
+
+.adminCenter {
+  margin-top: 50px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #5576c4;
+  padding: 10px;
+  background-color: rgb(236, 236, 236, 0.9);
 }
