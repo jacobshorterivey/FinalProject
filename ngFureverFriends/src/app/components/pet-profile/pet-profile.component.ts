@@ -1,5 +1,5 @@
 import { NgForm } from '@angular/forms';
-import { Component, OnInit, createPlatform } from '@angular/core';
+import { Component, OnInit, createPlatform, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/models/account';
 import { Breed } from 'src/app/models/breed';
@@ -28,6 +28,7 @@ export class PetProfileComponent implements OnInit {
   create: false;
   dogCreate: false;
   catCreate: false;
+  updatePetMessage: boolean;
   breedList: Breed[] = [];
   traitList: Trait[] = [];
   traitsToAdd: Trait[] = [];
@@ -85,7 +86,8 @@ export class PetProfileComponent implements OnInit {
 
 
   // Constructor
-  constructor(private petService: PetService, private route: ActivatedRoute, private router: Router, private shelterSVC: ShelterService) { }
+  constructor(private petService: PetService, private route: ActivatedRoute, private router: Router, private shelterSVC: ShelterService,
+              private cdRef: ChangeDetectorRef) { }
 
   // Methods
   ngOnInit() {
@@ -167,7 +169,9 @@ export class PetProfileComponent implements OnInit {
     this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
       data => {
         console.log(data);
-        // this.reload();
+        this.updatePetMessage = false;
+        this.cdRef.detectChanges();
+        this.updatePetMessage = true;
       },
       err => {
         console.error(err);

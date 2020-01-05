@@ -29,3 +29,66 @@
   object-fit: cover;
   position: absolute;
 }
+
+.formBtnPet {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.petProfileTitle {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.petProfileTitleCol {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.petProfileUpdateDiv {
+  margin-top: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #5576c4;
+  padding: 10px;
+}
+
+.contactTextPet {
+  font-size: 25px;
+  font-family: 'Indie Flower', cursive;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  margin-left: 5px;
+}
+
+.updateTextPet {
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  animation: updatemess 3s 1;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@keyframes updatemess {
+  0% {
+    color: white;
+  }
+  50% {
+    color: green;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.addPetBtnDiv {
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
