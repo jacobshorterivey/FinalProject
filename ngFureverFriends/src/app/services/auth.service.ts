@@ -17,10 +17,8 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username, password) {
-    console.log(username, password);
     // Make credentials
     const credentials = this.generateBasicAuthCredentials(username, password);
-    console.log(credentials);
     // Send credentials as Authorization header (this is spring security convention for basic auth)
     const httpOptions = {
       headers: new HttpHeaders({
@@ -29,7 +27,6 @@ export class AuthService {
         'Content-type': 'application/json'
       })
     };
-    console.log(httpOptions);
 
     // create request to authenticate credentials
     return this.http
@@ -37,7 +34,6 @@ export class AuthService {
       .pipe(
         tap((res) => {
           localStorage.setItem('credentials' , credentials);
-          console.log(res);
           return res;
         }),
         catchError((err: any) => {

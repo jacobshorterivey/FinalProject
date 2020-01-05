@@ -49,7 +49,7 @@
   width: 150px;
   overflow: hidden;
   border-width: 2px;
-  border-color: #5576c4;;
+  border-color: #5576c4;
   border-style: solid;
   border-radius: 10px;
   position: relative;
@@ -169,6 +169,31 @@
   font-size: 20px;
   padding-top: 3px;
   padding-bottom: 3px;
+}
+
+.updateText {
+  color:  rgb(236, 236, 236, 0.4);
+  border-radius: 10px;
+  font-weight: bold;
+  /* transform: translate(60px, 0px);*/
+  animation: updatemess 3s 1;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@keyframes updatemess {
+  0% {
+    color:  rgb(236, 236, 236, 0.4);
+  }
+  50% {
+    color: green;
+  }
+  100% {
+    color:  rgb(236, 236, 236, 0.4);
+  }
 }
 
 
