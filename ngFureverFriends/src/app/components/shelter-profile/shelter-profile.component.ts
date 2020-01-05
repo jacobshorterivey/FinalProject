@@ -66,7 +66,7 @@ export class ShelterProfileComponent implements OnInit {
     }
   }
   updateShelter() {
-    this.svc.update(this.editShelter.id, this.editShelter).subscribe(
+    this.svc.update(this.selected.id, this.editShelter).subscribe(
       data => {
         console.log(data);
         // this.reload();
