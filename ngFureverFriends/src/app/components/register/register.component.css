@@ -14,6 +14,7 @@
 /* Add some padding inside the card container */
 .container {
   padding: 5px 16px;
+  border-radius: 5px; /* 5px rounded corners */
 }
 
 img {
@@ -34,7 +35,13 @@ label {
   margin-right: 10px;
   margin-left: 10px;
 }
-
+body {
+  background-image: url(https://image.shutterstock.com/image-vector/picture-mountain-range-forest-silhouette-260nw-515905834.jpg
+  );
+  /* background-repeat: no-repeat;
+  background-size: cover;  */
+  background-color: #cccccc;
+ }
 /* Margins for div
 div {
   margin-top: 10px;

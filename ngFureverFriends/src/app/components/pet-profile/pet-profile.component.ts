@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Component, OnInit, createPlatform } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/models/account';
 import { Breed } from 'src/app/models/breed';
@@ -151,18 +152,17 @@ export class PetProfileComponent implements OnInit {
       data => {
         console.log(data);
         this.newAnimal = new Pet();
+        this.createPet = new Pet();
         this.loadShelterPets(this.shelter.id);
         this.dogCreate = false;
         this.catCreate = false;
         this.create = false;
-    },
+      },
       err => {
         console.error(err);
       }
     );
-    // this.reload();
   }
-
   updatePet() {
     this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
       data => {
@@ -180,10 +180,11 @@ export class PetProfileComponent implements OnInit {
     this.petService.destroy(id).subscribe(
       (data) => {
         this.loadShelterPets(this.shelter.id);
+        this.selectedPet = null;
       },
-        err => {
-          console.error(err);
-        }
+      err => {
+        console.error(err);
+      }
     );
   }
 

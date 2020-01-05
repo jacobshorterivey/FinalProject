@@ -1,9 +1,21 @@
+.bodyComponent {
+  background-color: rgb(236, 236, 236, 0.9);
+  min-height: calc(100vh - 60px);
+}
+
+.profileBody {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-height: calc(100vh - 60px);
+}
+
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
+  border-radius: 10px; /* 10px rounded corners */
   margin: 4px 4px 4px 8px;
+  padding: 10px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -12,18 +24,123 @@
 }
 
 /* Add some padding inside the card container */
-.container {
+/* .container {
   padding: 5px 16px;
+} */
+
+.titleBox {
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 10px;
+  margin-left: 0px;
 }
 
-img {
+/* img {
   border-radius: 5px 5px 0 0;
-}
+} */
 
 /* Margins for p */
-p {
+/* p {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-right: 10px;
   margin-left: 10px;
+} */
+
+.profilePhoto {
+  margin: auto;
+  /* margin-top: -100px; */
+  min-height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-width: 2px;
+  border-color: #5576c4;;
+  border-style: solid;
+  border-radius: 10px;
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.profilePhoto img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+.updateOptionsDiv {
+  margin-top: 10px;
+}
+
+.fosterDiv {
+  margin-top: 50px;
+}
+
+.volunteerDiv {
+  margin-top: 50px;
+}
+
+.divEncl {
+  margin-top: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #5576c4;
+  padding: 10px;
+}
+
+.updateText {
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  /* transform: translate(60px, 0px);*/
+  animation: updatemess 3s 1;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@keyframes updatemess {
+  0% {
+    color: white;
+  }
+  50% {
+    color: green;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.updateTitles {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.formBtn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.AdminCTitle {
+  font-size: 30px;
+  font-family: 'Indie Flower', cursive;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+}
+
+.adminCenter {
+  margin-top: 50px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #5576c4;
+  padding: 10px;
+  background-color: rgb(236, 236, 236, 0.9);
 }

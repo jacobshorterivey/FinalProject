@@ -1,8 +1,13 @@
+<body>
 <div *ngIf="!userBool && !shelterBool">
     <div class="container">
       <div class="card">
   <button class="btn btn-primary" (click)="shelterBool = true">Register a shelter</button>
+      </div>
+    </div>
   <br>
+    <div class="container">
+      <div class="card">
   <button class="btn btn-primary" (click)="userBool = true">Register a user</button>
       </div>
     </div>
@@ -98,3 +103,6 @@
   </div>
   </div>
 </div>
+
+
+</body>
