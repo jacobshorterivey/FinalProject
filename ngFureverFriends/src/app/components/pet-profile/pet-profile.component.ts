@@ -1,5 +1,4 @@
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
 import { Component, OnInit, createPlatform, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/models/account';
@@ -9,6 +8,7 @@ import { ShelterService } from 'src/app/services/shelter.service';
 import { Pet } from './../../models/pet';
 import { PetService } from './../../services/pet.service';
 import { Trait } from 'src/app/models/trait';
+import { Image } from 'src/app/models/image';
 
 @Component({
   selector: 'app-pet-profile',
@@ -33,6 +33,9 @@ export class PetProfileComponent implements OnInit {
   breedList: Breed[] = [];
   traitList: Trait[] = [];
   traitsToAdd: Trait[] = [];
+  image: Image = new Image();
+  /// EXPERIMENTING
+  selectedFile: File = null;
   traitBoolean = [
     {
       id: 1,
@@ -141,6 +144,7 @@ export class PetProfileComponent implements OnInit {
     this.createPet.adopted = false;
     this.createPet.traits = this.traitsToAdd;
     this.createPet.shelter = this.shelter;
+    this.createPet.images.push(this.image);
 
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.breedList.length; i++) {
@@ -250,8 +254,6 @@ export class PetProfileComponent implements OnInit {
 
 
 
-  /// EXPERIMENTING
-  selectedFile: File = null;
 
   onFileSelected(event) {
     console.log(event);
@@ -259,11 +261,11 @@ export class PetProfileComponent implements OnInit {
     console.log(this.selectedFile);
 
     const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name)
+    fd.append('image', this.selectedFile, this.selectedFile.name);
 
     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
       res => {
-        console.log(res)
+        console.log(res);
         console.log(res.data.url);
       }
     );
