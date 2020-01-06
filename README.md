@@ -69,12 +69,15 @@ From the shelter's profile page, they can update the shelter's information. Addi
 A shelter manager can find fosters and volunteers by using the buttons in the control panel. If a foster's/volunteer's card is clicked, then a modal pops up, giving a brief summary of that user's profile. The user can be contacted by the shelter via a contact box in the modal.
 
 <img src="images/fosterSearch1.png" width="700">
+
 *These are the foster search results*
 
 <img src="images/fosterSearch2.png" width="700">
+
 *An example of a foster's pop-up modal*
 
 <img src="images/fosterSearch3.png" width="700">
+
 *The contact boxes for sending emails to potential fosters*
 
 
