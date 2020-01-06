@@ -68,28 +68,29 @@ From the shelter's profile page, they can update the shelter's information. Addi
 
 A shelter manager can find fosters and volunteers by using the buttons in the control panel. If a foster's/volunteer's card is clicked, then a modal pops up, giving a brief summary of that user's profile. The user can be contacted by the shelter via a contact box in the modal.
 
+*These are the foster search results:*
 <img src="images/fosterSearch1.png" width="700">
 
-*These are the foster search results*
 
+*An example of a foster's pop-up modal:*
 <img src="images/fosterSearch2.png" width="700">
 
-*An example of a foster's pop-up modal*
 
+*The contact boxes for sending emails to potential fosters:*
 <img src="images/fosterSearch3.png" width="700">
 
-*The contact boxes for sending emails to potential fosters*
 
 
 #### Searching for Pets
 
 A user can search for pets by using the convenient search box in the site's navbar or by clicking the 'Search Pets' button on the home page. The 'Search Pets' button will lead the user to a page where they can filter search results to narrow down the species of pet they're looking for, or find pets with certain behavioral traits. Clicking on a pet's search card will bring up a modal with more information about them.
 
+*Results for our "Search Pets" button:*
 <img src="images/petSearch1.png" width="700">
-*Results for our "Search Pets" button*
+
+*An example of the modals used for pets:*
 <img src="images/petSearch2.png" width="700">
 <img src="images/petSearch3.png" width="700">
-*An example of the modals used for pets*
 
 
 ### Implementation
