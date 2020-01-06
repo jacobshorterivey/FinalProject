@@ -98,6 +98,7 @@ public class PetServiceImpl implements PetService {
 			petToUpdate.setAdopted(pet.isAdopted());
 			petToUpdate.setFixed(pet.isFixed());
 			petToUpdate.setShelter(pet.getShelter());
+			petToUpdate.setTraits(pet.getTraits());
 			petRepo.saveAndFlush(petToUpdate);
 		}
 		return petToUpdate;
