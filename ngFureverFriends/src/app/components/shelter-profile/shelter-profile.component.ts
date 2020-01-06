@@ -105,6 +105,7 @@ export class ShelterProfileComponent implements OnInit {
   }
   logout() {
     this.auth.logout();
+    this.isShelterLoggedIn = false;
   }
 
   login(username, password) {
