@@ -109,6 +109,10 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.isUserLoggedIn = false;
+    localStorage.removeItem('account');
+    localStorage.removeItem('credential');
+    console.log('logged out');
+    console.log('Account: ' +  this.account);
     window.location.reload();
   }
 
