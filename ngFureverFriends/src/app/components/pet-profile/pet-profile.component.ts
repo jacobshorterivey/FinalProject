@@ -132,6 +132,7 @@ export class PetProfileComponent implements OnInit {
         const trait = this.traitList[k];
         if ((trait.id === bool.id) && bool.active) {
           this.traitsToAdd.push(trait);
+          bool.active = false;
         }
       }
     }
@@ -166,6 +167,23 @@ export class PetProfileComponent implements OnInit {
     );
   }
   updatePet() {
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.traitBoolean.length; i++) {
+      const bool = this.traitBoolean[i];
+      // tslint:disable-next-line: prefer-for-of
+      for (let k = 0; k < this.traitList.length; k++) {
+        const trait = this.traitList[k];
+        if ((trait.id === bool.id) && bool.active) {
+          this.traitsToAdd.push(trait);
+          bool.active = false;
+        }
+      }
+    }
+
+    if (this.traitsToAdd !== null || this.traitsToAdd !== undefined) {
+      this.selectedPet.traits = this.traitsToAdd;
+    }
+
     this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
       data => {
         console.log(data);

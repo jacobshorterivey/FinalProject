@@ -279,7 +279,7 @@
         </div>
 
 
-        <form>
+        <div>
 
           <div class="row">
             <div class="col-3 text-center">
@@ -315,7 +315,66 @@
             <div class="col-9">
               <input type="text" name="weight" class="form-control" [(ngModel)]="selectedPet.weight" >
             </div>
+          </div> <br>
+          <div class="row">
+            <div class="col-3 text-center">
+              Choose Traits: <br>
+            </div>
           </div>
+
+          <div class="row">
+            <div class="col-lg-3 text-center">
+
+            </div>
+            <div class="col-lg-8 text-center">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-16">
+                  Intellegent: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[0].active">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  Playful: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[1].active">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  Gentle: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[2].active">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  Confident: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[4].active">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  Faithful: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[5].active">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-10">
+                  Outgoing: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[6].active">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  Reserved: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[8].active">
+                </div>
+                <div class="col-lg-5 col-md-4 col-sm-6">
+                  Affectionate: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[9].active">
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                  Quiet: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[10].active">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-5 col-md-4 col-sm-6">
+                  Adventurous: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[11].active">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  Cuddly: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[7].active">
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                  Alert: <input type="checkbox" name="traits" [(ngModel)]="traitBoolean[3].active">
+                </div>
+              </div>
+            </div>
           <br>
           <div class="container text-center">
             <div class="row">
@@ -327,13 +386,12 @@
               </div>
             </div>
 
-          </div>
-        </form>
-
 
         </div>
       </div>
    </div>
+   </div>
+
 
         <!-- <li>Picture: <img src="{{ selectedPet.images[0].imageUrl }}" height= "300px"> </li> -->
 
