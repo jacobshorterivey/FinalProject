@@ -35,9 +35,9 @@
             <table class="table" style="margin-bottom: 0px">
               <tr class="row">
                 <td class="col">
-                  <strong>Available Slots:</strong><br />{{
-                    foster.maxFoster - foster.fosterPets.length
-                  }}
+                  <strong>Available Slots:</strong><br />
+                  <span *ngIf="foster.maxFoster - foster.fosterPets.length < 1">No Available Slots</span>
+                  <span *ngIf="foster.maxFoster - foster.fosterPets.length > 1">{{foster.maxFoster - foster.fosterPets.length}}</span>
                 </td>
               </tr>
               <tr class="row">
@@ -132,7 +132,8 @@
                 <strong>Available Slots for Foster Pets:</strong>
               </td>
               <td class="col-8">
-                {{ selected.maxFoster - selected.fosterPets.length }}
+                <span *ngIf="selected.maxFoster - selected.fosterPets.length < 1">No Available Slots</span>
+                <span *ngIf="selected.maxFoster - selected.fosterPets.length > 1">{{selected.maxFoster - selected.fosterPets.length}}</span>
               </td>
             </tr>
 
