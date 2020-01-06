@@ -71,23 +71,24 @@ export class NavbarComponent implements OnInit {
       error => {
         console.log('error logging in.');
         console.log(error);
-        this.disableMessage = true;
+        this.errorMessage = true;
       }
-    );
+      );
     this.accountService.index(form.value.username, form.value.password).subscribe(
-      ret => {
-        const accounts = ret;
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < accounts.length; i++) {
-          if (accounts[i].username === this.logUsername) {
-            this.account = accounts[i];
-            localStorage.setItem('account', JSON.stringify(this.account));
-            if (this.account.active) {
-              this.getUser(true);
-            } else {
-              localStorage.removeItem('account');
-              localStorage.removeItem('credentials');
-              this.errorMessage = true;
+        ret => {
+          const accounts = ret;
+          // tslint:disable-next-line: prefer-for-of
+          for (let i = 0; i < accounts.length; i++) {
+            if (accounts[i].username === this.logUsername) {
+              this.account = accounts[i];
+              localStorage.setItem('account', JSON.stringify(this.account));
+              console.log(this.account.active);
+              if (this.account.active) {
+                this.getUser(true);
+              } else {
+                localStorage.removeItem('account');
+                localStorage.removeItem('credentials');
+                this.disableMessage = true;
             }
           }
         }
