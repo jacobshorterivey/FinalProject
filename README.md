@@ -35,6 +35,7 @@ Currently, this project is hosted on AWS and can be accessed at **URL HERE**. So
 | Create   | POST      | `/api/mail`                |Sends an email via contact box              |
 
 *\*substitute {id}/{sid} for any valid integer representing an item in the database*
+
 *\*substitute {keyword} for any valid string representing the desired query keyword*
 
 
@@ -51,7 +52,7 @@ To create a profile click the 'Login/Register' dropdown, then click the 'Registe
 
 #### User Profile Page
 
-<img src="images/userProfile.png" width="700">
+<img src="images/userProfile.png" width="350">
 
 From the user's profile page, they can set their volunteer and foster statuses and update their personal information.
 
@@ -68,8 +69,13 @@ From the shelter's profile page, they can update the shelter's information. Addi
 A shelter manager can find fosters and volunteers by using the buttons in the control panel. If a foster's/volunteer's card is clicked, then a modal pops up, giving a brief summary of that user's profile. The user can be contacted by the shelter via a contact box in the modal.
 
 <img src="images/fosterSearch1.png" width="700">
+*These are the foster search results*
+
 <img src="images/fosterSearch2.png" width="700">
+*An example of a foster's pop-up modal*
+
 <img src="images/fosterSearch3.png" width="700">
+*The contact boxes for sending emails to potential fosters*
 
 
 #### Searching for Pets
@@ -77,8 +83,10 @@ A shelter manager can find fosters and volunteers by using the buttons in the co
 A user can search for pets by using the convenient search box in the site's navbar or by clicking the 'Search Pets' button on the home page. The 'Search Pets' button will lead the user to a page where they can filter search results to narrow down the species of pet they're looking for, or find pets with certain behavioral traits. Clicking on a pet's search card will bring up a modal with more information about them.
 
 <img src="images/petSearch1.png" width="700">
+*Results for our "Search Pets" button*
 <img src="images/petSearch2.png" width="700">
 <img src="images/petSearch3.png" width="700">
+*An example of the modals used for pets*
 
 
 ### Implementation
