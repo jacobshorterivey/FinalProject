@@ -161,11 +161,14 @@ export class PetProfileComponent implements OnInit {
         this.dogCreate = false;
         this.catCreate = false;
         this.create = false;
+        // window.location.reload();
       },
       err => {
         console.error(err);
       }
     );
+
+    this.loadBreedAndTraitLists();
   }
   updatePet() {
     // tslint:disable-next-line: prefer-for-of
