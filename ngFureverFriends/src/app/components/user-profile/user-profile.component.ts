@@ -1,3 +1,5 @@
+import { Image } from './../../models/image';
+import { HttpClient } from '@angular/common/http';
 import { Skill } from './../../models/skill';
 import { AuthService } from 'src/app/services/auth.service';
 import { Foster } from './../../models/foster';
@@ -17,8 +19,6 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-
-  //AIzaSyD4GPzRrlPQ_6SkqYBsTdLOc7b3gdpHyWU
 
   // Field
   user: User;
@@ -92,7 +92,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService: UserService, private accountService: AccountService,
               private route: ActivatedRoute, private router: Router,
               private fostersvc: FosterService, private authSVC: AuthService,
-              private cdRef: ChangeDetectorRef) { }
+              private cdRef: ChangeDetectorRef, private http: HttpClient) { }
 
   ngOnInit() {
     this.getUserPass();
@@ -155,19 +155,6 @@ export class UserProfileComponent implements OnInit {
       },
       error => {
         console.error('error updating foster');
-      }
-    );
-  }
-
-  updateUser() {
-    this.user.account.password = this.pass;
-    this.userService.update(this.user.id, this.user).subscribe(
-      data => {
-        this.logout();
-        this.login(this.user.account.username, this.user.account.password);
-       },
-      error => {
-        console.error('error updating user');
       }
     );
   }
@@ -260,4 +247,75 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  updateUser() {
+    // this.updateImage();
+
+    this.user.images[0].imageUrl = this.newImage;
+    console.log('bb' + this.user.images[0].imageUrl);
+
+    this.user.account.password = this.pass;  // this line of logic, eh?????   // CLOSE MODAL WHE DONE!
+    this.userService.update(this.user.id, this.user).subscribe(
+      data => {
+        console.log('aa' + this.user.images[0].imageUrl);
+        this.logout();
+        this.login(this.user.account.username, this.user.account.password);
+       },
+      error => {
+        console.error('error updating user');
+      }
+    );
+  }
+
+  /// EXPERIMENTING
+//   selectedFile: File = null;
+
+//   onFileSelected(event) {
+//     console.log(event);
+//     this.selectedFile = event.target.files[0] as File;
+//   }
+
+//   updateImage() {
+//     const fd = new FormData();
+//     fd.append('image', this.selectedFile, this.selectedFile.name)
+
+//     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
+//       res => {
+//         console.log(res)
+//         console.log(res.data.url);
+//         this.user.images[0].imageUrl = res.data.url;
+//       }
+//     );
+//   }
+
+
+// }
+
+// interface ImageResponse {
+//   data: any;
+// }
+
+  /// EXPERIMENTING
+  selectedFile: File = null;
+  newImage: string;
+
+  onFileSelected(event) {
+    console.log(event);
+    this.selectedFile = event.target.files[0] as File;
+    console.log(this.selectedFile);
+
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name)
+
+    this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
+      res => {
+        console.log(res)
+        console.log(res.data.url);
+        this.newImage = res.data.url;
+      }
+    );
+  }
+}
+
+interface ImageResponse {
+  data: any;
 }

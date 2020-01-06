@@ -94,7 +94,7 @@
        </p>
 
        <div class="col updateShelterInfo">
-         <button class="btn btn-primary" (click)="editShelter = selected">Update Info</button>
+         <button class="btn btn-primary" *ngIf="isShelterLoggedIn" (click)="editShelter = selected">Update Info</button>
        </div>
       </div>
       <div class="col shelterInfo" *ngIf="editShelter">
