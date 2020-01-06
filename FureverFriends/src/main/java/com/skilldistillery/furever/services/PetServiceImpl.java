@@ -12,6 +12,7 @@ import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Trait;
 import com.skilldistillery.furever.repositories.BreedRepository;
+import com.skilldistillery.furever.repositories.ImageRepository;
 import com.skilldistillery.furever.repositories.PetRepository;
 import com.skilldistillery.furever.repositories.ShelterRepository;
 import com.skilldistillery.furever.repositories.TraitRepository;
@@ -32,6 +33,9 @@ public class PetServiceImpl implements PetService {
 	
 	@Autowired
 	private TraitRepository traitRepo;
+	
+	@Autowired
+	private ImageRepository imageRepo;
 
 	// Methods
 	
@@ -80,6 +84,9 @@ public class PetServiceImpl implements PetService {
 	
 	@Override
 	public Pet createPet(Pet pet) {
+		for (int i = 0; i < pet.getImages().size(); i++) {
+			imageRepo.saveAndFlush(pet.getImages().get(i));
+		}
 		Pet opt = petRepo.saveAndFlush(pet);
 		return opt;
 	}
