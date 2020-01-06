@@ -1,82 +1,122 @@
 <!-- FILTERS -->
-<div>
+<div class="container petFilters">
   <div id="speciesFilter" class="container text-center">
     <h4>Species:</h4>
-    Dog:<input
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="showDogs"
       checked
     />
-    Cat:<input
+    <span [innerHTML]="space"></span>
+    Dog<span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="showCats"
       checked
-    /><br />
+    /><span [innerHTML]="space"></span>
+    Cat
+    <br />
   </div>
+  <hr>
   <div id="traitsFilter" class="container text-center form-check checkbox-rounded checkbox-living-coral-filled mb-2">
     <h4>Traits:</h4>
-    Intelligent:<input
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isIntelligent"
     />
-    Playful:<input
+    <span [innerHTML]="space"></span>
+    Intelligent
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isPlayful"
     />
-    Gentle:<input
+    <span [innerHTML]="space"></span>
+    Playful
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isGentle"
     />
-    Alert:<input
+    <span [innerHTML]="space"></span>
+    Gentle
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isAlert"
     />
-    Confident:<input
+    <span [innerHTML]="space"></span>
+    Alert
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isConfident"
     />
-    Faithful:<input
+    <span [innerHTML]="space"></span>
+    Confident
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isFaithful"
     />
-    Outgoing:<input
+    <span [innerHTML]="space"></span>
+    Faithful
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isOutgoing"
-    />
-    Cuddly:<input
+    />    <span [innerHTML]="space"></span>
+    Outgoing
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isCuddly"
     />
-    Reserved:<input
+    <span [innerHTML]="space"></span>
+    Cuddly
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isReserved"
     />
-    Affectionate:<input
+    <span [innerHTML]="space"></span>
+    Reserved
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isAffectionate"
     />
-    Quiet:<input
+    <span [innerHTML]="space"></span>
+    Affectionate
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isQuiet"
     />
-    Adventurous:<input
+    <span [innerHTML]="space"></span>
+    Quiet
+    <span [innerHTML]="text"></span>
+    <input
       type="checkbox"
       name="filterPets"
       [(ngModel)]="isAdventurous"
-    />
+    />    <span [innerHTML]="space"></span>
+    Adventurous
+    <span [innerHTML]="text"></span>
   </div>
   <!-- <select class="form-control" id="subject" *ngFor="">
 
