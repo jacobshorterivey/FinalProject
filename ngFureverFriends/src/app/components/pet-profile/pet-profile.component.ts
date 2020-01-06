@@ -253,8 +253,6 @@ export class PetProfileComponent implements OnInit {
 
 
 
-
-
   onFileSelected(event) {
     console.log(event);
     this.selectedFile = event.target.files[0] as File;

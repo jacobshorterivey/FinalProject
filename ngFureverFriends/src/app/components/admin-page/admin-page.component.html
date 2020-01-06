@@ -1,9 +1,18 @@
-<div *ngIf="!userList && !shelterList">
-  <button class="btn btn-primary lButton" (click)="userList = true">Users</button>
-  <button class="btn btn-primary lButton" (click)="shelterList = true">Shelters</button>
+<div class="adminBody">
+  <div class="container">
+
+
+
+<div *ngIf="!userList && !shelterList" class="adminButtons text-center">
+
+  <div class="buttonAdminDiv">
+    <p class="adminCenterText">Enable / Disable Users</p>
+    <button class="btn btn-primary lButton adminButtonStyle" (click)="userList = true">Users</button>
+    <button class="btn btn-primary lButton adminButtonStyle" (click)="shelterList = true">Shelters</button>
+  </div>
 </div>
 
-<div *ngIf="userList && !shelterList" id="userAdmin">
+<div class="container adminMain bg-light" *ngIf="userList && !shelterList" id="userAdmin">
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -25,14 +34,14 @@
         <td>{{user.account.role}}</td>
         <td *ngIf="user.account.active">Active</td>
         <td *ngIf="!user.account.active">Disabled</td>
-        <td (click)="disableUser(user)"> <button> X </button> </td>
+        <td (click)="disableUser(user)"> <button class="btn-warning btn btn-sm"> X </button> </td>
       </tr>
     </tbody>
   </table>
-  <button class="btn btn-primary lButton" (click)="userList = false">Back</button>
+  <button class="btn btn-primary lButton adminFormBtn" (click)="userList = false">Back</button>
 </div>
 
-<div *ngIf="shelterList && !userList" id="shelterAdmin">
+<div class="container adminMain bg-light" *ngIf="shelterList && !userList" id="shelterAdmin">
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -54,9 +63,11 @@
         <td>{{shelter.account.role}}</td>
         <td *ngIf="shelter.account.active">Active</td>
         <td *ngIf="!shelter.account.active">Disabled</td>
-        <td (click)="disableShelter(shelter)"> <button> X </button> </td>
+        <td (click)="disableShelter(shelter)"> <button class="btn-warning btn btn-sm"> X </button> </td>
       </tr>
     </tbody>
   </table>
-  <button class="btn btn-primary lButton" (click)="shelterList = false">Back</button>
+  <button class="btn btn-primary lButton adminFormBtn" (click)="shelterList = false">Back</button>
+</div>
+</div>
 </div>

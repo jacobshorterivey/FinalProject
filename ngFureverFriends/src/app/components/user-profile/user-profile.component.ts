@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
 
   // Field
   user: User;
+  isTheUserAFoster = false;
   admin: boolean;
   selectedUser: User;
   users: User[];
@@ -119,17 +120,22 @@ export class UserProfileComponent implements OnInit {
           }
 
           // Checks if a user is a foster.  More efficent to create backend search by id.  Maybe in the future.
+
           this.fostersvc.index().subscribe(
             (pass) => {
               this.account = JSON.parse(localStorage.getItem('account'));
               pass.forEach(element => {
                 if (element.user.id === this.user.id) {
                   this.foster = element;
+                  this.isTheUserAFoster = true;
                   if (this.foster.maxFoster <= 0) {
                     this.isFosterActive = false;
                   }
                 }
               });
+              if (this.isTheUserAFoster === false) {
+                this.isFosterActive = false;
+              }
             },
             err => {
               console.error('TodoListCompenent.loadtodoList():error loading todos');
@@ -238,12 +244,34 @@ export class UserProfileComponent implements OnInit {
   }
 
   fosterSwitch() {
-    if (this.isFosterActive) {
-      this.foster.maxFoster = 0;
-      this.updateFoster();
+    if (this.isTheUserAFoster) {
+      if (this.isFosterActive) {
+        this.foster.maxFoster = 0;
+        this.updateFoster();
+      } else {
+        this.foster.maxFoster = 1;
+        this.updateFoster();
+      }
     } else {
-      this.foster.maxFoster = 1;
-      this.updateFoster();
+      const nf: Foster = {
+          id: 1,
+          maxFoster: 1,
+          user: this.user,
+          breedList: [],
+          fosterPets: []
+        };
+
+      this.fostersvc.create(nf).subscribe(
+        (pass) => {
+          this.isFosterActive = true;
+          this.isTheUserAFoster = true;
+          this.foster = pass;
+          this.cdRef.detectChanges();
+        },
+        (fail) => {
+          console.error('error creating foster');
+        }
+      );
     }
   }
 
@@ -252,13 +280,11 @@ export class UserProfileComponent implements OnInit {
 
     if (this.newImage != null) {
       this.user.images[0].imageUrl = this.newImage;
-      console.log('bb' + this.user.images[0].imageUrl);
     }
 
-    this.user.account.password = this.pass;  // this line of logic, eh?????   // CLOSE MODAL WHE DONE!
+    this.user.account.password = this.pass;
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
-        console.log('aa' + this.user.images[0].imageUrl);
         this.logout();
         this.login(this.user.account.username, this.user.account.password);
        },
@@ -268,35 +294,7 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  /// EXPERIMENTING
-//   selectedFile: File = null;
-
-//   onFileSelected(event) {
-//     console.log(event);
-//     this.selectedFile = event.target.files[0] as File;
-//   }
-
-//   updateImage() {
-//     const fd = new FormData();
-//     fd.append('image', this.selectedFile, this.selectedFile.name)
-
-//     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
-//       res => {
-//         console.log(res)
-//         console.log(res.data.url);
-//         this.user.images[0].imageUrl = res.data.url;
-//       }
-//     );
-//   }
-
-
-// }
-
-// interface ImageResponse {
-//   data: any;
-// }
-
-  /// EXPERIMENTING
+  /// Image upload
   selectedFile: File = null;
   newImage: string;
 
@@ -306,7 +304,7 @@ export class UserProfileComponent implements OnInit {
     console.log(this.selectedFile);
 
     const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name)
+    fd.append('image', this.selectedFile, this.selectedFile.name);
 
     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
       res => {
