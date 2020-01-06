@@ -1,4 +1,4 @@
-<body>
+<header>
 <div *ngIf="!userBool && !shelterBool">
     <div class="container">
       <div class="card">
@@ -12,9 +12,10 @@
       </div>
     </div>
 </div>
-<br>
+</header>
 
 <div *ngIf="userBool">
+    <body>
   <div class="container">
   <div class="card">
     <h3>New User Registration</h3>
@@ -60,9 +61,16 @@
   </form>
   </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+
+    </body>
 </div>
 
 <div *ngIf="shelterBool">
+    <body>
     <div class="container">
     <div class="card">
       <h3>New Shelter Registration</h3>
@@ -102,7 +110,14 @@
   </form>
   </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</body>
 </div>
 
-
-</body>
