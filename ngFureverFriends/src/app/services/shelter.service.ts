@@ -88,4 +88,14 @@ export class ShelterService {
       })
     );
   }
+
+  findLocation(street, city, state) {
+    // tslint:disable-next-line: max-line-length
+    return this.http.get<Location>('https://maps.googleapis.com/maps/api/geocode/json?address=' + street + ',+' + city +
+    ',+' + state + '&key=');
+  }
+}
+
+interface Location {
+  results: any;
 }

@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { Shelter } from 'src/app/models/shelter';
 import { Account } from 'src/app/models/account';
-import { PassThrough } from 'stream';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -18,6 +17,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+
+  //AIzaSyD4GPzRrlPQ_6SkqYBsTdLOc7b3gdpHyWU
 
   // Field
   user: User;

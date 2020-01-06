@@ -33,6 +33,7 @@ import { NavSearchComponent } from './components/nav-search/nav-search.component
 import { FilterPetsPipe } from './pipes/filter-pets.pipe';
 import { BreedSeparatorPipe } from './pipes/breed-separator.pipe';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,9 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    })
   ],
   providers: [
     ShelterService,
