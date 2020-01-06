@@ -280,13 +280,11 @@ export class UserProfileComponent implements OnInit {
 
     if (this.newImage != null) {
       this.user.images[0].imageUrl = this.newImage;
-      console.log('bb' + this.user.images[0].imageUrl);
     }
 
-    this.user.account.password = this.pass;  // this line of logic, eh?????   // CLOSE MODAL WHE DONE!
+    this.user.account.password = this.pass;
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
-        console.log('aa' + this.user.images[0].imageUrl);
         this.logout();
         this.login(this.user.account.username, this.user.account.password);
        },
@@ -296,35 +294,7 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  /// EXPERIMENTING
-//   selectedFile: File = null;
-
-//   onFileSelected(event) {
-//     console.log(event);
-//     this.selectedFile = event.target.files[0] as File;
-//   }
-
-//   updateImage() {
-//     const fd = new FormData();
-//     fd.append('image', this.selectedFile, this.selectedFile.name)
-
-//     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
-//       res => {
-//         console.log(res)
-//         console.log(res.data.url);
-//         this.user.images[0].imageUrl = res.data.url;
-//       }
-//     );
-//   }
-
-
-// }
-
-// interface ImageResponse {
-//   data: any;
-// }
-
-  /// EXPERIMENTING
+  /// Image upload
   selectedFile: File = null;
   newImage: string;
 

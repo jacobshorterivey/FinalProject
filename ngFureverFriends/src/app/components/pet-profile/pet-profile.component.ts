@@ -247,9 +247,6 @@ export class PetProfileComponent implements OnInit {
     );
   }
 
-
-
-
   /// EXPERIMENTING
   selectedFile: File = null;
 
