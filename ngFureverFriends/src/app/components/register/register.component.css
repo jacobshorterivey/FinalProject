@@ -35,12 +35,21 @@ label {
   margin-right: 10px;
   margin-left: 10px;
 }
-body {
+header {
   background-image: url(https://image.shutterstock.com/image-vector/picture-mountain-range-forest-silhouette-260nw-515905834.jpg
   );
   /* background-repeat: no-repeat;
   background-size: cover;  */
   background-color: #cccccc;
+ }
+
+ body {
+  background-image: url(https://forums.unrealengine.com/filedata/fetch?id=1189160&d=1470406352
+  );
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  background-color: #cccccc;
+  background-attachment: scroll;
  }
 /* Margins for div
 div {
