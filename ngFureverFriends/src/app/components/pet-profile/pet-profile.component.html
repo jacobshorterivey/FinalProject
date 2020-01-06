@@ -32,15 +32,15 @@
       </div>
     </div>
     <br>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-3 text-center">
         Color(s):
       </div>
       <div class="col-9">
         <input type="number" name="age" class="form-control" [(ngModel)]="createPet.age" placeholder="Enter age">
       </div>
-    </div>
-    <br>
+    </div> -->
+    <!-- <br> -->
     <div class="row">
       <div class="col-3 text-center">
         Age:
@@ -64,6 +64,11 @@
         Image:
       </div>
       <div class="col-9">
+        <!-- <div>
+          <input class="inputfile" name="file" id="file" type="file" (change)="onFileSelected($event)">
+          <label for="file" class="btn btn-success formBtn"> <img src="../../../assets/img/upload.svg" height="20px" style="margin-right: 3px"> Choose an Image</label>
+        </div> -->
+
         <input type="text" name="images" class="form-control" [(ngModel)]="createPet.images" placeholder="Image Url">
       </div>
     </div>
@@ -349,6 +354,7 @@
         </div>
     </div>
   </div>
+
 
     </div>
   </div>

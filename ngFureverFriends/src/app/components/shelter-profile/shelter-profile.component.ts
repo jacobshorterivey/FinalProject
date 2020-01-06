@@ -30,6 +30,10 @@ export class ShelterProfileComponent implements OnInit {
   isAnyoneLoggedIn: boolean;
   editShelter: Shelter;
 
+  lat: any;
+  long: any;
+  location: any;
+
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService,
               private emailSvc: EmailService, private cdRef: ChangeDetectorRef) { }
 
@@ -49,8 +53,16 @@ export class ShelterProfileComponent implements OnInit {
             this.shelters.forEach((shelter) => {
               if (shelter.id === this.urlId) {
                 this.selected = shelter;
-                console.log('Selected info: ' + this.selected.account.id);
                 this.loadShelterPets(shelter.id);
+
+                // tslint:disable-next-line: max-line-length
+                this.svc.findLocation(this.selected.address.street, this.selected.address.city, this.selected.address.stateAbbr).subscribe(loc => {
+                  console.log(loc);
+                  this.lat = loc.results[0].geometry.location.lat;
+                  this.long = loc.results[0].geometry.location.lng;
+                  console.log(this.lat);
+                });
+
                 // tslint:disable-next-line: radix
                 if (this.selected.account.id === parseInt(this.account.id)) {
                   console.log('account info: ' + this.account);
@@ -64,6 +76,16 @@ export class ShelterProfileComponent implements OnInit {
       );
 
     }
+
+    // this.svc.findLocation().subscribe(data => {
+    //   console.log(data);
+    //   console.log(data.results[0].geometry.location.lat);
+    //   console.log(data.results[0].geometry.location.lng);
+    //   this.lat = data.results[0].geometry.location.lat;
+    //   this.long = data.results[0].geometry.location.lng;
+    //   console.log(this.lat);
+    // });
+
   }
   updateShelter() {
     this.svc.update(this.selected.id, this.editShelter).subscribe(

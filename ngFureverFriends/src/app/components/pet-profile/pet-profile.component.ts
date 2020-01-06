@@ -1,3 +1,4 @@
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, createPlatform, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -87,7 +88,7 @@ export class PetProfileComponent implements OnInit {
 
   // Constructor
   constructor(private petService: PetService, private route: ActivatedRoute, private router: Router, private shelterSVC: ShelterService,
-              private cdRef: ChangeDetectorRef) { }
+              private cdRef: ChangeDetectorRef, private http: HttpClient) { }
 
   // Methods
   ngOnInit() {
@@ -224,5 +225,31 @@ export class PetProfileComponent implements OnInit {
       }
     );
   }
+
+
+
+
+  /// EXPERIMENTING
+  selectedFile: File = null;
+
+  onFileSelected(event) {
+    console.log(event);
+    this.selectedFile = event.target.files[0] as File;
+    console.log(this.selectedFile);
+
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name)
+
+    this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
+      res => {
+        console.log(res)
+        console.log(res.data.url);
+      }
+    );
+  }
+}
+
+interface ImageResponse {
+  data: any;
 }
 
