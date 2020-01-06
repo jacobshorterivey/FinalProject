@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class NavSearchComponent implements OnInit {
 
   searchedPets: Pet[] = [];
+  public selected: Pet;
   // searchKey: string = null;
 
   constructor(
@@ -55,5 +56,9 @@ export class NavSearchComponent implements OnInit {
         console.error(err);
       }
     );
+  }
+
+  openModule(animal: Pet) {
+    this.selected = animal;
   }
 }

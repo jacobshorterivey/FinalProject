@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Account;
 import com.skilldistillery.furever.entities.Address;
+import com.skilldistillery.furever.entities.Image;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Skill;
 import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.repositories.AccountRepository;
 import com.skilldistillery.furever.repositories.AddressRepository;
+import com.skilldistillery.furever.repositories.ImageRepository;
 import com.skilldistillery.furever.repositories.UserRepository;
 
 @Service
@@ -29,6 +31,8 @@ public class UserServiceImpl implements UserService {
 	AddressRepository addrRepo;
 	@Autowired
 	AccountRepository acctRepo;
+	@Autowired
+	ImageRepository imgRepo;
 	@Autowired
 	private PasswordEncoder encoder;
 
@@ -118,6 +122,18 @@ public class UserServiceImpl implements UserService {
 				if (updateUser.getAge() != null) {
 					origUser.setAge(updateUser.getAge());
 				}
+				
+				if (updateUser.getImages() != null) {
+					Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
+					if (im.isPresent()) {
+						Image image = im.get();
+						image.setId(updateUser.getImages().get(0).getId());
+						image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
+						imgRepo.saveAndFlush(image);
+					}
+				}
+				
+				
 				if (updateUser.getSkills() != null) {
 					origUser.setSkills(updateUser.getSkills());
 				}

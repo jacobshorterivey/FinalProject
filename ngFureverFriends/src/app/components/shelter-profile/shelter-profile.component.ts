@@ -7,6 +7,7 @@ import { Shelter } from './../../models/shelter';
 import { Pet } from 'src/app/models/pet';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmailServiceImpl } from 'src/app/models/email';
+import { Account } from 'src/app/models/account';
 
 @Component({
   selector: 'app-shelter-profile',
@@ -29,11 +30,17 @@ export class ShelterProfileComponent implements OnInit {
   isShelterLoggedIn: boolean;
   isAnyoneLoggedIn: boolean;
   editShelter: Shelter;
+  pass: string;
+
+  lat: any;
+  long: any;
+  location: any;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService,
               private emailSvc: EmailService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.getUserPass();
     this.account = JSON.parse(localStorage.getItem('account'));
     console.log(this.account);
     this.checkIfLoggedIn();
@@ -49,10 +56,18 @@ export class ShelterProfileComponent implements OnInit {
             this.shelters.forEach((shelter) => {
               if (shelter.id === this.urlId) {
                 this.selected = shelter;
-                console.log('Selected info: ' + this.selected.account.id);
                 this.loadShelterPets(shelter.id);
+
+                // tslint:disable-next-line: max-line-length
+                this.svc.findLocation(this.selected.address.street, this.selected.address.city, this.selected.address.stateAbbr).subscribe(loc => {
+                  console.log(loc);
+                  this.lat = loc.results[0].geometry.location.lat;
+                  this.long = loc.results[0].geometry.location.lng;
+                  console.log(this.lat);
+                });
+
                 // tslint:disable-next-line: radix
-                if (this.selected.account.id === parseInt(this.account.id)) {
+                if (this.selected.account.id === this.account.id) {
                   console.log('account info: ' + this.account);
                   this.isShelterLoggedIn = true;
                 }
@@ -64,11 +79,27 @@ export class ShelterProfileComponent implements OnInit {
       );
 
     }
+
+    // this.svc.findLocation().subscribe(data => {
+    //   console.log(data);
+    //   console.log(data.results[0].geometry.location.lat);
+    //   console.log(data.results[0].geometry.location.lng);
+    //   this.lat = data.results[0].geometry.location.lat;
+    //   this.long = data.results[0].geometry.location.lng;
+    //   console.log(this.lat);
+    // });
+
   }
   updateShelter() {
+    console.log('asdasdasdasdas  ' + this.pass);
+    this.editShelter.account.password = this.pass;
     this.svc.update(this.editShelter.id, this.editShelter).subscribe(
       data => {
         console.log(data);
+        this.editShelter = null;
+        this.logout();
+        this.login(this.selected.account.username, this.selected.account.password);
+        console.log(this.selected.id + ' ' + this.selected.name);
         // this.reload();
       },
       err => {
@@ -76,6 +107,21 @@ export class ShelterProfileComponent implements OnInit {
       }
     );
     // this.reload();
+  }
+  logout() {
+    this.auth.logout();
+    this.isShelterLoggedIn = false;
+  }
+
+  login(username, password) {
+    this.auth.login(username, password).subscribe(
+      next => {
+
+      },
+      error => {
+        console.error('error logging in.');
+      }
+    );
   }
 
   loadEvents() {
@@ -134,5 +180,12 @@ export class ShelterProfileComponent implements OnInit {
     this.sentEmailMessage = false;
     this.cdRef.detectChanges();
     this.sentEmailMessage = true;
+  }
+
+  getUserPass() {
+    const a = (atob(this.auth.getCredentials()));  // converts to username:password
+    const b = a.split(':'); // splits into an array of [username, password]
+    const c = b[1]; // obtains password
+    this.pass = c; // sets password for form and update
   }
 }

@@ -94,10 +94,11 @@
        </p>
 
        <div class="col updateShelterInfo">
-         <button class="btn btn-primary" (click)="editShelter = selected">Update Info</button>
+         <button class="btn btn-primary" *ngIf="isShelterLoggedIn" (click)="editShelter = selected">Update Info</button>
        </div>
       </div>
       <div class="col shelterInfo" *ngIf="editShelter">
+        <input type="hidden" value="editShelter.id" name="id" [(ngModel)]="editShelter.id">
         <p><strong>Email:</strong><br>
         <input type = "text" name = "email" placeholder="selected.email" default="selected.email" [(ngModel)]="editShelter.email"></p><br>
         <p><strong>Phone:</strong><br>
@@ -179,9 +180,10 @@
   </div>
 
 
-<div class="container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d148575.88697948717!2d-105.06134926115526!3d39.69228245528967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spet%20shelters!5e0!3m2!1sen!2sus!4v1577982925278!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-    <!-- INSERT MAPS API HERE... -->
+<div class="container mapDiv">
+  <agm-map [latitude]="lat" [longitude]="long">
+    <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
+  </agm-map>
 </div>
 
 

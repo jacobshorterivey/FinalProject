@@ -5,9 +5,9 @@
 </div> -->
 
 <div class="container">
-  <div class="row">
+  <div class="row" style="padding-top: 40px">
     <div *ngFor="let pet of searchedPets" class="col-lg-4 col-md-6 col-sm-12 col-12">
-      <div class="petCard container" data-toggle="modal" data-target=".bd-example-modal-lg">
+      <div class="petCard container" (click)="openModule(pet)" data-toggle="modal" data-target=".bd-example-modal-lg">
          <div class="row">
             <div class="col-5 petCardImage">
               <img *ngIf="pet.images[0]" src="{{pet?.images[0]?.imageUrl}}">
@@ -40,4 +40,248 @@
 </div>
 <div *ngIf="searchedPets.length === 0">
   <h3>No Results Found</h3>
+</div>
+
+
+<!-- START PET MODAL -->
+<div
+  class="modal fade bd-example-modal-lg mainModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+  *ngIf="selected"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title">{{ selected?.name }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- PET IMAGE SLIDE -->
+        <div
+          id="selectedPetCtrl"
+          class="carousel slide petCarosel"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div
+              class="carousel-item {{ i == 0 ? 'active' : '' }}"
+              *ngFor="let image of selected?.images; let i = index"
+            >
+              <div class="petModalImages">
+                <img src="{{ image.imageUrl }}" />
+                \
+              </div>
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#selectedPetCtrl"
+            role="button"
+            data-slide="prev"
+            *ngIf="selected.images.length > 1"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#selectedPetCtrl"
+            role="button"
+            data-slide="next"
+            *ngIf="selected.images.length > 1"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <!-- PET PESCRIPTION -->
+        <div class="container">
+          <p class="featuredText text-center text-primary">Pet Description</p>
+          <table class="table container">
+            <tr class="row">
+              <td class="col-4">
+                <strong>Breed:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.breed.name }}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Age:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.age }}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Color:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.color }}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Size:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.size }}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Weight:</strong>
+              </td>
+              <td class="col-8">{{ selected.weight }} pounds</td>
+            </tr>
+
+            <tr class="row" *ngIf="selected.fixed === true">
+              <td class="col-4">
+                <strong>Fixed:</strong>
+              </td>
+              <td class="col-8">
+                ✔
+              </td>
+            </tr>
+            <tr class="row" *ngIf="selected.fixed === false">
+              <td class="col-4">
+                <strong>Fixed:</strong>
+              </td>
+              <td class="col-8">
+                ✖
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-12">
+                <strong>Special Conditions:</strong><br />
+                {{ selected.specialConditions }}
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- TRAIT BADGES -->
+        <div class="col-3" *ngFor="let trait of selected.traits">
+          <h6>
+            <span class="badge badge-success">{{ trait.description }}</span>
+          </h6>
+        </div>
+
+        <br />
+        <br />
+        <!--Breed INFORMATION-->
+        <div class="container">
+          <p class="featuredText text-center text-primary">Breed Information</p>
+
+          <div *ngIf="selected.breed.id === 219 || selected.breed.id === 173">
+            There is no information for mixed breeds.
+          </div>
+
+          <table
+            class="table"
+            *ngIf="selected.breed.id !== 219 && selected.breed.id !== 173"
+          >
+            <tr class="row">
+              <td class="col-4">
+                <strong>Description:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.breed.description }}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Hair type:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.breed.hairType }}
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-lg-4 col-sm-4 col-xs-5">
+                <strong>Hypoallergenic:</strong>
+              </td>
+              <td
+                class="col-lg-8 col-sm-8 col-xs-7"
+                *ngIf="selected.breed.hypoallergenic === true"
+              >
+                ✔
+              </td>
+              <td
+                class="col-lg-8 col-sm-8 col-xs-7"
+                *ngIf="selected.breed.hypoallergenic === false"
+              >
+                ✖
+              </td>
+            </tr>
+
+            <tr class="row">
+              <td class="col-4">
+                <strong>Breed Size:</strong>
+              </td>
+              <td class="col-8">
+                {{ selected.breed.size }}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br />
+        <br />
+
+        <!--SHELTER LINK-->
+        <p class="featuredText text-center text-primary">Shelter</p>
+        <div
+          class="row shelterCard"
+          routerLink="../../../shelter/{{ selected?.shelter?.id }}"
+          data-dismiss="modal"
+        >
+          <div class="col" style="overflow: hidden;">
+            <table class="table">
+              <tr class="row">
+                <td class="col-12">
+                  <h3>{{ selected?.shelter?.name }}</h3>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="col-12">
+                  {{ selected?.shelter?.address?.street }}<br />
+                  {{ selected?.shelter?.address?.city }},
+                  {{ selected?.shelter?.address?.stateAbbr }}
+                  {{ selected?.shelter?.address?.zip }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!--MODAL CLOSE BUTTON-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+  <BR />
 </div>
