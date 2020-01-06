@@ -250,8 +250,10 @@ export class UserProfileComponent implements OnInit {
   updateUser() {
     // this.updateImage();
 
-    this.user.images[0].imageUrl = this.newImage;
-    console.log('bb' + this.user.images[0].imageUrl);
+    if (this.newImage != null) {
+      this.user.images[0].imageUrl = this.newImage;
+      console.log('bb' + this.user.images[0].imageUrl);
+    }
 
     this.user.account.password = this.pass;  // this line of logic, eh?????   // CLOSE MODAL WHE DONE!
     this.userService.update(this.user.id, this.user).subscribe(
