@@ -110,7 +110,6 @@ export class ShelterProfileComponent implements OnInit {
   }
   logout() {
     this.auth.logout();
-    this.isShelterLoggedIn = false;
   }
 
   login(username, password) {
@@ -161,6 +160,7 @@ export class ShelterProfileComponent implements OnInit {
 
   checkIfLoggedIn() {
     this.isAnyoneLoggedIn = this.auth.checkLogin();
+    console.log('Is logged in');
   }
 
   sendEmail(email: NgForm) {
