@@ -36,6 +36,7 @@ export class FosterService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
     return this.http.post<Foster>(this.url + '?sorted=true', newFoster, httpOptions).pipe(

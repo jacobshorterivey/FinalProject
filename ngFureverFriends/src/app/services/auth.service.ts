@@ -66,6 +66,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('credentials');
+    localStorage.removeItem('account');
   }
 
   checkLogin() {
