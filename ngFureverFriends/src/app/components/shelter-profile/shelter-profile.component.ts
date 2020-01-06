@@ -7,6 +7,7 @@ import { Shelter } from './../../models/shelter';
 import { Pet } from 'src/app/models/pet';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmailServiceImpl } from 'src/app/models/email';
+import { Account } from 'src/app/models/account';
 
 @Component({
   selector: 'app-shelter-profile',
@@ -29,6 +30,7 @@ export class ShelterProfileComponent implements OnInit {
   isShelterLoggedIn: boolean;
   isAnyoneLoggedIn: boolean;
   editShelter: Shelter;
+  pass: string;
 
   lat: any;
   long: any;
@@ -38,6 +40,7 @@ export class ShelterProfileComponent implements OnInit {
               private emailSvc: EmailService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.getUserPass();
     this.account = JSON.parse(localStorage.getItem('account'));
     console.log(this.account);
     this.checkIfLoggedIn();
@@ -64,7 +67,7 @@ export class ShelterProfileComponent implements OnInit {
                 });
 
                 // tslint:disable-next-line: radix
-                if (this.selected.account.id === parseInt(this.account.id)) {
+                if (this.selected.account.id === this.account.id) {
                   console.log('account info: ' + this.account);
                   this.isShelterLoggedIn = true;
                 }
@@ -88,7 +91,9 @@ export class ShelterProfileComponent implements OnInit {
 
   }
   updateShelter() {
-    this.svc.update(this.selected.id, this.editShelter).subscribe(
+    console.log('asdasdasdasdas  ' + this.pass);
+    this.editShelter.account.password = this.pass;
+    this.svc.update(this.editShelter.id, this.editShelter).subscribe(
       data => {
         console.log(data);
         this.editShelter = null;
@@ -175,5 +180,12 @@ export class ShelterProfileComponent implements OnInit {
     this.sentEmailMessage = false;
     this.cdRef.detectChanges();
     this.sentEmailMessage = true;
+  }
+
+  getUserPass() {
+    const a = (atob(this.auth.getCredentials()));  // converts to username:password
+    const b = a.split(':'); // splits into an array of [username, password]
+    const c = b[1]; // obtains password
+    this.pass = c; // sets password for form and update
   }
 }
