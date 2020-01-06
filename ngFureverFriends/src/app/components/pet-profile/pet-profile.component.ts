@@ -26,9 +26,9 @@ export class PetProfileComponent implements OnInit {
   editPet: Pet = null;
   shelter: Shelter;
   account: Account;
-  create: false;
-  dogCreate: false;
-  catCreate: false;
+  create = false;
+  dogCreate = false;
+  catCreate = false;
   updatePetMessage: boolean;
   breedList: Breed[] = [];
   traitList: Trait[] = [];
