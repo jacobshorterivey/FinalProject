@@ -18,14 +18,13 @@ import { ShelterService } from 'src/app/services/shelter.service';
 export class NavbarComponent implements OnInit {
   // FIELDS
 
-  blankObj: object = null;
   navbar = true;
   isUserLoggedIn: boolean;
   errorMessage: boolean;
   disableMessage: boolean;
-  user: User;
+  user: User = null;
   searchKeyword: string = null;
-  shelter: Shelter;
+  shelter: Shelter = null;
   account: Account;
   logUsername: string;
 
@@ -40,6 +39,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('here after register');
     if (this.auth.checkLogin() === true) {
       this.isUserLoggedIn = true;
     }
@@ -60,8 +60,8 @@ export class NavbarComponent implements OnInit {
     // );
   }
 
-  login(form: NgForm) {
-    console.log('NavbarComponent.login(): ');
+  login(form: NgForm, regUser?: Account) {
+    if (regUser === null || regUser === undefined) {
     this.logUsername = form.value.username;
     this.auth.login(form.value.username, form.value.password).subscribe(
       next => {
@@ -97,6 +97,7 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       }
     );
+    }
   }
 
   checkLogin() {
@@ -109,6 +110,12 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.isUserLoggedIn = false;
+    localStorage.removeItem('account');
+    localStorage.removeItem('credential');
+    console.log('logged out');
+    console.log('Account: ' +  this.account);
+    this.shelter = null;
+    this.user = null;
     window.location.reload();
   }
 

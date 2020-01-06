@@ -98,6 +98,8 @@ public class UserServiceImpl implements UserService {
 						Account uAcct = ua.get();
 						uAcct.setUsername(updateUser.getAccount().getUsername());
 						uAcct.setActive(updateUser.getAccount().isActive());
+						uAcct.setPassword(updateUser.getAccount().getPassword());
+						uAcct.setActive(updateUser.getAccount().isActive());
 						acctRepo.saveAndFlush(uAcct);
 					}
 				}
@@ -121,6 +123,9 @@ public class UserServiceImpl implements UserService {
 				}
 				if (updateUser.getAge() != null) {
 					origUser.setAge(updateUser.getAge());
+				}
+				if (updateUser.getEmail() != null) {
+					origUser.setEmail(updateUser.getEmail());
 				}
 				
 				if (updateUser.getImages() != null) {

@@ -28,6 +28,8 @@ export class PetSearchComponent implements OnInit {
   isQuiet = false;
   isAdventurous = false;
   public selected: Pet;
+  text = '&nbsp;&nbsp|&nbsp;&nbsp;';
+  space = '&nbsp;&nbsp;';
 
   constructor(private petService: PetService) { }
 
@@ -53,3 +55,5 @@ export class PetSearchComponent implements OnInit {
 
 
 }
+
+

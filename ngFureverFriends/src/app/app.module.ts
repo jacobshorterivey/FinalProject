@@ -77,6 +77,7 @@ import { AgmCoreModule } from '@agm/core';
     FosterService,
     PetService,
     UserService,
+    NavbarComponent
   ],
   bootstrap: [AppComponent]
 })
