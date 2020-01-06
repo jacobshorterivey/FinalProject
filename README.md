@@ -47,12 +47,12 @@ Upon landing at the home page, a non logged-in user can view all the shelters in
 
 To create a profile click the 'Login/Register' dropdown, then click the 'Register' button.
 
-<img src="images/userSignUp.png" width="400">
+<img src="images/userSignUp.png" width="200">
 
 
 #### User Profile Page
 
-<img src="images/userProfile.png" width="350">
+<img src="images/userProfile.png" width="700">
 
 From the user's profile page, they can set their volunteer and foster statuses and update their personal information.
 
