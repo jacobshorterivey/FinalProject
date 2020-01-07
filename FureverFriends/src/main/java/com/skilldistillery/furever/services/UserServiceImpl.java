@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService {
 					origUser.setEmail(updateUser.getEmail());
 				}
 				
-				if (updateUser.getImages() != null) {
+				if (!updateUser.getImages().isEmpty()) {
 					Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
 					if (im.isPresent()) {
 						Image image = im.get();

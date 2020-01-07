@@ -60,8 +60,7 @@ export class NavbarComponent implements OnInit {
     // );
   }
 
-  login(form: NgForm, regUser?: Account) {
-    if (regUser === null || regUser === undefined) {
+  login(form: NgForm) {
     this.logUsername = form.value.username;
     this.auth.login(form.value.username, form.value.password).subscribe(
       next => {
@@ -98,7 +97,6 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       }
     );
-    }
   }
 
   checkLogin() {
@@ -117,7 +115,7 @@ export class NavbarComponent implements OnInit {
     console.log('Account: ' +  this.account);
     this.shelter = null;
     this.user = null;
-    window.location.reload();
+    this.router.navigateByUrl('/home');
   }
 
   getUser(profilePage: boolean) {
