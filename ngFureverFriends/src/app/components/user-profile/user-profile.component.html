@@ -178,6 +178,28 @@
       <div class="modal-body">
       <div class="container">
         <form>
+          <p class="bg-primary text-light text-center updateTitles"><strong>Profile Picture</strong></p>
+          <div class="row">
+            <div class="col-3 updateLabel">
+              Image:
+            </div>
+            <div class="col-9">
+
+
+
+              <div>
+                <input class="inputfile" name="file" id="file" type="file" (change)="onFileSelected($event)">
+                <label for="file" class="btn btn-success formBtn"> <img src="../../../assets/img/upload.svg" height="20px" style="margin-right: 3px"> Choose an Image</label>
+              </div>
+
+
+
+              <!-- <input type="text" class="form-control" name="imageUrl" [(ngModel)]="user.images[0].imageUrl"> -->
+            </div>
+           </div>
+
+           <br>
+
         <p class="bg-primary text-light text-center updateTitles"><strong>Account</strong></p>
         <input type="hidden" value="{{user.id}}" name="id" [(ngModel)]="user.id">
         <div class="row">
@@ -291,27 +313,8 @@
           <input type="text" value="{{user.address.zip}}" class="form-control" name="zip" [(ngModel)]="user.address.zip" required>
         </div>
       </div>
-      <br>
-
-      <p class="bg-primary text-light text-center updateTitles"><strong>Profile Picture</strong></p>
-      <div class="row">
-        <div class="col-3 updateLabel">
-          Image:
-        </div>
-        <div class="col-9">
 
 
-
-          <div>
-            <input class="inputfile" name="file" id="file" type="file" (change)="onFileSelected($event)">
-            <label for="file" class="btn btn-success formBtn"> <img src="../../../assets/img/upload.svg" height="20px" style="margin-right: 3px"> Choose an Image</label>
-          </div>
-
-
-
-          <!-- <input type="text" class="form-control" name="imageUrl" [(ngModel)]="user.images[0].imageUrl"> -->
-        </div>
-       </div>
 
       <br>
 

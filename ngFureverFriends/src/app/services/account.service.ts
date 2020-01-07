@@ -23,7 +23,8 @@ export class AccountService {
     //   return null;
     // }
     const credentials = this.auth.generateBasicAuthCredentials(username, password);
-
+    console.log('Credintials in account index');
+    console.log(credentials);
     const httpOptions = {
       headers: {
         Authorization: 'Basic ' + credentials,

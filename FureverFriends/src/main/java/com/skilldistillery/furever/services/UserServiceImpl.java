@@ -82,102 +82,98 @@ public class UserServiceImpl implements UserService {
 			if (newUser.getSkills() == null) {
 				newUser.setSkills(new ArrayList<Skill>());
 			}
-			
+
+
 //			
 //			for (int i = 0; i < newUser.getImages().size(); i++) {
 //				imgRepo.saveAndFlush(newUser.getImages().get(i));
 //			}
 //			
 //			
-			
-			
+
+
 			return userRepo.saveAndFlush(newUser);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	
+
 	@Override
 	public Account adminUpdateUser(User updateUser, Integer uid) {
 
 		Account userToUpdate = null;
 		Optional<Account> opt = acctRepo.findById(updateUser.getAccount().getId());
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			userToUpdate.setActive(updateUser.getAccount().isActive());
 			acctRepo.saveAndFlush(userToUpdate);
 		}
 		return userToUpdate;
 	}
 
-	
 	@Override
 	public User updateUser(User updateUser, Integer uid, Principal principal) {
 		User origUser = showUser(uid, principal);
-			if (origUser != null) {
-				String encrypted = encoder.encode(updateUser.getAccount().getPassword());
+		if (origUser != null) {
+			String encrypted = encoder.encode(updateUser.getAccount().getPassword());
 
-				if (updateUser.getAccount().getUsername() != null && updateUser.getAccount().getUsername() != "") {
-					Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
-					if (ua.isPresent()) {
-						Account uAcct = ua.get();
-						uAcct.setUsername(updateUser.getAccount().getUsername());
-						uAcct.setActive(updateUser.getAccount().isActive());
+			if (updateUser.getAccount().getUsername() != null && updateUser.getAccount().getUsername() != "") {
+				Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
+				if (ua.isPresent()) {
+					Account uAcct = ua.get();
+					uAcct.setUsername(updateUser.getAccount().getUsername());
+					uAcct.setActive(updateUser.getAccount().isActive());
 //						uAcct.setPassword(updateUser.getAccount().getPassword());
 //						uAcct.setActive(updateUser.getAccount().isActive());
-						acctRepo.saveAndFlush(uAcct);
-					}
+					acctRepo.saveAndFlush(uAcct);
 				}
-				if (updateUser.getAccount().getPassword() != null && updateUser.getAccount().getPassword() != "") {
-					Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
-					if (ua.isPresent()) {
-						Account uAcct = ua.get();
-						updateUser.getAccount().setPassword(encrypted);
-						uAcct.setPassword(updateUser.getAccount().getPassword());
+			}
+			if (updateUser.getAccount().getPassword() != null && updateUser.getAccount().getPassword() != "") {
+				Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
+				if (ua.isPresent()) {
+					Account uAcct = ua.get();
+					updateUser.getAccount().setPassword(encrypted);
+					uAcct.setPassword(updateUser.getAccount().getPassword());
 //						uAcct.setPassword(encrypted);
-						uAcct.setActive(updateUser.getAccount().isActive());
-						acctRepo.saveAndFlush(uAcct);
-					}
+					uAcct.setActive(updateUser.getAccount().isActive());
+					acctRepo.saveAndFlush(uAcct);
 				}
-				if (updateUser.getFname() != null && updateUser.getFname() != "") {
-					origUser.setFname(updateUser.getFname());
-					System.err.println("line 101 " + origUser);
-				}
-				if (updateUser.getLname() != null && updateUser.getLname() != "") {
-					origUser.setLname(updateUser.getLname());
-				}
-				if (updateUser.getAge() != null) {
-					origUser.setAge(updateUser.getAge());
-				}
-				if (updateUser.getEmail() != null) {
-					origUser.setEmail(updateUser.getEmail());
-				}
-				
-				if (updateUser.getImages() != null) {
-					if (origUser.getImages().size() != 0) {
-						Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
-						if (im.isPresent()) {
-							Image image = im.get();
-							image.setId(updateUser.getImages().get(0).getId());
-							image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
-							imgRepo.saveAndFlush(image);
-						} 
-					} else {
-						Image image = new Image();
-						image.setId(1);
-						image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
-						imgRepo.saveAndFlush(image);
-						origUser.getImages().add(image);
-					}
-				}
+			}
+			if (updateUser.getFname() != null && updateUser.getFname() != "") {
+				origUser.setFname(updateUser.getFname());
+				System.err.println("line 101 " + origUser);
+			}
+			if (updateUser.getLname() != null && updateUser.getLname() != "") {
+				origUser.setLname(updateUser.getLname());
+			}
+			if (updateUser.getAge() != null) {
+				origUser.setAge(updateUser.getAge());
+			}
+			if (updateUser.getEmail() != null) {
+				origUser.setEmail(updateUser.getEmail());
+			}
 
-				
-				
-				if (updateUser.getSkills() != null) {
-					origUser.setSkills(updateUser.getSkills());
-				} 
-				
+			if (!updateUser.getImages().isEmpty()) {
+				Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
+				if (im.isPresent()) {
+					Image image = im.get();
+					image.setId(updateUser.getImages().get(0).getId());
+					image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
+					imgRepo.saveAndFlush(image);
+				}
+			} else {
+				Image image = new Image();
+				image.setId(1);
+				image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
+				imgRepo.saveAndFlush(image);
+				origUser.getImages().add(image);
+			}
+		}
+
+		if (updateUser.getSkills() != null) {
+			origUser.setSkills(updateUser.getSkills());
+		}
+
 //				if (updateUser.getSkills() != null) {
 //					if (origUser.getSkills().size() != 0) {
 //						origUser.setSkills(updateUser.getSkills());
@@ -186,41 +182,36 @@ public class UserServiceImpl implements UserService {
 //					}
 //				} 
 
-				
-				
-				
-				
-				if (updateUser.getPhone() != null && updateUser.getPhone() != "") {
-					origUser.setPhone(updateUser.getPhone());
+		if (updateUser.getPhone() != null && updateUser.getPhone() != "") {
+			origUser.setPhone(updateUser.getPhone());
+		}
+		if (updateUser.getAddress() != null) {
+			Address updatedAddr = updateUser.getAddress();
+
+			Optional<Address> oa = addrRepo.findById(origUser.getAddress().getId());
+
+			if (oa.isPresent()) {
+				Address origAddr = oa.get();
+				if (updatedAddr.getStreet() != null) {
+					origAddr.setStreet(updatedAddr.getStreet());
 				}
-				if (updateUser.getAddress() != null) {
-					Address updatedAddr = updateUser.getAddress();
-
-					Optional<Address> oa = addrRepo.findById(origUser.getAddress().getId());
-
-					if (oa.isPresent()) {
-						Address origAddr = oa.get();
-						if (updatedAddr.getStreet() != null) {
-							origAddr.setStreet(updatedAddr.getStreet());
-						}
-						if (updatedAddr.getStreet2() != null) {
-							origAddr.setStreet2(updatedAddr.getStreet2());
-						}
-						if (updatedAddr.getCity() != null) {
-							origAddr.setCity(updatedAddr.getCity());
-						}
-						if (updatedAddr.getZip() != null) {
-							origAddr.setZip(updatedAddr.getZip());
-						}
-						if (updatedAddr.getStateAbbr() != null) {
-							origAddr.setStateAbbr(updatedAddr.getStateAbbr());
-						}
-						addrRepo.saveAndFlush(origAddr);
-					}
-					userRepo.saveAndFlush(origUser);
-
+				if (updatedAddr.getStreet2() != null) {
+					origAddr.setStreet2(updatedAddr.getStreet2());
 				}
+				if (updatedAddr.getCity() != null) {
+					origAddr.setCity(updatedAddr.getCity());
+				}
+				if (updatedAddr.getZip() != null) {
+					origAddr.setZip(updatedAddr.getZip());
+				}
+				if (updatedAddr.getStateAbbr() != null) {
+					origAddr.setStateAbbr(updatedAddr.getStateAbbr());
+				}
+				addrRepo.saveAndFlush(origAddr);
 			}
+			userRepo.saveAndFlush(origUser);
+
+		}
 		return origUser;
 	}
 

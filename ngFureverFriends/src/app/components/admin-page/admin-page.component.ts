@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { Account } from 'src/app/models/account';
 import { Shelter } from 'src/app/models/shelter';
 import { ShelterService } from 'src/app/services/shelter.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -18,8 +19,13 @@ export class AdminPageComponent implements OnInit {
   account: Account = new Account();
   userList = false;
   shelterList = false;
+  pass = '';
 
-  constructor(private userSvc: UserService, private shelterSvc: ShelterService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private userSvc: UserService,
+              private shelterSvc: ShelterService,
+              private authSvc: AuthService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.loadUsers();
