@@ -161,7 +161,6 @@ export class PetProfileComponent implements OnInit {
 
     this.petService.create(this.createPet).subscribe(
       data => {
-        console.log(data);
         this.newAnimal = new Pet();
         this.createPet = new Pet();
         this.loadShelterPets(this.shelter.id);
@@ -200,7 +199,6 @@ export class PetProfileComponent implements OnInit {
 
     this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
       data => {
-        console.log(data);
         this.updatePetMessage = false;
         this.cdRef.detectChanges();
         this.updatePetMessage = true;
@@ -261,40 +259,31 @@ export class PetProfileComponent implements OnInit {
 
 
   onFileSelected(event) {
-    console.log(event);
     this.selectedFile = event.target.files[0] as File;
-    console.log(this.selectedFile);
 
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name);
 
     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
       res => {
-        console.log(res);
-        console.log(res.data.url);
         this.newImg = res.data.url;
       }
     );
   }
 
   onFileSelectedUpdate(event) {
-    console.log(event);
     this.selectedFile = event.target.files[0] as File;
-    console.log(this.selectedFile);
 
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name);
 
     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
       res => {
-        console.log(res);
-        console.log(res.data.url);
         this.newImg = res.data.url;
         this.selectedPet.images[0].imageUrl = this.newImg;
 
         this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
           data => {
-            console.log(data);
             this.updatePetMessage = false;
             this.cdRef.detectChanges();
             this.updatePetMessage = true;

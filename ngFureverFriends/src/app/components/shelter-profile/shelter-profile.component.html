@@ -180,10 +180,17 @@
 
 
 <div class="container mapDiv">
-  <agm-map [latitude]="lat" [longitude]="long">
+  <agm-map [zoom]="mapZoom" [latitude]="lat" [longitude]="long">
     <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
   </agm-map>
 </div>
+
+
+
+
+
+
+
 
 
 <div class="container bg-light" style="padding-top: 20px; padding-bottom: 50px;">

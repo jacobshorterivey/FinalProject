@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.furever.entities.Account;
 import com.skilldistillery.furever.entities.Address;
 import com.skilldistillery.furever.entities.Image;
+import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Skill;
 import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.repositories.AccountRepository;
 import com.skilldistillery.furever.repositories.AddressRepository;
 import com.skilldistillery.furever.repositories.ImageRepository;
+import com.skilldistillery.furever.repositories.SkillRepository;
 import com.skilldistillery.furever.repositories.UserRepository;
 
 @Service
@@ -33,6 +35,8 @@ public class UserServiceImpl implements UserService {
 	AccountRepository acctRepo;
 	@Autowired
 	ImageRepository imgRepo;
+	@Autowired
+	SkillRepository skillRepo;
 	@Autowired
 	private PasswordEncoder encoder;
 
@@ -78,6 +82,15 @@ public class UserServiceImpl implements UserService {
 			if (newUser.getSkills() == null) {
 				newUser.setSkills(new ArrayList<Skill>());
 			}
+			
+//			
+//			for (int i = 0; i < newUser.getImages().size(); i++) {
+//				imgRepo.saveAndFlush(newUser.getImages().get(i));
+//			}
+//			
+//			
+			
+			
 			return userRepo.saveAndFlush(newUser);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,9 +172,24 @@ public class UserServiceImpl implements UserService {
 					}
 				}
 
+				
+				
 				if (updateUser.getSkills() != null) {
 					origUser.setSkills(updateUser.getSkills());
-				}
+				} 
+				
+//				if (updateUser.getSkills() != null) {
+//					if (origUser.getSkills().size() != 0) {
+//						origUser.setSkills(updateUser.getSkills());
+//					} else {
+//						origUser.getSkills().add(updateUser.getSkills().get(0));
+//					}
+//				} 
+
+				
+				
+				
+				
 				if (updateUser.getPhone() != null && updateUser.getPhone() != "") {
 					origUser.setPhone(updateUser.getPhone());
 				}

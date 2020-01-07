@@ -35,6 +35,7 @@ export class ShelterProfileComponent implements OnInit {
   lat: any;
   long: any;
   location: any;
+  mapZoom = 17;
 
   constructor(private svc: ShelterService, private currentRoute: ActivatedRoute, private auth: AuthService,
               private emailSvc: EmailService, private cdRef: ChangeDetectorRef) { }
@@ -42,7 +43,6 @@ export class ShelterProfileComponent implements OnInit {
   ngOnInit() {
     this.getUserPass();
     this.account = JSON.parse(localStorage.getItem('account'));
-    console.log(this.account);
     this.checkIfLoggedIn();
     this.scrollToTops();
     this.loadEvents();
@@ -60,16 +60,15 @@ export class ShelterProfileComponent implements OnInit {
 
                 // tslint:disable-next-line: max-line-length
                 this.svc.findLocation(this.selected.address.street, this.selected.address.city, this.selected.address.stateAbbr).subscribe(loc => {
-                  console.log(loc);
                   this.lat = loc.results[0].geometry.location.lat;
                   this.long = loc.results[0].geometry.location.lng;
-                  console.log(this.lat);
                 });
 
+                if (this.account && this.selected) {
                 // tslint:disable-next-line: radix
                 if (this.selected.account.id === this.account.id) {
-                  console.log('account info: ' + this.account);
                   this.isShelterLoggedIn = true;
+                  }
                 }
               }
             });
@@ -80,26 +79,14 @@ export class ShelterProfileComponent implements OnInit {
 
     }
 
-    // this.svc.findLocation().subscribe(data => {
-    //   console.log(data);
-    //   console.log(data.results[0].geometry.location.lat);
-    //   console.log(data.results[0].geometry.location.lng);
-    //   this.lat = data.results[0].geometry.location.lat;
-    //   this.long = data.results[0].geometry.location.lng;
-    //   console.log(this.lat);
-    // });
-
   }
   updateShelter() {
-    console.log('asdasdasdasdas  ' + this.pass);
     this.editShelter.account.password = this.pass;
     this.svc.update(this.editShelter.id, this.editShelter).subscribe(
       data => {
-        console.log(data);
         this.editShelter = null;
         this.logout();
         this.login(this.selected.account.username, this.selected.account.password);
-        console.log(this.selected.id + ' ' + this.selected.name);
         // this.reload();
       },
       err => {
@@ -160,7 +147,6 @@ export class ShelterProfileComponent implements OnInit {
 
   checkIfLoggedIn() {
     this.isAnyoneLoggedIn = this.auth.checkLogin();
-    console.log('Is logged in');
   }
 
   sendEmail(email: NgForm) {
