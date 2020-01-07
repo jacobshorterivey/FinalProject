@@ -34,6 +34,7 @@ export class PetService {
     index() {
       const httpOptions = {
         headers: new HttpHeaders({
+          'Content-type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest'
         })
       };
@@ -48,6 +49,7 @@ export class PetService {
     nameTraitsBreedSearch(keyword: string) {
       const httpOptions = {
         headers: new HttpHeaders({
+          'Content-type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest'
         })
       };
@@ -62,6 +64,8 @@ export class PetService {
     showOne(id: string) {
       const httpOptions = {
         headers: new HttpHeaders({
+          'Content-type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
         })
       };
       return this.http.get<Pet>(this.url + '/' + id, httpOptions).pipe(
@@ -79,6 +83,8 @@ export class PetService {
   getShelter(id: number) {
     const httpOptions = {
       headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
     return this.http.get<Shelter>(this.url + '/shelter/' + id)
@@ -146,6 +152,7 @@ export class PetService {
   indexBreed() {
     const httpOptions = {
       headers: new HttpHeaders({
+        'Content-type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -161,6 +168,7 @@ export class PetService {
   indexTrait() {
     const httpOptions = {
       headers: new HttpHeaders({
+        'Content-type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };

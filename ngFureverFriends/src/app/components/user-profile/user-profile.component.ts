@@ -37,6 +37,7 @@ export class UserProfileComponent implements OnInit {
   isVolEmpty: boolean;
   isFosterActive = true;
   newSkillList = [];
+  updateImage: Image = new Image();
   skills = [
     {
       id: 1,
@@ -277,13 +278,10 @@ export class UserProfileComponent implements OnInit {
 
   updateUser() {
     // this.updateImage();
-
     if (this.newImage != null) {
       if (this.user.images.length === 0) {
-        this.user.images.push({
-          id: 1,
-          imageUrl: this.newImage
-        });
+        this.updateImage.imageUrl = this.newImage;
+        this.user.images.push(this.updateImage);
       } else {
         this.user.images[0].imageUrl = this.newImage;
       }
@@ -315,7 +313,7 @@ export class UserProfileComponent implements OnInit {
 
     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
       res => {
-        console.log(res)
+        console.log(res);
         console.log(res.data.url);
         this.newImage = res.data.url;
       }

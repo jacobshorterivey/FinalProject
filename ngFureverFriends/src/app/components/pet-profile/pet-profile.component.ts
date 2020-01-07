@@ -36,6 +36,7 @@ export class PetProfileComponent implements OnInit {
   image: Image = new Image();
   /// EXPERIMENTING
   selectedFile: File = null;
+  newImg: string;
   traitBoolean = [
     {
       id: 1,
@@ -144,6 +145,8 @@ export class PetProfileComponent implements OnInit {
     this.createPet.adopted = false;
     this.createPet.traits = this.traitsToAdd;
     this.createPet.shelter = this.shelter;
+
+    this.image.imageUrl = this.newImg;
     this.createPet.images.push(this.image);
 
     // tslint:disable-next-line: prefer-for-of
@@ -165,6 +168,7 @@ export class PetProfileComponent implements OnInit {
         this.dogCreate = false;
         this.catCreate = false;
         this.create = false;
+        this.newImg = null;
         // window.location.reload();
       },
       err => {
@@ -192,12 +196,15 @@ export class PetProfileComponent implements OnInit {
       this.selectedPet.traits = this.traitsToAdd;
     }
 
+    this.selectedPet.images[0].imageUrl = this.newImg;
+
     this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
       data => {
         console.log(data);
         this.updatePetMessage = false;
         this.cdRef.detectChanges();
         this.updatePetMessage = true;
+        this.newImg = null;
       },
       err => {
         console.error(err);
@@ -265,6 +272,38 @@ export class PetProfileComponent implements OnInit {
       res => {
         console.log(res);
         console.log(res.data.url);
+        this.newImg = res.data.url;
+      }
+    );
+  }
+
+  onFileSelectedUpdate(event) {
+    console.log(event);
+    this.selectedFile = event.target.files[0] as File;
+    console.log(this.selectedFile);
+
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name);
+
+    this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
+      res => {
+        console.log(res);
+        console.log(res.data.url);
+        this.newImg = res.data.url;
+        this.selectedPet.images[0].imageUrl = this.newImg;
+
+        this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
+          data => {
+            console.log(data);
+            this.updatePetMessage = false;
+            this.cdRef.detectChanges();
+            this.updatePetMessage = true;
+            this.newImg = null;
+          },
+          err => {
+            console.error(err);
+          }
+        );
       }
     );
   }

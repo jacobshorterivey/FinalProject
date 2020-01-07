@@ -139,6 +139,7 @@ export class NavbarComponent implements OnInit {
             for (let i = 0; i < users.length; i++) {
               if (users[i].account.id === this.account.id) {
                 this.user = users[i];
+                console.log(this.user.email);
               }
             }
             if (profilePage) {
