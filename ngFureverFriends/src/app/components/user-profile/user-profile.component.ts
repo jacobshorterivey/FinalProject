@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
 
   // Field
   user: User;
+  isTheUserAFoster = false;
   admin: boolean;
   selectedUser: User;
   users: User[];
@@ -36,6 +37,7 @@ export class UserProfileComponent implements OnInit {
   isVolEmpty: boolean;
   isFosterActive = true;
   newSkillList = [];
+  updateImage: Image = new Image();
   skills = [
     {
       id: 1,
@@ -108,28 +110,36 @@ export class UserProfileComponent implements OnInit {
           }
 
           // checks if user is shelter or not
+
           this.account = JSON.parse(localStorage.getItem('account'));
-          if (this.account.role === 'shelter') {
-            this.showDetails = true;
-          }
+          // if (this.account.role === 'shelter') {
+          //   this.showDetails = true;
+          // }
 
           // checks if user is an admin
-          if (this.account.role === 'admin') {
-            this.admin = true;
+          if(this.account) {
+            if (this.account.role === 'admin') {
+              this.admin = true;
+            }
           }
 
           // Checks if a user is a foster.  More efficent to create backend search by id.  Maybe in the future.
+
           this.fostersvc.index().subscribe(
             (pass) => {
-              this.account = JSON.parse(localStorage.getItem('account'));
+              // this.account = JSON.parse(localStorage.getItem('account'));
               pass.forEach(element => {
                 if (element.user.id === this.user.id) {
                   this.foster = element;
+                  this.isTheUserAFoster = true;
                   if (this.foster.maxFoster <= 0) {
                     this.isFosterActive = false;
                   }
                 }
               });
+              if (this.isTheUserAFoster === false) {
+                this.isFosterActive = false;
+              }
             },
             err => {
               console.error('TodoListCompenent.loadtodoList():error loading todos');
@@ -182,6 +192,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateVolunteer() {
+
+
     this.newSkillList = [];
     this.skills.forEach(e => {
       if (e.active === true) {
@@ -189,13 +201,18 @@ export class UserProfileComponent implements OnInit {
       }
     });
 
-    // COLLAPSES VOLUNTEER DIV WHEN THERE ARE NO SKILLS
+    // if(this.user.skills.length === 0) {
+    //   this.user.skills.push(this.newSkillList[0]);
+    // } else {
+      // COLLAPSES VOLUNTEER DIV WHEN THERE ARE NO SKILLS
     if (this.newSkillList.length === 0) {
-      this.isVolEmpty = false;
-    }
+        this.isVolEmpty = false;
+      }
 
     this.user.skills = this.newSkillList;
+
     this.user.account.password = this.pass;
+
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
         // LOGS OUT AND LOGS IN TO REFRESH CREDENTIALS
@@ -226,39 +243,68 @@ export class UserProfileComponent implements OnInit {
 
   // Updates for the checkbox.
   volunterSwitch() {
-    if (this.isVolEmpty) {
-      this.skills.forEach(e => {
-        e.active = false;
-      });
-      this.updateVolunteer();
-    } else {
+    if(this.user.skills.length === 0) {
       this.skills[2].active = true;
       this.updateVolunteer();
+    } else {
+      if (this.isVolEmpty) {
+        this.skills.forEach(e => {
+          e.active = false;
+        });
+        this.updateVolunteer();
+      } else {
+        this.skills[2].active = true;
+        this.updateVolunteer();
+      }
     }
   }
 
   fosterSwitch() {
-    if (this.isFosterActive) {
-      this.foster.maxFoster = 0;
-      this.updateFoster();
+    if (this.isTheUserAFoster) {
+      if (this.isFosterActive) {
+        this.foster.maxFoster = 0;
+        this.updateFoster();
+      } else {
+        this.foster.maxFoster = 1;
+        this.updateFoster();
+      }
     } else {
-      this.foster.maxFoster = 1;
-      this.updateFoster();
+      const nf: Foster = {
+          id: 1,
+          maxFoster: 1,
+          user: this.user,
+          breedList: [],
+          fosterPets: []
+        };
+
+      this.fostersvc.create(nf).subscribe(
+        (pass) => {
+          this.isFosterActive = true;
+          this.isTheUserAFoster = true;
+          this.foster = pass;
+          this.cdRef.detectChanges();
+        },
+        (fail) => {
+          console.error('error creating foster');
+        }
+      );
     }
   }
 
   updateUser() {
     // this.updateImage();
-
     if (this.newImage != null) {
-      this.user.images[0].imageUrl = this.newImage;
-      console.log('bb' + this.user.images[0].imageUrl);
+      if (this.user.images.length === 0) {
+        this.updateImage.imageUrl = this.newImage;
+        this.user.images.push(this.updateImage);
+      } else {
+        this.user.images[0].imageUrl = this.newImage;
+      }
     }
 
-    this.user.account.password = this.pass;  // this line of logic, eh?????   // CLOSE MODAL WHE DONE!
+    this.user.account.password = this.pass;
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
-        console.log('aa' + this.user.images[0].imageUrl);
         this.logout();
         this.login(this.user.account.username, this.user.account.password);
        },
@@ -268,50 +314,17 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  /// EXPERIMENTING
-//   selectedFile: File = null;
-
-//   onFileSelected(event) {
-//     console.log(event);
-//     this.selectedFile = event.target.files[0] as File;
-//   }
-
-//   updateImage() {
-//     const fd = new FormData();
-//     fd.append('image', this.selectedFile, this.selectedFile.name)
-
-//     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
-//       res => {
-//         console.log(res)
-//         console.log(res.data.url);
-//         this.user.images[0].imageUrl = res.data.url;
-//       }
-//     );
-//   }
-
-
-// }
-
-// interface ImageResponse {
-//   data: any;
-// }
-
-  /// EXPERIMENTING
+  /// Image upload
   selectedFile: File = null;
   newImage: string;
 
   onFileSelected(event) {
-    console.log(event);
     this.selectedFile = event.target.files[0] as File;
-    console.log(this.selectedFile);
-
     const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name)
+    fd.append('image', this.selectedFile, this.selectedFile.name);
 
     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
       res => {
-        console.log(res)
-        console.log(res.data.url);
         this.newImage = res.data.url;
       }
     );

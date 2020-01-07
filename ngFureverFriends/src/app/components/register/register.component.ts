@@ -9,6 +9,7 @@ import { ShelterService } from 'src/app/services/shelter.service';
 import { UserService } from 'src/app/services/user.service';
 import { SequenceEqualSubscriber } from 'rxjs/internal/operators/sequenceEqual';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { Image } from 'src/app/models/image';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +26,8 @@ export class RegisterComponent implements OnInit {
   shelterBool = false;
   user: User;
   shelter: Shelter;
+  account: Account;
+  image: Image = new Image();
 
   constructor(private router: Router, private auth: AuthService,
               private userSvc: UserService,
@@ -79,7 +82,7 @@ export class RegisterComponent implements OnInit {
       data => {
         this.auth.login(this.newUser.account.username, this.newUser.account.password).subscribe(
           next => {
-            this.routeToProfile();
+            this.routeToUserProfile();
           },
           error => {
             console.error('RegisterComponent.registerUser(): error logging in.');
@@ -99,7 +102,7 @@ export class RegisterComponent implements OnInit {
           data => {
             this.auth.login(this.newShelter.account.username, this.newShelter.account.password).subscribe(
               next => {
-                this.routeToProfile();
+                this.routeToShelterProfile();
               },
               error => {
                 console.error('RegisterComponent.registerShelter(): error logging in.');
@@ -113,49 +116,51 @@ export class RegisterComponent implements OnInit {
             );
           }
 
-  routeToProfile() {
-      if (this.newUser.account.username !== null && this.newUser.account.username !== undefined) {
+  routeToUserProfile() {
         this.userSvc.index().subscribe(
           data => {
             this.users = data;
+            console.log(data);
+            // tslint:disable-next-line: prefer-for-of
+            for (let i = 0; i < this.users.length; i++) {
+              const user = this.users[i];
+              if (user.account.username === this.newUser.account.username) {
+                const id = user.id;
+                this.navBar.user = user;
+                localStorage.setItem('account', JSON.stringify(user.account));
+                this.router.navigateByUrl('/user/' + id);
+              }
+           }
           },
           error => {
             console.log('RegisterComponent.routeToProfile(): Error loading and indexing all users');
             console.log(error);
           }
-          );
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < this.users.length; i++) {
-          const user = this.users[i];
-          if (user.account.username === this.newUser.account.username) {
-            const id = user.id;
-            this.navBar.user = user;
-            localStorage.setItem('account', JSON.stringify(user.account));
-            this.router.navigateByUrl('/user/' + id);
-          }
-        }
+        );
       }
 
+    routeToShelterProfile() {
       if (this.newShelter.account.username !== null && this.newShelter.account.username !== undefined) {
         this.shelterSvc.index().subscribe(
           data => {
             this.shelters = data;
+            // tslint:disable-next-line: prefer-for-of
+            for (let i = 0; i < this.shelters.length; i++) {
+              const shelter = this.shelters[i];
+              if (shelter.account.username === this.newShelter.account.username) {
+                const id = shelter.id;
+                this.navBar.shelter = shelter;
+                localStorage.setItem('account', JSON.stringify(shelter.account));
+                this.router.navigateByUrl('/shelter/' + id);
+              }
+          }
           },
           error => {
             console.log('RegisterComponent.routeToProfile(): Error loading and indexing all shelters');
             console.log(error);
           }
           );
-          // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < this.shelters.length; i++) {
-            const shelter = this.shelters[i];
-            if (shelter.account.username === this.newShelter.account.username) {
-              const id = shelter.id;
-              this.navBar.shelter = shelter;
-              localStorage.setItem('account', JSON.stringify(shelter.account));
-              this.router.navigateByUrl('/shelter/' + id);
-            }
-        }
       }
-  }
+    }
 }
+

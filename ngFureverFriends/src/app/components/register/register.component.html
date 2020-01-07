@@ -1,4 +1,6 @@
-<header>
+<div class="mainPageBG">
+
+<!--
 <div *ngIf="!userBool && !shelterBool">
     <div class="container">
       <div class="card" (click)="loadAll()">
@@ -11,113 +13,336 @@
   <button class="btn btn-primary" (click)="userBool = true">Register a user</button>
       </div>
     </div>
+</div> -->
+<div class="container">
+<div *ngIf="!userBool && !shelterBool" class="registerUserButtons text-center">
+  <div class="buttonAdminDiv">
+    <p class="adminCenterText">Register</p>
+    <button class="btn btn-primary lButton adminButtonStyle" (click)="userBool = true">Register a user</button>
+    <button class="btn btn-primary lButton adminButtonStyle" (click)="shelterBool = true">Register a shelter</button>
+  </div>
 </div>
-</header>
+</div>
+
 
 <div *ngIf="userBool">
-    <body>
-  <div class="container">
+  <div class="container registerContainer">
   <div class="card">
-    <h3>New User Registration</h3>
-  <form>
-    <label>Email:
-      <input type="email" name="email" id="email" placeholder="Email" [(ngModel)]="newUser.email">
-    </label><br>
-    <label>Username:
+    <h5>New User Registration</h5>
+  <form style="margin-top: 20px;">
+
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Email:
+      </div>
+      <div class="col-9">
+        <input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="newUser.email">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Username:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="username" id="username" placeholder="Username" [(ngModel)]="newUser.account.username">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Password:
+      </div>
+      <div class="col-9">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Password" [(ngModel)]="newUser.account.password">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        First Name:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name" [(ngModel)]="newUser.fname">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Last Name:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" [(ngModel)]="newUser.lname">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Age Name:
+      </div>
+      <div class="col-9">
+        <input type="number" class="form-control" name="age" id="age" placeholder="Age" [(ngModel)]="newUser.age">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Phone:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" [(ngModel)]="newUser.phone">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Steet:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="street" id="street" placeholder="Street Address" [(ngModel)]="newUser.address.street">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Appartment/Unit:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="street2" id="street2" placeholder="Apartment/Unit Number" [(ngModel)]="newUser.address.street2">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        City:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="city" id="city" placeholder="City" [(ngModel)]="newUser.address.city">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        State:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="stateAbbr" id="stateAbbr" minlength="2" maxlength="2" placeholder="State" [(ngModel)]="newUser.address.stateAbbr">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Zip:
+      </div>
+      <div class="col-9">
+        <input type="text" class="form-control" name="zip" id="zip" minlength="5" maxlength="5"  placeholder="Zip" [(ngModel)]="newUser.address.zip">
+      </div>
+    </div>
+    <br>
+
+    <!-- <label>Username:
       <input type="text" name="username" id="username" placeholder="Username" [(ngModel)]="newUser.account.username">
-    </label><br>
-    <label>Password:
+    </label><br> -->
+    <!-- <label>Password:
       <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="newUser.account.password">
-    </label><br>
-    <label>First Name:
+    </label><br> -->
+    <!-- <label>First Name:
       <input type="text" name="fname" id="fname" placeholder="First Name" [(ngModel)]="newUser.fname">
-    </label><br>
-    <label>Last Name:
+    </label><br> -->
+    <!-- <label>Last Name:
       <input type="text" name="lname" id="lname" placeholder="Last Name" [(ngModel)]="newUser.lname">
-    </label><br>
-    <label>Age:
+    </label><br> -->
+    <!-- <label>Age:
       <input type="number" name="age" id="age" placeholder="Age" [(ngModel)]="newUser.age">
-    </label><br>
-    <label>Phone number:
+    </label><br> -->
+    <!-- <label>Phone number:
       <input type="text" name="phone" id="phone" placeholder="Phone Number" [(ngModel)]="newUser.phone">
-    </label><br>
-    <label>Street Address:
+    </label><br> -->
+    <!-- <label>Street Address:
       <input type="text" name="street" id="street" placeholder="Street Address" [(ngModel)]="newUser.address.street">
     </label><br>
     <label>Appartment/Unit:
       <input type="text" name="street2" id="street2" placeholder="Apartment/Unit Number" [(ngModel)]="newUser.address.street2">
-    </label><br>
-    <label>City:
+    </label><br> -->
+    <!-- <label>City:
       <input type="text" name="city" id="city" placeholder="City" [(ngModel)]="newUser.address.city">
-    </label><br>
-    <label>State:
+    </label><br> -->
+    <!-- <label>State:
       <input type="text" name="stateAbbr" id="stateAbbr" minlength="2" maxlength="2" placeholder="State" [(ngModel)]="newUser.address.stateAbbr">
-    </label>
-    <label>Zip code:
+    </label> -->
+    <!-- <label>Zip code:
       <input type="text" name="zip" id="zip" minlength="5" maxlength="5"  placeholder="Zip" [(ngModel)]="newUser.address.zip">
-    </label><br>
-    <button class="btn btn-primary" (click)="registerUser()">Submit</button>
-    <button class="btn btn-danger" (click)="userBool = false">Back</button>
+    </label><br> -->
+
+
+
+
+
+    <input type="hidden" value="https://static.thenounproject.com/png/770826-200.png" name="image" [(ngModel)]="newUser.address.zip">
+
+
+
+
+
+
+
+
+    <div class="row">
+      <div class="col-lg-6">
+        <button class="btn btn-primary registerFormBtn" (click)="registerUser()">Submit</button>
+      </div>
+      <div class="col-lg-6">
+        <button class="btn btn-danger registerFormBtn" (click)="userBool = false">Back</button>
+      </div>
+    </div>
   </form>
   </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-
-    </body>
 </div>
 
-<div *ngIf="shelterBool">
-    <body>
-    <div class="container">
+
+    <div class="container registerContainer" *ngIf="shelterBool">
     <div class="card">
-      <h3>New Shelter Registration</h3>
-  <form>
-    <label>Email:
+      <h5>New Shelter Registration</h5>
+  <form style="margin-top: 20px;">
+
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Email:
+      </div>
+      <div class="col-9">
+        <input type="email" name="email" class="form-control" id="email" placeholder="Email" [(ngModel)]="newShelter.email">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Username:
+      </div>
+      <div class="col-9">
+        <input type="text" name="username" class="form-control" id="username" placeholder="Username" [(ngModel)]="newShelter.account.username">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Password:
+      </div>
+      <div class="col-9">
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="newShelter.account.password">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Shelter Name:
+      </div>
+      <div class="col-9">
+        <input type="text" name="name" id="name" class="form-control" placeholder="Shelter Name" [(ngModel)]="newShelter.name">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Phone:
+      </div>
+      <div class="col-9">
+        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" [(ngModel)]="newShelter.phone">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Street Address:
+      </div>
+      <div class="col-9">
+        <input type="text" name="street" class="form-control" id="street" placeholer="Street Address" [(ngModel)]="newShelter.address.street">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Suite:
+      </div>
+      <div class="col-9">
+        <input type="text" name="street2" class="form-control" id="street2" placeholder="Suite Number" [(ngModel)]="newShelter.address.street2">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        City:
+      </div>
+      <div class="col-9">
+        <input type="text" name="city" class="form-control" id="city" placeholder="City" [(ngModel)]="newShelter.address.city">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        State:
+      </div>
+      <div class="col-9">
+        <input type="text" name="stateAbbr" class="form-control" id="stateAbbr"  maxlength="2" minlength="2" placeholer="State" [(ngModel)]="newShelter.address.stateAbbr">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-3 updateLabel">
+        Zip:
+      </div>
+      <div class="col-9">
+        <input type="text" name="zip" class="form-control" id="zip" maxlength="5" minlength="5" placeholder="zip" [(ngModel)]="newShelter.address.zip">
+      </div>
+    </div>
+    <br>
+
+
+
+    <!-- <label>Email:
       <input type="email" name="email" id="email" placeholder="Email" [(ngModel)]="newShelter.email">
     </label><br>
     <label>Username:
       <input type="text" name="username" id="username" placeholder="Username" [(ngModel)]="newShelter.account.username">
-    </label><br>
-    <label>Password:
+    </label><br> -->
+    <!-- <label>Password:
       <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="newShelter.account.password">
-    </label><br>
-    <label>Shelter name:
+    </label><br> -->
+    <!-- <label>Shelter name:
       <input type="text" name="name" id="name" placeholder="Shelter Name" [(ngModel)]="newShelter.name">
-    </label><br>
-    <label>Phone number:
+    </label><br> -->
+    <!-- <label>Phone number:
       <input type="text" name="phone" id="phone" placeholder="Phone Number" [(ngModel)]="newShelter.phone">
-    </label><br>
-    <label>Street Address:
+    </label><br> -->
+    <!-- <label>Street Address:
       <input type="text" name="street" id="street" placeholer="Street Address" [(ngModel)]="newShelter.address.street">
-    </label><br>
-    <label>Suite:
+    </label><br> -->
+    <!-- <label>Suite:
       <input type="text" name="street2" id="street2" placeholder="Suite Number" [(ngModel)]="newShelter.address.street2">
     </label><br>
     <label>City:
       <input type="text" name="city" id="city" placeholder="City" [(ngModel)]="newShelter.address.city">
-    </label><br>
-    <label>State Abbreviation:
+    </label><br> -->
+    <!-- <label>State Abbreviation:
       <input type="text" name="stateAbbr" id="stateAbbr"  maxlength="2" minlength="2" placeholer="State" [(ngModel)]="newShelter.address.stateAbbr">
-    </label>
-    <label>Zip code:
+    </label> -->
+    <!-- <label>Zip code:
       <input type="text" name="zip" id="zip" maxlength="5" minlength="5" placeholder="zip" [(ngModel)]="newShelter.address.zip">
-    </label><br>
-    <button class="btn btn-primary" (click)="registerShelter()" [routerLink]="['/appsubmitted']">Submit</button>
-    <button class="btn btn-danger" (click)="shelterBool = false">Back</button>
+    </label><br> -->
+    <!-- <button class="btn btn-primary" (click)="registerShelter()" [routerLink]="['/appsubmitted']">Submit</button>
+    <button class="btn btn-danger" (click)="shelterBool = false">Back</button> -->
+
+
+    <div class="row">
+      <div class="col-lg-6">
+        <button class="btn btn-primary registerFormBtn" (click)="registerShelter()" [routerLink]="['/appsubmitted']">Submit</button>
+      </div>
+      <div class="col-lg-6">
+        <button class="btn btn-danger registerFormBtn" (click)="shelterBool = false">Back</button>
+      </div>
+    </div>
+
   </form>
   </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-</body>
 </div>
-

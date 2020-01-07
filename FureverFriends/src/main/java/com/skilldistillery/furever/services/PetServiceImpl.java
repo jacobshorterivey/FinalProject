@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.furever.entities.Breed;
+import com.skilldistillery.furever.entities.Image;
 import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Trait;
@@ -106,6 +107,15 @@ public class PetServiceImpl implements PetService {
 			petToUpdate.setFixed(pet.isFixed());
 			petToUpdate.setShelter(pet.getShelter());
 			petToUpdate.setTraits(pet.getTraits());
+			if (petToUpdate.getImages() != null) {
+				Optional<Image> im = imageRepo.findById(petToUpdate.getImages().get(0).getId());
+				if (im.isPresent()) {
+					Image image = im.get();
+					image.setId(pet.getImages().get(0).getId());
+					image.setImageUrl(pet.getImages().get(0).getImageUrl());
+					imageRepo.saveAndFlush(image);
+				} 
+			}
 			petRepo.saveAndFlush(petToUpdate);
 		}
 		return petToUpdate;

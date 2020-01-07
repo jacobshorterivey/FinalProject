@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.furever.entities.Address;
 import com.skilldistillery.furever.entities.Foster;
 import com.skilldistillery.furever.repositories.FosterRepository;
 
@@ -36,6 +37,17 @@ public class FosterServiceImpl implements FosterService {
 	@Override
 	public List<Foster> findFosterByTraitPref(Integer tid) {
 		return fRepo.findByTraitListId(tid);
+	}
+	
+	@Override
+	public Foster create(Foster newFoster) {
+		try {
+			newFoster.setId(0);
+			return fRepo.saveAndFlush(newFoster);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return newFoster;
 	}
 	
 	@Override
