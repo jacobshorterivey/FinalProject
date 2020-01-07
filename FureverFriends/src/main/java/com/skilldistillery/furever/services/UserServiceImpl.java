@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.furever.entities.Account;
 import com.skilldistillery.furever.entities.Address;
 import com.skilldistillery.furever.entities.Image;
+import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Skill;
 import com.skilldistillery.furever.entities.User;
@@ -85,7 +86,21 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
+	
+	
+	@Override
+	public Account adminUpdateUser(User updateUser, Integer uid) {
 
+		Account userToUpdate = null;
+		Optional<Account> opt = acctRepo.findById(updateUser.getAccount().getId());
+		if(opt.isPresent()) {
+			userToUpdate.setActive(updateUser.getAccount().isActive());
+			acctRepo.saveAndFlush(userToUpdate);
+		}
+		return userToUpdate;
+	}
+
+	
 	@Override
 	public User updateUser(User updateUser, Integer uid, Principal principal) {
 		User origUser = showUser(uid, principal);
@@ -103,17 +118,17 @@ public class UserServiceImpl implements UserService {
 						acctRepo.saveAndFlush(uAcct);
 					}
 				}
-				if (updateUser.getAccount().getPassword() != null && updateUser.getAccount().getPassword() != "") {
-					Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
-					if (ua.isPresent()) {
-						Account uAcct = ua.get();
-						updateUser.getAccount().setPassword(encrypted);
-						uAcct.setPassword(updateUser.getAccount().getPassword());
-//						uAcct.setPassword(encrypted);
-						uAcct.setActive(updateUser.getAccount().isActive());
-						acctRepo.saveAndFlush(uAcct);
-					}
-				}
+//				if (updateUser.getAccount().getPassword() != null && updateUser.getAccount().getPassword() != "") {
+//					Optional<Account> ua = acctRepo.findById(origUser.getAccount().getId());
+//					if (ua.isPresent()) {
+//						Account uAcct = ua.get();
+//						updateUser.getAccount().setPassword(encrypted);
+//						uAcct.setPassword(updateUser.getAccount().getPassword());
+////						uAcct.setPassword(encrypted);
+//						uAcct.setActive(updateUser.getAccount().isActive());
+//						acctRepo.saveAndFlush(uAcct);
+//					}
+//				}
 				if (updateUser.getFname() != null && updateUser.getFname() != "") {
 					origUser.setFname(updateUser.getFname());
 					System.err.println("line 101 " + origUser);
@@ -128,17 +143,30 @@ public class UserServiceImpl implements UserService {
 					origUser.setEmail(updateUser.getEmail());
 				}
 				
+//				if (updateUser.getImages() != null) {
+//					Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
+//					if (im.isPresent()) {
+//						Image image = im.get();
+//						image.setId(updateUser.getImages().get(0).getId());
+//						image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
+//						imgRepo.saveAndFlush(image);
+//					} 
+//				}
 				if (updateUser.getImages() != null) {
-					Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
-					if (im.isPresent()) {
-						Image image = im.get();
-						image.setId(updateUser.getImages().get(0).getId());
-						image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
-						imgRepo.saveAndFlush(image);
+					if (origUser.getImages().size() != 0) {
+						Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
+						if (im.isPresent()) {
+							Image image = im.get();
+							image.setId(updateUser.getImages().get(0).getId());
+							image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
+							imgRepo.saveAndFlush(image);
+						} 
+					} else {
+						origUser.getImages().add(updateUser.getImages().get(0));
 					}
+
 				}
-				
-				
+
 				if (updateUser.getSkills() != null) {
 					origUser.setSkills(updateUser.getSkills());
 				}

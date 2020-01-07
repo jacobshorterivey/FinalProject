@@ -279,7 +279,14 @@ export class UserProfileComponent implements OnInit {
     // this.updateImage();
 
     if (this.newImage != null) {
-      this.user.images[0].imageUrl = this.newImage;
+      if (this.user.images.length === 0) {
+        this.user.images.push({
+          id: 1,
+          imageUrl: this.newImage
+        });
+      } else {
+        this.user.images[0].imageUrl = this.newImage;
+      }
     }
 
     this.user.account.password = this.pass;
