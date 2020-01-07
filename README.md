@@ -11,9 +11,7 @@
 
 ### Overview
 
-Furever Friends is a full-stack web application primarily built with Java and Angular.
-The application's database is manipulated using Spring Data JPA & MySQL and is served on an AWS server.
-More information about the technologies used can be found toward bottom of the page.
+Furever Friends is a full-stack web application primarily built with Java and Angular. The application's database is manipulated using Spring Data JPA & MySQL and is served on an AWS server. More information about the technologies used can be found toward bottom of the page.
 
 Furever Friends is a web application where multiple shelters can upload their adoptable pets as well as search for users willing to volunteer their skills or foster pets in their homes. Users can browse local shelters and view pets available for adoption.
 
@@ -43,7 +41,7 @@ Currently, this project is hosted on AWS and can be accessed at **URL HERE**. So
 
 #### Home Page
 
-Upon landing at the home page, a non logged-in user can view all the shelters in the area and search for pets meeting specified conditions. In order to interact with other contact shelters or users, however, you have to create a profile.
+Upon landing at the home page, a non logged-in user can view all the shelters in the area and search for pets meeting specified conditions. In order to interact with other shelters or users, however, you have to create a profile.
 
 To create a profile click the 'Login/Register' dropdown, then click the 'Register' button.
 
@@ -59,14 +57,14 @@ From the user's profile page, they can set their volunteer and foster statuses a
 
 #### Shelter Profile Page
 
-From the shelter's profile page, they can update the shelter's information. Additionally, the shelter control panel is here. Here, the manager of the shelter profile can search for fosters and volunteers, as well as add, update and delete pets from the shelter.
+From the shelter's profile page, they can update the shelter's information. Additionally, the shelter control panel is here. This control panel is where the manager of the shelter profile can search for fosters and volunteers, as well as add, update, and delete pets from the shelter.
 
 <img src="images/shelterProfile.png" width="700">
 
 
 #### Searching for Fosters or Volunteers
 
-A shelter manager can find fosters and volunteers by using the buttons in the control panel. If a foster's/volunteer's card is clicked, then a modal pops up, giving a brief summary of that user's profile. The user can be contacted by the shelter via a contact box in the modal.
+A shelter manager can find fosters and volunteers by using the buttons in the control panel. If a foster's/volunteer's card is clicked, a modal pops up, giving a brief summary of that user's profile. The user can be contacted by the shelter manager via a contact box in the modal.
 
 *These are the foster search results:*
 <img src="images/fosterSearch1.png" width="700">
@@ -95,7 +93,7 @@ A user can search for pets by using the convenient search box in the site's navb
 
 ### Implementation
 
-We used Spring Data JPA to persist the site's data to the database. We designed a database with 20+ tables to handle the operations and storing of information, with room for stretch goals and expansion. Below is an EER Diagram representing our database.
+We used Spring Data JPA to persist the site's data to the database. We designed a database with 20+ tables to handle storing all of our information, giving us room for stretch goals and expansion. Below is an EER Diagram representing our database.
 
 <img src="images/schemeScreenShot.png" width="700">
 
@@ -127,10 +125,10 @@ We used Spring Data JPA to persist the site's data to the database. We designed 
 
 ### Stretch Goals
 
-Our stretch goals included features like adding a calendar for potential pet adopters looking to schedule meetups with pets, an adoption transaction feature to allow users to begin the adoption process with a shelter on the site, and a reputation system to rate fosters, volunteers, and shelters. These features would round out the functionality of the application and further cement it's identity as a "one stop shop" for a user's pet adoption and sheltering needs.
+Our stretch goals include future features like a calendar for pet adopters looking to schedule meetups with pets, an adoption transaction feature to allow users to begin the adoption process with a shelter on our site, and a reputation system to rate fosters, volunteers, and shelters. These features would round out the functionality of the application and further cement it's identity as a "one stop shop" for pet adoption and sheltering needs.
 
 ### Lessons Learned
 
-This project was both challenging and insightful. From the jump, we were ambitious in deciding which features we wanted to include in Furever Friends. Though we may not have had time to implement every one of those ideas, we determined it was important to include them in our wireframes and database schema, so we would have the room to expand if time allowed. Having a solid foundation laid down before writing any code was vital to the project's development, as was our use of Agile methodology and effective communication with our teammates.
+This project was both challenging and insightful. From the jump, we were ambitious in deciding which features we wanted to include in Furever Friends. Though we may not have had time to implement every one of those ideas, we determined it was important to build them into our wireframes and database schema, so we would have the room to expand if time allowed. Having a solid foundation laid down before writing any code was vital to the project's development, as was our use of Agile methodology and effective communication with our teammates.
 
-A large part of our group's success can be attributed to learning how to delegate tasks, taking and receiving criticism in a positive way, and knowing when to pass off a problem to another group member. Doing these things ensured we broke our problems up into small pieces, where we could solve them quickly, and without having one pair of eyes on an issue for too long. Due to this, we were able to overcome tough challenges like security and authorization with multiple account types, filtering the database's pets by their traits, and directly uploading images from a user's computer.
+A large part of our group's success can be attributed to learning how to delegate tasks, taking and receiving criticism in a positive way, and knowing when to pass off a problem to another group member. Doing these things ensured we broke our problems up into small pieces, where we could solve them quickly, and without having one tired pair of eyes on an issue for too long. Due to this, we were able to overcome tough challenges like security and authorization with multiple account types, filtering the database's pets by their traits, and directly uploading images from a user's computer.
