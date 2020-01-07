@@ -195,7 +195,9 @@ export class PetProfileComponent implements OnInit {
       this.selectedPet.traits = this.traitsToAdd;
     }
 
-    this.selectedPet.images[0].imageUrl = this.newImg;
+    if (this.newImg != null || this.newImg != undefined) {
+      this.selectedPet.images[0].imageUrl = this.newImg;
+    }
 
     this.petService.update(this.selectedPet.id, this.selectedPet).subscribe(
       data => {

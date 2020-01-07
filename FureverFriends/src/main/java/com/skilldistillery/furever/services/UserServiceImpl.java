@@ -83,12 +83,14 @@ public class UserServiceImpl implements UserService {
 				newUser.setSkills(new ArrayList<Skill>());
 			}
 
+
 //			
 //			for (int i = 0; i < newUser.getImages().size(); i++) {
 //				imgRepo.saveAndFlush(newUser.getImages().get(i));
 //			}
 //			
 //			
+
 
 			return userRepo.saveAndFlush(newUser);
 		} catch (Exception e) {
