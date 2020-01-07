@@ -52,8 +52,7 @@ export class NavbarComponent implements OnInit {
     this.searchKeyword = null;
   }
 
-  login(form: NgForm, regUser?: Account) {
-    if (regUser === null || regUser === undefined) {
+  login(form: NgForm) {
     this.logUsername = form.value.username;
     this.auth.login(form.value.username, form.value.password).subscribe(
       next => {
@@ -63,23 +62,24 @@ export class NavbarComponent implements OnInit {
       error => {
         console.log('error logging in.');
         console.log(error);
-        this.disableMessage = true;
+        this.errorMessage = true;
       }
-    );
+      );
     this.accountService.index(form.value.username, form.value.password).subscribe(
-      ret => {
-        const accounts = ret;
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < accounts.length; i++) {
-          if (accounts[i].username === this.logUsername) {
-            this.account = accounts[i];
-            localStorage.setItem('account', JSON.stringify(this.account));
-            if (this.account.active) {
-              this.getUser(true);
-            } else {
-              localStorage.removeItem('account');
-              localStorage.removeItem('credentials');
-              this.errorMessage = true;
+        ret => {
+          const accounts = ret;
+          // tslint:disable-next-line: prefer-for-of
+          for (let i = 0; i < accounts.length; i++) {
+            if (accounts[i].username === this.logUsername) {
+              this.account = accounts[i];
+              localStorage.setItem('account', JSON.stringify(this.account));
+              console.log(this.account.active);
+              if (this.account.active) {
+                this.getUser(true);
+              } else {
+                localStorage.removeItem('account');
+                localStorage.removeItem('credentials');
+                this.disableMessage = true;
             }
           }
         }
@@ -89,7 +89,6 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       }
     );
-    }
   }
 
   // checkLogin() {
@@ -106,7 +105,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('credential');
     this.shelter = null;
     this.user = null;
-    window.location.reload();
+    this.router.navigateByUrl('/home');
   }
 
   getUser(profilePage: boolean) {
