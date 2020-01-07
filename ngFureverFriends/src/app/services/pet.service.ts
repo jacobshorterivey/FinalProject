@@ -7,13 +7,14 @@ import { Shelter } from '../models/shelter';
 import { AuthService } from './auth.service';
 import { Breed } from '../models/breed';
 import { Trait } from '../models/trait';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetService {
-  baseUrl = 'http://localhost:8087/';
-  // baseUrl = environment.baseUrl;
+  // baseUrl = 'http://localhost:8087/';
+  baseUrl = environment.baseUrl;
   url = this.baseUrl + 'api/pet';
 
   constructor(private http: HttpClient, private auth: AuthService) { }
