@@ -37,6 +37,7 @@ export class UserProfileComponent implements OnInit {
   isVolEmpty: boolean;
   isFosterActive = true;
   newSkillList = [];
+  updateImage: Image = new Image();
   skills = [
     {
       id: 1,
@@ -109,21 +110,24 @@ export class UserProfileComponent implements OnInit {
           }
 
           // checks if user is shelter or not
+
           this.account = JSON.parse(localStorage.getItem('account'));
-          if (this.account.role === 'shelter') {
-            this.showDetails = true;
-          }
+          // if (this.account.role === 'shelter') {
+          //   this.showDetails = true;
+          // }
 
           // checks if user is an admin
-          if (this.account.role === 'admin') {
-            this.admin = true;
+          if(this.account) {
+            if (this.account.role === 'admin') {
+              this.admin = true;
+            }
           }
 
           // Checks if a user is a foster.  More efficent to create backend search by id.  Maybe in the future.
 
           this.fostersvc.index().subscribe(
             (pass) => {
-              this.account = JSON.parse(localStorage.getItem('account'));
+              // this.account = JSON.parse(localStorage.getItem('account'));
               pass.forEach(element => {
                 if (element.user.id === this.user.id) {
                   this.foster = element;
@@ -188,6 +192,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateVolunteer() {
+
+
     this.newSkillList = [];
     this.skills.forEach(e => {
       if (e.active === true) {
@@ -195,13 +201,18 @@ export class UserProfileComponent implements OnInit {
       }
     });
 
-    // COLLAPSES VOLUNTEER DIV WHEN THERE ARE NO SKILLS
+    // if(this.user.skills.length === 0) {
+    //   this.user.skills.push(this.newSkillList[0]);
+    // } else {
+      // COLLAPSES VOLUNTEER DIV WHEN THERE ARE NO SKILLS
     if (this.newSkillList.length === 0) {
-      this.isVolEmpty = false;
-    }
+        this.isVolEmpty = false;
+      }
 
     this.user.skills = this.newSkillList;
+
     this.user.account.password = this.pass;
+
     this.userService.update(this.user.id, this.user).subscribe(
       data => {
         // LOGS OUT AND LOGS IN TO REFRESH CREDENTIALS
@@ -232,14 +243,19 @@ export class UserProfileComponent implements OnInit {
 
   // Updates for the checkbox.
   volunterSwitch() {
-    if (this.isVolEmpty) {
-      this.skills.forEach(e => {
-        e.active = false;
-      });
-      this.updateVolunteer();
-    } else {
+    if(this.user.skills.length === 0) {
       this.skills[2].active = true;
       this.updateVolunteer();
+    } else {
+      if (this.isVolEmpty) {
+        this.skills.forEach(e => {
+          e.active = false;
+        });
+        this.updateVolunteer();
+      } else {
+        this.skills[2].active = true;
+        this.updateVolunteer();
+      }
     }
   }
 
@@ -277,9 +293,13 @@ export class UserProfileComponent implements OnInit {
 
   updateUser() {
     // this.updateImage();
-
     if (this.newImage != null) {
-      this.user.images[0].imageUrl = this.newImage;
+      if (this.user.images.length === 0) {
+        this.updateImage.imageUrl = this.newImage;
+        this.user.images.push(this.updateImage);
+      } else {
+        this.user.images[0].imageUrl = this.newImage;
+      }
     }
 
     this.user.account.password = this.pass;
@@ -299,17 +319,12 @@ export class UserProfileComponent implements OnInit {
   newImage: string;
 
   onFileSelected(event) {
-    console.log(event);
     this.selectedFile = event.target.files[0] as File;
-    console.log(this.selectedFile);
-
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name);
 
     this.http.post<ImageResponse>('https://api.imgbb.com/1/upload?key=5eaa21d03c3d50fc34483bccfbea594f', fd).subscribe(
       res => {
-        console.log(res)
-        console.log(res.data.url);
         this.newImage = res.data.url;
       }
     );

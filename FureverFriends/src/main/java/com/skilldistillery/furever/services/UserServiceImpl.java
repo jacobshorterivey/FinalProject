@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.furever.entities.Account;
 import com.skilldistillery.furever.entities.Address;
 import com.skilldistillery.furever.entities.Image;
+import com.skilldistillery.furever.entities.Pet;
 import com.skilldistillery.furever.entities.Shelter;
 import com.skilldistillery.furever.entities.Skill;
 import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.repositories.AccountRepository;
 import com.skilldistillery.furever.repositories.AddressRepository;
 import com.skilldistillery.furever.repositories.ImageRepository;
+import com.skilldistillery.furever.repositories.SkillRepository;
 import com.skilldistillery.furever.repositories.UserRepository;
 
 @Service
@@ -33,6 +35,8 @@ public class UserServiceImpl implements UserService {
 	AccountRepository acctRepo;
 	@Autowired
 	ImageRepository imgRepo;
+	@Autowired
+	SkillRepository skillRepo;
 	@Autowired
 	private PasswordEncoder encoder;
 
@@ -56,7 +60,6 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		}
-
 		return null;
 	}
 
@@ -79,13 +82,36 @@ public class UserServiceImpl implements UserService {
 			if (newUser.getSkills() == null) {
 				newUser.setSkills(new ArrayList<Skill>());
 			}
+			
+//			
+//			for (int i = 0; i < newUser.getImages().size(); i++) {
+//				imgRepo.saveAndFlush(newUser.getImages().get(i));
+//			}
+//			
+//			
+			
+			
 			return userRepo.saveAndFlush(newUser);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+	
+	@Override
+	public Account adminUpdateUser(User updateUser, Integer uid) {
 
+		Account userToUpdate = null;
+		Optional<Account> opt = acctRepo.findById(updateUser.getAccount().getId());
+		if(opt.isPresent()) {
+			userToUpdate.setActive(updateUser.getAccount().isActive());
+			acctRepo.saveAndFlush(userToUpdate);
+		}
+		return userToUpdate;
+	}
+
+	
 	@Override
 	public User updateUser(User updateUser, Integer uid, Principal principal) {
 		User origUser = showUser(uid, principal);
@@ -98,8 +124,8 @@ public class UserServiceImpl implements UserService {
 						Account uAcct = ua.get();
 						uAcct.setUsername(updateUser.getAccount().getUsername());
 						uAcct.setActive(updateUser.getAccount().isActive());
-						uAcct.setPassword(updateUser.getAccount().getPassword());
-						uAcct.setActive(updateUser.getAccount().isActive());
+//						uAcct.setPassword(updateUser.getAccount().getPassword());
+//						uAcct.setActive(updateUser.getAccount().isActive());
 						acctRepo.saveAndFlush(uAcct);
 					}
 				}
@@ -129,19 +155,41 @@ public class UserServiceImpl implements UserService {
 				}
 				
 				if (updateUser.getImages() != null) {
-					Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
-					if (im.isPresent()) {
-						Image image = im.get();
-						image.setId(updateUser.getImages().get(0).getId());
+					if (origUser.getImages().size() != 0) {
+						Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
+						if (im.isPresent()) {
+							Image image = im.get();
+							image.setId(updateUser.getImages().get(0).getId());
+							image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
+							imgRepo.saveAndFlush(image);
+						} 
+					} else {
+						Image image = new Image();
+						image.setId(1);
 						image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
 						imgRepo.saveAndFlush(image);
+						origUser.getImages().add(image);
 					}
 				}
+
 				
 				
 				if (updateUser.getSkills() != null) {
 					origUser.setSkills(updateUser.getSkills());
-				}
+				} 
+				
+//				if (updateUser.getSkills() != null) {
+//					if (origUser.getSkills().size() != 0) {
+//						origUser.setSkills(updateUser.getSkills());
+//					} else {
+//						origUser.getSkills().add(updateUser.getSkills().get(0));
+//					}
+//				} 
+
+				
+				
+				
+				
 				if (updateUser.getPhone() != null && updateUser.getPhone() != "") {
 					origUser.setPhone(updateUser.getPhone());
 				}

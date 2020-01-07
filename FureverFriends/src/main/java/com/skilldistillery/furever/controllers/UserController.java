@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.furever.entities.Account;
 import com.skilldistillery.furever.entities.User;
 import com.skilldistillery.furever.services.UserService;
 
@@ -33,15 +34,12 @@ public class UserController {
 	}
 
 	@GetMapping("{uid}")
-
 	public User showUser(@PathVariable("uid") Integer uid, HttpServletResponse response, Principal principal){
-
 		User user = uSvc.showUser(uid, principal);
 		if (user == null) {
 			response.setStatus(404);
 		}
 		return user;
-
 	}
 
 	@PostMapping("/register")
@@ -66,6 +64,16 @@ public class UserController {
 
 		return updatedUser;
 	}
+	
+	@PutMapping("adminupdate/{uid}")
+	public Account adminUpdateUser(@PathVariable int uid, @RequestBody User origUser, HttpServletResponse response) {
+		Account updateAccount = uSvc.adminUpdateUser(origUser, uid);
+		if (updateAccount == null) {
+			response.setStatus(404);
+		}
+		return updateAccount;
+	}
+	
 
 	@GetMapping("/skill/{sid}")
 	public List<User> findVolunteerBySkill(@PathVariable Integer sid, HttpServletResponse response) {

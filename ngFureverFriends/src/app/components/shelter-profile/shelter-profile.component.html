@@ -100,16 +100,16 @@
       <div class="col shelterInfo" *ngIf="editShelter">
         <input type="hidden" value="editShelter.id" name="id" [(ngModel)]="editShelter.id">
         <p><strong>Email:</strong><br>
-        <input type = "text" name = "email" placeholder="selected.email" default="selected.email" [(ngModel)]="editShelter.email"></p><br>
+        <input type = "text" name = "email" placeholder="selected.email" class="form-control" default="selected.email" [(ngModel)]="editShelter.email"></p><br>
         <p><strong>Phone:</strong><br>
-        <input type = "text" name = "phone" placeholder="selected.phone" default="selected.phone" [(ngModel)]="editShelter.phone"></p><br>
+        <input type = "text" name = "phone" placeholder="selected.phone" class="form-control" default="selected.phone" [(ngModel)]="editShelter.phone"></p><br>
        <p> <strong>Address:</strong><br>
-        <input type = "text" name = "address.street" placeholder="selected.address.street" default="selected.address.street" [(ngModel)]="editShelter.address.street"><br>
-        <input *ngIf="selected.address.street2" type = "text" name = "address.street2" placeholder="selected.address.street2" default="selected.address.street2" [(ngModel)]="editShelter.address.street2"><br *ngIf="selected.address.street2">
-        <input type = "text" name = "address.city" placeholder="selected.address.city" default="selected.address.city" [(ngModel)]="editShelter.address.city"><br>
-        <input type = "text" name = "address.stateAbbr" placeholder="selected.address.stateAbbr" default="selected.address.stateAbbr" [(ngModel)]="editShelter.address.stateAbbr"><br>
-        <input type = "text" name = "address.zip" placeholder="selected.address.zip" default="selected.address.zip" [(ngModel)]="editShelter.address.zip"></p><br>
-        <button class="btn btn-primary" (click)="updateShelter()">Save</button>
+        <input type = "text" name = "address.street" class="form-control" placeholder="selected.address.street" default="selected.address.street" [(ngModel)]="editShelter.address.street"><br>
+        <input *ngIf="selected.address.street2" class="form-control" type = "text" name = "address.street2" placeholder="selected.address.street2" default="selected.address.street2" [(ngModel)]="editShelter.address.street2"><br *ngIf="selected.address.street2">
+        <input type = "text" name = "address.city" class="form-control" placeholder="selected.address.city" default="selected.address.city" [(ngModel)]="editShelter.address.city"><br>
+        <input type = "text" name = "address.stateAbbr" class="form-control" placeholder="selected.address.stateAbbr" default="selected.address.stateAbbr" [(ngModel)]="editShelter.address.stateAbbr"><br>
+        <input type = "text" name = "address.zip" class="form-control" placeholder="selected.address.zip" default="selected.address.zip" [(ngModel)]="editShelter.address.zip"></p><br>
+        <button class="btn btn-primary" (click)="updateShelter()" style="margin-right: 10px">Save</button>
         <button class="btn btn-primary" (click)="editShelter = null">Cancel</button>
       </div>
 
@@ -142,7 +142,6 @@
             </div>
            </div>
           </div>
-
 
           <!--ADD BACK WHEN DONE!-->
           <!-- *ngIf="isAnyoneLoggedIn"  -->
@@ -181,10 +180,17 @@
 
 
 <div class="container mapDiv">
-  <agm-map [latitude]="lat" [longitude]="long">
+  <agm-map [zoom]="mapZoom" [latitude]="lat" [longitude]="long">
     <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
   </agm-map>
 </div>
+
+
+
+
+
+
+
 
 
 <div class="container bg-light" style="padding-top: 20px; padding-bottom: 50px;">

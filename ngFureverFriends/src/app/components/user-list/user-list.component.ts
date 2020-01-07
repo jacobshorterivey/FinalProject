@@ -1,3 +1,5 @@
+import { ShelterService } from 'src/app/services/shelter.service';
+import { Account } from './../../models/account';
 import { EmailService } from './../../services/email.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { User } from 'src/app/models/user';
@@ -5,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { EmailServiceImpl } from 'src/app/models/email';
 import { NgForm } from '@angular/forms';
+import { Shelter } from 'src/app/models/shelter';
 
 @Component({
   selector: 'app-user-list',
@@ -20,15 +23,31 @@ export class UserListComponent implements OnInit {
   newEmail: EmailServiceImpl;
   volunteers: User[] = [];
   sentEmailMessage: boolean;
+  account: Account;
+  shelter: Shelter;
 
   // CONSTRUCTOR
   constructor(private svc: UserService, private currentRoute: ActivatedRoute, private cdRef: ChangeDetectorRef,
-              private emailSvc: EmailService) { }
+              private emailSvc: EmailService, private shelterSvc: ShelterService) { }
 
   // METHODS
   ngOnInit() {
     this.loadEvents();
+    this.account = JSON.parse(localStorage.getItem('account'));
+
+    this.shelterSvc.index().subscribe(
+      pass => {
+        pass.forEach(e => {
+          if (e.account.id === this.account.id) {
+            this.shelter = e;
+          }
+        }
+        );
+      },
+      fail => {}
+    );
   }
+
 
   loadEvents() {
     this.svc.index().subscribe(
@@ -60,6 +79,7 @@ export class UserListComponent implements OnInit {
   sendEmail(email: NgForm) {
     this.newEmail = email.value;
     this.newEmail.toAddress = 'fureverfriendsemail@gmail.com';
+    email.value.email = this.shelter.email;
     // tslint:disable-next-line: max-line-length
     this.newEmail.body = 'Please send replies to the following email: <br/>' + email.value.email + '<br/><br/>----------------------<br/>Original Message:<br/>' + email.value.body;
     this.emailSvc.send(this.newEmail).subscribe(
