@@ -39,25 +39,17 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('here after register');
     if (this.auth.checkLogin() === true) {
       this.isUserLoggedIn = true;
     }
     this.account = JSON.parse(localStorage.getItem('account'));
+
     this.getUser(false);
     this.loadEvents();
   }
 
   loadEvents() {
     this.searchKeyword = null;
-    // this.svc.index().subscribe(
-    //   (pass) => {
-    //     this.shelters = pass;
-    //   },
-    //   (fail) => {
-    //     console.error(fail);
-    //   }
-    // );
   }
 
   login(form: NgForm, regUser?: Account) {
@@ -100,20 +92,18 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  checkLogin() {
-    if (this.auth.checkLogin() === true) {
-      this.isUserLoggedIn = true;
-    }
-    this.getUser(false);
-  }
+  // checkLogin() {
+  //   if (this.auth.checkLogin() === true) {
+  //     this.isUserLoggedIn = true;
+  //   }
+  //   this.getUser(false);  ///uneeded?
+  // }
 
   logout() {
     this.auth.logout();
     this.isUserLoggedIn = false;
     localStorage.removeItem('account');
     localStorage.removeItem('credential');
-    console.log('logged out');
-    console.log('Account: ' +  this.account);
     this.shelter = null;
     this.user = null;
     window.location.reload();
@@ -130,8 +120,13 @@ export class NavbarComponent implements OnInit {
     //   },
     //   (fail) => {console.error(fail);
     //   });
-    if (!this.user || !this.shelter) {
-      if (this.account.role === 'user' || this.account.role === 'admin') {
+
+
+    this.account = JSON.parse(localStorage.getItem('account'));
+
+    // if (this.user != null && !this.shelter != null) {
+    if (this.account) {
+    if (this.account.role === 'user' || this.account.role === 'admin') {
         this.userService.index().subscribe(
           data => {
             const users = data;

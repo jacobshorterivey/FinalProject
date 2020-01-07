@@ -64,12 +64,12 @@
         Image:
       </div>
       <div class="col-9">
-        <!-- <div>
+       <div>
           <input class="inputfile" name="file" id="file" type="file" (change)="onFileSelected($event)">
           <label for="file" class="btn btn-success formBtn"> <img src="../../../assets/img/upload.svg" height="20px" style="margin-right: 3px"> Choose an Image</label>
-        </div> -->
+        </div>
 
-        <input type="text" name="images" class="form-control" [(ngModel)]="image.imageUrl" placeholder="Image Url">
+        <!-- <input type="text" name="images" class="form-control" [(ngModel)]="image.imageUrl" placeholder="Image Url"> -->
       </div>
     </div>
     <br>
@@ -268,6 +268,24 @@
           <img *ngIf="selectedPet.images[0]" src="{{ (selectedPet?.images)[0]?.imageUrl }}"/>
           <img *ngIf="!selectedPet.images[0]" src="../../../assets/img/noprofile.png"/>
         </div>
+
+<br>
+        <div class="container text-center">
+          <input class="inputfile" name="file" id="file" type="file" (change)="onFileSelectedUpdate($event)">
+          <label for="file" class="btn btn-success formBtn"> <img src="../../../assets/img/upload.svg" height="20px" style="margin-right: 3px"> Update Image</label>
+        </div>
+        <br>
+
+        <div class="col">
+          <strong>Traits:</strong>
+          <div class="row">
+            <div class="col-4 text-center" *ngFor="let trait of selectedPet.traits">
+                <h6><span class="badge badge-success">{{trait.description}}</span></h6>
+            </div>
+        </div>
+      </div>
+
+
       </div>
 
       <div class="col-lg-8">
@@ -402,17 +420,6 @@
 
 
         <!-- TRAIT BADGES -->
-
-
-    <div class="col-4">
-      <strong>Traits:</strong>
-      <div class="row">
-        <div class="col-3" *ngFor="let trait of selectedPet.traits">
-            <h6><span class="badge badge-success">{{trait.description}}</span></h6>
-        </div>
-    </div>
-  </div>
-
 
     </div>
   </div>
