@@ -194,9 +194,10 @@
                 </div>
               </div>
 
+
               <!-- Visible only if not logged in -->
               <!-- *ngIf="!isAnyoneLoggedIn" -->
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col logDiv">
                   <div class="row">
                     <div class="col-lg-3 col-sm-2 col-xs-12">
@@ -207,12 +208,11 @@
                   </div>
                 </div>
                </div>
-              </div>
-
+              </div> -->
 
               <!--ADD BACK WHEN DONE!-->
               <!-- *ngIf="isAnyoneLoggedIn"  -->
-              <!-- <input type="text" value="{{account.email}}" name="email"> -->
+              <input type="hidden" value="shelter.account.email" name="email" ngModel>
 
               <div class="row">
                 <div class="col logDiv">
