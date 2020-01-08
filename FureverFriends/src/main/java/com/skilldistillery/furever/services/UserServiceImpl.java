@@ -144,6 +144,8 @@ public class UserServiceImpl implements UserService {
 				System.err.println("line 101 " + origUser);
 			}
 			if (updateUser.getLname() != null && updateUser.getLname() != "") {
+				System.out.println("line 147 " + origUser.getAddress());
+				System.out.println("line 148 " + origUser.getImages());
 				origUser.setLname(updateUser.getLname());
 			}
 			if (updateUser.getAge() != null) {
@@ -153,7 +155,7 @@ public class UserServiceImpl implements UserService {
 				origUser.setEmail(updateUser.getEmail());
 			}
 
-			if (!updateUser.getImages().isEmpty()) {
+			if (!origUser.getImages().isEmpty()) {
 				Optional<Image> im = imgRepo.findById(origUser.getImages().get(0).getId());
 				if (im.isPresent()) {
 					Image image = im.get();
@@ -163,7 +165,7 @@ public class UserServiceImpl implements UserService {
 				}
 			} else {
 				Image image = new Image();
-				image.setId(1);
+				image.setId(0);
 				image.setImageUrl(updateUser.getImages().get(0).getImageUrl());
 				imgRepo.saveAndFlush(image);
 				origUser.getImages().add(image);

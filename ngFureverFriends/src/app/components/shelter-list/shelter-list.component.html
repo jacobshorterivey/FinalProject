@@ -7,7 +7,7 @@
     <div *ngFor="let shelter of shelters; let i = index">
 
 
-      <div class="row shelterCard" routerLink="../shelter/{{shelter.id}}">
+      <div class="row shelterCard" routerLink="../shelter/{{shelter.id}}"  *ngIf="shelter.account.active">
         <div class="col" style="overflow: hidden;">
 
 
