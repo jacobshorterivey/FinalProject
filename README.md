@@ -18,7 +18,7 @@ Furever Friends is a web application where multiple shelters can upload their ad
 
 ### Accessing and Using This Project
 
-Currently, this project is hosted on AWS and can be accessed at **URL HERE**. Some of the operations that can be performed with this project and the URIs to access these operations are listed below.
+Currently, this project is hosted on AWS. Some of the operations that can be performed with this project and the URIs to access these operations are listed below.
 
 | CRUD Op. | HTTP Verb | URI                        | Action                                     |
 |----------|-----------|----------------------------|--------------------------------------------|
@@ -43,7 +43,7 @@ Currently, this project is hosted on AWS and can be accessed at **URL HERE**. So
 
 Upon landing at the home page, a non logged-in user can view all the shelters in the area and search for pets meeting specified conditions. In order to interact with other shelters or users, however, you have to create a profile.
 
-To create a profile click the 'Login/Register' dropdown, then click the 'Register' button.
+To create a profile, click the 'Login/Register' dropdown in the navbar, then click the 'Register' button.
 
 <img src="images/userSignUp.png" width="200">
 
