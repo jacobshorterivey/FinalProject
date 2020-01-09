@@ -12,6 +12,10 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+    junit5Version = "5.5.2" 
+}
+
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	compile project(':JPAFurever')

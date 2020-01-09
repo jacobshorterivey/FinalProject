@@ -280,6 +280,6 @@ CAT
   padding-bottom: 10vh;
   font-size: 22px;
   font-weight: 500;
-  border-bottom: 5px solid rgb(236, 236, 236, 1);
-  border-top: 5px solid rgb(236, 236, 236, 1);
+  border-bottom: 5px solid #fff;
+  border-top: 5px solid #fff;
 }
