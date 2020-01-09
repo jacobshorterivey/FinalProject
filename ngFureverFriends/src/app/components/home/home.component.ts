@@ -28,13 +28,13 @@ export class HomeComponent implements OnInit {
     const num = Math.floor(Math.random() * 4);
     const myRow = document.querySelector('.openingDiv');
     if (num === 0) {
-      myRow.setAttribute('style', 'background-image: url("../../../assets/img/bgimg1.jpg");');
+      myRow.setAttribute('style', 'background-image: url("assets/img/bgimg1.jpg");');
     } else if (num === 1) {
-      myRow.setAttribute('style', 'background-image: url("../../../assets/img/bgimg2.jpg");');
+      myRow.setAttribute('style', 'background-image: url("assets/img/bgimg2.jpg");');
     } else if (num === 2) {
-      myRow.setAttribute('style', 'background-image: url("../../../assets/img/bgimg3.jpg");');
+      myRow.setAttribute('style', 'background-image: url("assets/img/bgimg3.jpg");');
     } else if (num === 3) {
-      myRow.setAttribute('style', 'background-image: url("../../../assets/img/bgimg4.jpg");');
+      myRow.setAttribute('style', 'background-image: url("assets/img/bgimg4.jpg");');
     }
   }
 

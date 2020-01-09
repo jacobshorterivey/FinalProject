@@ -1,6 +1,7 @@
 ## Furever Friends
 
 ### Final Project for Skill Distillery
+<a href="http://3.132.170.184:8080/FureverFriends/home"> Visit the live application</a>
 
 #### Team Members
 * Samantha Haviland (Developer, Scrum Master)

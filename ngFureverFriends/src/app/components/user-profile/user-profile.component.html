@@ -11,7 +11,7 @@
 
       <div class="profilePhoto" style="margin-top: 30px;">
         <img *ngIf="user.images[0]" src="{{user?.images[0]?.imageUrl}}" height="100px">
-        <img *ngIf="!user.images[0]" src="../../../assets/img/noprofile.png" height="100px">
+        <img *ngIf="!user.images[0]" src="assets/img/noprofile.png" height="100px">
       </div>
 
       <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-top: 20px; margin-bottom: 30px;">Update Profile</button>
